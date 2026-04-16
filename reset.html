@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MedTerms — Passwort zurückgesetzt</title>
+<title>MedTerms — Passwort zurücksetzen</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -15,12 +15,25 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#F7F9FC;min-height:10
 .body{padding:32px 28px;text-align:center}
 .icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
 .icon svg{width:36px;height:36px;fill:#fff}
+.icon-success{background:linear-gradient(135deg,#66BB6A,#43A047)}
 .body h2{color:#242833;font-size:22px;font-weight:700;margin-bottom:8px}
 .body .msg{color:#7E8494;font-size:15px;line-height:1.6;margin-bottom:24px}
-.btn{display:inline-block;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;font-size:16px;font-weight:600;text-decoration:none;padding:14px 36px;border-radius:22px;box-shadow:0 4px 16px rgba(125,162,255,.3);transition:transform .15s}
+.btn{display:inline-block;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;font-size:16px;font-weight:600;text-decoration:none;padding:14px 36px;border-radius:22px;box-shadow:0 4px 16px rgba(125,162,255,.3);transition:transform .15s;border:none;cursor:pointer;width:100%}
 .btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .footer{padding:20px 28px;border-top:1px solid #E4E9F5;text-align:center}
 .footer p{font-size:12px;color:#959FBA}
+.form-group{margin-bottom:16px;text-align:left}
+.form-group label{display:block;font-size:13px;color:#7E8494;margin-bottom:6px;font-weight:600}
+.form-group input{width:100%;padding:12px 16px;border:2px solid #E4E9F5;border-radius:12px;font-size:15px;font-family:inherit;transition:border-color .2s;outline:none}
+.form-group input:focus{border-color:#78B5FA}
+.form-group input.error{border-color:#EF5350}
+.error-msg{color:#EF5350;font-size:13px;margin-top:6px;display:none}
+.error-msg.visible{display:block}
+.pw-hint{color:#959FBA;font-size:12px;margin-top:4px}
+.spinner{display:inline-block;width:20px;height:20px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+#view-form,#view-success,#view-error{display:none}
 </style>
 </head>
 <body>
@@ -30,35 +43,150 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#F7F9FC;min-height:10
     <p>Medizinische Fachbegriffe meistern</p>
   </div>
   <div class="body">
-    <div class="icon"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg></div>
-    <h2 id="title">Passwort erfolgreich zurückgesetzt!</h2>
-    <p class="msg" id="msg">Ihr Passwort wurde geändert. Sie können sich jetzt mit dem neuen Passwort anmelden.</p>
-    <a href="medterms://login" class="btn" id="btn">App öffnen</a>
+    <!-- FORM VIEW -->
+    <div id="view-form">
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg></div>
+      <h2 id="form-title">Neues Passwort festlegen</h2>
+      <p class="msg" id="form-msg">Geben Sie Ihr neues Passwort ein.</p>
+      <form id="reset-form" autocomplete="off">
+        <div class="form-group">
+          <label id="lbl-pw" for="pw">Neues Passwort</label>
+          <input type="password" id="pw" minlength="6" required>
+          <p class="pw-hint" id="pw-hint">Min. 6 Zeichen</p>
+        </div>
+        <div class="form-group">
+          <label id="lbl-pw2" for="pw2">Passwort bestätigen</label>
+          <input type="password" id="pw2" minlength="6" required>
+          <p class="error-msg" id="err-match">Passwörter stimmen nicht überein</p>
+        </div>
+        <button type="submit" class="btn" id="btn-submit">Passwort ändern</button>
+      </form>
+    </div>
+    <!-- SUCCESS VIEW -->
+    <div id="view-success">
+      <div class="icon icon-success"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <h2 id="success-title">Passwort erfolgreich geändert!</h2>
+      <p class="msg" id="success-msg">Sie können sich jetzt mit dem neuen Passwort anmelden.</p>
+      <a href="medterms://login" class="btn" id="btn-app">App öffnen</a>
+    </div>
+    <!-- ERROR VIEW -->
+    <div id="view-error">
+      <div class="icon" style="background:linear-gradient(135deg,#EF5350,#E53935)"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+      <h2 id="error-title">Link abgelaufen</h2>
+      <p class="msg" id="error-msg">Dieser Link ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen Link an.</p>
+    </div>
   </div>
   <div class="footer">
-    <p>© 2026 GermanMove Education</p>
+    <p>&copy; 2026 GermanMove Education</p>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
+const SUPABASE_URL='https://dnngjjfipppdjrgmmjxo.supabase.co';
+const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRubmdqamZpcHBwZGpyZ21tanhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNTczNzgsImV4cCI6MjA5MTczMzM3OH0.OMdU8wrV6evjoYEd9i1CYIXcPbSx0D4f4XgW-j0MiCM';
+
 const T={
-de:{title:'Passwort erfolgreich zurückgesetzt!',msg:'Ihr Passwort wurde geändert. Sie können sich jetzt mit dem neuen Passwort anmelden.',btn:'App öffnen'},
-en:{title:'Password successfully reset!',msg:'Your password has been changed. You can now sign in with your new password.',btn:'Open App'},
-uk:{title:'Пароль успішно скинуто!',msg:'Ваш пароль змінено. Тепер ви можете увійти з новим паролем.',btn:'Відкрити додаток'},
-ru:{title:'Пароль успешно сброшен!',msg:'Ваш пароль изменён. Теперь вы можете войти с новым паролем.',btn:'Открыть приложение'},
-tr:{title:'Şifre başarıyla sıfırlandı!',msg:'Şifreniz değiştirildi. Artık yeni şifrenizle giriş yapabilirsiniz.',btn:'Uygulamayı aç'},
-ar:{title:'تم إعادة تعيين كلمة المرور بنجاح!',msg:'تم تغيير كلمة المرور. يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة.',btn:'افتح التطبيق'},
-fr:{title:'Mot de passe réinitialisé !',msg:'Votre mot de passe a été modifié. Connectez-vous avec votre nouveau mot de passe.',btn:'Ouvrir l\'app'},
-es:{title:'¡Contraseña restablecida!',msg:'Su contraseña ha sido cambiada. Inicie sesión con su nueva contraseña.',btn:'Abrir la app'},
-pl:{title:'Hasło zresetowane!',msg:'Twoje hasło zostało zmienione. Zaloguj się nowym hasłem.',btn:'Otwórz aplikację'},
-el:{title:'Ο κωδικός επαναφέρθηκε!',msg:'Ο κωδικός σας άλλαξε. Μπορείτε να συνδεθείτε με τον νέο κωδικό.',btn:'Άνοιγμα εφαρμογής'},
-ro:{title:'Parola a fost resetată!',msg:'Parola dvs. a fost schimbată. Vă puteți conecta cu noua parolă.',btn:'Deschide aplicația'}
+de:{formTitle:'Neues Passwort festlegen',formMsg:'Geben Sie Ihr neues Passwort ein.',lblPw:'Neues Passwort',lblPw2:'Passwort bestätigen',hint:'Min. 6 Zeichen',errMatch:'Passwörter stimmen nicht überein',btnSubmit:'Passwort ändern',btnLoading:'Wird geändert...',successTitle:'Passwort erfolgreich geändert!',successMsg:'Sie können sich jetzt mit dem neuen Passwort anmelden.',btnApp:'App öffnen',errorTitle:'Link abgelaufen',errorMsg:'Dieser Link ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen Link an.'},
+en:{formTitle:'Set new password',formMsg:'Enter your new password.',lblPw:'New password',lblPw2:'Confirm password',hint:'Min. 6 characters',errMatch:'Passwords do not match',btnSubmit:'Change password',btnLoading:'Changing...',successTitle:'Password changed!',successMsg:'You can now sign in with your new password.',btnApp:'Open App',errorTitle:'Link expired',errorMsg:'This link is invalid or expired. Please request a new one.'},
+uk:{formTitle:'Встановити новий пароль',formMsg:'Введіть новий пароль.',lblPw:'Новий пароль',lblPw2:'Підтвердити пароль',hint:'Мін. 6 символів',errMatch:'Паролі не збігаються',btnSubmit:'Змінити пароль',btnLoading:'Змінюємо...',successTitle:'Пароль змінено!',successMsg:'Тепер ви можете увійти з новим паролем.',btnApp:'Відкрити додаток',errorTitle:'Посилання недійсне',errorMsg:'Це посилання недійсне або застаріло. Запросіть нове.'},
+ru:{formTitle:'Установить новый пароль',formMsg:'Введите новый пароль.',lblPw:'Новый пароль',lblPw2:'Подтвердить пароль',hint:'Мин. 6 символов',errMatch:'Пароли не совпадают',btnSubmit:'Изменить пароль',btnLoading:'Меняем...',successTitle:'Пароль изменён!',successMsg:'Теперь вы можете войти с новым паролем.',btnApp:'Открыть приложение',errorTitle:'Ссылка устарела',errorMsg:'Эта ссылка недействительна. Запросите новую.'},
+tr:{formTitle:'Yeni şifre belirle',formMsg:'Yeni şifrenizi girin.',lblPw:'Yeni şifre',lblPw2:'Şifreyi onayla',hint:'Min. 6 karakter',errMatch:'Şifreler eşleşmiyor',btnSubmit:'Şifreyi değiştir',btnLoading:'Değiştiriliyor...',successTitle:'Şifre değiştirildi!',successMsg:'Artık yeni şifrenizle giriş yapabilirsiniz.',btnApp:'Uygulamayı aç',errorTitle:'Link geçersiz',errorMsg:'Bu link geçersiz veya süresi dolmuş.'},
+ar:{formTitle:'تعيين كلمة مرور جديدة',formMsg:'أدخل كلمة المرور الجديدة.',lblPw:'كلمة المرور الجديدة',lblPw2:'تأكيد كلمة المرور',hint:'٦ أحرف على الأقل',errMatch:'كلمتا المرور غير متطابقتين',btnSubmit:'تغيير كلمة المرور',btnLoading:'جارٍ التغيير...',successTitle:'تم تغيير كلمة المرور!',successMsg:'يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة.',btnApp:'افتح التطبيق',errorTitle:'الرابط منتهي',errorMsg:'هذا الرابط غير صالح أو منتهي الصلاحية.'},
+fr:{formTitle:'Définir un nouveau mot de passe',formMsg:'Entrez votre nouveau mot de passe.',lblPw:'Nouveau mot de passe',lblPw2:'Confirmer',hint:'Min. 6 caractères',errMatch:'Les mots de passe ne correspondent pas',btnSubmit:'Changer',btnLoading:'En cours...',successTitle:'Mot de passe modifié !',successMsg:'Connectez-vous avec votre nouveau mot de passe.',btnApp:'Ouvrir l\'app',errorTitle:'Lien expiré',errorMsg:'Ce lien est invalide ou expiré.'},
+es:{formTitle:'Establecer nueva contraseña',formMsg:'Ingrese su nueva contraseña.',lblPw:'Nueva contraseña',lblPw2:'Confirmar',hint:'Mín. 6 caracteres',errMatch:'Las contraseñas no coinciden',btnSubmit:'Cambiar',btnLoading:'Cambiando...',successTitle:'¡Contraseña cambiada!',successMsg:'Inicie sesión con su nueva contraseña.',btnApp:'Abrir app',errorTitle:'Enlace expirado',errorMsg:'Este enlace es inválido o ha expirado.'},
+pl:{formTitle:'Ustaw nowe hasło',formMsg:'Wpisz nowe hasło.',lblPw:'Nowe hasło',lblPw2:'Potwierdź',hint:'Min. 6 znaków',errMatch:'Hasła nie pasują',btnSubmit:'Zmień hasło',btnLoading:'Zmieniam...',successTitle:'Hasło zmienione!',successMsg:'Zaloguj się nowym hasłem.',btnApp:'Otwórz',errorTitle:'Link wygasł',errorMsg:'Ten link jest nieprawidłowy lub wygasł.'},
+el:{formTitle:'Νέος κωδικός',formMsg:'Εισάγετε τον νέο κωδικό.',lblPw:'Νέος κωδικός',lblPw2:'Επιβεβαίωση',hint:'Τουλ. 6 χαρακτήρες',errMatch:'Οι κωδικοί δεν ταιριάζουν',btnSubmit:'Αλλαγή',btnLoading:'Αλλαγή...',successTitle:'Κωδικός αλλάχθηκε!',successMsg:'Μπορείτε να συνδεθείτε.',btnApp:'Άνοιγμα',errorTitle:'Λήξη συνδέσμου',errorMsg:'Αυτός ο σύνδεσμος δεν ισχύει.'},
+ro:{formTitle:'Setare parolă nouă',formMsg:'Introduceți parola nouă.',lblPw:'Parolă nouă',lblPw2:'Confirmare',hint:'Min. 6 caractere',errMatch:'Parolele nu coincid',btnSubmit:'Schimbă',btnLoading:'Se schimbă...',successTitle:'Parolă schimbată!',successMsg:'Vă puteți conecta cu noua parolă.',btnApp:'Deschide',errorTitle:'Link expirat',errorMsg:'Acest link este invalid sau a expirat.'}
 };
+
 const lang=(navigator.language||'de').slice(0,2).toLowerCase();
 const t=T[lang]||T.de;
-document.getElementById('title').textContent=t.title;
-document.getElementById('msg').textContent=t.msg;
-document.getElementById('btn').textContent=t.btn;
 if(lang==='ar')document.body.style.direction='rtl';
+
+document.getElementById('form-title').textContent=t.formTitle;
+document.getElementById('form-msg').textContent=t.formMsg;
+document.getElementById('lbl-pw').textContent=t.lblPw;
+document.getElementById('lbl-pw2').textContent=t.lblPw2;
+document.getElementById('pw-hint').textContent=t.hint;
+document.getElementById('err-match').textContent=t.errMatch;
+document.getElementById('btn-submit').textContent=t.btnSubmit;
+document.getElementById('success-title').textContent=t.successTitle;
+document.getElementById('success-msg').textContent=t.successMsg;
+document.getElementById('btn-app').textContent=t.btnApp;
+document.getElementById('error-title').textContent=t.errorTitle;
+document.getElementById('error-msg').textContent=t.errorMsg;
+
+const supabase=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON);
+
+function showView(id){
+  document.getElementById('view-form').style.display='none';
+  document.getElementById('view-success').style.display='none';
+  document.getElementById('view-error').style.display='none';
+  document.getElementById(id).style.display='block';
+}
+
+async function init(){
+  const hash=window.location.hash.substring(1);
+  const params=new URLSearchParams(hash||window.location.search.substring(1));
+  const accessToken=params.get('access_token');
+  const refreshToken=params.get('refresh_token');
+  const type=params.get('type');
+
+  if(accessToken && refreshToken && type==='recovery'){
+    const{error}=await supabase.auth.setSession({access_token:accessToken,refresh_token:refreshToken});
+    if(error){
+      console.error('Session error:',error);
+      showView('view-error');
+      return;
+    }
+    showView('view-form');
+  } else {
+    const{data:{session}}=await supabase.auth.getSession();
+    if(session){
+      showView('view-form');
+    } else {
+      showView('view-error');
+    }
+  }
+}
+
+document.getElementById('reset-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const pw=document.getElementById('pw').value;
+  const pw2=document.getElementById('pw2').value;
+  const errEl=document.getElementById('err-match');
+  const btn=document.getElementById('btn-submit');
+
+  errEl.classList.remove('visible');
+  document.getElementById('pw2').classList.remove('error');
+
+  if(pw!==pw2){
+    errEl.classList.add('visible');
+    document.getElementById('pw2').classList.add('error');
+    return;
+  }
+  if(pw.length<6){
+    return;
+  }
+
+  btn.disabled=true;
+  btn.innerHTML='<span class="spinner"></span> '+t.btnLoading;
+
+  const{error}=await supabase.auth.updateUser({password:pw});
+
+  if(error){
+    btn.disabled=false;
+    btn.textContent=t.btnSubmit;
+    errEl.textContent=error.message;
+    errEl.classList.add('visible');
+    return;
+  }
+
+  showView('view-success');
+});
+
+init();
 </script>
 </body>
 </html>
