@@ -142,75 +142,63 @@ async function init(){
     }
     sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON);
 
-    var hash=window.location.hash.substring(1);
-    var query=window.location.search.substring(1);
-    var hashParams=new URLSearchParams(hash);
-    var queryParams=new URLSearchParams(query);
+    var queryParams=new URLSearchParams(window.location.search);
+    var hashParams=new URLSearchParams(window.location.hash.substring(1));
 
-    console.log('[reset] URL hash:',hash?hash.substring(0,80)+'...':'(empty)');
-    console.log('[reset] URL query:',query?query.substring(0,80)+'...':'(empty)');
-
+    var tokenHash=queryParams.get('token_hash')||hashParams.get('token_hash');
+    var type=queryParams.get('type')||hashParams.get('type');
     var accessToken=hashParams.get('access_token');
     var refreshToken=hashParams.get('refresh_token');
-    var type=hashParams.get('type')||queryParams.get('type');
     var code=queryParams.get('code');
 
-    // Method 1: Implicit flow — tokens in hash fragment
-    if(accessToken && refreshToken){
-      console.log('[reset] Found tokens in hash, type=',type);
-      var res=await sb.auth.setSession({access_token:accessToken,refresh_token:refreshToken});
+    console.log('[reset] token_hash:',tokenHash?'present':'absent');
+    console.log('[reset] type:',type);
+    console.log('[reset] accessToken:',accessToken?'present':'absent');
+    console.log('[reset] code:',code?'present':'absent');
+
+    // Method 1 (primary): Direct verifyOtp with token_hash from URL
+    if(tokenHash && type==='recovery'){
+      console.log('[reset] Verifying token_hash via verifyOtp...');
+      var res=await sb.auth.verifyOtp({token_hash:tokenHash,type:'recovery'});
       if(res.error){
-        console.error('[reset] setSession error:',res.error);
+        console.error('[reset] verifyOtp error:',res.error.message);
         showView('view-error');
         return;
       }
-      console.log('[reset] Session established via implicit flow');
+      console.log('[reset] Session established via verifyOtp');
       showView('view-form');
       return;
     }
 
-    // Method 2: PKCE flow — code in query params
-    if(code){
-      console.log('[reset] Found code in query, exchanging...');
-      var res2=await sb.auth.exchangeCodeForSession(code);
+    // Method 2: Implicit flow — tokens in hash fragment
+    if(accessToken && refreshToken){
+      console.log('[reset] Found tokens in hash');
+      var res2=await sb.auth.setSession({access_token:accessToken,refresh_token:refreshToken});
       if(res2.error){
-        console.error('[reset] exchangeCode error:',res2.error);
+        console.error('[reset] setSession error:',res2.error);
         showView('view-error');
         return;
       }
-      console.log('[reset] Session established via PKCE flow');
       showView('view-form');
       return;
     }
 
-    // Method 3: Supabase auto-detects tokens/code from URL
-    console.log('[reset] No explicit tokens, checking for existing session...');
-    var sess=await sb.auth.getSession();
-    if(sess.data && sess.data.session){
-      console.log('[reset] Found existing session');
-      showView('view-form');
-      return;
-    }
-
-    // Method 4: Listen for auth state change (Supabase might process URL async)
-    console.log('[reset] No session yet, waiting for auth event...');
-    var resolved=false;
-    sb.auth.onAuthStateChange(function(event,session){
-      console.log('[reset] Auth event:',event);
-      if(resolved)return;
-      if(event==='PASSWORD_RECOVERY'||event==='SIGNED_IN'){
-        resolved=true;
-        showView('view-form');
-      }
-    });
-
-    // Timeout: if nothing happens in 3s, show error
-    setTimeout(function(){
-      if(!resolved){
-        console.log('[reset] Timeout — no auth event received');
+    // Method 3: PKCE flow — code in query params
+    if(code){
+      console.log('[reset] Found PKCE code');
+      var res3=await sb.auth.exchangeCodeForSession(code);
+      if(res3.error){
+        console.error('[reset] exchangeCode error:',res3.error);
         showView('view-error');
+        return;
       }
-    },3000);
+      showView('view-form');
+      return;
+    }
+
+    // No valid tokens found
+    console.log('[reset] No tokens/code found in URL');
+    showView('view-error');
 
   }catch(err){
     console.error('[reset] init() error:',err);
