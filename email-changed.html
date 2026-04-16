@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MedTerms — E-Mail geändert</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',system-ui,sans-serif;background:#F7F9FC;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{background:#fff;border-radius:16px;max-width:480px;width:100%;box-shadow:0 4px 24px rgba(0,0,0,.08);overflow:hidden}
+.header{background:linear-gradient(135deg,#78B5FA,#9586FD);padding:32px 24px 20px;text-align:center}
+.header h1{color:#fff;font-size:26px;font-weight:700;letter-spacing:1px}
+.header p{color:rgba(255,255,255,.85);font-size:13px;margin-top:6px}
+.body{padding:32px 28px;text-align:center}
+.icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#56C9D6,#38D185);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.icon svg{width:36px;height:36px;fill:#fff}
+.body h2{color:#242833;font-size:22px;font-weight:700;margin-bottom:8px}
+.body .msg{color:#7E8494;font-size:15px;line-height:1.6;margin-bottom:24px}
+.btn{display:inline-block;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;font-size:16px;font-weight:600;text-decoration:none;padding:14px 36px;border-radius:22px;box-shadow:0 4px 16px rgba(125,162,255,.3);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.footer{padding:20px 28px;border-top:1px solid #E4E9F5;text-align:center}
+.footer p{font-size:12px;color:#959FBA}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <h1>MedTerms</h1>
+    <p>Medizinische Fachbegriffe meistern</p>
+  </div>
+  <div class="body">
+    <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+    <h2 id="title">E-Mail-Adresse erfolgreich geändert!</h2>
+    <p class="msg" id="msg">Ihre neue E-Mail-Adresse wurde bestätigt. Sie können sich jetzt mit der neuen Adresse anmelden.</p>
+    <a href="medterms://login" class="btn" id="btn">App öffnen</a>
+  </div>
+  <div class="footer">
+    <p>© 2026 GermanMove Education</p>
+  </div>
+</div>
+<script>
+const T={
+de:{title:'E-Mail-Adresse erfolgreich geändert!',msg:'Ihre neue E-Mail-Adresse wurde bestätigt. Sie können sich jetzt mit der neuen Adresse anmelden.',btn:'App öffnen'},
+en:{title:'Email address successfully changed!',msg:'Your new email address has been confirmed. You can now sign in with your new address.',btn:'Open App'},
+uk:{title:'Email успішно змінено!',msg:'Вашу нову адресу підтверджено. Тепер ви можете увійти з новою адресою.',btn:'Відкрити додаток'},
+ru:{title:'Email успешно изменён!',msg:'Ваш новый адрес подтверждён. Теперь вы можете войти с новым адресом.',btn:'Открыть приложение'},
+tr:{title:'E-posta adresi başarıyla değiştirildi!',msg:'Yeni e-posta adresiniz onaylandı. Artık yeni adresinizle giriş yapabilirsiniz.',btn:'Uygulamayı aç'},
+ar:{title:'تم تغيير البريد الإلكتروني بنجاح!',msg:'تم تأكيد عنوان بريدك الإلكتروني الجديد. يمكنك الآن تسجيل الدخول بالعنوان الجديد.',btn:'افتح التطبيق'},
+fr:{title:'Adresse e-mail modifiée !',msg:'Votre nouvelle adresse e-mail est confirmée. Connectez-vous avec votre nouvelle adresse.',btn:'Ouvrir l\'app'},
+es:{title:'¡Correo electrónico cambiado!',msg:'Su nueva dirección de correo ha sido confirmada. Inicie sesión con la nueva dirección.',btn:'Abrir la app'},
+pl:{title:'Adres e-mail zmieniony!',msg:'Twój nowy adres e-mail został potwierdzony. Zaloguj się nowym adresem.',btn:'Otwórz aplikację'},
+el:{title:'Το email άλλαξε επιτυχώς!',msg:'Η νέα διεύθυνση email επιβεβαιώθηκε. Μπορείτε να συνδεθείτε με τη νέα διεύθυνση.',btn:'Άνοιγμα εφαρμογής'},
+ro:{title:'E-mail schimbat cu succes!',msg:'Noua adresă de e-mail a fost confirmată. Vă puteți conecta cu noua adresă.',btn:'Deschide aplicația'}
+};
+const lang=(navigator.language||'de').slice(0,2).toLowerCase();
+const t=T[lang]||T.de;
+document.getElementById('title').textContent=t.title;
+document.getElementById('msg').textContent=t.msg;
+document.getElementById('btn').textContent=t.btn;
+if(lang==='ar')document.body.style.direction='rtl';
+</script>
+</body>
+</html>

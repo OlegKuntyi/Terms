@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GermanMove Terms</title>
+  <meta name="description" content="Medizinische Fachbegriffe lernen. 2934 Begriffe mit Karteikarten, Luckentexten und Spaced Repetition.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #4eb7a7;
+      --teal-dark: #2a7c6f;
+      --teal-glow: rgba(78, 183, 167, 0.4);
+      --ok: #34c759;
+      --ok-2: #78e08f;
+      --text: #f3f6f9;
+      --muted: rgba(243, 246, 249, 0.7);
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-strong: rgba(255, 255, 255, 0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0d1117;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated mesh background */
+    .bg-mesh {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-mesh .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: float 20s ease-in-out infinite;
+    }
+    .bg-mesh .orb:nth-child(1) {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #2a7c6f, transparent 70%);
+      top: -10%; left: -10%;
+      animation-duration: 25s;
+    }
+    .bg-mesh .orb:nth-child(2) {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #1a5276, transparent 70%);
+      top: 40%; right: -15%;
+      animation-duration: 20s;
+      animation-delay: -5s;
+    }
+    .bg-mesh .orb:nth-child(3) {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, #4eb7a7, transparent 70%);
+      bottom: -5%; left: 20%;
+      animation-duration: 22s;
+      animation-delay: -10s;
+    }
+    .bg-mesh .orb:nth-child(4) {
+      width: 250px; height: 250px;
+      background: radial-gradient(circle, rgba(120, 224, 143, 0.6), transparent 70%);
+      top: 20%; left: 50%;
+      animation-duration: 18s;
+      animation-delay: -3s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -40px) scale(1.05); }
+      50% { transform: translate(-20px, 20px) scale(0.95); }
+      75% { transform: translate(15px, 35px) scale(1.02); }
+    }
+
+    /* Grain overlay */
+    .bg-mesh::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(78, 183, 167, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 0 30px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .header .logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: glow 4s infinite alternate;
+      color: white;
+      text-decoration: none;
+    }
+    .header nav {
+      display: flex;
+      gap: 6px;
+    }
+    .header nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .header nav a:hover,
+    .header nav a.active {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    @keyframes glow {
+      0% { text-shadow: none; }
+      50% { text-shadow: 0 0 3px rgba(255,255,255,0.5); }
+      100% { text-shadow: 0 0 6px #fff, 0 0 12px rgba(78,183,167,0.5); }
+    }
+    @media (max-width: 480px) {
+      .header { padding: 0 16px; height: 52px; }
+      .header .logo { font-size: 16px; letter-spacing: 1px; }
+      .header nav a { font-size: 11px; padding: 5px 10px; }
+    }
+
+    /* Content */
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .hero-icon {
+      font-size: 56px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .hero h2 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--teal), var(--ok-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .stat {
+      background: var(--glass-strong);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 20px 10px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .stat:hover {
+      transform: translateY(-2px);
+      border-color: rgba(78,183,167,0.3);
+    }
+    .stat .num {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .stat .label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Glass card */
+    .card {
+      background: var(--glass-strong);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 26px 22px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(78,183,167,0.2);
+    }
+    .card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--ok-2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .card li {
+      font-size: 14px;
+      color: var(--muted);
+      padding: 5px 0 5px 22px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      opacity: 0.7;
+    }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .tag {
+      background: rgba(42, 124, 111, 0.3);
+      border: 1px solid rgba(78, 183, 167, 0.2);
+      color: var(--teal);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .tag:hover {
+      background: rgba(42, 124, 111, 0.5);
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .btn {
+      flex: 1;
+      display: block;
+      text-align: center;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      color: #fff;
+      box-shadow: 0 4px 20px var(--teal-glow);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--teal-glow);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--teal);
+      border-color: rgba(78,183,167,0.3);
+    }
+    .btn-ghost:hover {
+      background: rgba(78,183,167,0.1);
+      border-color: var(--teal);
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      margin-top: 36px;
+      padding: 20px;
+    }
+    .contact a {
+      color: var(--teal);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(78,183,167,0.3);
+      transition: border-color 0.2s;
+    }
+    .contact a:hover { border-color: var(--teal); }
+
+    /* Footer */
+    .footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 24px 20px;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid var(--glass-border);
+    }
+    .footer a {
+      color: var(--teal);
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+    }
+    .footer a:hover { text-decoration: underline; }
+    .footer-links { margin-top: 8px; }
+
+    @media (max-width: 480px) {
+      .header h1 { font-size: 18px; }
+      .hero h2 { font-size: 22px; }
+      .stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .stat { padding: 14px 6px; }
+      .stat .num { font-size: 24px; }
+      .card { padding: 20px 16px; }
+      .btn-row { flex-direction: column; }
+      .hero-icon { font-size: 44px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-mesh">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
+
+  <div class="header">
+    <a href="index.html" class="logo">GermanMove Terms</a>
+    <nav>
+      <a href="index.html" class="active">Start</a>
+      <a href="privacy.html">Datenschutz</a>
+      <a href="terms.html">AGB</a>
+    </nav>
+  </div>
+
+  <div class="content">
+
+    <div class="hero">
+      <span class="hero-icon">🩺</span>
+      <h2>Medizinische Fachbegriffe meistern</h2>
+      <p>2934 Begriffe mit Karteikarten, Luckentexten, Audio und Spaced Repetition — speziell fur die Fachsprachprufung.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">2934</div>
+        <div class="label">Begriffe</div>
+      </div>
+      <div class="stat">
+        <div class="num">2934</div>
+        <div class="label">Definitionen</div>
+      </div>
+      <div class="stat">
+        <div class="num">17k+</div>
+        <div class="label">Audio</div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="num">Lat</div>
+        <div class="label">Lateinisch</div>
+      </div>
+      <div class="stat">
+        <div class="num">De</div>
+        <div class="label">Deutsch</div>
+      </div>
+      <div class="stat">
+        <div class="num">5</div>
+        <div class="label">Lernmodi</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🎯 Funktionen</h3>
+      <ul>
+        <li>Karteikarten mit Spaced Repetition (FSRS)</li>
+        <li>Luckentexte aus Fach- und Patientengesprachen</li>
+        <li>Audio-Aussprache — mannlich &amp; weiblich</li>
+        <li>Filterung nach Region und Fachgebiet</li>
+        <li>Fortschrittsverfolgung und Statistiken</li>
+        <li>Offline-Modus — uberall lernen</li>
+        <li>Tagliche Herausforderungen &amp; Bestenliste</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🗺️ Nach Bundesland lokalisiert</h3>
+      <p style="font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:12px;">
+        Die Begriffe sind spezifisch nach Bundeslandern aufgeteilt — denn die FSP unterscheidet sich
+        je nach Arztekammer. Lernen Sie gezielt die Terminologie fur Ihr Bundesland.
+      </p>
+      <div class="tags">
+        <span class="tag">Bayern</span>
+        <span class="tag">NRW</span>
+        <span class="tag">Baden-Wurttemberg</span>
+        <span class="tag">Hessen</span>
+        <span class="tag">Niedersachsen</span>
+        <span class="tag">Sachsen</span>
+        <span class="tag">Berlin</span>
+        <span class="tag">Hamburg</span>
+        <span class="tag">Thuringen</span>
+        <span class="tag">+ weitere</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🏥 Fachgebiete &amp; Kategorien</h3>
+      <p style="font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:12px;">
+        Alle Begriffe sind nach medizinischen Fachgebieten kategorisiert — fur gezieltes Lernen.
+      </p>
+      <div class="tags">
+        <span class="tag">Kardiologie</span>
+        <span class="tag">Neurologie</span>
+        <span class="tag">Orthopadie</span>
+        <span class="tag">Gastroenterologie</span>
+        <span class="tag">Pneumologie</span>
+        <span class="tag">Gynakologie</span>
+        <span class="tag">Urologie</span>
+        <span class="tag">Dermatologie</span>
+        <span class="tag">HNO</span>
+        <span class="tag">Allgemeinmedizin</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>💡 Unser Anspruch</h3>
+      <p style="font-size:14px;color:var(--muted);line-height:1.6;">
+        Wir haben intensiv an der Lokalisierung und Kategorisierung des Worterbuchs gearbeitet.
+        Unser Ziel: nicht nur die Fachsprachprufung bestehen, sondern einen <strong style="color:var(--teal)">effektiven Einstieg in den klinischen Alltag</strong> ermoglichen.
+        Der Wortschatz deckt die wichtigsten Fachbegriffe fur den arztlichen Berufsalltag in Deutschland ab.
+      </p>
+    </div>
+
+    <div class="card" style="border-color: rgba(255,180,0,0.15); background: rgba(255,180,0,0.04);">
+      <h3 style="color:#f0c040;">⚠️ Hinweis</h3>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;">
+        Trotz sorgfaltiger Erstellung konnen wir keine Garantie fur die Vollstandigkeit
+        oder Fehlerfreiheit aller Eintrage ubernehmen. Wir garantieren nicht, dass alle Begriffe
+        in jeder Arztekammer / jedem Bundesland gepruft werden. Die App dient als Lernhilfe
+        und ersetzt keine offizielle Fachliteratur. Bei Fehlern oder Verbesserungsvorschlagen
+        kontaktieren Sie uns bitte.
+      </p>
+    </div>
+
+    <div class="btn-row">
+      <a href="#" class="btn btn-primary">App Store — bald</a>
+      <a href="#" class="btn btn-ghost">Google Play — bald</a>
+    </div>
+
+    <div class="contact">
+      <a href="mailto:germanmoveeducation@gmail.com">germanmoveeducation@gmail.com</a>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div>&copy; 2026 GermanMove Terms</div>
+  </div>
+
+</body>
+</html>

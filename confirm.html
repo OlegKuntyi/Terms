@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MedTerms — E-Mail bestätigt</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',system-ui,sans-serif;background:#F7F9FC;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{background:#fff;border-radius:16px;max-width:480px;width:100%;box-shadow:0 4px 24px rgba(0,0,0,.08);overflow:hidden}
+.header{background:linear-gradient(135deg,#78B5FA,#9586FD);padding:32px 24px 20px;text-align:center}
+.header h1{color:#fff;font-size:26px;font-weight:700;letter-spacing:1px}
+.header p{color:rgba(255,255,255,.85);font-size:13px;margin-top:6px}
+.body{padding:32px 28px;text-align:center}
+.icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#56C9D6,#38D185);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.icon svg{width:36px;height:36px;fill:#fff}
+.body h2{color:#242833;font-size:22px;font-weight:700;margin-bottom:8px}
+.body .msg{color:#7E8494;font-size:15px;line-height:1.6;margin-bottom:24px}
+.btn{display:inline-block;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;font-size:16px;font-weight:600;text-decoration:none;padding:14px 36px;border-radius:22px;box-shadow:0 4px 16px rgba(125,162,255,.3);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.footer{padding:20px 28px;border-top:1px solid #E4E9F5;text-align:center}
+.footer p{font-size:12px;color:#959FBA}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <h1>MedTerms</h1>
+    <p>Medizinische Fachbegriffe meistern</p>
+  </div>
+  <div class="body">
+    <div class="icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+    <h2 id="title">E-Mail erfolgreich bestätigt!</h2>
+    <p class="msg" id="msg">Ihr Konto ist jetzt aktiv. Sie können die App öffnen und sich anmelden.</p>
+    <a href="medterms://login" class="btn" id="btn">App öffnen</a>
+  </div>
+  <div class="footer">
+    <p>© 2026 GermanMove Education</p>
+  </div>
+</div>
+<script>
+const T={
+de:{title:'E-Mail erfolgreich bestätigt!',msg:'Ihr Konto ist jetzt aktiv. Sie können die App öffnen und sich anmelden.',btn:'App öffnen'},
+en:{title:'Email successfully confirmed!',msg:'Your account is now active. You can open the app and sign in.',btn:'Open App'},
+uk:{title:'Email успішно підтверджено!',msg:'Ваш акаунт тепер активний. Відкрийте додаток і увійдіть.',btn:'Відкрити додаток'},
+ru:{title:'Email успешно подтверждён!',msg:'Ваш аккаунт теперь активен. Откройте приложение и войдите.',btn:'Открыть приложение'},
+tr:{title:'E-posta başarıyla onaylandı!',msg:'Hesabınız artık aktif. Uygulamayı açıp giriş yapabilirsiniz.',btn:'Uygulamayı aç'},
+ar:{title:'تم تأكيد البريد الإلكتروني بنجاح!',msg:'حسابك نشط الآن. يمكنك فتح التطبيق وتسجيل الدخول.',btn:'افتح التطبيق'},
+fr:{title:'E-mail confirmé avec succès !',msg:'Votre compte est maintenant actif. Ouvrez l\'application et connectez-vous.',btn:'Ouvrir l\'app'},
+es:{title:'¡Correo confirmado con éxito!',msg:'Su cuenta está activa. Abra la aplicación e inicie sesión.',btn:'Abrir la app'},
+pl:{title:'E-mail potwierdzony!',msg:'Twoje konto jest teraz aktywne. Otwórz aplikację i zaloguj się.',btn:'Otwórz aplikację'},
+el:{title:'Το email επιβεβαιώθηκε!',msg:'Ο λογαριασμός σας είναι πλέον ενεργός. Ανοίξτε την εφαρμογή και συνδεθείτε.',btn:'Άνοιγμα εφαρμογής'},
+ro:{title:'E-mail confirmat cu succes!',msg:'Contul dvs. este acum activ. Deschideți aplicația și conectați-vă.',btn:'Deschide aplicația'}
+};
+const lang=(navigator.language||'de').slice(0,2).toLowerCase();
+const t=T[lang]||T.de;
+document.getElementById('title').textContent=t.title;
+document.getElementById('msg').textContent=t.msg;
+document.getElementById('btn').textContent=t.btn;
+if(lang==='ar')document.body.style.direction='rtl';
+</script>
+</body>
+</html>
