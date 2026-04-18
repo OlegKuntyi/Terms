@@ -130,6 +130,18 @@ async function init(){
       }
       console.log('[confirm] Verified');
       showView('view-success');
+      // Fire-and-forget welcome email for fresh signups only.
+      // For email_change the user already has an account — no welcome.
+      if(otpType==='signup'){
+        try{
+          sb.functions.invoke('send-welcome-email',{body:{language:lang}})
+            .then(function(r){
+              if(r.error)console.warn('[confirm] welcome email error:',r.error.message);
+              else console.log('[confirm] welcome email requested');
+            })
+            .catch(function(e){console.warn('[confirm] welcome email exception:',e);});
+        }catch(e){console.warn('[confirm] welcome email threw:',e);}
+      }
       return;
     }
 
