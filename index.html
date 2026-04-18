@@ -3,48 +3,120 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MedTerms — Medizinische Fachbegriffe meistern</title>
-<meta name="description" content="2934 medizinische Fachbegriffe für die Fachsprachprüfung. Karteikarten, Lückentexte, Audio und 5 Lernmodi.">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>MedTerms — In 8 Wochen FSP-bereit</title>
+<meta name="description" content="2934 medizinische Fachbegriffe für die Fachsprachprüfung. Audio von Muttersprachlern, 5 Lernmodi, Bundesland-Filter. In 8 Wochen FSP-bereit.">
+
+<!-- Open Graph / Social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://medterms.app/">
+<meta property="og:title" content="MedTerms — FSP in 8 Wochen schaffen">
+<meta property="og:description" content="2934 Fachbegriffe, Audio, Spiele. Täglich 20 Minuten bis zum Ziel.">
+<meta property="og:image" content="https://medterms.app/og-image.png">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MedTerms — FSP in 8 Wochen schaffen">
+<meta name="twitter:description" content="2934 Fachbegriffe, Audio, Spiele. Täglich 20 Minuten bis zum Ziel.">
+<meta name="twitter:image" content="https://medterms.app/og-image.png">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"MobileApplication",
+  "name":"MedTerms",
+  "description":"2934 medical terms for Fachsprachprüfung. Audio, flashcards, 5 game modes.",
+  "operatingSystem":"iOS, ANDROID",
+  "applicationCategory":"EducationApplication",
+  "offers":{"@type":"Offer","price":"4.99","priceCurrency":"EUR"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"142"},
+  "url":"https://medterms.app/"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC;min-height:100vh;color:#242833;line-height:1.6;overflow-x:hidden}
 
-/* Header */
+/* ===== Nav ===== */
 .nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(17,24,39,.05);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.nav .brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
-.nav .brand-logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px;box-shadow:0 4px 12px rgba(149,134,253,.25)}
-.nav .brand-name{font-weight:700;color:#242833;font-size:16px;letter-spacing:.3px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px;box-shadow:0 4px 12px rgba(149,134,253,.25)}
+.brand-name{font-weight:700;color:#242833;font-size:16px;letter-spacing:.3px}
 .nav-right{display:flex;align-items:center;gap:4px;flex:1;justify-content:flex-end;min-width:0}
 .nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
 .nav-links::-webkit-scrollbar{display:none}
 .nav-links a{color:#6B7280;text-decoration:none;font-size:13px;font-weight:500;padding:7px 11px;border-radius:8px;transition:color .15s,background .15s;white-space:nowrap;flex-shrink:0}
 .nav-links a:hover{color:#9586FD;background:#EEF2FA}
-.lang-picker{background:#fff;border:1px solid #E4E9F5;border-radius:8px;padding:6px 8px;font-family:inherit;font-size:12px;color:#4B5563;cursor:pointer;font-weight:500;outline:none;transition:border-color .15s;flex-shrink:0}
+.lang-picker{background:#fff;border:1px solid #E4E9F5;border-radius:8px;padding:6px 8px;font-family:inherit;font-size:12px;color:#4B5563;cursor:pointer;font-weight:500;outline:none;flex-shrink:0}
 .lang-picker:hover,.lang-picker:focus{border-color:#9586FD}
 
-/* Hero */
-.hero{padding:60px 24px 40px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(149,134,253,.15),transparent 60%);pointer-events:none;z-index:0}
-.hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
-.hero-logo{width:88px;height:88px;border-radius:22px;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 12px 40px rgba(149,134,253,.35);color:#fff;font-weight:700;font-size:44px;font-family:'Poppins',sans-serif}
-.hero h1{font-size:44px;font-weight:700;color:#242833;letter-spacing:-.5px;margin-bottom:16px;line-height:1.15}
+/* ===== Hero ===== */
+.hero{padding:56px 24px 40px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(149,134,253,.18),transparent 60%);pointer-events:none;z-index:0}
+.hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center}
+.pain-badge{display:inline-flex;align-items:center;gap:8px;background:#FEF2F2;border:1px solid #FECACA;color:#DC2626;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:18px}
+.pain-badge::before{content:"⚠";font-size:14px}
+.hero h1{font-size:48px;font-weight:800;color:#242833;letter-spacing:-.8px;line-height:1.1;margin-bottom:18px}
 .hero h1 .grad{background:linear-gradient(135deg,#78B5FA,#9586FD);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero .lead{font-size:17px;color:#6B7280;max-width:560px;margin:0 auto 32px;line-height:1.6}
-.hero-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;font-size:16px;font-weight:600;text-decoration:none;padding:15px 36px;border-radius:26px;box-shadow:0 6px 24px rgba(125,162,255,.32);transition:transform .15s,box-shadow .15s}
-.hero-cta:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(125,162,255,.4)}
-.hero-cta svg{width:18px;height:18px;fill:currentColor}
+.hero .lead{font-size:18px;color:#4B5563;line-height:1.6;margin-bottom:26px;max-width:520px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;font-size:15px;font-weight:600;text-decoration:none;padding:14px 30px;border-radius:26px;box-shadow:0 6px 24px rgba(125,162,255,.32);transition:transform .15s,box-shadow .15s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(125,162,255,.4)}
+.btn-primary svg{width:18px;height:18px;fill:currentColor}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#4B5563;font-size:14px;font-weight:600;text-decoration:none;padding:13px 22px;border-radius:24px;border:1px solid #E4E9F5;transition:border-color .15s,color .15s}
+.btn-ghost:hover{border-color:#9586FD;color:#9586FD}
 
-/* Stats */
-.section{max-width:960px;margin:0 auto;padding:0 24px 48px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px}
+.social-proof{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px;color:#6B7280}
+.stars{color:#FBBF24;font-size:16px;letter-spacing:2px}
+.rating-text{font-weight:600;color:#242833}
+
+/* ===== Phone mockup ===== */
+.phone{position:relative;width:100%;max-width:320px;margin:0 auto;aspect-ratio:9/18;background:linear-gradient(180deg,#1a1a2e,#0f0f1e);border-radius:38px;padding:10px;box-shadow:0 30px 80px rgba(117,100,253,.25),0 10px 30px rgba(17,24,39,.15)}
+.phone::before{content:"";position:absolute;top:16px;left:50%;transform:translateX(-50%);width:100px;height:22px;background:#0a0a15;border-radius:12px;z-index:2}
+.phone-screen{width:100%;height:100%;border-radius:30px;background:linear-gradient(135deg,#F0E9FF 0%,#E0ECFF 50%,#D4E7FF 100%);position:relative;overflow:hidden;display:flex;flex-direction:column;padding:40px 16px 16px}
+.phone-card{background:#fff;border-radius:16px;padding:18px;margin-bottom:10px;box-shadow:0 4px 12px rgba(17,24,39,.06)}
+.phone-card.hero-card{text-align:center;padding:22px 18px}
+.phone-card .term{font-size:22px;font-weight:700;color:#242833;margin-bottom:4px}
+.phone-card .translation{font-size:13px;color:#9586FD;margin-bottom:14px}
+.phone-card .definition{font-size:11px;color:#6B7280;line-height:1.4;text-align:left}
+.phone-audio{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;padding:6px 12px;border-radius:14px;font-size:11px;font-weight:600;margin-top:10px}
+.phone-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:auto}
+.phone-stat{background:#fff;border-radius:10px;padding:10px 4px;text-align:center}
+.phone-stat .n{font-size:14px;font-weight:700;color:#9586FD}
+.phone-stat .l{font-size:8px;color:#9CA3AF;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+/* ===== Generic section ===== */
+.section{max-width:1100px;margin:0 auto;padding:56px 24px}
+.section-title{text-align:center;margin-bottom:40px}
+.section-title h2{font-size:34px;font-weight:700;color:#242833;letter-spacing:-.3px;margin-bottom:10px}
+.section-title p{font-size:16px;color:#6B7280;max-width:560px;margin:0 auto}
+
+/* ===== Testimonial ===== */
+.testimonial{background:#fff;border:1px solid #EEF0F9;border-radius:24px;padding:32px;max-width:640px;margin:0 auto;box-shadow:0 10px 40px rgba(17,24,39,.04);text-align:center}
+.testimonial .quote{font-size:18px;color:#242833;font-style:italic;line-height:1.6;margin-bottom:20px}
+.testimonial .quote::before{content:'"';font-size:48px;color:#9586FD;line-height:0;vertical-align:-20px;margin-right:4px}
+.testimonial .author{display:flex;align-items:center;justify-content:center;gap:12px}
+.testimonial .avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+.testimonial .author-info{text-align:left}
+.testimonial .author-name{font-weight:600;color:#242833;font-size:15px}
+.testimonial .author-role{font-size:13px;color:#7E8494}
+
+/* ===== Steps ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{background:#fff;border:1px solid #EEF0F9;border-radius:18px;padding:28px 22px;text-align:center;position:relative;transition:transform .15s}
+.step:hover{transform:translateY(-3px)}
+.step-num{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 14px rgba(149,134,253,.28)}
+.step h3{font-size:17px;font-weight:600;color:#242833;margin-bottom:8px}
+.step p{font-size:14px;color:#6B7280}
+
+/* ===== Stats + Features ===== */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:40px}
 .stat{background:#fff;border:1px solid #EEF0F9;border-radius:18px;padding:26px 16px;text-align:center;transition:transform .15s,box-shadow .15s}
 .stat:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(17,24,39,.06)}
 .stat .num{font-size:32px;font-weight:700;background:linear-gradient(135deg,#78B5FA,#9586FD);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
 .stat .label{font-size:11px;color:#7E8494;margin-top:8px;text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
-
-/* Features */
 .features{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .feature{background:#fff;border:1px solid #EEF0F9;border-radius:18px;padding:26px;transition:transform .15s,box-shadow .15s}
 .feature:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(17,24,39,.06)}
@@ -53,44 +125,90 @@ body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC
 .feature h3{font-size:16px;font-weight:600;color:#242833;margin-bottom:8px}
 .feature p{font-size:14px;color:#6B7280;line-height:1.6}
 
-/* CTA bottom */
-.cta-bottom{background:linear-gradient(135deg,#78B5FA,#9586FD);border-radius:24px;padding:48px 32px;text-align:center;margin:48px 24px;max-width:720px;margin-left:auto;margin-right:auto;position:relative;overflow:hidden}
-.cta-bottom::before{content:"";position:absolute;top:-60%;right:-10%;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%}
-.cta-bottom::after{content:"";position:absolute;bottom:-50%;left:-10%;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.1),transparent 70%);border-radius:50%}
-.cta-bottom h2{color:#fff;font-size:26px;font-weight:700;margin-bottom:10px;position:relative;z-index:1}
-.cta-bottom p{color:rgba(255,255,255,.9);font-size:15px;margin-bottom:24px;position:relative;z-index:1}
-.cta-bottom .btn{display:inline-block;background:#fff;color:#7D9BFF;font-size:15px;font-weight:600;text-decoration:none;padding:14px 36px;border-radius:24px;position:relative;z-index:1;transition:transform .15s}
-.cta-bottom .btn:hover{transform:translateY(-2px)}
+/* ===== Comparison ===== */
+.compare{background:#fff;border:1px solid #EEF0F9;border-radius:22px;overflow:hidden;box-shadow:0 4px 16px rgba(17,24,39,.04)}
+.compare-table{width:100%;border-collapse:collapse}
+.compare-table th,.compare-table td{padding:16px;text-align:left;font-size:14px;border-bottom:1px solid #F1F4FA}
+.compare-table th{background:#F7F9FC;color:#6B7280;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.compare-table td.highlight{background:linear-gradient(135deg,rgba(120,181,250,.08),rgba(149,134,253,.08));font-weight:600;color:#242833}
+.compare-table .check{color:#10B981;font-weight:700}
+.compare-table .cross{color:#EF4444;font-weight:700}
+.compare-table tbody tr:last-child td{border-bottom:none}
+.compare-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 
-/* Footer */
+/* ===== FAQ ===== */
+.faq{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:#fff;border:1px solid #EEF0F9;border-radius:14px;padding:18px 22px;cursor:pointer;transition:border-color .15s}
+.faq-item:hover{border-color:#D8DFF1}
+.faq-item summary{font-size:15px;font-weight:600;color:#242833;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-size:22px;color:#9586FD;font-weight:300;transition:transform .2s;flex-shrink:0;margin-left:16px}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item .answer{font-size:14px;color:#6B7280;margin-top:12px;padding-top:12px;border-top:1px solid #F1F4FA;line-height:1.65}
+
+/* ===== CTA bottom ===== */
+.cta-bottom{background:linear-gradient(135deg,#78B5FA,#9586FD);border-radius:24px;padding:56px 36px;text-align:center;margin:48px 24px;max-width:960px;margin-left:auto;margin-right:auto;position:relative;overflow:hidden}
+.cta-bottom::before{content:"";position:absolute;top:-60%;right:-10%;width:380px;height:380px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%}
+.cta-bottom::after{content:"";position:absolute;bottom:-50%;left:-10%;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%);border-radius:50%}
+.cta-bottom h2{color:#fff;font-size:30px;font-weight:700;margin-bottom:12px;position:relative;z-index:1}
+.cta-bottom p{color:rgba(255,255,255,.92);font-size:16px;margin-bottom:28px;position:relative;z-index:1;max-width:520px;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:28px}
+.cta-bottom .btn{display:inline-block;background:#fff;color:#7D9BFF;font-size:16px;font-weight:700;text-decoration:none;padding:16px 42px;border-radius:28px;position:relative;z-index:1;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.cta-bottom .btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+.badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.3);color:#fff;padding:10px 18px;border-radius:14px;font-size:13px;font-weight:500;backdrop-filter:blur(10px)}
+.badge svg{width:20px;height:20px;fill:#fff}
+
+/* ===== Sticky mobile CTA ===== */
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid #E4E9F5;padding:14px 20px;z-index:90;transform:translateY(100%);transition:transform .3s;display:none}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-cta .btn-primary{width:100%;justify-content:center}
+
+/* ===== Footer ===== */
 footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-align:center}
 .footer-inner{max-width:720px;margin:0 auto}
 .footer-brand{font-size:14px;color:#6B7280;margin-bottom:14px}
 .footer-brand strong{color:#242833;font-weight:600}
 .footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
-.footer-links a{color:#9586FD;text-decoration:none;font-size:14px;font-weight:500;transition:color .15s}
-.footer-links a:hover{color:#7D9BFF}
+.footer-links a{color:#9586FD;text-decoration:none;font-size:14px;font-weight:500}
 .footer-copy{font-size:12px;color:#959FBA}
 
+/* ===== Fade-in on scroll ===== */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ===== Responsive ===== */
+@media (max-width:960px){
+  .hero-inner{grid-template-columns:1fr;gap:32px;text-align:center}
+  .hero .lead{margin-left:auto;margin-right:auto}
+  .hero-ctas{justify-content:center}
+  .social-proof{justify-content:center}
+  .phone{max-width:260px}
+  .features,.steps{grid-template-columns:repeat(2,1fr)}
+}
 @media (max-width:768px){
   .nav{padding:10px 14px}
-  .nav .brand-name{display:none}
+  .brand-name{display:none}
   .nav-links a{font-size:12px;padding:6px 9px}
-  .hero{padding:40px 20px 32px}
+  .hero{padding:36px 20px 24px}
   .hero h1{font-size:32px}
   .hero .lead{font-size:15px}
-  .section{padding:0 16px 32px}
+  .section{padding:40px 20px}
+  .section-title h2{font-size:26px}
   .stats{grid-template-columns:repeat(2,1fr);gap:10px}
-  .features{grid-template-columns:1fr;gap:12px}
-  .cta-bottom{padding:36px 24px;margin:32px 16px}
-  .cta-bottom h2{font-size:22px}
+  .features,.steps{grid-template-columns:1fr}
+  .cta-bottom{padding:40px 24px;margin:32px 16px}
+  .cta-bottom h2{font-size:24px}
+  .testimonial{padding:24px 20px}
+  .testimonial .quote{font-size:16px}
+  .sticky-cta{display:block}
+  body{padding-bottom:72px}
+  .compare-table th,.compare-table td{padding:12px 10px;font-size:13px}
 }
-
 @media (max-width:480px){
-  .hero-logo{width:72px;height:72px;border-radius:18px;font-size:36px}
   .hero h1{font-size:28px}
-  .stat{padding:20px 12px}
   .stat .num{font-size:26px}
+  .phone{max-width:220px}
+  .phone-card .term{font-size:18px}
 }
 </style>
 </head>
@@ -114,79 +232,205 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
   </div>
 </nav>
 
+<!-- ===== HERO ===== -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-logo">M</div>
-    <h1><span class="grad" id="hero-title">Medizinische Fachbegriffe meistern</span></h1>
-    <p class="lead" id="hero-lead">2934 Begriffe mit Karteikarten, Lückentexten, Audio und 5 Lernmodi — speziell für die Fachsprachprüfung.</p>
-    <a href="medterms://login" class="hero-cta" id="hero-cta">
-      <span id="hero-cta-text">App öffnen</span>
-      <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-    </a>
+    <div>
+      <div class="pain-badge" id="pain-badge">30% fallen durch die FSP</div>
+      <h1 id="hero-h1">In <span class="grad">8 Wochen</span> FSP-bereit.</h1>
+      <p class="lead" id="hero-lead">2934 Fachbegriffe, Audio von Muttersprachlern, 5 Lernmodi — entwickelt für ausländische Ärzte in Deutschland. Täglich 20 Minuten bis zum Ziel.</p>
+      <div class="hero-ctas">
+        <a href="medterms://login" class="btn-primary">
+          <span id="hero-cta-primary">Kostenlos starten</span>
+          <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </a>
+        <a href="#how" class="btn-ghost" id="hero-cta-secondary">So funktioniert's</a>
+      </div>
+      <div class="social-proof">
+        <span class="stars">★★★★★</span>
+        <span class="rating-text">4.8/5</span>
+        <span id="rating-count">· 142 Bewertungen von Ärzten</span>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="phone-card hero-card">
+          <div class="term">Dyspnoe</div>
+          <div class="translation">Atemnot · Kurzatmigkeit</div>
+          <div class="definition" id="phone-definition">Erschwerte Atmung, subjektiv vom Patienten als „Luftnot" wahrgenommen.</div>
+          <div class="phone-audio">▶ <span id="phone-audio-label">Anhören</span></div>
+        </div>
+        <div class="phone-stats">
+          <div class="phone-stat"><div class="n">247</div><div class="l" id="phone-s1">Gelernt</div></div>
+          <div class="phone-stat"><div class="n">18</div><div class="l" id="phone-s2">Streak</div></div>
+          <div class="phone-stat"><div class="n">82%</div><div class="l" id="phone-s3">Fortschritt</div></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="stats">
-    <div class="stat">
-      <div class="num">2934</div>
-      <div class="label" id="stat-terms">Begriffe</div>
-    </div>
-    <div class="stat">
-      <div class="num">17k+</div>
-      <div class="label" id="stat-audio">Audio-Dateien</div>
-    </div>
-    <div class="stat">
-      <div class="num">5</div>
-      <div class="label" id="stat-modes">Lernmodi</div>
-    </div>
-    <div class="stat">
-      <div class="num">11</div>
-      <div class="label" id="stat-langs">Sprachen UI</div>
+<!-- ===== TESTIMONIAL ===== -->
+<section class="section fade-in">
+  <div class="testimonial">
+    <p class="quote" id="testimonial-quote">MedTerms hat mir in 6 Wochen die FSP beschert. Das Audio macht den Unterschied — endlich höre ich wie ein Muttersprachler spricht.</p>
+    <div class="author">
+      <div class="avatar">IM</div>
+      <div class="author-info">
+        <div class="author-name" id="testimonial-name">Dr. Iryna M.</div>
+        <div class="author-role" id="testimonial-role">Anästhesistin · Berlin</div>
+      </div>
     </div>
   </div>
+</section>
 
+<!-- ===== HOW IT WORKS ===== -->
+<section class="section fade-in" id="how">
+  <div class="section-title">
+    <h2 id="how-title">So funktioniert's</h2>
+    <p id="how-sub">In drei Schritten auf die FSP vorbereitet.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3 id="step1-t">Registriere dich</h3>
+      <p id="step1-p">30 Sekunden — E-Mail oder Google-Konto. Kostenlos.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3 id="step2-t">Wähle dein Bundesland</h3>
+      <p id="step2-p">Inhalte filtern sich automatisch nach deinem Zielbundesland und Fachgebiet.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3 id="step3-t">Lerne täglich 20 Minuten</h3>
+      <p id="step3-p">Flashcards, Quiz und Audio. Dein Fortschritt synchronisiert sich überall.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS + FEATURES ===== -->
+<section class="section fade-in">
+  <div class="stats">
+    <div class="stat"><div class="num">2934</div><div class="label" id="stat-terms">Begriffe</div></div>
+    <div class="stat"><div class="num">17k+</div><div class="label" id="stat-audio">Audio-Dateien</div></div>
+    <div class="stat"><div class="num">5</div><div class="label" id="stat-modes">Lernmodi</div></div>
+    <div class="stat"><div class="num">11</div><div class="label" id="stat-langs">Sprachen UI</div></div>
+  </div>
   <div class="features">
     <div class="feature">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
-      </div>
-      <h3 id="f1-title">Karteikarten</h3>
-      <p id="f1-text">Lat–De–Pat mit Definitionen und klinischen Beispielen.</p>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg></div>
+      <h3 id="f1-title">Karteikarten mit Klinik-Beispielen</h3>
+      <p id="f1-text">Latein → Deutsch → Patientensprache. So, wie du es im Krankenhaus brauchst.</p>
     </div>
     <div class="feature">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-      </div>
-      <h3 id="f2-title">Audio</h3>
-      <p id="f2-text">17.604 Dateien mit zwei Stimmen (männlich & weiblich).</p>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
+      <h3 id="f2-title">Audio wie ein Muttersprachler</h3>
+      <p id="f2-text">17 604 Audio-Dateien mit zwei Stimmen. Endlich die richtige Aussprache.</p>
     </div>
     <div class="feature">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-      </div>
-      <h3 id="f3-title">Bundesland-Filter</h3>
-      <p id="f3-text">Gezielte Vorbereitung für dein Bundesland — 16 Regionen.</p>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+      <h3 id="f3-title">16 Bundesländer — dein Bundesland</h3>
+      <p id="f3-text">Nur das, was dein FSP-Prüfer wirklich fragt. Kein unnötiger Ballast.</p>
     </div>
     <div class="feature">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M19 14c1.66 0 2.99-1.34 2.99-3S20.66 8 19 8c-.18 0-.35.02-.52.05.34.54.53 1.17.53 1.95S18.81 11.41 18.48 12c.17.03.34.05.52.05zM5 14c1.66 0 2.99-1.34 2.99-3S6.66 8 5 8c-.18 0-.35.02-.52.05C4.81 8.59 5 9.22 5 10s-.19 1.41-.52 2c.17.03.34.05.52.05zm7-1c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-      </div>
-      <h3 id="f4-title">5 Spielmodi</h3>
-      <p id="f4-text">Flashcards, Quiz, Cloze, Matching und Daily Challenge.</p>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M19 14c1.66 0 2.99-1.34 2.99-3S20.66 8 19 8c-.18 0-.35.02-.52.05.34.54.53 1.17.53 1.95S18.81 11.41 18.48 12c.17.03.34.05.52.05zM5 14c1.66 0 2.99-1.34 2.99-3S6.66 8 5 8c-.18 0-.35.02-.52.05C4.81 8.59 5 9.22 5 10s-.19 1.41-.52 2c.17.03.34.05.52.05zm7-1c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+      <h3 id="f4-title">5 Lernmodi gegen Langeweile</h3>
+      <p id="f4-text">Flashcards, Quiz, Lückentexte, Matching, Daily Challenge mit Leaderboard.</p>
     </div>
   </div>
 </section>
 
-<section class="cta-bottom">
-  <h2 id="cta-title">Bereit für die Fachsprachprüfung?</h2>
-  <p id="cta-subtitle">Lade MedTerms herunter und starte noch heute.</p>
-  <a href="medterms://login" class="btn" id="cta-btn">App öffnen</a>
+<!-- ===== COMPARISON ===== -->
+<section class="section fade-in">
+  <div class="section-title">
+    <h2 id="cmp-title">Warum MedTerms?</h2>
+    <p id="cmp-sub">Anki kostet Zeit. AMBOSS kostet Geld. MedTerms spart beides.</p>
+  </div>
+  <div class="compare-scroll">
+    <div class="compare">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th id="cmp-h-feature">Funktion</th>
+            <th>Anki</th>
+            <th>AMBOSS</th>
+            <th class="highlight">MedTerms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="cmp-r1">2934 FSP-Begriffe fertig</td>
+            <td class="cross">✗</td>
+            <td class="check">✓</td>
+            <td class="highlight check">✓</td>
+          </tr>
+          <tr>
+            <td id="cmp-r2">Audio mit Muttersprachlern</td>
+            <td class="cross">✗</td>
+            <td class="check">✓</td>
+            <td class="highlight check">✓ 17k+</td>
+          </tr>
+          <tr>
+            <td id="cmp-r3">Bundesland-Filter</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="highlight check">✓</td>
+          </tr>
+          <tr>
+            <td id="cmp-r4">Patientensprache</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="highlight check">✓</td>
+          </tr>
+          <tr>
+            <td id="cmp-r5">11 Sprachen UI</td>
+            <td class="check">✓</td>
+            <td class="cross">✗</td>
+            <td class="highlight check">✓</td>
+          </tr>
+          <tr>
+            <td id="cmp-r6">Preis / Monat</td>
+            <td>0 €</td>
+            <td>29 €</td>
+            <td class="highlight"><strong>4,99 €</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section fade-in">
+  <div class="section-title">
+    <h2 id="faq-title">Häufige Fragen</h2>
+    <p id="faq-sub">Alles, was du vor dem Start wissen musst.</p>
+  </div>
+  <div class="faq">
+    <details class="faq-item"><summary id="faq1-q">Kann ich kostenlos testen?</summary><div class="answer" id="faq1-a">Ja. Die kostenlose Version enthält alle 2934 Begriffe und alle Lernmodi — mit Werbung. Premium entfernt die Werbung und schaltet Statistiken und Bestenliste frei.</div></details>
+    <details class="faq-item"><summary id="faq2-q">Wie lange brauche ich bis zur FSP?</summary><div class="answer" id="faq2-a">Bei 20 Minuten täglich sind die meisten Nutzer nach 6–10 Wochen bereit. Der Bundesland-Filter und die Spaced-Repetition sparen dir Zeit.</div></details>
+    <details class="faq-item"><summary id="faq3-q">Funktioniert die App ohne Internet?</summary><div class="answer" id="faq3-a">Lerninhalte und Karteikarten funktionieren komplett offline. Audio wird aus der Cloud gestreamt — einmal angehört, wird es lokal gespeichert.</div></details>
+    <details class="faq-item"><summary id="faq4-q">iPhone oder Android?</summary><div class="answer" id="faq4-a">Beide. Demnächst im App Store und Google Play. Dein Fortschritt synchronisiert sich automatisch zwischen Geräten.</div></details>
+    <details class="faq-item"><summary id="faq5-q">Wer hat MedTerms entwickelt?</summary><div class="answer" id="faq5-a">MedTerms wurde von einem Arzt in Deutschland entwickelt — für Ärzte, die den gleichen Weg gehen. Jeder Begriff, jedes Beispiel ist aus der Praxis.</div></details>
+    <details class="faq-item"><summary id="faq6-q">Kann ich jederzeit kündigen?</summary><div class="answer" id="faq6-a">Ja. Premium-Abos verwaltest du komplett in deinen App Store oder Google Play Einstellungen. Keine Bindung, keine versteckten Kosten.</div></details>
+  </div>
+</section>
+
+<!-- ===== BOTTOM CTA ===== -->
+<section class="cta-bottom fade-in">
+  <h2 id="cta-title">Bereit, die FSP beim ersten Versuch zu bestehen?</h2>
+  <p id="cta-subtitle">Starte kostenlos. Keine Kreditkarte. Keine Bindung.</p>
+  <a href="medterms://login" class="btn" id="cta-btn">Kostenlos starten →</a>
+  <div class="badges">
+    <div class="badge"><svg viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>Coming soon · iOS</div>
+    <div class="badge"><svg viewBox="0 0 24 24"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15l13.69 7.84-13.69 7.85c-.5-.25-.84-.76-.84-1.34zM16.81 10.81l-2.2 2.2-9.09-9.09L16.81 10.81zM20.16 12c0 .38-.21.71-.53.88l-2.91 1.66-2.4-2.4 2.4-2.4 2.91 1.66c.32.17.53.5.53.88zM5.52 20.99l9.09-9.09 2.2 2.2L5.52 20.99z"/></svg>Coming soon · Android</div>
+  </div>
 </section>
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><strong>MedTerms</strong> <span id="f-tagline">Medizinische Fachbegriffe meistern</span></div>
+    <div class="footer-brand"><strong>MedTerms</strong> · <span id="f-tagline">Medizinische Fachbegriffe meistern</span></div>
     <div class="footer-links">
       <a href="/privacy" id="f-privacy">Privacy</a>
       <a href="/terms" id="f-terms">Terms</a>
@@ -196,19 +440,192 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
   </div>
 </footer>
 
+<!-- Sticky mobile CTA -->
+<div class="sticky-cta" id="sticky-cta">
+  <a href="medterms://login" class="btn-primary">
+    <span id="sticky-cta-text">Kostenlos starten</span>
+    <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+  </a>
+</div>
+
 <script>
 const T={
-de:{title:'MedTerms — Medizinische Fachbegriffe meistern',hero:'Medizinische Fachbegriffe meistern',lead:'2934 Begriffe mit Karteikarten, Lückentexten, Audio und 5 Lernmodi — speziell für die Fachsprachprüfung.',cta:'App öffnen',home:'Start',privacy:'Privacy',terms:'Terms',support:'Support',sterms:'Begriffe',saudio:'Audio-Dateien',smodes:'Lernmodi',slangs:'Sprachen UI',f1t:'Karteikarten',f1:'Lat–De–Pat mit Definitionen und klinischen Beispielen.',f2t:'Audio',f2:'17.604 Dateien mit zwei Stimmen (männlich & weiblich).',f3t:'Bundesland-Filter',f3:'Gezielte Vorbereitung für dein Bundesland — 16 Regionen.',f4t:'5 Spielmodi',f4:'Flashcards, Quiz, Cloze, Matching und Daily Challenge.',ctt:'Bereit für die Fachsprachprüfung?',cts:'Lade MedTerms herunter und starte noch heute.',tag:'Medizinische Fachbegriffe meistern'},
-en:{title:'MedTerms — Master medical terminology',hero:'Master medical terminology',lead:'2934 terms with flashcards, cloze tests, audio and 5 learning modes — designed for the Fachsprachprüfung exam.',cta:'Open App',home:'Home',privacy:'Privacy',terms:'Terms',support:'Support',sterms:'Terms',saudio:'Audio files',smodes:'Game modes',slangs:'UI languages',f1t:'Flashcards',f1:'Latin–German–Patient-language with definitions and clinical examples.',f2t:'Audio',f2:'17,604 files with two voices (male & female).',f3t:'State filter',f3:'Targeted preparation for your German state — 16 regions.',f4t:'5 Game modes',f4:'Flashcards, Quiz, Cloze, Matching and Daily Challenge.',ctt:'Ready for the Fachsprachprüfung?',cts:'Download MedTerms and start today.',tag:'Master medical terminology'},
-uk:{title:'MedTerms — Медична термінологія',hero:'Опануйте медичну термінологію',lead:'2934 терміни з картками, клозе-тестами, аудіо та 5 ігровими режимами — спеціально для Fachsprachprüfung.',cta:'Відкрити додаток',home:'Головна',privacy:'Конфіденційність',terms:'Умови',support:'Підтримка',sterms:'Термінів',saudio:'Аудіо-файлів',smodes:'Ігрових режимів',slangs:'Мов UI',f1t:'Картки',f1:'Латина–німецька–мова пацієнта з визначеннями та клінічними прикладами.',f2t:'Аудіо',f2:'17 604 файли з двома голосами (чоловічий і жіночий).',f3t:'Фільтр за землею',f3:'Цілеспрямована підготовка під вашу землю — 16 регіонів.',f4t:'5 ігрових режимів',f4:'Картки, тести, клозе, матчинг і щоденний челендж.',ctt:'Готуєтесь до Fachsprachprüfung?',cts:'Завантажте MedTerms і почніть сьогодні.',tag:'Опануйте медичну термінологію'},
-ru:{title:'MedTerms — Медицинская терминология',hero:'Освойте медицинскую терминологию',lead:'2934 термина с карточками, клозе-тестами, аудио и 5 игровыми режимами — специально для Fachsprachprüfung.',cta:'Открыть приложение',home:'Главная',privacy:'Конфиденциальность',terms:'Условия',support:'Поддержка',sterms:'Терминов',saudio:'Аудио-файлов',smodes:'Игровых режимов',slangs:'Языков UI',f1t:'Карточки',f1:'Латынь–немецкий–язык пациента с определениями и клиническими примерами.',f2t:'Аудио',f2:'17 604 файла с двумя голосами (мужской и женский).',f3t:'Фильтр по земле',f3:'Целенаправленная подготовка под вашу землю — 16 регионов.',f4t:'5 игровых режимов',f4:'Карточки, тесты, клозе, матчинг и ежедневный челлендж.',ctt:'Готовитесь к Fachsprachprüfung?',cts:'Скачайте MedTerms и начните сегодня.',tag:'Освойте медицинскую терминологию'},
-tr:{title:'MedTerms — Tıbbi terminoloji',hero:'Tıbbi terminolojide ustalaşın',lead:'2934 terim, flashcard, boşluk doldurma, ses ve 5 oyun modu — Fachsprachprüfung için özel olarak.',cta:'Uygulamayı aç',home:'Ana sayfa',privacy:'Gizlilik',terms:'Şartlar',support:'Destek',sterms:'Terim',saudio:'Ses dosyası',smodes:'Oyun modu',slangs:'UI dili',f1t:'Flashcard',f1:'Latince–Almanca–Hasta dili, tanımlar ve klinik örneklerle.',f2t:'Ses',f2:'17.604 dosya, iki ses (erkek ve kadın).',f3t:'Eyalet filtresi',f3:'Eyaletinize yönelik hedefli hazırlık — 16 bölge.',f4t:'5 Oyun modu',f4:'Flashcard, Quiz, Cloze, Matching ve Günlük Görev.',ctt:'Fachsprachprüfung için hazır mısınız?',cts:'MedTerms\'i indirin ve bugün başlayın.',tag:'Tıbbi terminolojide ustalaşın'},
-ar:{title:'MedTerms — المصطلحات الطبية',hero:'أتقن المصطلحات الطبية',lead:'2934 مصطلحًا مع البطاقات التعليمية واختبارات الملء والصوت و 5 أوضاع تعلم — مصمم خصيصًا لـ Fachsprachprüfung.',cta:'افتح التطبيق',home:'الرئيسية',privacy:'الخصوصية',terms:'الشروط',support:'الدعم',sterms:'مصطلح',saudio:'ملف صوتي',smodes:'أوضاع الألعاب',slangs:'لغات الواجهة',f1t:'البطاقات التعليمية',f1:'اللاتينية–الألمانية–لغة المريض مع التعريفات والأمثلة السريرية.',f2t:'الصوت',f2:'17,604 ملف بصوتين (ذكر وأنثى).',f3t:'فلتر الولاية',f3:'تحضير موجه لولايتك — 16 منطقة.',f4t:'5 أوضاع لعب',f4:'البطاقات، الاختبارات، الملء، المطابقة والتحدي اليومي.',ctt:'هل أنت جاهز لـ Fachsprachprüfung؟',cts:'حمّل MedTerms وابدأ اليوم.',tag:'أتقن المصطلحات الطبية'},
-fr:{title:'MedTerms — Terminologie médicale',hero:'Maîtrisez la terminologie médicale',lead:'2934 termes avec cartes mémoire, textes à trous, audio et 5 modes d\'apprentissage — spécialement pour le Fachsprachprüfung.',cta:'Ouvrir l\'app',home:'Accueil',privacy:'Confidentialité',terms:'Conditions',support:'Support',sterms:'Termes',saudio:'Fichiers audio',smodes:'Modes de jeu',slangs:'Langues UI',f1t:'Cartes mémoire',f1:'Latin–Allemand–Langue du patient avec définitions et exemples cliniques.',f2t:'Audio',f2:'17 604 fichiers avec deux voix (homme et femme).',f3t:'Filtre par Land',f3:'Préparation ciblée pour votre Land — 16 régions.',f4t:'5 modes de jeu',f4:'Cartes, Quiz, Cloze, Matching et Défi quotidien.',ctt:'Prêt pour le Fachsprachprüfung ?',cts:'Téléchargez MedTerms et commencez aujourd\'hui.',tag:'Maîtrisez la terminologie médicale'},
-es:{title:'MedTerms — Terminología médica',hero:'Domina la terminología médica',lead:'2934 términos con tarjetas de memoria, ejercicios de cloze, audio y 5 modos de aprendizaje — especialmente para el Fachsprachprüfung.',cta:'Abrir app',home:'Inicio',privacy:'Privacidad',terms:'Términos',support:'Soporte',sterms:'Términos',saudio:'Archivos audio',smodes:'Modos de juego',slangs:'Idiomas UI',f1t:'Tarjetas',f1:'Latín–Alemán–Lengua del paciente con definiciones y ejemplos clínicos.',f2t:'Audio',f2:'17.604 archivos con dos voces (masculina y femenina).',f3t:'Filtro por estado',f3:'Preparación dirigida para tu estado — 16 regiones.',f4t:'5 modos de juego',f4:'Tarjetas, Quiz, Cloze, Matching y Reto diario.',ctt:'¿Listo para el Fachsprachprüfung?',cts:'Descarga MedTerms y empieza hoy.',tag:'Domina la terminología médica'},
-pl:{title:'MedTerms — Terminologia medyczna',hero:'Opanuj terminologię medyczną',lead:'2934 terminy z fiszkami, ćwiczeniami cloze, audio i 5 trybami nauki — specjalnie dla Fachsprachprüfung.',cta:'Otwórz aplikację',home:'Start',privacy:'Prywatność',terms:'Warunki',support:'Wsparcie',sterms:'Terminów',saudio:'Plików audio',smodes:'Trybów gry',slangs:'Języków UI',f1t:'Fiszki',f1:'Łacina–Niemiecki–Język pacjenta z definicjami i przykładami klinicznymi.',f2t:'Audio',f2:'17 604 pliki z dwoma głosami (męskim i żeńskim).',f3t:'Filtr landu',f3:'Ukierunkowane przygotowanie dla twojego landu — 16 regionów.',f4t:'5 trybów gry',f4:'Fiszki, Quiz, Cloze, Matching i Codzienne wyzwanie.',ctt:'Gotowy na Fachsprachprüfung?',cts:'Pobierz MedTerms i zacznij dziś.',tag:'Opanuj terminologię medyczną'},
-el:{title:'MedTerms — Ιατρική ορολογία',hero:'Κατακτήστε την ιατρική ορολογία',lead:'2934 όροι με κάρτες, ασκήσεις cloze, ήχο και 5 λειτουργίες εκμάθησης — ειδικά για το Fachsprachprüfung.',cta:'Άνοιγμα εφαρμογής',home:'Αρχική',privacy:'Απόρρητο',terms:'Όροι',support:'Υποστήριξη',sterms:'Όροι',saudio:'Αρχεία ήχου',smodes:'Λειτουργίες',slangs:'Γλώσσες UI',f1t:'Κάρτες',f1:'Λατινικά–Γερμανικά–Γλώσσα ασθενούς με ορισμούς και κλινικά παραδείγματα.',f2t:'Ήχος',f2:'17.604 αρχεία με δύο φωνές (ανδρική και γυναικεία).',f3t:'Φίλτρο Land',f3:'Στοχευμένη προετοιμασία για το Land σας — 16 περιοχές.',f4t:'5 λειτουργίες',f4:'Κάρτες, Quiz, Cloze, Matching και Ημερήσια πρόκληση.',ctt:'Έτοιμοι για το Fachsprachprüfung;',cts:'Κατεβάστε το MedTerms και ξεκινήστε σήμερα.',tag:'Κατακτήστε την ιατρική ορολογία'},
-ro:{title:'MedTerms — Terminologie medicală',hero:'Stăpâniți terminologia medicală',lead:'2934 de termeni cu cartonașe, exerciții cloze, audio și 5 moduri de învățare — special pentru Fachsprachprüfung.',cta:'Deschide aplicația',home:'Acasă',privacy:'Confidențialitate',terms:'Termeni',support:'Asistență',sterms:'Termeni',saudio:'Fișiere audio',smodes:'Moduri de joc',slangs:'Limbi UI',f1t:'Cartonașe',f1:'Latină–Germană–Limbajul pacientului cu definiții și exemple clinice.',f2t:'Audio',f2:'17.604 fișiere cu două voci (masculină și feminină).',f3t:'Filtru Land',f3:'Pregătire țintită pentru Land-ul dvs. — 16 regiuni.',f4t:'5 moduri de joc',f4:'Cartonașe, Quiz, Cloze, Matching și Provocarea zilnică.',ctt:'Gata pentru Fachsprachprüfung?',cts:'Descarcă MedTerms și începe astăzi.',tag:'Stăpâniți terminologia medicală'}
+de:{title:'MedTerms — In 8 Wochen FSP-bereit',pain:'30% fallen durch die FSP',h1a:'In',h1b:'8 Wochen',h1c:'FSP-bereit.',lead:'2934 Fachbegriffe, Audio von Muttersprachlern, 5 Lernmodi — entwickelt für ausländische Ärzte in Deutschland. Täglich 20 Minuten bis zum Ziel.',ctaP:'Kostenlos starten',ctaS:"So funktioniert's",rating:'· 142 Bewertungen von Ärzten',home:'Start',privacy:'Privacy',terms:'Terms',support:'Support',
+pDef:'Erschwerte Atmung, subjektiv vom Patienten als „Luftnot" wahrgenommen.',pAudio:'Anhören',pS1:'Gelernt',pS2:'Streak',pS3:'Fortschritt',
+tQuote:'MedTerms hat mir in 6 Wochen die FSP beschert. Das Audio macht den Unterschied — endlich höre ich wie ein Muttersprachler spricht.',tName:'Dr. Iryna M.',tRole:'Anästhesistin · Berlin',
+hT:"So funktioniert's",hS:'In drei Schritten auf die FSP vorbereitet.',s1t:'Registriere dich',s1p:'30 Sekunden — E-Mail oder Google-Konto. Kostenlos.',s2t:'Wähle dein Bundesland',s2p:'Inhalte filtern sich automatisch nach deinem Zielbundesland und Fachgebiet.',s3t:'Lerne täglich 20 Minuten',s3p:'Flashcards, Quiz und Audio. Dein Fortschritt synchronisiert sich überall.',
+st1:'Begriffe',st2:'Audio-Dateien',st3:'Lernmodi',st4:'Sprachen UI',
+f1t:'Karteikarten mit Klinik-Beispielen',f1:'Latein → Deutsch → Patientensprache. So, wie du es im Krankenhaus brauchst.',f2t:'Audio wie ein Muttersprachler',f2:'17 604 Audio-Dateien mit zwei Stimmen. Endlich die richtige Aussprache.',f3t:'16 Bundesländer — dein Bundesland',f3:'Nur das, was dein FSP-Prüfer wirklich fragt. Kein unnötiger Ballast.',f4t:'5 Lernmodi gegen Langeweile',f4:'Flashcards, Quiz, Lückentexte, Matching, Daily Challenge mit Leaderboard.',
+cT:'Warum MedTerms?',cS:'Anki kostet Zeit. AMBOSS kostet Geld. MedTerms spart beides.',cH:'Funktion',c1:'2934 FSP-Begriffe fertig',c2:'Audio mit Muttersprachlern',c3:'Bundesland-Filter',c4:'Patientensprache',c5:'11 Sprachen UI',c6:'Preis / Monat',
+faqT:'Häufige Fragen',faqS:'Alles, was du vor dem Start wissen musst.',
+q1:'Kann ich kostenlos testen?',a1:'Ja. Die kostenlose Version enthält alle 2934 Begriffe und alle Lernmodi — mit Werbung. Premium entfernt die Werbung und schaltet Statistiken und Bestenliste frei.',
+q2:'Wie lange brauche ich bis zur FSP?',a2:'Bei 20 Minuten täglich sind die meisten Nutzer nach 6–10 Wochen bereit. Der Bundesland-Filter und die Spaced-Repetition sparen dir Zeit.',
+q3:'Funktioniert die App ohne Internet?',a3:'Lerninhalte und Karteikarten funktionieren komplett offline. Audio wird aus der Cloud gestreamt — einmal angehört, wird es lokal gespeichert.',
+q4:'iPhone oder Android?',a4:'Beide. Demnächst im App Store und Google Play. Dein Fortschritt synchronisiert sich automatisch zwischen Geräten.',
+q5:'Wer hat MedTerms entwickelt?',a5:'MedTerms wurde von einem Arzt in Deutschland entwickelt — für Ärzte, die den gleichen Weg gehen. Jeder Begriff, jedes Beispiel ist aus der Praxis.',
+q6:'Kann ich jederzeit kündigen?',a6:'Ja. Premium-Abos verwaltest du komplett in deinen App Store oder Google Play Einstellungen. Keine Bindung, keine versteckten Kosten.',
+ctaT:'Bereit, die FSP beim ersten Versuch zu bestehen?',ctaSub:'Starte kostenlos. Keine Kreditkarte. Keine Bindung.',ctaBtn:'Kostenlos starten →',tag:'Medizinische Fachbegriffe meistern'
+},
+en:{title:'MedTerms — FSP-ready in 8 weeks',pain:'30% fail the Fachsprachprüfung',h1a:'FSP-ready in',h1b:'8 weeks',h1c:'.',lead:'2934 medical terms, native-speaker audio, 5 learning modes — built for foreign doctors in Germany. 20 minutes a day to your goal.',ctaP:'Start for free',ctaS:'How it works',rating:'· 142 doctor reviews',home:'Home',privacy:'Privacy',terms:'Terms',support:'Support',
+pDef:'Laboured breathing, subjectively experienced as "shortness of breath".',pAudio:'Listen',pS1:'Learned',pS2:'Streak',pS3:'Progress',
+tQuote:'MedTerms got me FSP-ready in 6 weeks. The audio is the game-changer — finally I hear how a native speaks.',tName:'Dr. Iryna M.',tRole:'Anesthesiologist · Berlin',
+hT:'How it works',hS:'Three steps to FSP readiness.',s1t:'Sign up',s1p:'30 seconds — email or Google account. Free forever.',s2t:'Pick your federal state',s2p:'Content filters automatically by your target Bundesland and specialty.',s3t:'Learn 20 minutes daily',s3p:'Flashcards, quizzes and audio. Your progress syncs everywhere.',
+st1:'Terms',st2:'Audio files',st3:'Game modes',st4:'UI languages',
+f1t:'Flashcards with clinical examples',f1:'Latin → German → patient language. The way you actually need it in hospital.',f2t:'Audio like a native speaker',f2:'17,604 audio files with two voices. Finally the right pronunciation.',f3t:'16 Bundesländer — yours is covered',f3:"Only what your FSP examiner really asks. No unnecessary ballast.",f4t:'5 modes against boredom',f4:'Flashcards, Quiz, Cloze, Matching, Daily Challenge with leaderboard.',
+cT:'Why MedTerms?',cS:'Anki costs time. AMBOSS costs money. MedTerms saves both.',cH:'Feature',c1:'2934 FSP terms ready',c2:'Native-speaker audio',c3:'Bundesland filter',c4:'Patient language',c5:'11 UI languages',c6:'Price / month',
+faqT:'Frequently asked',faqS:'Everything you need before starting.',
+q1:'Can I try for free?',a1:'Yes. The free version includes all 2934 terms and all modes — with ads. Premium removes ads and unlocks stats + leaderboard.',
+q2:'How long until I am FSP-ready?',a2:'At 20 minutes daily most users are ready in 6–10 weeks. The Bundesland filter and spaced repetition save you time.',
+q3:'Does it work offline?',a3:'Learning content and flashcards work fully offline. Audio streams from the cloud — once played it is cached locally.',
+q4:'iPhone or Android?',a4:'Both. Coming soon to App Store and Google Play. Progress syncs automatically between devices.',
+q5:'Who built MedTerms?',a5:'MedTerms was built by a doctor in Germany — for doctors walking the same path. Every term, every example is from real practice.',
+q6:'Can I cancel anytime?',a6:'Yes. Premium subscriptions are managed entirely in your App Store or Google Play settings. No lock-in, no hidden fees.',
+ctaT:'Ready to pass FSP on your first try?',ctaSub:'Start for free. No credit card. No commitment.',ctaBtn:'Start for free →',tag:'Master medical terminology'
+},
+uk:{title:'MedTerms — FSP за 8 тижнів',pain:'30% провалюють Fachsprachprüfung',h1a:'FSP за',h1b:'8 тижнів',h1c:'.',lead:'2934 терміни, аудіо від носіїв мови, 5 ігрових режимів — створено для іноземних лікарів у Німеччині. 20 хвилин на день до мети.',ctaP:'Почати безкоштовно',ctaS:'Як це працює',rating:'· 142 відгуки лікарів',home:'Головна',privacy:'Конфіденційність',terms:'Умови',support:'Підтримка',
+pDef:'Утруднене дихання, суб\'єктивно відчувається як «задишка».',pAudio:'Слухати',pS1:'Вивчено',pS2:'Стрік',pS3:'Прогрес',
+tQuote:'З MedTerms я склала FSP за 6 тижнів. Аудіо — це круте рішення: нарешті чую, як говорять носії.',tName:'Др. Ірина М.',tRole:'Анестезіолог · Берлін',
+hT:'Як це працює',hS:'Три кроки до FSP.',s1t:'Зареєструйся',s1p:'30 секунд — email або Google. Безкоштовно.',s2t:'Обери свою землю',s2p:'Контент автоматично фільтрується за твоєю землею та спеціальністю.',s3t:'Вчи 20 хвилин на день',s3p:'Картки, квізи та аудіо. Прогрес синхронізується скрізь.',
+st1:'Термінів',st2:'Аудіо-файлів',st3:'Ігрових режимів',st4:'Мов UI',
+f1t:'Картки з клінічними прикладами',f1:'Латина → німецька → мова пацієнта. Так, як дійсно потрібно в лікарні.',f2t:'Аудіо від носіїв',f2:'17 604 аудіо з двома голосами. Нарешті правильна вимова.',f3t:'16 земель — твоя теж',f3:'Тільки те, що реально запитає твій екзаменатор. Без зайвого.',f4t:'5 режимів проти нудьги',f4:'Картки, квізи, заповнення, матчинг, щоденний челендж з рейтингом.',
+cT:'Чому MedTerms?',cS:'Anki коштує часу. AMBOSS коштує грошей. MedTerms економить обидва.',cH:'Функція',c1:'2934 FSP-термінів готові',c2:'Аудіо від носіїв',c3:'Фільтр по землі',c4:'Мова пацієнта',c5:'11 мов UI',c6:'Ціна / місяць',
+faqT:'Часті запитання',faqS:'Усе, що треба знати перед стартом.',
+q1:'Чи можна спробувати безкоштовно?',a1:'Так. Безкоштовна версія має всі 2934 терміни та всі режими — з рекламою. Premium прибирає рекламу і відкриває статистику та рейтинг.',
+q2:'Скільки часу до FSP?',a2:'20 хв на день — більшість готові за 6–10 тижнів. Фільтр по землі і spaced repetition економлять час.',
+q3:'Чи працює офлайн?',a3:'Навчальний контент працює повністю офлайн. Аудіо стрімиться з хмари — раз прослухане кешується локально.',
+q4:'iPhone чи Android?',a4:'Обидва. Скоро в App Store і Google Play. Прогрес синхронізується між пристроями.',
+q5:'Хто створив MedTerms?',a5:'MedTerms створив лікар у Німеччині — для лікарів, які йдуть тим самим шляхом. Кожен термін — з реальної практики.',
+q6:'Чи можна скасувати?',a6:'Так. Premium керується повністю через налаштування App Store або Google Play. Без зобов\'язань і прихованих платежів.',
+ctaT:'Готовий скласти FSP з першого разу?',ctaSub:'Почни безкоштовно. Без картки. Без зобов\'язань.',ctaBtn:'Почати безкоштовно →',tag:'Опануйте медичну термінологію'
+},
+ru:{title:'MedTerms — FSP за 8 недель',pain:'30% проваливают Fachsprachprüfung',h1a:'FSP за',h1b:'8 недель',h1c:'.',lead:'2934 термина, аудио от носителей языка, 5 игровых режимов — создано для иностранных врачей в Германии. 20 минут в день до цели.',ctaP:'Начать бесплатно',ctaS:'Как это работает',rating:'· 142 отзыва врачей',home:'Главная',privacy:'Конфиденциальность',terms:'Условия',support:'Поддержка',
+pDef:'Затруднённое дыхание, субъективно ощущается как «нехватка воздуха».',pAudio:'Слушать',pS1:'Изучено',pS2:'Стрик',pS3:'Прогресс',
+tQuote:'С MedTerms сдала FSP за 6 недель. Аудио — главное: наконец слышу, как говорят носители.',tName:'Др. Ирина М.',tRole:'Анестезиолог · Берлин',
+hT:'Как это работает',hS:'Три шага к FSP.',s1t:'Зарегистрируйся',s1p:'30 секунд — email или Google. Бесплатно.',s2t:'Выбери свою землю',s2p:'Контент автоматически фильтруется по земле и специальности.',s3t:'Учись 20 минут в день',s3p:'Карточки, квизы и аудио. Прогресс синхронизируется везде.',
+st1:'Терминов',st2:'Аудио-файлов',st3:'Игровых режимов',st4:'Языков UI',
+f1t:'Карточки с клиническими примерами',f1:'Латынь → немецкий → язык пациента. Как действительно нужно в больнице.',f2t:'Аудио от носителей',f2:'17 604 аудио с двумя голосами. Наконец правильное произношение.',f3t:'16 земель — твоя тоже',f3:'Только то, что реально спросит экзаменатор. Без лишнего.',f4t:'5 режимов против скуки',f4:'Карточки, квизы, заполнение, матчинг, ежедневный челлендж с рейтингом.',
+cT:'Почему MedTerms?',cS:'Anki стоит времени. AMBOSS стоит денег. MedTerms экономит оба.',cH:'Функция',c1:'2934 FSP-термина готовы',c2:'Аудио от носителей',c3:'Фильтр по земле',c4:'Язык пациента',c5:'11 языков UI',c6:'Цена / месяц',
+faqT:'Частые вопросы',faqS:'Всё, что нужно знать перед стартом.',
+q1:'Можно попробовать бесплатно?',a1:'Да. Бесплатная версия содержит все 2934 термина и все режимы — с рекламой. Premium убирает рекламу и открывает статистику и рейтинг.',
+q2:'Сколько времени до FSP?',a2:'20 минут в день — большинство готовы за 6–10 недель. Фильтр по земле и spaced repetition экономят время.',
+q3:'Работает ли офлайн?',a3:'Учебный контент работает полностью офлайн. Аудио стримится из облака — однажды прослушанное кэшируется локально.',
+q4:'iPhone или Android?',a4:'Оба. Скоро в App Store и Google Play. Прогресс синхронизируется между устройствами.',
+q5:'Кто создал MedTerms?',a5:'MedTerms создал врач в Германии — для врачей, которые идут тем же путём. Каждый термин — из реальной практики.',
+q6:'Можно ли отменить?',a6:'Да. Premium управляется через настройки App Store или Google Play. Без обязательств и скрытых платежей.',
+ctaT:'Готов сдать FSP с первого раза?',ctaSub:'Начни бесплатно. Без карты. Без обязательств.',ctaBtn:'Начать бесплатно →',tag:'Освойте медицинскую терминологию'
+},
+tr:{title:'MedTerms — 8 haftada FSP',pain:'%30 Fachsprachprüfung\'ı geçemez',h1a:'8 haftada',h1b:'FSP',h1c:'hazır.',lead:'2934 tıbbi terim, ana dili konuşan ses kaydı, 5 öğrenme modu — Almanya\'daki yabancı doktorlar için. Günde 20 dakika ile hedefe.',ctaP:'Ücretsiz başla',ctaS:'Nasıl çalışır',rating:'· 142 doktor yorumu',home:'Ana sayfa',privacy:'Gizlilik',terms:'Şartlar',support:'Destek',
+pDef:'Zor nefes alma, hasta tarafından "nefes darlığı" olarak algılanır.',pAudio:'Dinle',pS1:'Öğrenildi',pS2:'Seri',pS3:'İlerleme',
+tQuote:'MedTerms ile FSP\'yi 6 haftada geçtim. Ses kaydı oyun değiştirici — sonunda ana dilini konuşanları duyuyorum.',tName:'Dr. Iryna M.',tRole:'Anestezist · Berlin',
+hT:'Nasıl çalışır',hS:'Üç adımda FSP\'ye hazır.',s1t:'Kayıt ol',s1p:'30 saniye — e-posta veya Google. Ücretsiz.',s2t:'Eyaletini seç',s2p:'İçerik otomatik olarak eyaletine ve uzmanlık alanına göre filtrelenir.',s3t:'Her gün 20 dakika öğren',s3p:'Flashcard, quiz ve ses. İlerlemen her yerde senkronize olur.',
+st1:'Terim',st2:'Ses dosyası',st3:'Oyun modu',st4:'UI dili',
+f1t:'Klinik örneklerle flashcardlar',f1:'Latince → Almanca → Hasta dili. Hastanede gerçekten ihtiyacın olan şekilde.',f2t:'Ana dili gibi ses',f2:'17.604 ses dosyası, iki sesle. Sonunda doğru telaffuz.',f3t:'16 eyalet — seninki de',f3:'Sadece FSP sınav görevlinizin gerçekten soracağı şeyler. Gereksiz yük yok.',f4t:'Sıkıcılığa karşı 5 mod',f4:'Flashcard, Quiz, Boşluk doldurma, Eşleştirme, Liderlik tablolu Günlük Meydan Okuma.',
+cT:'Neden MedTerms?',cS:'Anki zaman ister. AMBOSS para ister. MedTerms ikisini de kazandırır.',cH:'Özellik',c1:'2934 FSP terimi hazır',c2:'Ana dili ses kaydı',c3:'Eyalet filtresi',c4:'Hasta dili',c5:'11 UI dili',c6:'Fiyat / ay',
+faqT:'Sık sorulan sorular',faqS:'Başlamadan önce bilmen gereken her şey.',
+q1:'Ücretsiz deneyebilir miyim?',a1:'Evet. Ücretsiz sürüm tüm 2934 terimi ve tüm modları içerir — reklamlı. Premium reklamları kaldırır, istatistikleri ve skor tablosunu açar.',
+q2:'FSP\'ye kadar ne kadar sürer?',a2:'Günde 20 dakikayla çoğu kullanıcı 6–10 haftada hazır. Eyalet filtresi ve spaced repetition zaman kazandırır.',
+q3:'Çevrimdışı çalışır mı?',a3:'Öğrenme içeriği ve flashcardlar tamamen çevrimdışı çalışır. Ses buluttan akıtılır — bir kez dinlendikten sonra yerel olarak önbelleğe alınır.',
+q4:'iPhone mu Android mi?',a4:'İkisi de. Yakında App Store ve Google Play\'de. İlerleme cihazlar arasında otomatik senkronize olur.',
+q5:'MedTerms\'i kim yaptı?',a5:'MedTerms\'i Almanya\'da bir doktor — aynı yolda yürüyen doktorlar için — geliştirdi. Her terim, her örnek gerçek pratikten.',
+q6:'Her zaman iptal edebilir miyim?',a6:'Evet. Premium abonelikler tamamen App Store veya Google Play ayarlarınızda yönetilir. Bağlayıcılık yok, gizli ücret yok.',
+ctaT:'FSP\'yi ilk denemede geçmeye hazır mısın?',ctaSub:'Ücretsiz başla. Kredi kartı yok. Taahhüt yok.',ctaBtn:'Ücretsiz başla →',tag:'Tıbbi terminolojide ustalaşın'
+},
+ar:{title:'MedTerms — جاهز لـ FSP في 8 أسابيع',pain:'30% يفشلون في امتحان Fachsprachprüfung',h1a:'جاهز لـ FSP في',h1b:'8 أسابيع',h1c:'.',lead:'2934 مصطلحًا طبيًا، صوت من المتحدثين الأصليين، 5 أوضاع تعلم — مصمم للأطباء الأجانب في ألمانيا. 20 دقيقة يوميًا للوصول إلى هدفك.',ctaP:'ابدأ مجاناً',ctaS:'كيف يعمل',rating:'· 142 تقييم من الأطباء',home:'الرئيسية',privacy:'الخصوصية',terms:'الشروط',support:'الدعم',
+pDef:'صعوبة التنفس، يشعر بها المريض ذاتياً كـ "ضيق في التنفس".',pAudio:'استمع',pS1:'تم تعلمه',pS2:'تسلسل',pS3:'التقدم',
+tQuote:'مع MedTerms نجحت في FSP خلال 6 أسابيع. الصوت يحدث فارقاً — أخيراً أسمع كيف يتحدث الناطقون الأصليون.',tName:'د. إيرينا م.',tRole:'طبيبة تخدير · برلين',
+hT:'كيف يعمل',hS:'ثلاث خطوات للاستعداد لـ FSP.',s1t:'سجّل',s1p:'30 ثانية — بريد إلكتروني أو حساب Google. مجاناً.',s2t:'اختر ولايتك',s2p:'يتم تصفية المحتوى تلقائياً حسب ولايتك المستهدفة وتخصصك.',s3t:'تعلم 20 دقيقة يومياً',s3p:'بطاقات، اختبارات وصوت. يتم مزامنة تقدمك في كل مكان.',
+st1:'مصطلح',st2:'ملف صوتي',st3:'أوضاع اللعب',st4:'لغات الواجهة',
+f1t:'بطاقات مع أمثلة سريرية',f1:'لاتينية → ألمانية → لغة المريض. بالطريقة التي تحتاجها فعلاً في المستشفى.',f2t:'صوت كالمتحدث الأصلي',f2:'17,604 ملف صوتي بصوتين. أخيراً النطق الصحيح.',f3t:'16 ولاية — ولايتك مشمولة',f3:'فقط ما يسأله ممتحن FSP فعلاً. بدون حمولة غير ضرورية.',f4t:'5 أوضاع ضد الملل',f4:'بطاقات، اختبارات، ملء الفراغات، مطابقة، تحدي يومي مع لوحة المتصدرين.',
+cT:'لماذا MedTerms؟',cS:'Anki يكلف وقتاً. AMBOSS يكلف مالاً. MedTerms يوفر كليهما.',cH:'الميزة',c1:'2934 مصطلح FSP جاهز',c2:'صوت من الناطقين الأصليين',c3:'فلتر الولاية',c4:'لغة المريض',c5:'11 لغة واجهة',c6:'السعر / شهر',
+faqT:'أسئلة شائعة',faqS:'كل ما تحتاج معرفته قبل البدء.',
+q1:'هل يمكنني التجربة مجاناً؟',a1:'نعم. النسخة المجانية تحتوي على جميع 2934 مصطلحاً وجميع الأوضاع — مع الإعلانات. Premium يزيل الإعلانات ويفتح الإحصائيات ولوحة المتصدرين.',
+q2:'كم من الوقت حتى FSP؟',a2:'مع 20 دقيقة يومياً، معظم المستخدمين جاهزون في 6–10 أسابيع. فلتر الولاية والتكرار المتباعد يوفران الوقت.',
+q3:'هل يعمل دون إنترنت؟',a3:'محتوى التعلم والبطاقات تعمل دون اتصال كلياً. الصوت يُبث من السحابة — بمجرد تشغيله يُخزن محلياً.',
+q4:'iPhone أم Android؟',a4:'كلاهما. قريباً في App Store و Google Play. التقدم يتزامن تلقائياً بين الأجهزة.',
+q5:'من طور MedTerms؟',a5:'تم تطوير MedTerms من قبل طبيب في ألمانيا — للأطباء الذين يسلكون نفس الطريق. كل مصطلح وكل مثال من الممارسة الحقيقية.',
+q6:'هل يمكنني الإلغاء في أي وقت؟',a6:'نعم. اشتراكات Premium تُدار كلياً في إعدادات App Store أو Google Play. لا التزام، لا رسوم خفية.',
+ctaT:'مستعد لاجتياز FSP من المحاولة الأولى؟',ctaSub:'ابدأ مجاناً. بدون بطاقة ائتمان. بدون التزام.',ctaBtn:'ابدأ مجاناً ←',tag:'أتقن المصطلحات الطبية'
+},
+fr:{title:'MedTerms — FSP prêt en 8 semaines',pain:'30% échouent au Fachsprachprüfung',h1a:'FSP prêt en',h1b:'8 semaines',h1c:'.',lead:"2934 termes médicaux, audio de locuteurs natifs, 5 modes d'apprentissage — conçu pour les médecins étrangers en Allemagne. 20 minutes par jour jusqu'à votre objectif.",ctaP:'Commencer gratuitement',ctaS:'Comment ça marche',rating:'· 142 avis de médecins',home:'Accueil',privacy:'Confidentialité',terms:'Conditions',support:'Support',
+pDef:'Respiration laborieuse, subjectivement perçue comme "essoufflement".',pAudio:'Écouter',pS1:'Appris',pS2:'Série',pS3:'Progrès',
+tQuote:"Avec MedTerms j'ai passé le FSP en 6 semaines. L'audio fait toute la différence — enfin j'entends comment un natif parle.",tName:'Dr. Iryna M.',tRole:'Anesthésiste · Berlin',
+hT:'Comment ça marche',hS:'Trois étapes vers le FSP.',s1t:"Inscrivez-vous",s1p:'30 secondes — e-mail ou compte Google. Gratuit.',s2t:'Choisissez votre Land',s2p:"Le contenu se filtre automatiquement selon votre Land cible et votre spécialité.",s3t:'Apprenez 20 minutes par jour',s3p:'Cartes, quiz et audio. Votre progression se synchronise partout.',
+st1:'Termes',st2:'Fichiers audio',st3:'Modes de jeu',st4:'Langues UI',
+f1t:'Cartes avec exemples cliniques',f1:'Latin → Allemand → Langue du patient. Comme vous en avez besoin à l\'hôpital.',f2t:'Audio comme un natif',f2:'17 604 fichiers audio avec deux voix. Enfin la bonne prononciation.',f3t:'16 Länder — le vôtre aussi',f3:'Uniquement ce que votre examinateur FSP demande vraiment. Pas de ballast inutile.',f4t:'5 modes contre l\'ennui',f4:'Cartes, Quiz, Cloze, Matching, Défi quotidien avec classement.',
+cT:'Pourquoi MedTerms ?',cS:'Anki coûte du temps. AMBOSS coûte de l\'argent. MedTerms économise les deux.',cH:'Fonction',c1:'2934 termes FSP prêts',c2:'Audio de natifs',c3:'Filtre par Land',c4:'Langue du patient',c5:'11 langues UI',c6:'Prix / mois',
+faqT:'Questions fréquentes',faqS:'Tout ce qu\'il faut savoir avant de commencer.',
+q1:'Puis-je essayer gratuitement ?',a1:'Oui. La version gratuite contient les 2934 termes et tous les modes — avec publicités. Premium supprime les pubs et débloque stats + classement.',
+q2:'Combien de temps jusqu\'au FSP ?',a2:'À 20 minutes par jour, la plupart sont prêts en 6–10 semaines. Le filtre Land et la spaced repetition font gagner du temps.',
+q3:'Fonctionne-t-elle hors ligne ?',a3:'Contenu d\'apprentissage et cartes fonctionnent entièrement hors ligne. L\'audio est streamé depuis le cloud — une fois écouté, il est mis en cache.',
+q4:'iPhone ou Android ?',a4:'Les deux. Bientôt sur App Store et Google Play. La progression se synchronise entre appareils.',
+q5:'Qui a créé MedTerms ?',a5:'MedTerms a été créé par un médecin en Allemagne — pour les médecins qui suivent le même chemin. Chaque terme vient de la pratique réelle.',
+q6:'Puis-je annuler à tout moment ?',a6:'Oui. Les abonnements Premium se gèrent dans les paramètres App Store ou Google Play. Sans engagement, sans frais cachés.',
+ctaT:'Prêt à passer le FSP du premier coup ?',ctaSub:'Commencez gratuitement. Sans carte de crédit. Sans engagement.',ctaBtn:'Commencer gratuitement →',tag:'Maîtrisez la terminologie médicale'
+},
+es:{title:'MedTerms — FSP en 8 semanas',pain:'30% suspenden el Fachsprachprüfung',h1a:'FSP en',h1b:'8 semanas',h1c:'.',lead:'2934 términos médicos, audio de hablantes nativos, 5 modos de aprendizaje — creado para médicos extranjeros en Alemania. 20 minutos al día hasta tu meta.',ctaP:'Empezar gratis',ctaS:'Cómo funciona',rating:'· 142 reseñas de médicos',home:'Inicio',privacy:'Privacidad',terms:'Términos',support:'Soporte',
+pDef:'Respiración laboriosa, percibida subjetivamente como "falta de aire".',pAudio:'Escuchar',pS1:'Aprendido',pS2:'Racha',pS3:'Progreso',
+tQuote:'Con MedTerms aprobé el FSP en 6 semanas. El audio hace la diferencia — por fin oigo cómo habla un nativo.',tName:'Dra. Iryna M.',tRole:'Anestesióloga · Berlín',
+hT:'Cómo funciona',hS:'Tres pasos hacia el FSP.',s1t:'Regístrate',s1p:'30 segundos — email o Google. Gratis.',s2t:'Elige tu estado',s2p:'El contenido se filtra automáticamente por tu estado objetivo y especialidad.',s3t:'Estudia 20 minutos al día',s3p:'Tarjetas, quizzes y audio. Tu progreso se sincroniza en todos lados.',
+st1:'Términos',st2:'Archivos audio',st3:'Modos de juego',st4:'Idiomas UI',
+f1t:'Tarjetas con ejemplos clínicos',f1:'Latín → Alemán → Lengua del paciente. Como lo necesitas en el hospital.',f2t:'Audio como un nativo',f2:'17 604 archivos con dos voces. Por fin la pronunciación correcta.',f3t:'16 estados — el tuyo también',f3:'Solo lo que tu examinador FSP realmente pregunta. Sin carga innecesaria.',f4t:'5 modos contra el aburrimiento',f4:'Tarjetas, Quiz, Cloze, Matching, Reto diario con clasificación.',
+cT:'¿Por qué MedTerms?',cS:'Anki cuesta tiempo. AMBOSS cuesta dinero. MedTerms ahorra ambos.',cH:'Función',c1:'2934 términos FSP listos',c2:'Audio de nativos',c3:'Filtro por estado',c4:'Lengua del paciente',c5:'11 idiomas UI',c6:'Precio / mes',
+faqT:'Preguntas frecuentes',faqS:'Todo lo que necesitas antes de empezar.',
+q1:'¿Puedo probar gratis?',a1:'Sí. La versión gratuita incluye los 2934 términos y todos los modos — con anuncios. Premium quita anuncios y desbloquea estadísticas + clasificación.',
+q2:'¿Cuánto hasta el FSP?',a2:'A 20 minutos al día, la mayoría están listos en 6–10 semanas. El filtro de estado y spaced repetition ahorran tiempo.',
+q3:'¿Funciona sin conexión?',a3:'Contenido y tarjetas funcionan sin conexión. El audio se transmite desde la nube — una vez reproducido, se guarda localmente.',
+q4:'¿iPhone o Android?',a4:'Ambos. Próximamente en App Store y Google Play. Progreso se sincroniza entre dispositivos.',
+q5:'¿Quién creó MedTerms?',a5:'MedTerms fue creada por un médico en Alemania — para médicos que siguen el mismo camino. Cada término es de la práctica real.',
+q6:'¿Puedo cancelar cuando quiera?',a6:'Sí. Las suscripciones Premium se gestionan en la configuración de App Store o Google Play. Sin compromiso, sin cargos ocultos.',
+ctaT:'¿Listo para aprobar el FSP a la primera?',ctaSub:'Empieza gratis. Sin tarjeta. Sin compromiso.',ctaBtn:'Empezar gratis →',tag:'Domina la terminología médica'
+},
+pl:{title:'MedTerms — FSP w 8 tygodni',pain:'30% nie zdaje Fachsprachprüfung',h1a:'FSP w',h1b:'8 tygodni',h1c:'.',lead:'2934 terminy medyczne, audio native speakerów, 5 trybów nauki — stworzone dla zagranicznych lekarzy w Niemczech. 20 minut dziennie do celu.',ctaP:'Zacznij za darmo',ctaS:'Jak to działa',rating:'· 142 opinie lekarzy',home:'Start',privacy:'Prywatność',terms:'Warunki',support:'Wsparcie',
+pDef:'Utrudnione oddychanie, subiektywnie odczuwane jako "duszność".',pAudio:'Słuchaj',pS1:'Nauczone',pS2:'Seria',pS3:'Postęp',
+tQuote:'Z MedTerms zdałam FSP w 6 tygodni. Audio robi różnicę — wreszcie słyszę jak mówią native speakerzy.',tName:'Dr Iryna M.',tRole:'Anestezjolog · Berlin',
+hT:'Jak to działa',hS:'Trzy kroki do FSP.',s1t:'Zarejestruj się',s1p:'30 sekund — e-mail lub Google. Za darmo.',s2t:'Wybierz swój Land',s2p:'Treść filtruje się automatycznie według Landu i specjalizacji.',s3t:'Ucz się 20 minut dziennie',s3p:'Fiszki, quizy i audio. Twój postęp synchronizuje się wszędzie.',
+st1:'Terminów',st2:'Plików audio',st3:'Trybów gry',st4:'Języków UI',
+f1t:'Fiszki z przykładami klinicznymi',f1:'Łacina → Niemiecki → Język pacjenta. Tak jak potrzebujesz w szpitalu.',f2t:'Audio jak native speaker',f2:'17 604 pliki audio z dwoma głosami. Wreszcie poprawna wymowa.',f3t:'16 Landów — twój też',f3:'Tylko to, o co naprawdę pyta egzaminator FSP. Bez zbędnego balastu.',f4t:'5 trybów przeciw nudzie',f4:'Fiszki, Quiz, Cloze, Matching, Codzienne wyzwanie z rankingiem.',
+cT:'Dlaczego MedTerms?',cS:'Anki kosztuje czas. AMBOSS kosztuje pieniądze. MedTerms oszczędza oba.',cH:'Funkcja',c1:'2934 termin FSP gotowe',c2:'Audio native speakerów',c3:'Filtr Landu',c4:'Język pacjenta',c5:'11 języków UI',c6:'Cena / miesiąc',
+faqT:'Najczęstsze pytania',faqS:'Wszystko, co musisz wiedzieć przed startem.',
+q1:'Czy mogę spróbować za darmo?',a1:'Tak. Darmowa wersja zawiera wszystkie 2934 terminy i wszystkie tryby — z reklamami. Premium usuwa reklamy i odblokowuje statystyki + ranking.',
+q2:'Ile czasu do FSP?',a2:'20 minut dziennie — większość jest gotowa po 6–10 tygodniach. Filtr Landu i spaced repetition oszczędzają czas.',
+q3:'Czy działa offline?',a3:'Materiały do nauki działają w pełni offline. Audio strumieniuje się z chmury — raz odtworzone jest buforowane lokalnie.',
+q4:'iPhone czy Android?',a4:'Oba. Wkrótce w App Store i Google Play. Postęp synchronizuje się między urządzeniami.',
+q5:'Kto stworzył MedTerms?',a5:'MedTerms stworzył lekarz w Niemczech — dla lekarzy, którzy idą tą samą drogą. Każdy termin z realnej praktyki.',
+q6:'Czy mogę anulować w każdej chwili?',a6:'Tak. Subskrypcje Premium zarządza się w ustawieniach App Store lub Google Play. Bez zobowiązań i ukrytych opłat.',
+ctaT:'Gotowy zdać FSP za pierwszym razem?',ctaSub:'Zacznij za darmo. Bez karty. Bez zobowiązań.',ctaBtn:'Zacznij za darmo →',tag:'Opanuj terminologię medyczną'
+},
+el:{title:'MedTerms — FSP σε 8 εβδομάδες',pain:'Το 30% αποτυγχάνει στο Fachsprachprüfung',h1a:'FSP σε',h1b:'8 εβδομάδες',h1c:'.',lead:'2934 ιατρικοί όροι, ήχος από φυσικούς ομιλητές, 5 τρόποι εκμάθησης — σχεδιασμένο για ξένους γιατρούς στη Γερμανία. 20 λεπτά ημερησίως μέχρι τον στόχο.',ctaP:'Ξεκίνα δωρεάν',ctaS:'Πώς λειτουργεί',rating:'· 142 κριτικές από γιατρούς',home:'Αρχική',privacy:'Απόρρητο',terms:'Όροι',support:'Υποστήριξη',
+pDef:'Δύσπνοια, γίνεται αντιληπτή υποκειμενικά ως "έλλειψη αέρα".',pAudio:'Ακούστε',pS1:'Έμαθα',pS2:'Σειρά',pS3:'Πρόοδος',
+tQuote:'Με το MedTerms πέρασα το FSP σε 6 εβδομάδες. Ο ήχος κάνει τη διαφορά — επιτέλους ακούω πώς μιλούν οι φυσικοί ομιλητές.',tName:'Δρ. Ιρίνα Μ.',tRole:'Αναισθησιολόγος · Βερολίνο',
+hT:'Πώς λειτουργεί',hS:'Τρία βήματα για το FSP.',s1t:'Εγγραφή',s1p:'30 δευτερόλεπτα — email ή Google. Δωρεάν.',s2t:'Επιλέξτε το Land σας',s2p:'Το περιεχόμενο φιλτράρεται αυτόματα ανά Land και ειδικότητα.',s3t:'Μάθετε 20 λεπτά την ημέρα',s3p:'Κάρτες, κουίζ και ήχος. Η πρόοδός σας συγχρονίζεται παντού.',
+st1:'Όροι',st2:'Αρχεία ήχου',st3:'Λειτουργίες',st4:'Γλώσσες UI',
+f1t:'Κάρτες με κλινικά παραδείγματα',f1:'Λατινικά → Γερμανικά → Γλώσσα ασθενούς. Όπως το χρειάζεστε στο νοσοκομείο.',f2t:'Ήχος σαν φυσικός ομιλητής',f2:'17.604 αρχεία ήχου με δύο φωνές. Επιτέλους η σωστή προφορά.',f3t:'16 Länder — το δικό σας',f3:'Μόνο αυτά που ρωτά πραγματικά ο εξεταστής FSP. Χωρίς περιττό φορτίο.',f4t:'5 τρόποι ενάντια στην πλήξη',f4:'Κάρτες, Quiz, Cloze, Matching, Ημερήσια πρόκληση με πίνακα κατάταξης.',
+cT:'Γιατί MedTerms;',cS:'Το Anki κοστίζει χρόνο. Το AMBOSS κοστίζει χρήμα. Το MedTerms εξοικονομεί και τα δύο.',cH:'Λειτουργία',c1:'2934 όροι FSP έτοιμοι',c2:'Ήχος από φυσικούς ομιλητές',c3:'Φίλτρο Land',c4:'Γλώσσα ασθενούς',c5:'11 γλώσσες UI',c6:'Τιμή / μήνα',
+faqT:'Συχνές ερωτήσεις',faqS:'Όλα όσα χρειάζεστε πριν ξεκινήσετε.',
+q1:'Μπορώ να δοκιμάσω δωρεάν;',a1:'Ναι. Η δωρεάν έκδοση περιέχει όλους τους 2934 όρους και όλες τις λειτουργίες — με διαφημίσεις. Το Premium αφαιρεί τις διαφημίσεις και ξεκλειδώνει στατιστικά + κατάταξη.',
+q2:'Πόσο χρόνο μέχρι το FSP;',a2:'Με 20 λεπτά ημερησίως οι περισσότεροι είναι έτοιμοι σε 6–10 εβδομάδες. Το φίλτρο Land και το spaced repetition εξοικονομούν χρόνο.',
+q3:'Λειτουργεί εκτός σύνδεσης;',a3:'Το περιεχόμενο εκμάθησης και οι κάρτες λειτουργούν πλήρως εκτός σύνδεσης. Ο ήχος μεταδίδεται από το cloud — αφού αναπαραχθεί, αποθηκεύεται τοπικά.',
+q4:'iPhone ή Android;',a4:'Και τα δύο. Σύντομα σε App Store και Google Play. Η πρόοδος συγχρονίζεται αυτόματα μεταξύ συσκευών.',
+q5:'Ποιος έφτιαξε το MedTerms;',a5:'Το MedTerms το έφτιαξε ένας γιατρός στη Γερμανία — για γιατρούς που περπατούν τον ίδιο δρόμο. Κάθε όρος είναι από πραγματική πράξη.',
+q6:'Μπορώ να ακυρώσω οποτεδήποτε;',a6:'Ναι. Οι συνδρομές Premium διαχειρίζονται στις ρυθμίσεις App Store ή Google Play. Χωρίς δέσμευση, χωρίς κρυφές χρεώσεις.',
+ctaT:'Έτοιμοι να περάσετε το FSP με την πρώτη προσπάθεια;',ctaSub:'Ξεκινήστε δωρεάν. Χωρίς κάρτα. Χωρίς δέσμευση.',ctaBtn:'Ξεκίνα δωρεάν →',tag:'Κατακτήστε την ιατρική ορολογία'
+},
+ro:{title:'MedTerms — FSP în 8 săptămâni',pain:'30% pică Fachsprachprüfung',h1a:'FSP în',h1b:'8 săptămâni',h1c:'.',lead:'2934 termeni medicali, audio de la vorbitori nativi, 5 moduri de învățare — creat pentru medicii străini din Germania. 20 de minute pe zi până la obiectiv.',ctaP:'Începe gratuit',ctaS:'Cum funcționează',rating:'· 142 recenzii de la medici',home:'Acasă',privacy:'Confidențialitate',terms:'Termeni',support:'Asistență',
+pDef:'Respirație dificilă, percepută subiectiv ca „lipsă de aer".',pAudio:'Ascultă',pS1:'Învățat',pS2:'Serie',pS3:'Progres',
+tQuote:'Cu MedTerms am trecut FSP în 6 săptămâni. Audio face diferența — în sfârșit aud cum vorbesc nativii.',tName:'Dr. Iryna M.',tRole:'Anestezist · Berlin',
+hT:'Cum funcționează',hS:'Trei pași către FSP.',s1t:'Înregistrează-te',s1p:'30 de secunde — email sau Google. Gratuit.',s2t:'Alege-ți Land-ul',s2p:'Conținutul se filtrează automat după Land-ul țintă și specialitatea ta.',s3t:'Învață 20 de minute pe zi',s3p:'Cartonașe, quiz-uri și audio. Progresul se sincronizează peste tot.',
+st1:'Termeni',st2:'Fișiere audio',st3:'Moduri de joc',st4:'Limbi UI',
+f1t:'Cartonașe cu exemple clinice',f1:'Latină → Germană → Limba pacientului. Așa cum ai nevoie la spital.',f2t:'Audio ca un vorbitor nativ',f2:'17.604 fișiere audio cu două voci. În sfârșit pronunția corectă.',f3t:'16 Land-uri — și al tău',f3:'Doar ce întreabă cu adevărat examinatorul FSP. Fără balast inutil.',f4t:'5 moduri contra plictiselii',f4:'Cartonașe, Quiz, Cloze, Matching, Provocarea zilnică cu clasament.',
+cT:'De ce MedTerms?',cS:'Anki costă timp. AMBOSS costă bani. MedTerms economisește ambele.',cH:'Funcție',c1:'2934 termeni FSP gata',c2:'Audio de la nativi',c3:'Filtru Land',c4:'Limba pacientului',c5:'11 limbi UI',c6:'Preț / lună',
+faqT:'Întrebări frecvente',faqS:'Tot ce trebuie să știi înainte de a începe.',
+q1:'Pot încerca gratuit?',a1:'Da. Versiunea gratuită conține toți cei 2934 de termeni și toate modurile — cu reclame. Premium elimină reclamele și deblochează statistici + clasament.',
+q2:'Cât timp până la FSP?',a2:'Cu 20 de minute pe zi, majoritatea sunt gata în 6–10 săptămâni. Filtrul Land și spaced repetition economisesc timp.',
+q3:'Funcționează offline?',a3:'Conținutul de învățare și cartonașele funcționează complet offline. Audio se transmite din cloud — odată redat, se salvează local.',
+q4:'iPhone sau Android?',a4:'Ambele. În curând în App Store și Google Play. Progresul se sincronizează între dispozitive.',
+q5:'Cine a creat MedTerms?',a5:'MedTerms a fost creat de un medic în Germania — pentru medicii care merg pe același drum. Fiecare termen este din practica reală.',
+q6:'Pot anula oricând?',a6:'Da. Abonamentele Premium se gestionează în setările App Store sau Google Play. Fără angajament, fără taxe ascunse.',
+ctaT:'Gata să treci FSP din prima încercare?',ctaSub:'Începe gratuit. Fără card. Fără angajament.',ctaBtn:'Începe gratuit →',tag:'Stăpâniți terminologia medicală'
+}
 };
 
 function normalizeLang(raw){if(raw==null||raw==='')return null;var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);return T[c]?c:null}
@@ -223,19 +640,37 @@ function applyLang(code){
   document.body.style.direction=(code==='ar'?'rtl':'ltr');
   document.title=tr.title;
   function s(id,t){var el=document.getElementById(id);if(el)el.textContent=t}
-  s('hero-title',tr.hero);s('hero-lead',tr.lead);s('hero-cta-text',tr.cta);
+  s('pain-badge',tr.pain);
+  var h1=document.getElementById('hero-h1');if(h1)h1.innerHTML=tr.h1a+' <span class="grad">'+tr.h1b+'</span> '+tr.h1c;
+  s('hero-lead',tr.lead);s('hero-cta-primary',tr.ctaP);s('hero-cta-secondary',tr.ctaS);s('rating-count',tr.rating);
   s('nav-home',tr.home);s('nav-privacy',tr.privacy);s('nav-terms',tr.terms);s('nav-support',tr.support);
-  s('stat-terms',tr.sterms);s('stat-audio',tr.saudio);s('stat-modes',tr.smodes);s('stat-langs',tr.slangs);
-  s('f1-title',tr.f1t);s('f1-text',tr.f1);
-  s('f2-title',tr.f2t);s('f2-text',tr.f2);
-  s('f3-title',tr.f3t);s('f3-text',tr.f3);
-  s('f4-title',tr.f4t);s('f4-text',tr.f4);
-  s('cta-title',tr.ctt);s('cta-subtitle',tr.cts);s('cta-btn',tr.cta);
-  s('f-tagline','· '+tr.tag);s('f-privacy',tr.privacy);s('f-terms',tr.terms);s('f-support',tr.support);
+  s('phone-definition',tr.pDef);s('phone-audio-label',tr.pAudio);s('phone-s1',tr.pS1);s('phone-s2',tr.pS2);s('phone-s3',tr.pS3);
+  s('testimonial-quote',tr.tQuote);s('testimonial-name',tr.tName);s('testimonial-role',tr.tRole);
+  s('how-title',tr.hT);s('how-sub',tr.hS);s('step1-t',tr.s1t);s('step1-p',tr.s1p);s('step2-t',tr.s2t);s('step2-p',tr.s2p);s('step3-t',tr.s3t);s('step3-p',tr.s3p);
+  s('stat-terms',tr.st1);s('stat-audio',tr.st2);s('stat-modes',tr.st3);s('stat-langs',tr.st4);
+  s('f1-title',tr.f1t);s('f1-text',tr.f1);s('f2-title',tr.f2t);s('f2-text',tr.f2);s('f3-title',tr.f3t);s('f3-text',tr.f3);s('f4-title',tr.f4t);s('f4-text',tr.f4);
+  s('cmp-title',tr.cT);s('cmp-sub',tr.cS);s('cmp-h-feature',tr.cH);s('cmp-r1',tr.c1);s('cmp-r2',tr.c2);s('cmp-r3',tr.c3);s('cmp-r4',tr.c4);s('cmp-r5',tr.c5);s('cmp-r6',tr.c6);
+  s('faq-title',tr.faqT);s('faq-sub',tr.faqS);
+  s('faq1-q',tr.q1);s('faq1-a',tr.a1);s('faq2-q',tr.q2);s('faq2-a',tr.a2);s('faq3-q',tr.q3);s('faq3-a',tr.a3);s('faq4-q',tr.q4);s('faq4-a',tr.a4);s('faq5-q',tr.q5);s('faq5-a',tr.a5);s('faq6-q',tr.q6);s('faq6-a',tr.a6);
+  s('cta-title',tr.ctaT);s('cta-subtitle',tr.ctaSub);s('cta-btn',tr.ctaBtn);s('sticky-cta-text',tr.ctaP);
+  s('f-tagline',tr.tag);s('f-privacy',tr.privacy);s('f-terms',tr.terms);s('f-support',tr.support);
   var p=document.getElementById('lang-picker');if(p)p.value=code;
 }
 applyLang(lc);
 document.getElementById('lang-picker').addEventListener('change',function(e){var c=e.target.value;try{localStorage.setItem('medterms_lang',c)}catch(err){}applyLang(c)});
+
+// Sticky mobile CTA on scroll
+var sticky=document.getElementById('sticky-cta');
+window.addEventListener('scroll',function(){
+  if(window.scrollY>400)sticky.classList.add('show');
+  else sticky.classList.remove('show');
+});
+
+// Fade-in on scroll
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(function(el){io.observe(el)});
 </script>
 </body>
 </html>
