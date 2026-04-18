@@ -15,12 +15,17 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#F7F9FC;min-height:10
 .body{padding:32px 28px;text-align:center}
 .icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#56C9D6,#38D185);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
 .icon svg{width:36px;height:36px;fill:#fff}
+.icon-error{background:linear-gradient(135deg,#EF5350,#E53935)}
+.icon-loading{background:linear-gradient(135deg,#78B5FA,#9586FD)}
 .body h2{color:#242833;font-size:22px;font-weight:700;margin-bottom:8px}
 .body .msg{color:#7E8494;font-size:15px;line-height:1.6;margin-bottom:24px}
 .btn{display:inline-block;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;font-size:16px;font-weight:600;text-decoration:none;padding:14px 36px;border-radius:22px;box-shadow:0 4px 16px rgba(125,162,255,.3);transition:transform .15s}
 .btn:hover{transform:translateY(-1px)}
 .footer{padding:20px 28px;border-top:1px solid #E4E9F5;text-align:center}
 .footer p{font-size:12px;color:#959FBA}
+#view-loading,#view-success,#view-error{display:none}
+.loading-dots{font-size:28px;color:#78B5FA;letter-spacing:4px;animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 </style>
 </head>
 <body>
@@ -30,35 +35,130 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#F7F9FC;min-height:10
     <p>Medizinische Fachbegriffe meistern</p>
   </div>
   <div class="body">
-    <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-    <h2 id="title">E-Mail-Adresse erfolgreich geändert!</h2>
-    <p class="msg" id="msg">Ihre neue E-Mail-Adresse wurde bestätigt. Sie können sich jetzt mit der neuen Adresse anmelden.</p>
-    <a href="medterms://login" class="btn" id="btn">App öffnen</a>
+    <div id="view-loading" style="display:block">
+      <div class="icon icon-loading"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+      <h2 id="loading-title">E-Mail wird bestätigt...</h2>
+      <p class="loading-dots">...</p>
+    </div>
+    <div id="view-success">
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+      <h2 id="title">E-Mail-Adresse erfolgreich geändert!</h2>
+      <p class="msg" id="msg">Ihre neue E-Mail-Adresse wurde bestätigt. Sie können sich jetzt mit der neuen Adresse anmelden.</p>
+      <a href="medterms://login" class="btn" id="btn">App öffnen</a>
+    </div>
+    <div id="view-error">
+      <div class="icon icon-error"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+      <h2 id="error-title">Link ungültig</h2>
+      <p class="msg" id="error-msg">Dieser Link ist ungültig oder abgelaufen. Bitte fordern Sie in der App eine neue E-Mail-Änderung an.</p>
+    </div>
   </div>
   <div class="footer">
     <p>© 2026 GermanMove Education</p>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
+const SUPABASE_URL='https://dnngjjfipppdjrgmmjxo.supabase.co';
+const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRubmdqamZpcHBwZGpyZ21tanhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNTczNzgsImV4cCI6MjA5MTczMzM3OH0.OMdU8wrV6evjoYEd9i1CYIXcPbSx0D4f4XgW-j0MiCM';
+
 const T={
-de:{title:'E-Mail-Adresse erfolgreich geändert!',msg:'Ihre neue E-Mail-Adresse wurde bestätigt. Sie können sich jetzt mit der neuen Adresse anmelden.',btn:'App öffnen'},
-en:{title:'Email address successfully changed!',msg:'Your new email address has been confirmed. You can now sign in with your new address.',btn:'Open App'},
-uk:{title:'Email успішно змінено!',msg:'Вашу нову адресу підтверджено. Тепер ви можете увійти з новою адресою.',btn:'Відкрити додаток'},
-ru:{title:'Email успешно изменён!',msg:'Ваш новый адрес подтверждён. Теперь вы можете войти с новым адресом.',btn:'Открыть приложение'},
-tr:{title:'E-posta adresi başarıyla değiştirildi!',msg:'Yeni e-posta adresiniz onaylandı. Artık yeni adresinizle giriş yapabilirsiniz.',btn:'Uygulamayı aç'},
-ar:{title:'تم تغيير البريد الإلكتروني بنجاح!',msg:'تم تأكيد عنوان بريدك الإلكتروني الجديد. يمكنك الآن تسجيل الدخول بالعنوان الجديد.',btn:'افتح التطبيق'},
-fr:{title:'Adresse e-mail modifiée !',msg:'Votre nouvelle adresse e-mail est confirmée. Connectez-vous avec votre nouvelle adresse.',btn:'Ouvrir l\'app'},
-es:{title:'¡Correo electrónico cambiado!',msg:'Su nueva dirección de correo ha sido confirmada. Inicie sesión con la nueva dirección.',btn:'Abrir la app'},
-pl:{title:'Adres e-mail zmieniony!',msg:'Twój nowy adres e-mail został potwierdzony. Zaloguj się nowym adresem.',btn:'Otwórz aplikację'},
-el:{title:'Το email άλλαξε επιτυχώς!',msg:'Η νέα διεύθυνση email επιβεβαιώθηκε. Μπορείτε να συνδεθείτε με τη νέα διεύθυνση.',btn:'Άνοιγμα εφαρμογής'},
-ro:{title:'E-mail schimbat cu succes!',msg:'Noua adresă de e-mail a fost confirmată. Vă puteți conecta cu noua adresă.',btn:'Deschide aplicația'}
+de:{loading:'Änderung wird bestätigt...',title:'E-Mail-Adresse erfolgreich geändert!',msg:'Ihre neue E-Mail-Adresse wurde bestätigt. Sie können sich jetzt mit der neuen Adresse anmelden.',btn:'App öffnen',errorTitle:'Link ungültig',errorMsg:'Dieser Link ist ungültig oder abgelaufen. Bitte fordern Sie in der App eine neue E-Mail-Änderung an.'},
+en:{loading:'Confirming change...',title:'Email address successfully changed!',msg:'Your new email address has been confirmed. You can now sign in with your new address.',btn:'Open App',errorTitle:'Invalid link',errorMsg:'This link is invalid or expired. Request a new email change in the app.'},
+uk:{loading:'Підтверджуємо зміну...',title:'Email успішно змінено!',msg:'Вашу нову адресу підтверджено. Тепер ви можете увійти з новою адресою.',btn:'Відкрити додаток',errorTitle:'Посилання недійсне',errorMsg:'Посилання недійсне або застаріло. Запросіть зміну email знову в додатку.'},
+ru:{loading:'Подтверждаем изменение...',title:'Email успешно изменён!',msg:'Ваш новый адрес подтверждён. Теперь вы можете войти с новым адресом.',btn:'Открыть приложение',errorTitle:'Ссылка недействительна',errorMsg:'Ссылка недействительна или устарела. Запросите смену email снова в приложении.'},
+tr:{loading:'Değişiklik onaylanıyor...',title:'E-posta adresi başarıyla değiştirildi!',msg:'Yeni e-posta adresiniz onaylandı. Artık yeni adresinizle giriş yapabilirsiniz.',btn:'Uygulamayı aç',errorTitle:'Geçersiz bağlantı',errorMsg:'Bu bağlantı geçersiz veya süresi dolmuş. Uygulamadan yeni bir değişiklik isteyin.'},
+ar:{loading:'جارٍ تأكيد التغيير...',title:'تم تغيير البريد الإلكتروني بنجاح!',msg:'تم تأكيد عنوان بريدك الإلكتروني الجديد. يمكنك الآن تسجيل الدخول بالعنوان الجديد.',btn:'افتح التطبيق',errorTitle:'رابط غير صالح',errorMsg:'الرابط غير صالح أو منتهي الصلاحية. اطلب تغييراً جديداً من التطبيق.'},
+fr:{loading:'Confirmation du changement...',title:'Adresse e-mail modifiée !',msg:'Votre nouvelle adresse e-mail est confirmée. Connectez-vous avec votre nouvelle adresse.',btn:'Ouvrir l\'app',errorTitle:'Lien invalide',errorMsg:'Ce lien est invalide ou expiré. Demandez un nouveau changement dans l\'app.'},
+es:{loading:'Confirmando cambio...',title:'¡Correo electrónico cambiado!',msg:'Su nueva dirección de correo ha sido confirmada. Inicie sesión con la nueva dirección.',btn:'Abrir la app',errorTitle:'Enlace inválido',errorMsg:'Este enlace es inválido o ha expirado. Solicite un nuevo cambio en la app.'},
+pl:{loading:'Potwierdzanie zmiany...',title:'Adres e-mail zmieniony!',msg:'Twój nowy adres e-mail został potwierdzony. Zaloguj się nowym adresem.',btn:'Otwórz aplikację',errorTitle:'Nieprawidłowy link',errorMsg:'Link jest nieprawidłowy lub wygasł. Poproś o zmianę ponownie w aplikacji.'},
+el:{loading:'Επιβεβαίωση αλλαγής...',title:'Το email άλλαξε επιτυχώς!',msg:'Η νέα διεύθυνση email επιβεβαιώθηκε. Μπορείτε να συνδεθείτε με τη νέα διεύθυνση.',btn:'Άνοιγμα εφαρμογής',errorTitle:'Μη έγκυρος σύνδεσμος',errorMsg:'Ο σύνδεσμος δεν είναι έγκυρος ή έχει λήξει. Ζητήστε νέα αλλαγή από την εφαρμογή.'},
+ro:{loading:'Se confirmă schimbarea...',title:'E-mail schimbat cu succes!',msg:'Noua adresă de e-mail a fost confirmată. Vă puteți conecta cu noua adresă.',btn:'Deschide aplicația',errorTitle:'Link invalid',errorMsg:'Linkul este invalid sau a expirat. Solicitați din nou schimbarea din aplicație.'}
 };
+
 const lang=(navigator.language||'de').slice(0,2).toLowerCase();
 const t=T[lang]||T.de;
+if(lang==='ar')document.body.style.direction='rtl';
+
+document.getElementById('loading-title').textContent=t.loading;
 document.getElementById('title').textContent=t.title;
 document.getElementById('msg').textContent=t.msg;
 document.getElementById('btn').textContent=t.btn;
-if(lang==='ar')document.body.style.direction='rtl';
+document.getElementById('error-title').textContent=t.errorTitle;
+document.getElementById('error-msg').textContent=t.errorMsg;
+
+function showView(id){
+  ['view-loading','view-success','view-error'].forEach(function(v){
+    document.getElementById(v).style.display='none';
+  });
+  document.getElementById(id).style.display='block';
+}
+
+async function init(){
+  try{
+    if(!window.supabase||!window.supabase.createClient){
+      console.error('[email-changed] Supabase SDK not loaded');
+      showView('view-error');
+      return;
+    }
+    var sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON);
+
+    var queryParams=new URLSearchParams(window.location.search);
+    var hashParams=new URLSearchParams(window.location.hash.substring(1));
+
+    var tokenHash=queryParams.get('token_hash')||hashParams.get('token_hash');
+    var type=queryParams.get('type')||hashParams.get('type');
+    var accessToken=hashParams.get('access_token');
+    var refreshToken=hashParams.get('refresh_token');
+    var code=queryParams.get('code');
+
+    console.log('[email-changed] token_hash:',tokenHash?'present':'absent');
+    console.log('[email-changed] type:',type);
+
+    // This page is ONLY for email_change. Always use type email_change for OTP.
+    if(tokenHash){
+      console.log('[email-changed] verifyOtp email_change');
+      var res=await sb.auth.verifyOtp({token_hash:tokenHash,type:'email_change'});
+      if(res.error){
+        console.error('[email-changed] verifyOtp error:',res.error.message);
+        showView('view-error');
+        return;
+      }
+      console.log('[email-changed] Verified');
+      showView('view-success');
+      return;
+    }
+
+    if(accessToken && refreshToken){
+      var res2=await sb.auth.setSession({access_token:accessToken,refresh_token:refreshToken});
+      if(res2.error){
+        console.error('[email-changed] setSession error:',res2.error);
+        showView('view-error');
+        return;
+      }
+      showView('view-success');
+      return;
+    }
+
+    if(code){
+      var res3=await sb.auth.exchangeCodeForSession(code);
+      if(res3.error){
+        console.error('[email-changed] exchangeCode error:',res3.error);
+        showView('view-error');
+        return;
+      }
+      showView('view-success');
+      return;
+    }
+
+    console.log('[email-changed] No token/code in URL');
+    showView('view-error');
+  }catch(err){
+    console.error('[email-changed] init() error:',err);
+    showView('view-error');
+  }
+}
+
+init();
 </script>
 </body>
 </html>
