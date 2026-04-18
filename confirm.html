@@ -161,9 +161,16 @@ async function init(){
       if(otpType==='signup'){
         try{
           sb.functions.invoke('send-welcome-email',{body:{}})
-            .then(function(r){
-              if(r.error)console.warn('[confirm] welcome email error:',r.error.message);
-              else console.log('[confirm] welcome email requested');
+            .then(async function(r){
+              if(r.error){
+                console.warn('[confirm] welcome email error:',r.error.message);
+                return;
+              }
+              console.log('[confirm] welcome email requested');
+              try{
+                var up=await sb.auth.updateUser({data:{welcomed:true,welcomed_at:new Date().toISOString()}});
+                if(up.error)console.warn('[confirm] welcomed flag update:',up.error.message);
+              }catch(e2){console.warn('[confirm] welcomed flag exception:',e2);}
             })
             .catch(function(e){console.warn('[confirm] welcome email exception:',e);});
         }catch(e){console.warn('[confirm] welcome email threw:',e);}
