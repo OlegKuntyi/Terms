@@ -32,7 +32,7 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#F7F9FC;min-height:10
 <div class="card">
   <div class="header">
     <h1>MedTerms</h1>
-    <p>Medizinische Fachbegriffe meistern</p>
+    <p id="header-tagline">Medizinische Fachbegriffe meistern</p>
   </div>
   <div class="body">
     <!-- LOADING VIEW -->
@@ -65,29 +65,51 @@ const SUPABASE_URL='https://dnngjjfipppdjrgmmjxo.supabase.co';
 const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRubmdqamZpcHBwZGpyZ21tanhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNTczNzgsImV4cCI6MjA5MTczMzM3OH0.OMdU8wrV6evjoYEd9i1CYIXcPbSx0D4f4XgW-j0MiCM';
 
 const T={
-de:{loading:'E-Mail wird bestätigt...',title:'E-Mail erfolgreich bestätigt!',msg:'Ihr Konto ist jetzt aktiv. Sie können die App öffnen und sich anmelden.',btn:'App öffnen',errorTitle:'Link ungültig',errorMsg:'Dieser Bestätigungslink ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen an.'},
-en:{loading:'Confirming email...',title:'Email successfully confirmed!',msg:'Your account is now active. You can open the app and sign in.',btn:'Open App',errorTitle:'Invalid link',errorMsg:'This confirmation link is invalid or expired. Please request a new one.'},
-uk:{loading:'Підтверджуємо email...',title:'Email успішно підтверджено!',msg:'Ваш акаунт тепер активний. Відкрийте додаток і увійдіть.',btn:'Відкрити додаток',errorTitle:'Посилання недійсне',errorMsg:'Це посилання недійсне або застаріло. Запросіть нове.'},
-ru:{loading:'Подтверждаем email...',title:'Email успешно подтверждён!',msg:'Ваш аккаунт теперь активен. Откройте приложение и войдите.',btn:'Открыть приложение',errorTitle:'Ссылка недействительна',errorMsg:'Эта ссылка недействительна или устарела. Запросите новую.'},
-tr:{loading:'E-posta onaylanıyor...',title:'E-posta başarıyla onaylandı!',msg:'Hesabınız artık aktif. Uygulamayı açıp giriş yapabilirsiniz.',btn:'Uygulamayı aç',errorTitle:'Geçersiz bağlantı',errorMsg:'Bu onay bağlantısı geçersiz veya süresi dolmuş.'},
-ar:{loading:'جارٍ تأكيد البريد...',title:'تم تأكيد البريد الإلكتروني بنجاح!',msg:'حسابك نشط الآن. يمكنك فتح التطبيق وتسجيل الدخول.',btn:'افتح التطبيق',errorTitle:'رابط غير صالح',errorMsg:'رابط التأكيد غير صالح أو منتهي الصلاحية.'},
-fr:{loading:'Confirmation de l\'e-mail...',title:'E-mail confirmé avec succès !',msg:'Votre compte est maintenant actif. Ouvrez l\'application et connectez-vous.',btn:'Ouvrir l\'app',errorTitle:'Lien invalide',errorMsg:'Ce lien de confirmation est invalide ou a expiré.'},
-es:{loading:'Confirmando correo...',title:'¡Correo confirmado con éxito!',msg:'Su cuenta está activa. Abra la aplicación e inicie sesión.',btn:'Abrir la app',errorTitle:'Enlace inválido',errorMsg:'Este enlace de confirmación es inválido o ha expirado.'},
-pl:{loading:'Potwierdzanie e-maila...',title:'E-mail potwierdzony!',msg:'Twoje konto jest teraz aktywne. Otwórz aplikację i zaloguj się.',btn:'Otwórz aplikację',errorTitle:'Nieprawidłowy link',errorMsg:'Ten link potwierdzający jest nieprawidłowy lub wygasł.'},
-el:{loading:'Επιβεβαίωση email...',title:'Το email επιβεβαιώθηκε!',msg:'Ο λογαριασμός σας είναι πλέον ενεργός. Ανοίξτε την εφαρμογή και συνδεθείτε.',btn:'Άνοιγμα εφαρμογής',errorTitle:'Μη έγκυρος σύνδεσμος',errorMsg:'Αυτός ο σύνδεσμος επιβεβαίωσης δεν είναι έγκυρος ή έχει λήξει.'},
-ro:{loading:'Se confirmă e-mailul...',title:'E-mail confirmat cu succes!',msg:'Contul dvs. este acum activ. Deschideți aplicația și conectați-vă.',btn:'Deschide aplicația',errorTitle:'Link invalid',errorMsg:'Acest link de confirmare este invalid sau a expirat.'}
+de:{pageTitle:'MedTerms — E-Mail bestätigen',tagline:'Medizinische Fachbegriffe meistern',loading:'E-Mail wird bestätigt...',title:'E-Mail erfolgreich bestätigt!',msg:'Ihr Konto ist jetzt aktiv. Sie können die App öffnen und sich anmelden.',btn:'App öffnen',errorTitle:'Link ungültig',errorMsg:'Dieser Bestätigungslink ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen an.'},
+en:{pageTitle:'MedTerms — Confirm email',tagline:'Master medical terminology',loading:'Confirming email...',title:'Email successfully confirmed!',msg:'Your account is now active. You can open the app and sign in.',btn:'Open App',errorTitle:'Invalid link',errorMsg:'This confirmation link is invalid or expired. Please request a new one.'},
+uk:{pageTitle:'MedTerms — Підтвердження email',tagline:'Опануйте медичну термінологію',loading:'Підтверджуємо email...',title:'Email успішно підтверджено!',msg:'Ваш акаунт тепер активний. Відкрийте додаток і увійдіть.',btn:'Відкрити додаток',errorTitle:'Посилання недійсне',errorMsg:'Це посилання недійсне або застаріло. Запросіть нове.'},
+ru:{pageTitle:'MedTerms — Подтверждение email',tagline:'Освойте медицинскую терминологию',loading:'Подтверждаем email...',title:'Email успешно подтверждён!',msg:'Ваш аккаунт теперь активен. Откройте приложение и войдите.',btn:'Открыть приложение',errorTitle:'Ссылка недействительна',errorMsg:'Эта ссылка недействительна или устарела. Запросите новую.'},
+tr:{pageTitle:'MedTerms — E-posta onayı',tagline:'Tıbbi terminolojide ustalaşın',loading:'E-posta onaylanıyor...',title:'E-posta başarıyla onaylandı!',msg:'Hesabınız artık aktif. Uygulamayı açıp giriş yapabilirsiniz.',btn:'Uygulamayı aç',errorTitle:'Geçersiz bağlantı',errorMsg:'Bu onay bağlantısı geçersiz veya süresi dolmuş.'},
+ar:{pageTitle:'MedTerms — تأكيد البريد',tagline:'أتقن المصطلحات الطبية',loading:'جارٍ تأكيد البريد...',title:'تم تأكيد البريد الإلكتروني بنجاح!',msg:'حسابك نشط الآن. يمكنك فتح التطبيق وتسجيل الدخول.',btn:'افتح التطبيق',errorTitle:'رابط غير صالح',errorMsg:'رابط التأكيد غير صالح أو منتهي الصلاحية.'},
+fr:{pageTitle:'MedTerms — Confirmer l’e-mail',tagline:'Maîtrisez la terminologie médicale',loading:'Confirmation de l\'e-mail...',title:'E-mail confirmé avec succès !',msg:'Votre compte est maintenant actif. Ouvrez l\'application et connectez-vous.',btn:'Ouvrir l\'app',errorTitle:'Lien invalide',errorMsg:'Ce lien de confirmation est invalide ou a expiré.'},
+es:{pageTitle:'MedTerms — Confirmar correo',tagline:'Domine la terminología médica',loading:'Confirmando correo...',title:'¡Correo confirmado con éxito!',msg:'Su cuenta está activa. Abra la aplicación e inicie sesión.',btn:'Abrir la app',errorTitle:'Enlace inválido',errorMsg:'Este enlace de confirmación es inválido o ha expirado.'},
+pl:{pageTitle:'MedTerms — Potwierdzenie e-maila',tagline:'Opanuj terminologię medyczną',loading:'Potwierdzanie e-maila...',title:'E-mail potwierdzony!',msg:'Twoje konto jest teraz aktywne. Otwórz aplikację i zaloguj się.',btn:'Otwórz aplikację',errorTitle:'Nieprawidłowy link',errorMsg:'Ten link potwierdzający jest nieprawidłowy lub wygasł.'},
+el:{pageTitle:'MedTerms — Επιβεβαίωση email',tagline:'Κατακτήστε την ιατρική ορολογία',loading:'Επιβεβαίωση email...',title:'Το email επιβεβαιώθηκε!',msg:'Ο λογαριασμός σας είναι πλέον ενεργός. Ανοίξτε την εφαρμογή και συνδεθείτε.',btn:'Άνοιγμα εφαρμογής',errorTitle:'Μη έγκυρος σύνδεσμος',errorMsg:'Αυτός ο σύνδεσμος επιβεβαίωσης δεν είναι έγκυρος ή έχει λήξει.'},
+ro:{pageTitle:'MedTerms — Confirmare e-mail',tagline:'Stăpâniți terminologia medicală',loading:'Se confirmă e-mailul...',title:'E-mail confirmat cu succes!',msg:'Contul dvs. este acum activ. Deschideți aplicația și conectați-vă.',btn:'Deschide aplicația',errorTitle:'Link invalid',errorMsg:'Acest link de confirmare este invalid sau a expirat.'}
 };
 
-const lang=(navigator.language||'de').slice(0,2).toLowerCase();
-const t=T[lang]||T.de;
-if(lang==='ar')document.body.style.direction='rtl';
+function normalizeLang(raw){
+  if(raw==null||raw==='')return null;
+  var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);
+  return T[c]?c:null;
+}
+function pickDisplayLang(accountPref,urlParam,navigatorPref){
+  return normalizeLang(accountPref)||normalizeLang(urlParam)||normalizeLang(navigatorPref)||'de';
+}
+function getUrlLang(){
+  var q=new URLSearchParams(window.location.search);
+  var h=new URLSearchParams(window.location.hash.substring(1));
+  return q.get('lang')||h.get('lang')||'';
+}
+var navLangCode=(navigator.language||'de').slice(0,2).toLowerCase();
 
-document.getElementById('loading-title').textContent=t.loading;
-document.getElementById('title').textContent=t.title;
-document.getElementById('msg').textContent=t.msg;
-document.getElementById('btn').textContent=t.btn;
-document.getElementById('error-title').textContent=t.errorTitle;
-document.getElementById('error-msg').textContent=t.errorMsg;
+function applyUiLang(code){
+  var lc=pickDisplayLang(code,getUrlLang(),navLangCode);
+  var tr=T[lc]||T.de;
+  document.documentElement.setAttribute('lang',lc);
+  document.documentElement.setAttribute('dir',lc==='ar'?'rtl':'ltr');
+  document.body.style.direction=(lc==='ar'?'rtl':'ltr');
+  document.title=tr.pageTitle;
+  document.getElementById('header-tagline').textContent=tr.tagline;
+  document.getElementById('loading-title').textContent=tr.loading;
+  document.getElementById('title').textContent=tr.title;
+  document.getElementById('msg').textContent=tr.msg;
+  document.getElementById('btn').textContent=tr.btn;
+  document.getElementById('error-title').textContent=tr.errorTitle;
+  document.getElementById('error-msg').textContent=tr.errorMsg;
+}
+
+applyUiLang(null);
 
 function showView(id){
   ['view-loading','view-success','view-error'].forEach(function(v){
@@ -129,12 +151,16 @@ async function init(){
         return;
       }
       console.log('[confirm] Verified');
+      var sessUser=(res.data&&res.data.session&&res.data.session.user)||(res.data&&res.data.user);
+      var sessMeta=(sessUser&&sessUser.user_metadata)||{};
+      applyUiLang(sessMeta.language||sessMeta.selectedLanguage);
       showView('view-success');
       // Fire-and-forget welcome email for fresh signups only.
       // For email_change the user already has an account — no welcome.
+      // Language comes from JWT user_metadata inside send-welcome-email (not browser).
       if(otpType==='signup'){
         try{
-          sb.functions.invoke('send-welcome-email',{body:{language:lang}})
+          sb.functions.invoke('send-welcome-email',{body:{}})
             .then(function(r){
               if(r.error)console.warn('[confirm] welcome email error:',r.error.message);
               else console.log('[confirm] welcome email requested');
@@ -154,6 +180,9 @@ async function init(){
         showView('view-error');
         return;
       }
+      var u2=res2.data&&res2.data.user;
+      var m2=u2&&u2.user_metadata||{};
+      applyUiLang(m2.language||m2.selectedLanguage);
       showView('view-success');
       return;
     }
@@ -167,6 +196,9 @@ async function init(){
         showView('view-error');
         return;
       }
+      var u3=res3.data&&res3.data.user;
+      var m3=u3&&u3.user_metadata||{};
+      applyUiLang(m3.language||m3.selectedLanguage);
       showView('view-success');
       return;
     }

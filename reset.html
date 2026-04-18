@@ -42,7 +42,7 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#F7F9FC;min-height:10
 <div class="card">
   <div class="header">
     <h1>MedTerms</h1>
-    <p>Medizinische Fachbegriffe meistern</p>
+    <p id="header-tagline">Medizinische Fachbegriffe meistern</p>
   </div>
   <div class="body">
     <!-- LOADING VIEW -->
@@ -94,35 +94,58 @@ const SUPABASE_URL='https://dnngjjfipppdjrgmmjxo.supabase.co';
 const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRubmdqamZpcHBwZGpyZ21tanhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNTczNzgsImV4cCI6MjA5MTczMzM3OH0.OMdU8wrV6evjoYEd9i1CYIXcPbSx0D4f4XgW-j0MiCM';
 
 const T={
-de:{formTitle:'Neues Passwort festlegen',formMsg:'Geben Sie Ihr neues Passwort ein.',lblPw:'Neues Passwort',lblPw2:'Passwort bestätigen',hint:'Min. 6 Zeichen',errMatch:'Passwörter stimmen nicht überein',btnSubmit:'Passwort ändern',btnLoading:'Wird geändert...',successTitle:'Passwort erfolgreich geändert!',successMsg:'Sie können sich jetzt mit dem neuen Passwort anmelden.',btnApp:'App öffnen',errorTitle:'Link abgelaufen',errorMsg:'Dieser Link ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen Link an.'},
-en:{formTitle:'Set new password',formMsg:'Enter your new password.',lblPw:'New password',lblPw2:'Confirm password',hint:'Min. 6 characters',errMatch:'Passwords do not match',btnSubmit:'Change password',btnLoading:'Changing...',successTitle:'Password changed!',successMsg:'You can now sign in with your new password.',btnApp:'Open App',errorTitle:'Link expired',errorMsg:'This link is invalid or expired. Please request a new one.'},
-uk:{formTitle:'Встановити новий пароль',formMsg:'Введіть новий пароль.',lblPw:'Новий пароль',lblPw2:'Підтвердити пароль',hint:'Мін. 6 символів',errMatch:'Паролі не збігаються',btnSubmit:'Змінити пароль',btnLoading:'Змінюємо...',successTitle:'Пароль змінено!',successMsg:'Тепер ви можете увійти з новим паролем.',btnApp:'Відкрити додаток',errorTitle:'Посилання недійсне',errorMsg:'Це посилання недійсне або застаріло. Запросіть нове.'},
-ru:{formTitle:'Установить новый пароль',formMsg:'Введите новый пароль.',lblPw:'Новый пароль',lblPw2:'Подтвердить пароль',hint:'Мин. 6 символов',errMatch:'Пароли не совпадают',btnSubmit:'Изменить пароль',btnLoading:'Меняем...',successTitle:'Пароль изменён!',successMsg:'Теперь вы можете войти с новым паролем.',btnApp:'Открыть приложение',errorTitle:'Ссылка устарела',errorMsg:'Эта ссылка недействительна. Запросите новую.'},
-tr:{formTitle:'Yeni şifre belirle',formMsg:'Yeni şifrenizi girin.',lblPw:'Yeni şifre',lblPw2:'Şifreyi onayla',hint:'Min. 6 karakter',errMatch:'Şifreler eşleşmiyor',btnSubmit:'Şifreyi değiştir',btnLoading:'Değiştiriliyor...',successTitle:'Şifre değiştirildi!',successMsg:'Artık yeni şifrenizle giriş yapabilirsiniz.',btnApp:'Uygulamayı aç',errorTitle:'Link geçersiz',errorMsg:'Bu link geçersiz veya süresi dolmuş.'},
-ar:{formTitle:'تعيين كلمة مرور جديدة',formMsg:'أدخل كلمة المرور الجديدة.',lblPw:'كلمة المرور الجديدة',lblPw2:'تأكيد كلمة المرور',hint:'٦ أحرف على الأقل',errMatch:'كلمتا المرور غير متطابقتين',btnSubmit:'تغيير كلمة المرور',btnLoading:'جارٍ التغيير...',successTitle:'تم تغيير كلمة المرور!',successMsg:'يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة.',btnApp:'افتح التطبيق',errorTitle:'الرابط منتهي',errorMsg:'هذا الرابط غير صالح أو منتهي الصلاحية.'},
-fr:{formTitle:'Définir un nouveau mot de passe',formMsg:'Entrez votre nouveau mot de passe.',lblPw:'Nouveau mot de passe',lblPw2:'Confirmer',hint:'Min. 6 caractères',errMatch:'Les mots de passe ne correspondent pas',btnSubmit:'Changer',btnLoading:'En cours...',successTitle:'Mot de passe modifié !',successMsg:'Connectez-vous avec votre nouveau mot de passe.',btnApp:'Ouvrir l\'app',errorTitle:'Lien expiré',errorMsg:'Ce lien est invalide ou expiré.'},
-es:{formTitle:'Establecer nueva contraseña',formMsg:'Ingrese su nueva contraseña.',lblPw:'Nueva contraseña',lblPw2:'Confirmar',hint:'Mín. 6 caracteres',errMatch:'Las contraseñas no coinciden',btnSubmit:'Cambiar',btnLoading:'Cambiando...',successTitle:'¡Contraseña cambiada!',successMsg:'Inicie sesión con su nueva contraseña.',btnApp:'Abrir app',errorTitle:'Enlace expirado',errorMsg:'Este enlace es inválido o ha expirado.'},
-pl:{formTitle:'Ustaw nowe hasło',formMsg:'Wpisz nowe hasło.',lblPw:'Nowe hasło',lblPw2:'Potwierdź',hint:'Min. 6 znaków',errMatch:'Hasła nie pasują',btnSubmit:'Zmień hasło',btnLoading:'Zmieniam...',successTitle:'Hasło zmienione!',successMsg:'Zaloguj się nowym hasłem.',btnApp:'Otwórz',errorTitle:'Link wygasł',errorMsg:'Ten link jest nieprawidłowy lub wygasł.'},
-el:{formTitle:'Νέος κωδικός',formMsg:'Εισάγετε τον νέο κωδικό.',lblPw:'Νέος κωδικός',lblPw2:'Επιβεβαίωση',hint:'Τουλ. 6 χαρακτήρες',errMatch:'Οι κωδικοί δεν ταιριάζουν',btnSubmit:'Αλλαγή',btnLoading:'Αλλαγή...',successTitle:'Κωδικός αλλάχθηκε!',successMsg:'Μπορείτε να συνδεθείτε.',btnApp:'Άνοιγμα',errorTitle:'Λήξη συνδέσμου',errorMsg:'Αυτός ο σύνδεσμος δεν ισχύει.'},
-ro:{formTitle:'Setare parolă nouă',formMsg:'Introduceți parola nouă.',lblPw:'Parolă nouă',lblPw2:'Confirmare',hint:'Min. 6 caractere',errMatch:'Parolele nu coincid',btnSubmit:'Schimbă',btnLoading:'Se schimbă...',successTitle:'Parolă schimbată!',successMsg:'Vă puteți conecta cu noua parolă.',btnApp:'Deschide',errorTitle:'Link expirat',errorMsg:'Acest link este invalid sau a expirat.'}
+de:{pageTitle:'MedTerms — Passwort zurücksetzen',tagline:'Medizinische Fachbegriffe meistern',formTitle:'Neues Passwort festlegen',formMsg:'Geben Sie Ihr neues Passwort ein.',lblPw:'Neues Passwort',lblPw2:'Passwort bestätigen',hint:'Min. 6 Zeichen',errMatch:'Passwörter stimmen nicht überein',btnSubmit:'Passwort ändern',btnLoading:'Wird geändert...',successTitle:'Passwort erfolgreich geändert!',successMsg:'Sie können sich jetzt mit dem neuen Passwort anmelden.',btnApp:'App öffnen',errorTitle:'Link abgelaufen',errorMsg:'Dieser Link ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen Link an.'},
+en:{pageTitle:'MedTerms — Reset password',tagline:'Master medical terminology',formTitle:'Set new password',formMsg:'Enter your new password.',lblPw:'New password',lblPw2:'Confirm password',hint:'Min. 6 characters',errMatch:'Passwords do not match',btnSubmit:'Change password',btnLoading:'Changing...',successTitle:'Password changed!',successMsg:'You can now sign in with your new password.',btnApp:'Open App',errorTitle:'Link expired',errorMsg:'This link is invalid or expired. Please request a new one.'},
+uk:{pageTitle:'MedTerms — Скидання пароля',tagline:'Опануйте медичну термінологію',formTitle:'Встановити новий пароль',formMsg:'Введіть новий пароль.',lblPw:'Новий пароль',lblPw2:'Підтвердити пароль',hint:'Мін. 6 символів',errMatch:'Паролі не збігаються',btnSubmit:'Змінити пароль',btnLoading:'Змінюємо...',successTitle:'Пароль змінено!',successMsg:'Тепер ви можете увійти з новим паролем.',btnApp:'Відкрити додаток',errorTitle:'Посилання недійсне',errorMsg:'Це посилання недійсне або застаріло. Запросіть нове.'},
+ru:{pageTitle:'MedTerms — Сброс пароля',tagline:'Освойте медицинскую терминологию',formTitle:'Установить новый пароль',formMsg:'Введите новый пароль.',lblPw:'Новый пароль',lblPw2:'Подтвердить пароль',hint:'Мин. 6 символов',errMatch:'Пароли не совпадают',btnSubmit:'Изменить пароль',btnLoading:'Меняем...',successTitle:'Пароль изменён!',successMsg:'Теперь вы можете войти с новым паролем.',btnApp:'Открыть приложение',errorTitle:'Ссылка устарела',errorMsg:'Эта ссылка недействительна. Запросите новую.'},
+tr:{pageTitle:'MedTerms — Şifre sıfırlama',tagline:'Tıbbi terminolojide ustalaşın',formTitle:'Yeni şifre belirle',formMsg:'Yeni şifrenizi girin.',lblPw:'Yeni şifre',lblPw2:'Şifreyi onayla',hint:'Min. 6 karakter',errMatch:'Şifreler eşleşmiyor',btnSubmit:'Şifreyi değiştir',btnLoading:'Değiştiriliyor...',successTitle:'Şifre değiştirildi!',successMsg:'Artık yeni şifrenizle giriş yapabilirsiniz.',btnApp:'Uygulamayı aç',errorTitle:'Link geçersiz',errorMsg:'Bu link geçersiz veya süresi dolmuş.'},
+ar:{pageTitle:'MedTerms — إعادة تعيين كلمة المرور',tagline:'أتقن المصطلحات الطبية',formTitle:'تعيين كلمة مرور جديدة',formMsg:'أدخل كلمة المرور الجديدة.',lblPw:'كلمة المرور الجديدة',lblPw2:'تأكيد كلمة المرور',hint:'٦ أحرف على الأقل',errMatch:'كلمتا المرور غير متطابقتين',btnSubmit:'تغيير كلمة المرور',btnLoading:'جارٍ التغيير...',successTitle:'تم تغيير كلمة المرور!',successMsg:'يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة.',btnApp:'افتح التطبيق',errorTitle:'الرابط منتهي',errorMsg:'هذا الرابط غير صالح أو منتهي الصلاحية.'},
+fr:{pageTitle:'MedTerms — Réinitialisation',tagline:'Maîtrisez la terminologie médicale',formTitle:'Définir un nouveau mot de passe',formMsg:'Entrez votre nouveau mot de passe.',lblPw:'Nouveau mot de passe',lblPw2:'Confirmer',hint:'Min. 6 caractères',errMatch:'Les mots de passe ne correspondent pas',btnSubmit:'Changer',btnLoading:'En cours...',successTitle:'Mot de passe modifié !',successMsg:'Connectez-vous avec votre nouveau mot de passe.',btnApp:'Ouvrir l\'app',errorTitle:'Lien expiré',errorMsg:'Ce lien est invalide ou expiré.'},
+es:{pageTitle:'MedTerms — Restablecer contraseña',tagline:'Domine la terminología médica',formTitle:'Establecer nueva contraseña',formMsg:'Ingrese su nueva contraseña.',lblPw:'Nueva contraseña',lblPw2:'Confirmar',hint:'Mín. 6 caracteres',errMatch:'Las contraseñas no coinciden',btnSubmit:'Cambiar',btnLoading:'Cambiando...',successTitle:'¡Contraseña cambiada!',successMsg:'Inicie sesión con su nueva contraseña.',btnApp:'Abrir app',errorTitle:'Enlace expirado',errorMsg:'Este enlace es inválido o ha expirado.'},
+pl:{pageTitle:'MedTerms — Reset hasła',tagline:'Opanuj terminologię medyczną',formTitle:'Ustaw nowe hasło',formMsg:'Wpisz nowe hasło.',lblPw:'Nowe hasło',lblPw2:'Potwierdź',hint:'Min. 6 znaków',errMatch:'Hasła nie pasują',btnSubmit:'Zmień hasło',btnLoading:'Zmieniam...',successTitle:'Hasło zmienione!',successMsg:'Zaloguj się nowym hasłem.',btnApp:'Otwórz',errorTitle:'Link wygasł',errorMsg:'Ten link jest nieprawidłowy lub wygasł.'},
+el:{pageTitle:'MedTerms — Επαναφορά κωδικού',tagline:'Κατακτήστε την ιατρική ορολογία',formTitle:'Νέος κωδικός',formMsg:'Εισάγετε τον νέο κωδικό.',lblPw:'Νέος κωδικός',lblPw2:'Επιβεβαίωση',hint:'Τουλ. 6 χαρακτήρες',errMatch:'Οι κωδικοί δεν ταιριάζουν',btnSubmit:'Αλλαγή',btnLoading:'Αλλαγή...',successTitle:'Κωδικός αλλάχθηκε!',successMsg:'Μπορείτε να συνδεθείτε.',btnApp:'Άνοιγμα',errorTitle:'Λήξη συνδέσμου',errorMsg:'Αυτός ο σύνδεσμος δεν ισχύει.'},
+ro:{pageTitle:'MedTerms — Resetare parolă',tagline:'Stăpâniți terminologia medicală',formTitle:'Setare parolă nouă',formMsg:'Introduceți parola nouă.',lblPw:'Parolă nouă',lblPw2:'Confirmare',hint:'Min. 6 caractere',errMatch:'Parolele nu coincid',btnSubmit:'Schimbă',btnLoading:'Se schimbă...',successTitle:'Parolă schimbată!',successMsg:'Vă puteți conecta cu noua parolă.',btnApp:'Deschide',errorTitle:'Link expirat',errorMsg:'Acest link este invalid sau a expirat.'}
 };
 
-const lang=(navigator.language||'de').slice(0,2).toLowerCase();
-const t=T[lang]||T.de;
-if(lang==='ar')document.body.style.direction='rtl';
+function normalizeLang(raw){
+  if(raw==null||raw==='')return null;
+  var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);
+  return T[c]?c:null;
+}
+function pickDisplayLang(accountPref,urlParam,navigatorPref){
+  return normalizeLang(accountPref)||normalizeLang(urlParam)||normalizeLang(navigatorPref)||'de';
+}
+function getUrlLang(){
+  var q=new URLSearchParams(window.location.search);
+  var h=new URLSearchParams(window.location.hash.substring(1));
+  return q.get('lang')||h.get('lang')||'';
+}
+var navLangCode=(navigator.language||'de').slice(0,2).toLowerCase();
+var t=T.de;
 
-document.getElementById('form-title').textContent=t.formTitle;
-document.getElementById('form-msg').textContent=t.formMsg;
-document.getElementById('lbl-pw').textContent=t.lblPw;
-document.getElementById('lbl-pw2').textContent=t.lblPw2;
-document.getElementById('pw-hint').textContent=t.hint;
-document.getElementById('err-match').textContent=t.errMatch;
-document.getElementById('btn-submit').textContent=t.btnSubmit;
-document.getElementById('success-title').textContent=t.successTitle;
-document.getElementById('success-msg').textContent=t.successMsg;
-document.getElementById('btn-app').textContent=t.btnApp;
-document.getElementById('error-title').textContent=t.errorTitle;
-document.getElementById('error-msg').textContent=t.errorMsg;
+function applyUiLang(accountLangPref){
+  var lc=pickDisplayLang(accountLangPref,getUrlLang(),navLangCode);
+  t=T[lc]||T.de;
+  document.documentElement.setAttribute('lang',lc);
+  document.documentElement.setAttribute('dir',lc==='ar'?'rtl':'ltr');
+  document.body.style.direction=(lc==='ar'?'rtl':'ltr');
+  document.title=t.pageTitle;
+  document.getElementById('header-tagline').textContent=t.tagline;
+  document.getElementById('form-title').textContent=t.formTitle;
+  document.getElementById('form-msg').textContent=t.formMsg;
+  document.getElementById('lbl-pw').textContent=t.lblPw;
+  document.getElementById('lbl-pw2').textContent=t.lblPw2;
+  document.getElementById('pw-hint').textContent=t.hint;
+  document.getElementById('err-match').textContent=t.errMatch;
+  document.getElementById('btn-submit').textContent=t.btnSubmit;
+  document.getElementById('success-title').textContent=t.successTitle;
+  document.getElementById('success-msg').textContent=t.successMsg;
+  document.getElementById('btn-app').textContent=t.btnApp;
+  document.getElementById('error-title').textContent=t.errorTitle;
+  document.getElementById('error-msg').textContent=t.errorMsg;
+}
+
+applyUiLang(null);
 
 function showView(id){
   ['view-loading','view-form','view-success','view-error'].forEach(function(v){
@@ -166,6 +189,9 @@ async function init(){
         return;
       }
       console.log('[reset] Session established via verifyOtp');
+      var ru=res.data&&res.data.session&&res.data.session.user;
+      var rm=ru&&ru.user_metadata||{};
+      applyUiLang(rm.language||rm.selectedLanguage);
       showView('view-form');
       return;
     }
@@ -179,6 +205,9 @@ async function init(){
         showView('view-error');
         return;
       }
+      var u2=res2.data&&res2.data.user;
+      var m2=u2&&u2.user_metadata||{};
+      applyUiLang(m2.language||m2.selectedLanguage);
       showView('view-form');
       return;
     }
@@ -192,6 +221,9 @@ async function init(){
         showView('view-error');
         return;
       }
+      var u3=res3.data&&res3.data.user;
+      var m3=u3&&u3.user_metadata||{};
+      applyUiLang(m3.language||m3.selectedLanguage);
       showView('view-form');
       return;
     }

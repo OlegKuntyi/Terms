@@ -33,7 +33,7 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#F7F9FC;min-height:10
 <div class="card">
   <div class="header">
     <h1>MedTerms</h1>
-    <p>Medizinische Fachbegriffe meistern</p>
+    <p id="header-tagline">Medizinische Fachbegriffe meistern</p>
   </div>
   <div class="body">
     <div id="view-loading" style="display:block">
@@ -69,32 +69,54 @@ const SUPABASE_URL='https://dnngjjfipppdjrgmmjxo.supabase.co';
 const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRubmdqamZpcHBwZGpyZ21tanhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNTczNzgsImV4cCI6MjA5MTczMzM3OH0.OMdU8wrV6evjoYEd9i1CYIXcPbSx0D4f4XgW-j0MiCM';
 
 const T={
-de:{loading:'Änderung wird bestätigt...',title:'E-Mail-Adresse erfolgreich geändert!',msg:'Ihre neue E-Mail-Adresse wurde bestätigt. Sie können sich jetzt mit der neuen Adresse anmelden.',btn:'App öffnen',errorTitle:'Link ungültig',errorMsg:'Dieser Link ist ungültig oder abgelaufen. Bitte fordern Sie in der App eine neue E-Mail-Änderung an.',pendingTitle:'Noch eine Bestätigung nötig',pendingMsg:'Es gibt zwei Schritte: eine E-Mail an Ihre bisherige und eine an Ihre neue Adresse. Dieser Link war nur einer davon. Bitte prüfen Sie auch das andere Postfach und den Spam-Ordner und klicken Sie dort auf den zweiten Link. Erst danach ist die Änderung vollständig.'},
-en:{loading:'Confirming change...',title:'Email address successfully changed!',msg:'Your new email address has been confirmed. You can now sign in with your new address.',btn:'Open App',errorTitle:'Invalid link',errorMsg:'This link is invalid or expired. Request a new email change in the app.',pendingTitle:'One more step',pendingMsg:'There are two steps: one email to your current address and one to your new address. This link only completed one of them. Check your other inbox and spam, open the second link there too, and then the change is fully done.'},
-uk:{loading:'Підтверджуємо зміну...',title:'Email успішно змінено!',msg:'Вашу нову адресу підтверджено. Тепер ви можете увійти з новою адресою.',btn:'Відкрити додаток',errorTitle:'Посилання недійсне',errorMsg:'Посилання недійсне або застаріло. Запросіть зміну email знову в додатку.',pendingTitle:'Ще один крок',pendingMsg:'Потрібні два кроки: лист на поточну адресу і лист на нову. Це посилання — лише один із них. Перевірте іншу пошту та спам, відкрийте друге посилання — після цього зміна завершиться.'},
-ru:{loading:'Подтверждаем изменение...',title:'Email успешно изменён!',msg:'Ваш новый адрес подтверждён. Теперь вы можете войти с новым адресом.',btn:'Открыть приложение',errorTitle:'Ссылка недействительна',errorMsg:'Ссылка недействительна или устарела. Запросите смену email снова в приложении.',pendingTitle:'Ещё один шаг',pendingMsg:'Нужны два шага: письмо на текущий адрес и на новый. Эта ссылка — только один из них. Проверьте другую почту и спам, откройте вторую ссылку — после этого смена завершится.'},
-tr:{loading:'Değişiklik onaylanıyor...',title:'E-posta adresi başarıyla değiştirildi!',msg:'Yeni e-posta adresiniz onaylandı. Artık yeni adresinizle giriş yapabilirsiniz.',btn:'Uygulamayı aç',errorTitle:'Geçersiz bağlantı',errorMsg:'Bu bağlantı geçersiz veya süresi dolmuş. Uygulamadan yeni bir değişiklik isteyin.',pendingTitle:'Bir adım daha',pendingMsg:'İki adım vardır: mevcut ve yeni adresinize birer e-posta. Bu bağlantı yalnızca birini tamamladı. Diğer gelen kutusu ve spam’i kontrol edin, ikinci bağlantıyı da açın; böylece değişiklik tamamlanır.'},
-ar:{loading:'جارٍ تأكيد التغيير...',title:'تم تغيير البريد الإلكتروني بنجاح!',msg:'تم تأكيد عنوان بريدك الإلكتروني الجديد. يمكنك الآن تسجيل الدخول بالعنوان الجديد.',btn:'افتح التطبيق',errorTitle:'رابط غير صالح',errorMsg:'الرابط غير صالح أو منتهي الصلاحية. اطلب تغييراً جديداً من التطبيق.',pendingTitle:'خطوة أخرى',pendingMsg:'هناك خطوتان: رسالة إلى عنوانك الحالي وأخرى إلى الجديد. هذا الرابط أكمل إحداها فقط. راجع صندوق البريد الآخر والبريد المزعج وافتح الرابط الثاني لإكمال التغيير.'},
-fr:{loading:'Confirmation du changement...',title:'Adresse e-mail modifiée !',msg:'Votre nouvelle adresse e-mail est confirmée. Connectez-vous avec votre nouvelle adresse.',btn:'Ouvrir l\'app',errorTitle:'Lien invalide',errorMsg:'Ce lien est invalide ou expiré. Demandez un nouveau changement dans l\'app.',pendingTitle:'Encore une étape',pendingMsg:'Il y a deux étapes : un e-mail à votre adresse actuelle et un à la nouvelle. Ce lien n’en complète qu’une. Vérifiez l’autre boîte et les indésirables, ouvrez aussi le second lien pour terminer.'},
-es:{loading:'Confirmando cambio...',title:'¡Correo electrónico cambiado!',msg:'Su nueva dirección de correo ha sido confirmada. Inicie sesión con la nueva dirección.',btn:'Abrir la app',errorTitle:'Enlace inválido',errorMsg:'Este enlace es inválido o ha expirado. Solicite un nuevo cambio en la app.',pendingTitle:'Un paso más',pendingMsg:'Hay dos pasos: un correo a su dirección actual y otro a la nueva. Este enlace solo completó uno. Revise la otra bandeja y el spam, abra también el segundo enlace para terminar.'},
-pl:{loading:'Potwierdzanie zmiany...',title:'Adres e-mail zmieniony!',msg:'Twój nowy adres e-mail został potwierdzony. Zaloguj się nowym adresem.',btn:'Otwórz aplikację',errorTitle:'Nieprawidłowy link',errorMsg:'Link jest nieprawidłowy lub wygasł. Poproś o zmianę ponownie w aplikacji.',pendingTitle:'Jeszcze jeden krok',pendingMsg:'Są dwa kroki: e-mail na obecny i na nowy adres. Ten link wykonał tylko jeden. Sprawdź drugą skrzynkę i spam, otwórz drugi link, aby dokończyć zmianę.'},
-el:{loading:'Επιβεβαίωση αλλαγής...',title:'Το email άλλαξε επιτυχώς!',msg:'Η νέα διεύθυνση email επιβεβαιώθηκε. Μπορείτε να συνδεθείτε με τη νέα διεύθυνση.',btn:'Άνοιγμα εφαρμογής',errorTitle:'Μη έγκυρος σύνδεσμος',errorMsg:'Ο σύνδεσμος δεν είναι έγκυρος ή έχει λήξει. Ζητήστε νέα αλλαγή από την εφαρμογή.',pendingTitle:'Ένα ακόμα βήμα',pendingMsg:'Υπάρχουν δύο βήματα: ένα μήνυμα στην τρέχουσα και ένα στη νέα διεύθυνση. Αυτός ο σύνδεσμος ολοκλήρωσε μόνο το ένα. Ελέγξτε το άλλο inbox και ανεπιθύμητα, ανοίξτε και τον δεύτερο σύνδεσμο.'},
-ro:{loading:'Se confirmă schimbarea...',title:'E-mail schimbat cu succes!',msg:'Noua adresă de e-mail a fost confirmată. Vă puteți conecta cu noua adresă.',btn:'Deschide aplicația',errorTitle:'Link invalid',errorMsg:'Linkul este invalid sau a expirat. Solicitați din nou schimbarea din aplicație.',pendingTitle:'Încă un pas',pendingMsg:'Sunt două etape: un e-mail la adresa actuală și unul la cea nouă. Acest link a finalizat doar una. Verificați cealaltă căsuță și spam-ul, deschideți și al doilea link pentru a termina.'}
+de:{pageTitle:'MedTerms — E-Mail geändert',tagline:'Medizinische Fachbegriffe meistern',loading:'Änderung wird bestätigt...',title:'E-Mail-Adresse erfolgreich geändert!',msg:'Ihre neue E-Mail-Adresse wurde bestätigt. Sie können sich jetzt mit der neuen Adresse anmelden.',btn:'App öffnen',errorTitle:'Link ungültig',errorMsg:'Dieser Link ist ungültig oder abgelaufen. Bitte fordern Sie in der App eine neue E-Mail-Änderung an.',pendingTitle:'Noch eine Bestätigung nötig',pendingMsg:'Es gibt zwei Schritte: eine E-Mail an Ihre bisherige und eine an Ihre neue Adresse. Dieser Link war nur einer davon. Bitte prüfen Sie auch das andere Postfach und den Spam-Ordner und klicken Sie dort auf den zweiten Link. Erst danach ist die Änderung vollständig.'},
+en:{pageTitle:'MedTerms — Email changed',tagline:'Master medical terminology',loading:'Confirming change...',title:'Email address successfully changed!',msg:'Your new email address has been confirmed. You can now sign in with your new address.',btn:'Open App',errorTitle:'Invalid link',errorMsg:'This link is invalid or expired. Request a new email change in the app.',pendingTitle:'One more step',pendingMsg:'There are two steps: one email to your current address and one to your new address. This link only completed one of them. Check your other inbox and spam, open the second link there too, and then the change is fully done.'},
+uk:{pageTitle:'MedTerms — Зміна email',tagline:'Опануйте медичну термінологію',loading:'Підтверджуємо зміну...',title:'Email успішно змінено!',msg:'Вашу нову адресу підтверджено. Тепер ви можете увійти з новою адресою.',btn:'Відкрити додаток',errorTitle:'Посилання недійсне',errorMsg:'Посилання недійсне або застаріло. Запросіть зміну email знову в додатку.',pendingTitle:'Ще один крок',pendingMsg:'Потрібні два кроки: лист на поточну адресу і лист на нову. Це посилання — лише один із них. Перевірте іншу пошту та спам, відкрийте друге посилання — після цього зміна завершиться.'},
+ru:{pageTitle:'MedTerms — Смена email',tagline:'Освойте медицинскую терминологию',loading:'Подтверждаем изменение...',title:'Email успешно изменён!',msg:'Ваш новый адрес подтверждён. Теперь вы можете войти с новым адресом.',btn:'Открыть приложение',errorTitle:'Ссылка недействительна',errorMsg:'Ссылка недействительна или устарела. Запросите смену email снова в приложении.',pendingTitle:'Ещё один шаг',pendingMsg:'Нужны два шага: письмо на текущий адрес и на новый. Эта ссылка — только один из них. Проверьте другую почту и спам, откройте вторую ссылку — после этого смена завершится.'},
+tr:{pageTitle:'MedTerms — E-posta değişti',tagline:'Tıbbi terminolojide ustalaşın',loading:'Değişiklik onaylanıyor...',title:'E-posta adresi başarıyla değiştirildi!',msg:'Yeni e-posta adresiniz onaylandı. Artık yeni adresinizle giriş yapabilirsiniz.',btn:'Uygulamayı aç',errorTitle:'Geçersiz bağlantı',errorMsg:'Bu bağlantı geçersiz veya süresi dolmuş. Uygulamadan yeni bir değişiklik isteyin.',pendingTitle:'Bir adım daha',pendingMsg:'İki adım vardır: mevcut ve yeni adresinize birer e-posta. Bu bağlantı yalnızca birini tamamladı. Diğer gelen kutusu ve spam’i kontrol edin, ikinci bağlantıyı da açın; böylece değişiklik tamamlanır.'},
+ar:{pageTitle:'MedTerms — تغيير البريد',tagline:'أتقن المصطلحات الطبية',loading:'جارٍ تأكيد التغيير...',title:'تم تغيير البريد الإلكتروني بنجاح!',msg:'تم تأكيد عنوان بريدك الإلكتروني الجديد. يمكنك الآن تسجيل الدخول بالعنوان الجديد.',btn:'افتح التطبيق',errorTitle:'رابط غير صالح',errorMsg:'الرابط غير صالح أو منتهي الصلاحية. اطلب تغييراً جديداً من التطبيق.',pendingTitle:'خطوة أخرى',pendingMsg:'هناك خطوتان: رسالة إلى عنوانك الحالي وأخرى إلى الجديد. هذا الرابط أكمل إحداها فقط. راجع صندوق البريد الآخر والبريد المزعج وافتح الرابط الثاني لإكمال التغيير.'},
+fr:{pageTitle:'MedTerms — E-mail modifié',tagline:'Maîtrisez la terminologie médicale',loading:'Confirmation du changement...',title:'Adresse e-mail modifiée !',msg:'Votre nouvelle adresse e-mail est confirmée. Connectez-vous avec votre nouvelle adresse.',btn:'Ouvrir l\'app',errorTitle:'Lien invalide',errorMsg:'Ce lien est invalide ou expiré. Demandez un nouveau changement dans l\'app.',pendingTitle:'Encore une étape',pendingMsg:'Il y a deux étapes : un e-mail à votre adresse actuelle et un à la nouvelle. Ce lien n’en complète qu’une. Vérifiez l’autre boîte et les indésirables, ouvrez aussi le second lien pour terminer.'},
+es:{pageTitle:'MedTerms — Correo cambiado',tagline:'Domine la terminología médica',loading:'Confirmando cambio...',title:'¡Correo electrónico cambiado!',msg:'Su nueva dirección de correo ha sido confirmada. Inicie sesión con la nueva dirección.',btn:'Abrir la app',errorTitle:'Enlace inválido',errorMsg:'Este enlace es inválido o ha expirado. Solicite un nuevo cambio en la app.',pendingTitle:'Un paso más',pendingMsg:'Hay dos pasos: un correo a su dirección actual y otro a la nueva. Este enlace solo completó uno. Revise la otra bandeja y el spam, abra también el segundo enlace para terminar.'},
+pl:{pageTitle:'MedTerms — Zmiana e-maila',tagline:'Opanuj terminologię medyczną',loading:'Potwierdzanie zmiany...',title:'Adres e-mail zmieniony!',msg:'Twój nowy adres e-mail został potwierdzony. Zaloguj się nowym adresem.',btn:'Otwórz aplikację',errorTitle:'Nieprawidłowy link',errorMsg:'Link jest nieprawidłowy lub wygasł. Poproś o zmianę ponownie w aplikacji.',pendingTitle:'Jeszcze jeden krok',pendingMsg:'Są dwa kroki: e-mail na obecny i na nowy adres. Ten link wykonał tylko jeden. Sprawdź drugą skrzynkę i spam, otwórz drugi link, aby dokończyć zmianę.'},
+el:{pageTitle:'MedTerms — Αλλαγή email',tagline:'Κατακτήστε την ιατρική ορολογία',loading:'Επιβεβαίωση αλλαγής...',title:'Το email άλλαξε επιτυχώς!',msg:'Η νέα διεύθυνση email επιβεβαιώθηκε. Μπορείτε να συνδεθείτε με τη νέα διεύθυνση.',btn:'Άνοιγμα εφαρμογής',errorTitle:'Μη έγκυρος σύνδεσμος',errorMsg:'Ο σύνδεσμος δεν είναι έγκυρος ή έχει λήξει. Ζητήστε νέα αλλαγή από την εφαρμογή.',pendingTitle:'Ένα ακόμα βήμα',pendingMsg:'Υπάρχουν δύο βήματα: ένα μήνυμα στην τρέχουσα και ένα στη νέα διεύθυνση. Αυτός ο σύνδεσμος ολοκλήρωσε μόνο το ένα. Ελέγξτε το άλλο inbox και ανεπιθύμητα, ανοίξτε και τον δεύτερο σύνδεσμο.'},
+ro:{pageTitle:'MedTerms — E-mail schimbat',tagline:'Stăpâniți terminologia medicală',loading:'Se confirmă schimbarea...',title:'E-mail schimbat cu succes!',msg:'Noua adresă de e-mail a fost confirmată. Vă puteți conecta cu noua adresă.',btn:'Deschide aplicația',errorTitle:'Link invalid',errorMsg:'Linkul este invalid sau a expirat. Solicitați din nou schimbarea din aplicație.',pendingTitle:'Încă un pas',pendingMsg:'Sunt două etape: un e-mail la adresa actuală și unul la cea nouă. Acest link a finalizat doar una. Verificați cealaltă căsuță și spam-ul, deschideți și al doilea link pentru a termina.'}
 };
 
-const lang=(navigator.language||'de').slice(0,2).toLowerCase();
-const t=T[lang]||T.de;
-if(lang==='ar')document.body.style.direction='rtl';
+function normalizeLang(raw){
+  if(raw==null||raw==='')return null;
+  var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);
+  return T[c]?c:null;
+}
+function pickDisplayLang(accountPref,urlParam,navigatorPref){
+  return normalizeLang(accountPref)||normalizeLang(urlParam)||normalizeLang(navigatorPref)||'de';
+}
+function getUrlLang(){
+  var q=new URLSearchParams(window.location.search);
+  var h=new URLSearchParams(window.location.hash.substring(1));
+  return q.get('lang')||h.get('lang')||'';
+}
+var navLangCode=(navigator.language||'de').slice(0,2).toLowerCase();
 
-document.getElementById('loading-title').textContent=t.loading;
-document.getElementById('title').textContent=t.title;
-document.getElementById('msg').textContent=t.msg;
-document.getElementById('btn').textContent=t.btn;
-document.getElementById('error-title').textContent=t.errorTitle;
-document.getElementById('error-msg').textContent=t.errorMsg;
-document.getElementById('pending-title').textContent=t.pendingTitle;
-document.getElementById('pending-msg').textContent=t.pendingMsg;
-document.getElementById('btn-pending').textContent=t.btn;
+function applyUiLang(accountLangPref){
+  var lc=pickDisplayLang(accountLangPref,getUrlLang(),navLangCode);
+  var tr=T[lc]||T.de;
+  document.documentElement.setAttribute('lang',lc);
+  document.documentElement.setAttribute('dir',lc==='ar'?'rtl':'ltr');
+  document.body.style.direction=(lc==='ar'?'rtl':'ltr');
+  document.title=tr.pageTitle;
+  document.getElementById('header-tagline').textContent=tr.tagline;
+  document.getElementById('loading-title').textContent=tr.loading;
+  document.getElementById('title').textContent=tr.title;
+  document.getElementById('msg').textContent=tr.msg;
+  document.getElementById('btn').textContent=tr.btn;
+  document.getElementById('error-title').textContent=tr.errorTitle;
+  document.getElementById('error-msg').textContent=tr.errorMsg;
+  document.getElementById('pending-title').textContent=tr.pendingTitle;
+  document.getElementById('pending-msg').textContent=tr.pendingMsg;
+  document.getElementById('btn-pending').textContent=tr.btn;
+}
+
+applyUiLang(null);
 
 function showView(id){
   ['view-loading','view-success','view-error','view-pending'].forEach(function(v){
@@ -111,6 +133,9 @@ async function afterSessionEstablished(sb){
     return;
   }
   var user=gu.data&&gu.data.user;
+  if(user&&user.user_metadata){
+    applyUiLang(user.user_metadata.language||user.user_metadata.selectedLanguage);
+  }
   console.log('[email-changed] user email=',user&&user.email,'new_email=',user&&user.new_email);
   if(user&&user.new_email){
     showView('view-pending');
