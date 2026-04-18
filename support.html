@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MedTerms — Support</title>
+<meta name="description" content="Get help with MedTerms. Contact support, FAQ, troubleshooting.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:24px;color:#242833;line-height:1.6}
+.card{background:#fff;border-radius:20px;max-width:560px;width:100%;box-shadow:0 8px 32px rgba(17,24,39,.06);overflow:hidden;margin:24px 0}
+.header{background:linear-gradient(135deg,#78B5FA,#9586FD);padding:40px 28px 28px;text-align:center;position:relative;overflow:hidden}
+.header::before{content:"";position:absolute;top:-50%;right:-20%;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,.2),transparent 70%);border-radius:50%}
+.header::after{content:"";position:absolute;bottom:-40%;left:-15%;width:180px;height:180px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%}
+.header h1{color:#fff;font-size:28px;font-weight:700;letter-spacing:.5px;position:relative;z-index:1}
+.header p{color:rgba(255,255,255,.9);font-size:14px;margin-top:8px;position:relative;z-index:1}
+.hero{padding:36px 28px 20px;text-align:center}
+.hero-icon{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#E0ECFF,#F0E9FF);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 16px rgba(149,134,253,.18)}
+.hero-icon svg{width:40px;height:40px;fill:url(#gradient)}
+.hero h2{font-size:24px;font-weight:700;color:#242833;margin-bottom:10px}
+.hero p{font-size:15px;color:#6B7280;max-width:420px;margin:0 auto}
+
+.contact-section{padding:0 28px 28px}
+.contact-card{background:linear-gradient(135deg,#F8FAFF,#FAF8FF);border:1px solid #EEF0F9;border-radius:16px;padding:24px;margin-bottom:20px;text-align:center}
+.contact-card .label{font-size:12px;font-weight:600;color:#9586FD;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px}
+.contact-card .email-link{display:inline-flex;align-items:center;gap:8px;font-size:18px;font-weight:600;color:#242833;text-decoration:none;transition:color .15s}
+.contact-card .email-link:hover{color:#7D9BFF}
+.contact-card .email-link svg{width:18px;height:18px;opacity:.6}
+.contact-card .response-time{font-size:13px;color:#7E8494;margin-top:10px}
+
+.faq-section{padding:0 28px 28px}
+.faq-section h3{font-size:16px;font-weight:600;color:#242833;margin-bottom:14px;padding-left:4px}
+.faq-item{background:#F7F9FC;border-radius:12px;padding:14px 18px;margin-bottom:8px;cursor:pointer;transition:background .15s}
+.faq-item:hover{background:#EEF2FA}
+.faq-item summary{font-size:14px;font-weight:500;color:#242833;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-size:20px;color:#9586FD;font-weight:300;transition:transform .2s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item .answer{font-size:13px;color:#6B7280;margin-top:10px;padding-top:10px;border-top:1px solid #E4E9F5;line-height:1.6}
+
+.actions{padding:0 28px 32px;text-align:center}
+.btn{display:inline-block;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;font-size:15px;font-weight:600;text-decoration:none;padding:14px 36px;border-radius:24px;box-shadow:0 4px 20px rgba(125,162,255,.28);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(125,162,255,.36)}
+.btn:active{transform:translateY(0)}
+
+.footer{padding:20px 28px;border-top:1px solid #EEF0F9;text-align:center;background:#FAFBFE}
+.footer p{font-size:12px;color:#959FBA}
+.footer a{color:#9586FD;text-decoration:none;margin:0 8px}
+.footer a:hover{text-decoration:underline}
+
+@media (max-width:480px){
+  .card{border-radius:16px;margin:8px 0}
+  .header{padding:32px 20px 24px}
+  .header h1{font-size:24px}
+  .hero{padding:28px 20px 16px}
+  .contact-section,.faq-section,.actions{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+<!-- SVG gradient definition -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#78B5FA"/>
+      <stop offset="100%" style="stop-color:#9586FD"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="card">
+  <div class="header">
+    <h1>MedTerms</h1>
+    <p id="header-tagline">Medizinische Fachbegriffe meistern</p>
+  </div>
+
+  <div class="hero">
+    <div class="hero-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+      </svg>
+    </div>
+    <h2 id="hero-title">Brauchst du Hilfe?</h2>
+    <p id="hero-subtitle">Wir sind für dich da. Schreib uns und wir melden uns so schnell wie möglich.</p>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-card">
+      <div class="label" id="contact-label">E-Mail-Support</div>
+      <a href="mailto:support@medterms.app?subject=MedTerms%20Support" class="email-link">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        support@medterms.app
+      </a>
+      <p class="response-time" id="response-time">Antwortzeit: 24–48 Stunden</p>
+    </div>
+  </div>
+
+  <div class="faq-section">
+    <h3 id="faq-title">Häufige Fragen</h3>
+
+    <details class="faq-item">
+      <summary id="faq1-q">Wie setze ich mein Passwort zurück?</summary>
+      <div class="answer" id="faq1-a">Tippe auf dem Anmeldebildschirm auf "Passwort vergessen" und folge den Anweisungen in der E-Mail.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary id="faq2-q">Wie kündige ich mein Abonnement?</summary>
+      <div class="answer" id="faq2-a">Abos werden über die Einstellungen deines App Store oder Play Store Kontos verwaltet, nicht direkt in der App.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary id="faq3-q">Wie lösche ich mein Konto?</summary>
+      <div class="answer" id="faq3-a">Öffne die App → Einstellungen → Konto löschen. Alle deine Daten werden unwiderruflich entfernt.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary id="faq4-q">Funktioniert die App offline?</summary>
+      <div class="answer" id="faq4-a">Lernmaterialien funktionieren offline. Audio wird aus der Cloud gestreamt — einmal angehört, wird es lokal zwischengespeichert.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary id="faq5-q">In welchen Sprachen ist MedTerms verfügbar?</summary>
+      <div class="answer" id="faq5-a">Die Benutzeroberfläche ist in 11 Sprachen verfügbar. Die medizinischen Begriffe sind Lateinisch-Deutsch.</div>
+    </details>
+  </div>
+
+  <div class="actions">
+    <a href="medterms://login" class="btn" id="open-app-btn">App öffnen</a>
+  </div>
+
+  <div class="footer">
+    <p>
+      © 2026 GermanMove Education ·
+      <a href="/privacy">Privacy</a> ·
+      <a href="/terms">Terms</a>
+    </p>
+  </div>
+</div>
+
+<script>
+const T={
+de:{pageTitle:'MedTerms — Support',tagline:'Medizinische Fachbegriffe meistern',hero:'Brauchst du Hilfe?',heroSub:'Wir sind für dich da. Schreib uns und wir melden uns so schnell wie möglich.',label:'E-Mail-Support',response:'Antwortzeit: 24–48 Stunden',faqTitle:'Häufige Fragen',btn:'App öffnen',
+q1:'Wie setze ich mein Passwort zurück?',a1:'Tippe auf dem Anmeldebildschirm auf "Passwort vergessen" und folge den Anweisungen in der E-Mail.',
+q2:'Wie kündige ich mein Abonnement?',a2:'Abos werden über die Einstellungen deines App Store oder Play Store Kontos verwaltet, nicht direkt in der App.',
+q3:'Wie lösche ich mein Konto?',a3:'Öffne die App → Einstellungen → Konto löschen. Alle deine Daten werden unwiderruflich entfernt.',
+q4:'Funktioniert die App offline?',a4:'Lernmaterialien funktionieren offline. Audio wird aus der Cloud gestreamt — einmal angehört, wird es lokal zwischengespeichert.',
+q5:'In welchen Sprachen ist MedTerms verfügbar?',a5:'Die Benutzeroberfläche ist in 11 Sprachen verfügbar. Die medizinischen Begriffe sind Lateinisch-Deutsch.'
+},
+en:{pageTitle:'MedTerms — Support',tagline:'Master medical terminology',hero:'Need help?',heroSub:"We're here for you. Send us a message and we'll reply as soon as possible.",label:'Email support',response:'Response time: 24–48 hours',faqTitle:'Frequently asked questions',btn:'Open App',
+q1:'How do I reset my password?',a1:'Tap "Forgot password" on the sign-in screen and follow the instructions in the email.',
+q2:'How do I cancel my subscription?',a2:'Subscriptions are managed through your App Store or Play Store account settings, not inside the app.',
+q3:'How do I delete my account?',a3:'Open the app → Settings → Delete Account. All your data will be permanently removed.',
+q4:'Does the app work offline?',a4:'Learning content works offline. Audio is streamed from the cloud — once played, it caches locally.',
+q5:'What languages is MedTerms available in?',a5:'The interface is available in 11 languages. Medical terms are Latin–German.'
+},
+uk:{pageTitle:'MedTerms — Підтримка',tagline:'Опануйте медичну термінологію',hero:'Потрібна допомога?',heroSub:'Ми поруч. Напишіть нам — відповімо якомога швидше.',label:'Email-підтримка',response:'Час відповіді: 24–48 годин',faqTitle:'Часті запитання',btn:'Відкрити додаток',
+q1:'Як скинути пароль?',a1:'Натисніть "Забули пароль?" на екрані входу і дотримуйтесь інструкцій у листі.',
+q2:'Як скасувати підписку?',a2:'Підпискою керуйте через налаштування App Store або Play Store, не з додатка.',
+q3:'Як видалити акаунт?',a3:'Відкрийте додаток → Налаштування → Видалити акаунт. Усі дані буде безповоротно видалено.',
+q4:'Чи працює додаток офлайн?',a4:'Навчальні матеріали працюють офлайн. Аудіо стрімиться з хмари — один раз прослухане кешується локально.',
+q5:'Якими мовами доступний MedTerms?',a5:'Інтерфейс — 11 мов. Медичні терміни — латинсько-німецькі.'
+},
+ru:{pageTitle:'MedTerms — Поддержка',tagline:'Освойте медицинскую терминологию',hero:'Нужна помощь?',heroSub:'Мы рядом. Напишите нам — ответим как можно скорее.',label:'Email-поддержка',response:'Время ответа: 24–48 часов',faqTitle:'Частые вопросы',btn:'Открыть приложение',
+q1:'Как сбросить пароль?',a1:'Нажмите "Забыли пароль?" на экране входа и следуйте инструкциям в письме.',
+q2:'Как отменить подписку?',a2:'Подписками управляйте через настройки App Store или Play Store, не из приложения.',
+q3:'Как удалить аккаунт?',a3:'Откройте приложение → Настройки → Удалить аккаунт. Все данные будут безвозвратно удалены.',
+q4:'Работает ли приложение офлайн?',a4:'Учебные материалы работают офлайн. Аудио стримится из облака — один раз прослушанное кэшируется локально.',
+q5:'На каких языках доступен MedTerms?',a5:'Интерфейс — 11 языков. Медицинские термины — латинско-немецкие.'
+},
+tr:{pageTitle:'MedTerms — Destek',tagline:'Tıbbi terminolojide ustalaşın',hero:'Yardıma mı ihtiyacın var?',heroSub:'Buradayız. Bize yazın, en kısa sürede yanıt verelim.',label:'E-posta desteği',response:'Yanıt süresi: 24–48 saat',faqTitle:'Sık sorulan sorular',btn:'Uygulamayı aç',
+q1:'Şifremi nasıl sıfırlarım?',a1:'Giriş ekranında "Şifremi unuttum"a dokunun ve e-postadaki talimatları izleyin.',
+q2:'Aboneliğimi nasıl iptal ederim?',a2:'Abonelikler App Store veya Play Store hesabınızın ayarlarından yönetilir, uygulama içinden değil.',
+q3:'Hesabımı nasıl silerim?',a3:'Uygulamayı aç → Ayarlar → Hesabı Sil. Tüm verileriniz kalıcı olarak silinir.',
+q4:'Uygulama çevrimdışı çalışıyor mu?',a4:'Öğrenme içeriği çevrimdışı çalışır. Ses buluttan akıtılır — bir kez oynatıldıktan sonra yerel olarak önbelleğe alınır.',
+q5:'MedTerms hangi dillerde kullanılabilir?',a5:'Arayüz 11 dilde mevcuttur. Tıbbi terimler Latince-Almancadır.'
+},
+ar:{pageTitle:'MedTerms — الدعم',tagline:'أتقن المصطلحات الطبية',hero:'هل تحتاج إلى مساعدة؟',heroSub:'نحن هنا من أجلك. راسلنا وسنرد في أسرع وقت ممكن.',label:'دعم البريد الإلكتروني',response:'وقت الرد: 24–48 ساعة',faqTitle:'الأسئلة الشائعة',btn:'افتح التطبيق',
+q1:'كيف أعيد تعيين كلمة المرور؟',a1:'انقر على "نسيت كلمة المرور؟" في شاشة تسجيل الدخول واتبع التعليمات في البريد الإلكتروني.',
+q2:'كيف ألغي اشتراكي؟',a2:'تتم إدارة الاشتراكات من خلال إعدادات حساب App Store أو Play Store، وليس من داخل التطبيق.',
+q3:'كيف أحذف حسابي؟',a3:'افتح التطبيق → الإعدادات → حذف الحساب. ستتم إزالة جميع بياناتك نهائياً.',
+q4:'هل يعمل التطبيق دون اتصال بالإنترنت؟',a4:'يعمل محتوى التعلم دون اتصال. يتم بث الصوت من السحابة — بمجرد تشغيله، يتم تخزينه محلياً.',
+q5:'بأي لغات يتوفر MedTerms؟',a5:'الواجهة متوفرة بـ 11 لغة. المصطلحات الطبية باللاتينية والألمانية.'
+},
+fr:{pageTitle:'MedTerms — Support',tagline:'Maîtrisez la terminologie médicale',hero:'Besoin d\'aide ?',heroSub:'Nous sommes là pour vous. Écrivez-nous et nous répondrons dès que possible.',label:'Support e-mail',response:'Délai de réponse : 24–48 heures',faqTitle:'Questions fréquentes',btn:'Ouvrir l\'app',
+q1:'Comment réinitialiser mon mot de passe ?',a1:'Appuyez sur « Mot de passe oublié » sur l\'écran de connexion et suivez les instructions dans l\'e-mail.',
+q2:'Comment annuler mon abonnement ?',a2:'Les abonnements sont gérés via les paramètres de votre compte App Store ou Play Store, pas depuis l\'application.',
+q3:'Comment supprimer mon compte ?',a3:'Ouvrez l\'app → Paramètres → Supprimer le compte. Toutes vos données seront définitivement effacées.',
+q4:'L\'application fonctionne-t-elle hors ligne ?',a4:'Le contenu d\'apprentissage fonctionne hors ligne. L\'audio est diffusé depuis le cloud — une fois écouté, il est mis en cache localement.',
+q5:'Dans quelles langues MedTerms est-il disponible ?',a5:'L\'interface est disponible en 11 langues. Les termes médicaux sont en latin-allemand.'
+},
+es:{pageTitle:'MedTerms — Soporte',tagline:'Domine la terminología médica',hero:'¿Necesitas ayuda?',heroSub:'Estamos aquí. Escríbenos y te responderemos lo antes posible.',label:'Soporte por correo',response:'Tiempo de respuesta: 24–48 horas',faqTitle:'Preguntas frecuentes',btn:'Abrir la app',
+q1:'¿Cómo restablezco mi contraseña?',a1:'Toca "¿Olvidaste tu contraseña?" en la pantalla de inicio de sesión y sigue las instrucciones del correo.',
+q2:'¿Cómo cancelo mi suscripción?',a2:'Las suscripciones se gestionan desde los ajustes de tu cuenta de App Store o Play Store, no dentro de la app.',
+q3:'¿Cómo elimino mi cuenta?',a3:'Abre la app → Ajustes → Eliminar cuenta. Todos tus datos se eliminarán permanentemente.',
+q4:'¿Funciona la app sin conexión?',a4:'El contenido de aprendizaje funciona sin conexión. El audio se transmite desde la nube — una vez reproducido, se almacena en caché localmente.',
+q5:'¿En qué idiomas está disponible MedTerms?',a5:'La interfaz está disponible en 11 idiomas. Los términos médicos son latín-alemán.'
+},
+pl:{pageTitle:'MedTerms — Wsparcie',tagline:'Opanuj terminologię medyczną',hero:'Potrzebujesz pomocy?',heroSub:'Jesteśmy dla Ciebie. Napisz do nas — odpowiemy tak szybko, jak to możliwe.',label:'Wsparcie e-mail',response:'Czas odpowiedzi: 24–48 godzin',faqTitle:'Najczęstsze pytania',btn:'Otwórz aplikację',
+q1:'Jak zresetować hasło?',a1:'Stuknij "Nie pamiętam hasła" na ekranie logowania i postępuj zgodnie z instrukcjami w e-mailu.',
+q2:'Jak anulować subskrypcję?',a2:'Subskrypcje zarządza się przez ustawienia konta App Store lub Play Store, nie w aplikacji.',
+q3:'Jak usunąć konto?',a3:'Otwórz aplikację → Ustawienia → Usuń konto. Wszystkie dane zostaną trwale usunięte.',
+q4:'Czy aplikacja działa offline?',a4:'Materiały do nauki działają offline. Audio jest strumieniowane z chmury — po odtworzeniu jest buforowane lokalnie.',
+q5:'W jakich językach dostępny jest MedTerms?',a5:'Interfejs dostępny jest w 11 językach. Terminy medyczne są łacińsko-niemieckie.'
+},
+el:{pageTitle:'MedTerms — Υποστήριξη',tagline:'Κατακτήστε την ιατρική ορολογία',hero:'Χρειάζεστε βοήθεια;',heroSub:'Είμαστε εδώ για εσάς. Στείλτε μας μήνυμα και θα απαντήσουμε το συντομότερο δυνατό.',label:'Υποστήριξη email',response:'Χρόνος απόκρισης: 24–48 ώρες',faqTitle:'Συχνές ερωτήσεις',btn:'Άνοιγμα εφαρμογής',
+q1:'Πώς μπορώ να επαναφέρω τον κωδικό μου;',a1:'Πατήστε "Ξεχάσατε τον κωδικό;" στην οθόνη σύνδεσης και ακολουθήστε τις οδηγίες στο email.',
+q2:'Πώς ακυρώνω τη συνδρομή μου;',a2:'Οι συνδρομές διαχειρίζονται μέσω των ρυθμίσεων του λογαριασμού σας στο App Store ή Play Store, όχι εντός της εφαρμογής.',
+q3:'Πώς διαγράφω τον λογαριασμό μου;',a3:'Ανοίξτε την εφαρμογή → Ρυθμίσεις → Διαγραφή λογαριασμού. Όλα τα δεδομένα σας θα διαγραφούν οριστικά.',
+q4:'Λειτουργεί η εφαρμογή εκτός σύνδεσης;',a4:'Το εκπαιδευτικό υλικό λειτουργεί εκτός σύνδεσης. Ο ήχος μεταδίδεται από το cloud — μόλις ακουστεί, αποθηκεύεται τοπικά στην προσωρινή μνήμη.',
+q5:'Σε ποιες γλώσσες είναι διαθέσιμο το MedTerms;',a5:'Η διεπαφή είναι διαθέσιμη σε 11 γλώσσες. Οι ιατρικοί όροι είναι λατινικοί-γερμανικοί.'
+},
+ro:{pageTitle:'MedTerms — Asistență',tagline:'Stăpâniți terminologia medicală',hero:'Ai nevoie de ajutor?',heroSub:'Suntem aici pentru tine. Scrie-ne și vom răspunde cât mai curând posibil.',label:'Asistență e-mail',response:'Timp de răspuns: 24–48 ore',faqTitle:'Întrebări frecvente',btn:'Deschide aplicația',
+q1:'Cum îmi resetez parola?',a1:'Apasă "Ai uitat parola?" pe ecranul de conectare și urmează instrucțiunile din e-mail.',
+q2:'Cum îmi anulez abonamentul?',a2:'Abonamentele sunt gestionate prin setările contului tău App Store sau Play Store, nu din aplicație.',
+q3:'Cum îmi șterg contul?',a3:'Deschide aplicația → Setări → Șterge contul. Toate datele tale vor fi eliminate definitiv.',
+q4:'Aplicația funcționează offline?',a4:'Materialele de învățare funcționează offline. Audio este transmis din cloud — odată redat, este stocat local.',
+q5:'În ce limbi este disponibil MedTerms?',a5:'Interfața este disponibilă în 11 limbi. Termenii medicali sunt în latină-germană.'
+}
+};
+
+function normalizeLang(raw){
+  if(raw==null||raw==='')return null;
+  var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);
+  return T[c]?c:null;
+}
+function getUrlLang(){
+  var q=new URLSearchParams(window.location.search);
+  var h=new URLSearchParams(window.location.hash.substring(1));
+  return q.get('lang')||h.get('lang')||'';
+}
+var navLangCode=(navigator.language||'de').slice(0,2).toLowerCase();
+var lc=normalizeLang(getUrlLang())||normalizeLang(navLangCode)||'de';
+var tr=T[lc]||T.de;
+
+document.documentElement.setAttribute('lang',lc);
+document.documentElement.setAttribute('dir',lc==='ar'?'rtl':'ltr');
+document.body.style.direction=(lc==='ar'?'rtl':'ltr');
+document.title=tr.pageTitle;
+document.getElementById('header-tagline').textContent=tr.tagline;
+document.getElementById('hero-title').textContent=tr.hero;
+document.getElementById('hero-subtitle').textContent=tr.heroSub;
+document.getElementById('contact-label').textContent=tr.label;
+document.getElementById('response-time').textContent=tr.response;
+document.getElementById('faq-title').textContent=tr.faqTitle;
+document.getElementById('open-app-btn').textContent=tr.btn;
+
+document.getElementById('faq1-q').textContent=tr.q1;
+document.getElementById('faq1-a').textContent=tr.a1;
+document.getElementById('faq2-q').textContent=tr.q2;
+document.getElementById('faq2-a').textContent=tr.a2;
+document.getElementById('faq3-q').textContent=tr.q3;
+document.getElementById('faq3-a').textContent=tr.a3;
+document.getElementById('faq4-q').textContent=tr.q4;
+document.getElementById('faq4-a').textContent=tr.a4;
+document.getElementById('faq5-q').textContent=tr.q5;
+document.getElementById('faq5-a').textContent=tr.a5;
+</script>
+</body>
+</html>
