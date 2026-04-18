@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MedTerms — E-Mail bestätigt</title>
+<title>MedTerms — E-Mail bestätigen</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -15,12 +15,17 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#F7F9FC;min-height:10
 .body{padding:32px 28px;text-align:center}
 .icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#56C9D6,#38D185);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
 .icon svg{width:36px;height:36px;fill:#fff}
+.icon-error{background:linear-gradient(135deg,#EF5350,#E53935)}
+.icon-loading{background:linear-gradient(135deg,#78B5FA,#9586FD)}
 .body h2{color:#242833;font-size:22px;font-weight:700;margin-bottom:8px}
 .body .msg{color:#7E8494;font-size:15px;line-height:1.6;margin-bottom:24px}
 .btn{display:inline-block;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;font-size:16px;font-weight:600;text-decoration:none;padding:14px 36px;border-radius:22px;box-shadow:0 4px 16px rgba(125,162,255,.3);transition:transform .15s}
 .btn:hover{transform:translateY(-1px)}
 .footer{padding:20px 28px;border-top:1px solid #E4E9F5;text-align:center}
 .footer p{font-size:12px;color:#959FBA}
+#view-loading,#view-success,#view-error{display:none}
+.loading-dots{font-size:28px;color:#78B5FA;letter-spacing:4px;animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 </style>
 </head>
 <body>
@@ -30,35 +35,139 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#F7F9FC;min-height:10
     <p>Medizinische Fachbegriffe meistern</p>
   </div>
   <div class="body">
-    <div class="icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-    <h2 id="title">E-Mail erfolgreich bestätigt!</h2>
-    <p class="msg" id="msg">Ihr Konto ist jetzt aktiv. Sie können die App öffnen und sich anmelden.</p>
-    <a href="medterms://login" class="btn" id="btn">App öffnen</a>
+    <!-- LOADING VIEW -->
+    <div id="view-loading" style="display:block">
+      <div class="icon icon-loading"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <h2 id="loading-title">E-Mail wird bestätigt...</h2>
+      <p class="loading-dots">...</p>
+    </div>
+    <!-- SUCCESS VIEW -->
+    <div id="view-success">
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <h2 id="title">E-Mail erfolgreich bestätigt!</h2>
+      <p class="msg" id="msg">Ihr Konto ist jetzt aktiv. Sie können die App öffnen und sich anmelden.</p>
+      <a href="medterms://login" class="btn" id="btn">App öffnen</a>
+    </div>
+    <!-- ERROR VIEW -->
+    <div id="view-error">
+      <div class="icon icon-error"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+      <h2 id="error-title">Link ungültig</h2>
+      <p class="msg" id="error-msg">Dieser Bestätigungslink ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen an.</p>
+    </div>
   </div>
   <div class="footer">
     <p>© 2026 GermanMove Education</p>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
+const SUPABASE_URL='https://dnngjjfipppdjrgmmjxo.supabase.co';
+const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRubmdqamZpcHBwZGpyZ21tanhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNTczNzgsImV4cCI6MjA5MTczMzM3OH0.OMdU8wrV6evjoYEd9i1CYIXcPbSx0D4f4XgW-j0MiCM';
+
 const T={
-de:{title:'E-Mail erfolgreich bestätigt!',msg:'Ihr Konto ist jetzt aktiv. Sie können die App öffnen und sich anmelden.',btn:'App öffnen'},
-en:{title:'Email successfully confirmed!',msg:'Your account is now active. You can open the app and sign in.',btn:'Open App'},
-uk:{title:'Email успішно підтверджено!',msg:'Ваш акаунт тепер активний. Відкрийте додаток і увійдіть.',btn:'Відкрити додаток'},
-ru:{title:'Email успешно подтверждён!',msg:'Ваш аккаунт теперь активен. Откройте приложение и войдите.',btn:'Открыть приложение'},
-tr:{title:'E-posta başarıyla onaylandı!',msg:'Hesabınız artık aktif. Uygulamayı açıp giriş yapabilirsiniz.',btn:'Uygulamayı aç'},
-ar:{title:'تم تأكيد البريد الإلكتروني بنجاح!',msg:'حسابك نشط الآن. يمكنك فتح التطبيق وتسجيل الدخول.',btn:'افتح التطبيق'},
-fr:{title:'E-mail confirmé avec succès !',msg:'Votre compte est maintenant actif. Ouvrez l\'application et connectez-vous.',btn:'Ouvrir l\'app'},
-es:{title:'¡Correo confirmado con éxito!',msg:'Su cuenta está activa. Abra la aplicación e inicie sesión.',btn:'Abrir la app'},
-pl:{title:'E-mail potwierdzony!',msg:'Twoje konto jest teraz aktywne. Otwórz aplikację i zaloguj się.',btn:'Otwórz aplikację'},
-el:{title:'Το email επιβεβαιώθηκε!',msg:'Ο λογαριασμός σας είναι πλέον ενεργός. Ανοίξτε την εφαρμογή και συνδεθείτε.',btn:'Άνοιγμα εφαρμογής'},
-ro:{title:'E-mail confirmat cu succes!',msg:'Contul dvs. este acum activ. Deschideți aplicația și conectați-vă.',btn:'Deschide aplicația'}
+de:{loading:'E-Mail wird bestätigt...',title:'E-Mail erfolgreich bestätigt!',msg:'Ihr Konto ist jetzt aktiv. Sie können die App öffnen und sich anmelden.',btn:'App öffnen',errorTitle:'Link ungültig',errorMsg:'Dieser Bestätigungslink ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen an.'},
+en:{loading:'Confirming email...',title:'Email successfully confirmed!',msg:'Your account is now active. You can open the app and sign in.',btn:'Open App',errorTitle:'Invalid link',errorMsg:'This confirmation link is invalid or expired. Please request a new one.'},
+uk:{loading:'Підтверджуємо email...',title:'Email успішно підтверджено!',msg:'Ваш акаунт тепер активний. Відкрийте додаток і увійдіть.',btn:'Відкрити додаток',errorTitle:'Посилання недійсне',errorMsg:'Це посилання недійсне або застаріло. Запросіть нове.'},
+ru:{loading:'Подтверждаем email...',title:'Email успешно подтверждён!',msg:'Ваш аккаунт теперь активен. Откройте приложение и войдите.',btn:'Открыть приложение',errorTitle:'Ссылка недействительна',errorMsg:'Эта ссылка недействительна или устарела. Запросите новую.'},
+tr:{loading:'E-posta onaylanıyor...',title:'E-posta başarıyla onaylandı!',msg:'Hesabınız artık aktif. Uygulamayı açıp giriş yapabilirsiniz.',btn:'Uygulamayı aç',errorTitle:'Geçersiz bağlantı',errorMsg:'Bu onay bağlantısı geçersiz veya süresi dolmuş.'},
+ar:{loading:'جارٍ تأكيد البريد...',title:'تم تأكيد البريد الإلكتروني بنجاح!',msg:'حسابك نشط الآن. يمكنك فتح التطبيق وتسجيل الدخول.',btn:'افتح التطبيق',errorTitle:'رابط غير صالح',errorMsg:'رابط التأكيد غير صالح أو منتهي الصلاحية.'},
+fr:{loading:'Confirmation de l\'e-mail...',title:'E-mail confirmé avec succès !',msg:'Votre compte est maintenant actif. Ouvrez l\'application et connectez-vous.',btn:'Ouvrir l\'app',errorTitle:'Lien invalide',errorMsg:'Ce lien de confirmation est invalide ou a expiré.'},
+es:{loading:'Confirmando correo...',title:'¡Correo confirmado con éxito!',msg:'Su cuenta está activa. Abra la aplicación e inicie sesión.',btn:'Abrir la app',errorTitle:'Enlace inválido',errorMsg:'Este enlace de confirmación es inválido o ha expirado.'},
+pl:{loading:'Potwierdzanie e-maila...',title:'E-mail potwierdzony!',msg:'Twoje konto jest teraz aktywne. Otwórz aplikację i zaloguj się.',btn:'Otwórz aplikację',errorTitle:'Nieprawidłowy link',errorMsg:'Ten link potwierdzający jest nieprawidłowy lub wygasł.'},
+el:{loading:'Επιβεβαίωση email...',title:'Το email επιβεβαιώθηκε!',msg:'Ο λογαριασμός σας είναι πλέον ενεργός. Ανοίξτε την εφαρμογή και συνδεθείτε.',btn:'Άνοιγμα εφαρμογής',errorTitle:'Μη έγκυρος σύνδεσμος',errorMsg:'Αυτός ο σύνδεσμος επιβεβαίωσης δεν είναι έγκυρος ή έχει λήξει.'},
+ro:{loading:'Se confirmă e-mailul...',title:'E-mail confirmat cu succes!',msg:'Contul dvs. este acum activ. Deschideți aplicația și conectați-vă.',btn:'Deschide aplicația',errorTitle:'Link invalid',errorMsg:'Acest link de confirmare este invalid sau a expirat.'}
 };
+
 const lang=(navigator.language||'de').slice(0,2).toLowerCase();
 const t=T[lang]||T.de;
+if(lang==='ar')document.body.style.direction='rtl';
+
+document.getElementById('loading-title').textContent=t.loading;
 document.getElementById('title').textContent=t.title;
 document.getElementById('msg').textContent=t.msg;
 document.getElementById('btn').textContent=t.btn;
-if(lang==='ar')document.body.style.direction='rtl';
+document.getElementById('error-title').textContent=t.errorTitle;
+document.getElementById('error-msg').textContent=t.errorMsg;
+
+function showView(id){
+  ['view-loading','view-success','view-error'].forEach(function(v){
+    document.getElementById(v).style.display='none';
+  });
+  document.getElementById(id).style.display='block';
+}
+
+async function init(){
+  try{
+    if(!window.supabase||!window.supabase.createClient){
+      console.error('[confirm] Supabase SDK not loaded');
+      showView('view-error');
+      return;
+    }
+    var sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON);
+
+    var queryParams=new URLSearchParams(window.location.search);
+    var hashParams=new URLSearchParams(window.location.hash.substring(1));
+
+    var tokenHash=queryParams.get('token_hash')||hashParams.get('token_hash');
+    var type=queryParams.get('type')||hashParams.get('type');
+    var accessToken=hashParams.get('access_token');
+    var refreshToken=hashParams.get('refresh_token');
+    var code=queryParams.get('code');
+
+    console.log('[confirm] token_hash:',tokenHash?'present':'absent');
+    console.log('[confirm] type:',type);
+    console.log('[confirm] code:',code?'present':'absent');
+
+    // Method 1 (primary): verifyOtp with token_hash from URL. Supports pkce_-prefixed hashes.
+    if(tokenHash){
+      var otpType=type==='email_change'?'email_change':(type==='recovery'?'recovery':'signup');
+      console.log('[confirm] Verifying token_hash as type:',otpType);
+      var res=await sb.auth.verifyOtp({token_hash:tokenHash,type:otpType});
+      if(res.error){
+        console.error('[confirm] verifyOtp error:',res.error.message);
+        showView('view-error');
+        return;
+      }
+      console.log('[confirm] Verified');
+      showView('view-success');
+      return;
+    }
+
+    // Method 2: Implicit flow — tokens in hash fragment
+    if(accessToken && refreshToken){
+      console.log('[confirm] Found tokens in hash');
+      var res2=await sb.auth.setSession({access_token:accessToken,refresh_token:refreshToken});
+      if(res2.error){
+        console.error('[confirm] setSession error:',res2.error);
+        showView('view-error');
+        return;
+      }
+      showView('view-success');
+      return;
+    }
+
+    // Method 3: PKCE flow — code in query params
+    if(code){
+      console.log('[confirm] Found PKCE code');
+      var res3=await sb.auth.exchangeCodeForSession(code);
+      if(res3.error){
+        console.error('[confirm] exchangeCode error:',res3.error);
+        showView('view-error');
+        return;
+      }
+      showView('view-success');
+      return;
+    }
+
+    console.log('[confirm] No tokens/code found in URL');
+    showView('view-error');
+  }catch(err){
+    console.error('[confirm] init() error:',err);
+    showView('view-error');
+  }
+}
+
+init();
 </script>
 </body>
 </html>
