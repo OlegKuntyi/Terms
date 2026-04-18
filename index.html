@@ -1,509 +1,254 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GermanMove Terms</title>
-  <meta name="description" content="Medizinische Fachbegriffe lernen. 2934 Begriffe mit Karteikarten, Luckentexten und Spaced Repetition.">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --teal: #4eb7a7;
-      --teal-dark: #2a7c6f;
-      --teal-glow: rgba(78, 183, 167, 0.4);
-      --ok: #34c759;
-      --ok-2: #78e08f;
-      --text: #f3f6f9;
-      --muted: rgba(243, 246, 249, 0.7);
-      --glass: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-strong: rgba(255, 255, 255, 0.08);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0d1117;
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MedTerms — Medizinische Fachbegriffe meistern</title>
+<meta name="description" content="2934 medizinische Fachbegriffe für die Fachsprachprüfung. Karteikarten, Lückentexte, Audio und 5 Lernmodi.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC;min-height:100vh;color:#242833;line-height:1.6;overflow-x:hidden}
 
-    /* Animated mesh background */
-    .bg-mesh {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .bg-mesh .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.4;
-      animation: float 20s ease-in-out infinite;
-    }
-    .bg-mesh .orb:nth-child(1) {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, #2a7c6f, transparent 70%);
-      top: -10%; left: -10%;
-      animation-duration: 25s;
-    }
-    .bg-mesh .orb:nth-child(2) {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, #1a5276, transparent 70%);
-      top: 40%; right: -15%;
-      animation-duration: 20s;
-      animation-delay: -5s;
-    }
-    .bg-mesh .orb:nth-child(3) {
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, #4eb7a7, transparent 70%);
-      bottom: -5%; left: 20%;
-      animation-duration: 22s;
-      animation-delay: -10s;
-    }
-    .bg-mesh .orb:nth-child(4) {
-      width: 250px; height: 250px;
-      background: radial-gradient(circle, rgba(120, 224, 143, 0.6), transparent 70%);
-      top: 20%; left: 50%;
-      animation-duration: 18s;
-      animation-delay: -3s;
-    }
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(30px, -40px) scale(1.05); }
-      50% { transform: translate(-20px, 20px) scale(0.95); }
-      75% { transform: translate(15px, 35px) scale(1.02); }
-    }
+/* Header */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(17,24,39,.05);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.nav .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav .brand-logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;box-shadow:0 4px 12px rgba(149,134,253,.25)}
+.nav .brand-name{font-weight:700;color:#242833;font-size:17px;letter-spacing:.3px}
+.nav-links{display:flex;gap:4px}
+.nav-links a{color:#6B7280;text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:10px;transition:color .15s,background .15s}
+.nav-links a:hover{color:#242833;background:#EEF2FA}
 
-    /* Grain overlay */
-    .bg-mesh::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.5;
-      pointer-events: none;
-    }
+/* Hero */
+.hero{padding:60px 24px 40px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(149,134,253,.15),transparent 60%);pointer-events:none;z-index:0}
+.hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.hero-logo{width:88px;height:88px;border-radius:22px;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 12px 40px rgba(149,134,253,.35)}
+.hero-logo svg{width:44px;height:44px;fill:#fff}
+.hero h1{font-size:44px;font-weight:700;color:#242833;letter-spacing:-.5px;margin-bottom:16px;line-height:1.15}
+.hero h1 .grad{background:linear-gradient(135deg,#78B5FA,#9586FD);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .lead{font-size:17px;color:#6B7280;max-width:560px;margin:0 auto 32px;line-height:1.6}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#78B5FA,#9586FD);color:#fff;font-size:16px;font-weight:600;text-decoration:none;padding:15px 36px;border-radius:26px;box-shadow:0 6px 24px rgba(125,162,255,.32);transition:transform .15s,box-shadow .15s}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(125,162,255,.4)}
+.hero-cta svg{width:18px;height:18px;fill:currentColor}
 
-    /* Header */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(78, 183, 167, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 0 30px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .header .logo {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      animation: glow 4s infinite alternate;
-      color: white;
-      text-decoration: none;
-    }
-    .header nav {
-      display: flex;
-      gap: 6px;
-    }
-    .header nav a {
-      color: rgba(255,255,255,0.85);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-      padding: 6px 14px;
-      border-radius: 8px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .header nav a:hover,
-    .header nav a.active {
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-    }
-    @keyframes glow {
-      0% { text-shadow: none; }
-      50% { text-shadow: 0 0 3px rgba(255,255,255,0.5); }
-      100% { text-shadow: 0 0 6px #fff, 0 0 12px rgba(78,183,167,0.5); }
-    }
-    @media (max-width: 480px) {
-      .header { padding: 0 16px; height: 52px; }
-      .header .logo { font-size: 16px; letter-spacing: 1px; }
-      .header nav a { font-size: 11px; padding: 5px 10px; }
-    }
+/* Stats */
+.section{max-width:960px;margin:0 auto;padding:0 24px 48px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px}
+.stat{background:#fff;border:1px solid #EEF0F9;border-radius:18px;padding:26px 16px;text-align:center;transition:transform .15s,box-shadow .15s}
+.stat:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(17,24,39,.06)}
+.stat .num{font-size:32px;font-weight:700;background:linear-gradient(135deg,#78B5FA,#9586FD);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.stat .label{font-size:11px;color:#7E8494;margin-top:8px;text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
 
-    /* Content */
-    .content {
-      position: relative;
-      z-index: 1;
-      max-width: 620px;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
-    }
+/* Features */
+.features{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.feature{background:#fff;border:1px solid #EEF0F9;border-radius:18px;padding:26px;transition:transform .15s,box-shadow .15s}
+.feature:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(17,24,39,.06)}
+.feature-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#E0ECFF,#F0E9FF);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feature-icon svg{width:22px;height:22px;fill:#9586FD}
+.feature h3{font-size:16px;font-weight:600;color:#242833;margin-bottom:8px}
+.feature p{font-size:14px;color:#6B7280;line-height:1.6}
 
-    /* Hero */
-    .hero {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-    .hero-icon {
-      font-size: 56px;
-      margin-bottom: 16px;
-      display: block;
-    }
-    .hero h2 {
-      font-size: 26px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      background: linear-gradient(135deg, var(--teal), var(--ok-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero p {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 480px;
-      margin: 0 auto;
-    }
+/* CTA bottom */
+.cta-bottom{background:linear-gradient(135deg,#78B5FA,#9586FD);border-radius:24px;padding:48px 32px;text-align:center;margin:48px 24px;max-width:720px;margin-left:auto;margin-right:auto;position:relative;overflow:hidden}
+.cta-bottom::before{content:"";position:absolute;top:-60%;right:-10%;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%}
+.cta-bottom::after{content:"";position:absolute;bottom:-50%;left:-10%;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.1),transparent 70%);border-radius:50%}
+.cta-bottom h2{color:#fff;font-size:26px;font-weight:700;margin-bottom:10px;position:relative;z-index:1}
+.cta-bottom p{color:rgba(255,255,255,.9);font-size:15px;margin-bottom:24px;position:relative;z-index:1}
+.cta-bottom .btn{display:inline-block;background:#fff;color:#7D9BFF;font-size:15px;font-weight:600;text-decoration:none;padding:14px 36px;border-radius:24px;position:relative;z-index:1;transition:transform .15s}
+.cta-bottom .btn:hover{transform:translateY(-2px)}
 
-    /* Stats */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-    .stat {
-      background: var(--glass-strong);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 20px 10px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .stat:hover {
-      transform: translateY(-2px);
-      border-color: rgba(78,183,167,0.3);
-    }
-    .stat .num {
-      font-size: 30px;
-      font-weight: 700;
-      color: var(--teal);
-      line-height: 1;
-    }
-    .stat .label {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+/* Footer */
+footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-align:center}
+.footer-inner{max-width:720px;margin:0 auto}
+.footer-brand{font-size:14px;color:#6B7280;margin-bottom:14px}
+.footer-brand strong{color:#242833;font-weight:600}
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.footer-links a{color:#9586FD;text-decoration:none;font-size:14px;font-weight:500;transition:color .15s}
+.footer-links a:hover{color:#7D9BFF}
+.footer-copy{font-size:12px;color:#959FBA}
 
-    /* Glass card */
-    .card {
-      background: var(--glass-strong);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 26px 22px;
-      margin-bottom: 16px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-1px);
-      border-color: rgba(78,183,167,0.2);
-    }
-    .card h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 14px;
-      color: var(--ok-2);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .card ul {
-      list-style: none;
-      padding: 0;
-    }
-    .card li {
-      font-size: 14px;
-      color: var(--muted);
-      padding: 5px 0 5px 22px;
-      position: relative;
-      line-height: 1.5;
-    }
-    .card li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 11px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--teal);
-      opacity: 0.7;
-    }
+@media (max-width:768px){
+  .nav{padding:12px 16px}
+  .nav .brand-name{font-size:15px}
+  .nav-links a{font-size:13px;padding:6px 10px}
+  .hero{padding:40px 20px 32px}
+  .hero h1{font-size:32px}
+  .hero .lead{font-size:15px}
+  .section{padding:0 16px 32px}
+  .stats{grid-template-columns:repeat(2,1fr);gap:10px}
+  .features{grid-template-columns:1fr;gap:12px}
+  .cta-bottom{padding:36px 24px;margin:32px 16px}
+  .cta-bottom h2{font-size:22px}
+}
 
-    /* Tags */
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-    .tag {
-      background: rgba(42, 124, 111, 0.3);
-      border: 1px solid rgba(78, 183, 167, 0.2);
-      color: var(--teal);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
-    .tag:hover {
-      background: rgba(42, 124, 111, 0.5);
-    }
-
-    /* Buttons */
-    .btn-row {
-      display: flex;
-      gap: 12px;
-      margin-top: 32px;
-    }
-    .btn {
-      flex: 1;
-      display: block;
-      text-align: center;
-      padding: 14px 20px;
-      border-radius: 14px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.25s ease;
-      border: 1px solid transparent;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
-      color: #fff;
-      box-shadow: 0 4px 20px var(--teal-glow);
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px var(--teal-glow);
-    }
-    .btn-ghost {
-      background: transparent;
-      color: var(--teal);
-      border-color: rgba(78,183,167,0.3);
-    }
-    .btn-ghost:hover {
-      background: rgba(78,183,167,0.1);
-      border-color: var(--teal);
-    }
-
-    /* Contact */
-    .contact {
-      text-align: center;
-      margin-top: 36px;
-      padding: 20px;
-    }
-    .contact a {
-      color: var(--teal);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      border-bottom: 1px solid rgba(78,183,167,0.3);
-      transition: border-color 0.2s;
-    }
-    .contact a:hover { border-color: var(--teal); }
-
-    /* Footer */
-    .footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 24px 20px;
-      color: var(--muted);
-      font-size: 12px;
-      border-top: 1px solid var(--glass-border);
-    }
-    .footer a {
-      color: var(--teal);
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: 500;
-    }
-    .footer a:hover { text-decoration: underline; }
-    .footer-links { margin-top: 8px; }
-
-    @media (max-width: 480px) {
-      .header h1 { font-size: 18px; }
-      .hero h2 { font-size: 22px; }
-      .stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-      .stat { padding: 14px 6px; }
-      .stat .num { font-size: 24px; }
-      .card { padding: 20px 16px; }
-      .btn-row { flex-direction: column; }
-      .hero-icon { font-size: 44px; }
-    }
-  </style>
+@media (max-width:480px){
+  .hero-logo{width:72px;height:72px;border-radius:18px}
+  .hero-logo svg{width:36px;height:36px}
+  .hero h1{font-size:28px}
+  .stat{padding:20px 12px}
+  .stat .num{font-size:26px}
+  .nav-links{gap:0}
+  .nav-links a{padding:6px 8px;font-size:12px}
+}
+</style>
 </head>
 <body>
 
-  <div class="bg-mesh">
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
+<nav class="nav">
+  <a href="/" class="brand">
+    <div class="brand-logo">M</div>
+    <div class="brand-name">MedTerms</div>
+  </a>
+  <div class="nav-links">
+    <a href="/" id="nav-home">Start</a>
+    <a href="/privacy" id="nav-privacy">Privacy</a>
+    <a href="/terms" id="nav-terms">Terms</a>
+    <a href="/support" id="nav-support">Support</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-logo">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4 14h-2v-4H9v4H7V7h2v4h4V7h2v10z"/>
+      </svg>
+    </div>
+    <h1><span class="grad" id="hero-title">Medizinische Fachbegriffe meistern</span></h1>
+    <p class="lead" id="hero-lead">2934 Begriffe mit Karteikarten, Lückentexten, Audio und 5 Lernmodi — speziell für die Fachsprachprüfung.</p>
+    <a href="medterms://login" class="hero-cta" id="hero-cta">
+      <span id="hero-cta-text">App öffnen</span>
+      <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="stats">
+    <div class="stat">
+      <div class="num">2934</div>
+      <div class="label" id="stat-terms">Begriffe</div>
+    </div>
+    <div class="stat">
+      <div class="num">17k+</div>
+      <div class="label" id="stat-audio">Audio-Dateien</div>
+    </div>
+    <div class="stat">
+      <div class="num">5</div>
+      <div class="label" id="stat-modes">Lernmodi</div>
+    </div>
+    <div class="stat">
+      <div class="num">11</div>
+      <div class="label" id="stat-langs">Sprachen UI</div>
+    </div>
   </div>
 
-  <div class="header">
-    <a href="index.html" class="logo">GermanMove Terms</a>
-    <nav>
-      <a href="index.html" class="active">Start</a>
-      <a href="privacy.html">Datenschutz</a>
-      <a href="terms.html">AGB</a>
-    </nav>
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+      </div>
+      <h3 id="f1-title">Karteikarten</h3>
+      <p id="f1-text">Lat–De–Pat mit Definitionen und klinischen Beispielen.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+      </div>
+      <h3 id="f2-title">Audio</h3>
+      <p id="f2-text">17.604 Dateien mit zwei Stimmen (männlich & weiblich).</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <h3 id="f3-title">Bundesland-Filter</h3>
+      <p id="f3-text">Gezielte Vorbereitung für dein Bundesland — 16 Regionen.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 14c1.66 0 2.99-1.34 2.99-3S20.66 8 19 8c-.18 0-.35.02-.52.05.34.54.53 1.17.53 1.95S18.81 11.41 18.48 12c.17.03.34.05.52.05zM5 14c1.66 0 2.99-1.34 2.99-3S6.66 8 5 8c-.18 0-.35.02-.52.05C4.81 8.59 5 9.22 5 10s-.19 1.41-.52 2c.17.03.34.05.52.05zm7-1c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      </div>
+      <h3 id="f4-title">5 Spielmodi</h3>
+      <p id="f4-text">Flashcards, Quiz, Cloze, Matching und Daily Challenge.</p>
+    </div>
   </div>
+</section>
 
-  <div class="content">
+<section class="cta-bottom">
+  <h2 id="cta-title">Bereit für die Fachsprachprüfung?</h2>
+  <p id="cta-subtitle">Lade MedTerms herunter und starte noch heute.</p>
+  <a href="medterms://login" class="btn" id="cta-btn">App öffnen</a>
+</section>
 
-    <div class="hero">
-      <span class="hero-icon">🩺</span>
-      <h2>Medizinische Fachbegriffe meistern</h2>
-      <p>2934 Begriffe mit Karteikarten, Luckentexten, Audio und Spaced Repetition — speziell fur die Fachsprachprufung.</p>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><strong>MedTerms</strong> <span id="f-tagline">Medizinische Fachbegriffe meistern</span></div>
+    <div class="footer-links">
+      <a href="/privacy" id="f-privacy">Privacy</a>
+      <a href="/terms" id="f-terms">Terms</a>
+      <a href="/support" id="f-support">Support</a>
     </div>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="num">2934</div>
-        <div class="label">Begriffe</div>
-      </div>
-      <div class="stat">
-        <div class="num">2934</div>
-        <div class="label">Definitionen</div>
-      </div>
-      <div class="stat">
-        <div class="num">17k+</div>
-        <div class="label">Audio</div>
-      </div>
-    </div>
-    <div class="stats">
-      <div class="stat">
-        <div class="num">Lat</div>
-        <div class="label">Lateinisch</div>
-      </div>
-      <div class="stat">
-        <div class="num">De</div>
-        <div class="label">Deutsch</div>
-      </div>
-      <div class="stat">
-        <div class="num">5</div>
-        <div class="label">Lernmodi</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>🎯 Funktionen</h3>
-      <ul>
-        <li>Karteikarten mit Spaced Repetition (FSRS)</li>
-        <li>Luckentexte aus Fach- und Patientengesprachen</li>
-        <li>Audio-Aussprache — mannlich &amp; weiblich</li>
-        <li>Filterung nach Region und Fachgebiet</li>
-        <li>Fortschrittsverfolgung und Statistiken</li>
-        <li>Offline-Modus — uberall lernen</li>
-        <li>Tagliche Herausforderungen &amp; Bestenliste</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>🗺️ Nach Bundesland lokalisiert</h3>
-      <p style="font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:12px;">
-        Die Begriffe sind spezifisch nach Bundeslandern aufgeteilt — denn die FSP unterscheidet sich
-        je nach Arztekammer. Lernen Sie gezielt die Terminologie fur Ihr Bundesland.
-      </p>
-      <div class="tags">
-        <span class="tag">Bayern</span>
-        <span class="tag">NRW</span>
-        <span class="tag">Baden-Wurttemberg</span>
-        <span class="tag">Hessen</span>
-        <span class="tag">Niedersachsen</span>
-        <span class="tag">Sachsen</span>
-        <span class="tag">Berlin</span>
-        <span class="tag">Hamburg</span>
-        <span class="tag">Thuringen</span>
-        <span class="tag">+ weitere</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>🏥 Fachgebiete &amp; Kategorien</h3>
-      <p style="font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:12px;">
-        Alle Begriffe sind nach medizinischen Fachgebieten kategorisiert — fur gezieltes Lernen.
-      </p>
-      <div class="tags">
-        <span class="tag">Kardiologie</span>
-        <span class="tag">Neurologie</span>
-        <span class="tag">Orthopadie</span>
-        <span class="tag">Gastroenterologie</span>
-        <span class="tag">Pneumologie</span>
-        <span class="tag">Gynakologie</span>
-        <span class="tag">Urologie</span>
-        <span class="tag">Dermatologie</span>
-        <span class="tag">HNO</span>
-        <span class="tag">Allgemeinmedizin</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>💡 Unser Anspruch</h3>
-      <p style="font-size:14px;color:var(--muted);line-height:1.6;">
-        Wir haben intensiv an der Lokalisierung und Kategorisierung des Worterbuchs gearbeitet.
-        Unser Ziel: nicht nur die Fachsprachprufung bestehen, sondern einen <strong style="color:var(--teal)">effektiven Einstieg in den klinischen Alltag</strong> ermoglichen.
-        Der Wortschatz deckt die wichtigsten Fachbegriffe fur den arztlichen Berufsalltag in Deutschland ab.
-      </p>
-    </div>
-
-    <div class="card" style="border-color: rgba(255,180,0,0.15); background: rgba(255,180,0,0.04);">
-      <h3 style="color:#f0c040;">⚠️ Hinweis</h3>
-      <p style="font-size:13px;color:var(--muted);line-height:1.7;">
-        Trotz sorgfaltiger Erstellung konnen wir keine Garantie fur die Vollstandigkeit
-        oder Fehlerfreiheit aller Eintrage ubernehmen. Wir garantieren nicht, dass alle Begriffe
-        in jeder Arztekammer / jedem Bundesland gepruft werden. Die App dient als Lernhilfe
-        und ersetzt keine offizielle Fachliteratur. Bei Fehlern oder Verbesserungsvorschlagen
-        kontaktieren Sie uns bitte.
-      </p>
-    </div>
-
-    <div class="btn-row">
-      <a href="#" class="btn btn-primary">App Store — bald</a>
-      <a href="#" class="btn btn-ghost">Google Play — bald</a>
-    </div>
-
-    <div class="contact">
-      <a href="mailto:germanmoveeducation@gmail.com">germanmoveeducation@gmail.com</a>
-    </div>
-
+    <div class="footer-copy">© 2026 GermanMove Education</div>
   </div>
+</footer>
 
-  <div class="footer">
-    <div>&copy; 2026 GermanMove Terms</div>
-  </div>
+<script>
+const T={
+de:{title:'MedTerms — Medizinische Fachbegriffe meistern',hero:'Medizinische Fachbegriffe meistern',lead:'2934 Begriffe mit Karteikarten, Lückentexten, Audio und 5 Lernmodi — speziell für die Fachsprachprüfung.',cta:'App öffnen',home:'Start',privacy:'Privacy',terms:'Terms',support:'Support',sterms:'Begriffe',saudio:'Audio-Dateien',smodes:'Lernmodi',slangs:'Sprachen UI',f1t:'Karteikarten',f1:'Lat–De–Pat mit Definitionen und klinischen Beispielen.',f2t:'Audio',f2:'17.604 Dateien mit zwei Stimmen (männlich & weiblich).',f3t:'Bundesland-Filter',f3:'Gezielte Vorbereitung für dein Bundesland — 16 Regionen.',f4t:'5 Spielmodi',f4:'Flashcards, Quiz, Cloze, Matching und Daily Challenge.',ctt:'Bereit für die Fachsprachprüfung?',cts:'Lade MedTerms herunter und starte noch heute.',tag:'Medizinische Fachbegriffe meistern'},
+en:{title:'MedTerms — Master medical terminology',hero:'Master medical terminology',lead:'2934 terms with flashcards, cloze tests, audio and 5 learning modes — designed for the Fachsprachprüfung exam.',cta:'Open App',home:'Home',privacy:'Privacy',terms:'Terms',support:'Support',sterms:'Terms',saudio:'Audio files',smodes:'Game modes',slangs:'UI languages',f1t:'Flashcards',f1:'Latin–German–Patient-language with definitions and clinical examples.',f2t:'Audio',f2:'17,604 files with two voices (male & female).',f3t:'State filter',f3:'Targeted preparation for your German state — 16 regions.',f4t:'5 Game modes',f4:'Flashcards, Quiz, Cloze, Matching and Daily Challenge.',ctt:'Ready for the Fachsprachprüfung?',cts:'Download MedTerms and start today.',tag:'Master medical terminology'},
+uk:{title:'MedTerms — Медична термінологія',hero:'Опануйте медичну термінологію',lead:'2934 терміни з картками, клозе-тестами, аудіо та 5 ігровими режимами — спеціально для Fachsprachprüfung.',cta:'Відкрити додаток',home:'Головна',privacy:'Конфіденційність',terms:'Умови',support:'Підтримка',sterms:'Термінів',saudio:'Аудіо-файлів',smodes:'Ігрових режимів',slangs:'Мов UI',f1t:'Картки',f1:'Латина–німецька–мова пацієнта з визначеннями та клінічними прикладами.',f2t:'Аудіо',f2:'17 604 файли з двома голосами (чоловічий і жіночий).',f3t:'Фільтр за землею',f3:'Цілеспрямована підготовка під вашу землю — 16 регіонів.',f4t:'5 ігрових режимів',f4:'Картки, тести, клозе, матчинг і щоденний челендж.',ctt:'Готуєтесь до Fachsprachprüfung?',cts:'Завантажте MedTerms і почніть сьогодні.',tag:'Опануйте медичну термінологію'},
+ru:{title:'MedTerms — Медицинская терминология',hero:'Освойте медицинскую терминологию',lead:'2934 термина с карточками, клозе-тестами, аудио и 5 игровыми режимами — специально для Fachsprachprüfung.',cta:'Открыть приложение',home:'Главная',privacy:'Конфиденциальность',terms:'Условия',support:'Поддержка',sterms:'Терминов',saudio:'Аудио-файлов',smodes:'Игровых режимов',slangs:'Языков UI',f1t:'Карточки',f1:'Латынь–немецкий–язык пациента с определениями и клиническими примерами.',f2t:'Аудио',f2:'17 604 файла с двумя голосами (мужской и женский).',f3t:'Фильтр по земле',f3:'Целенаправленная подготовка под вашу землю — 16 регионов.',f4t:'5 игровых режимов',f4:'Карточки, тесты, клозе, матчинг и ежедневный челлендж.',ctt:'Готовитесь к Fachsprachprüfung?',cts:'Скачайте MedTerms и начните сегодня.',tag:'Освойте медицинскую терминологию'},
+tr:{title:'MedTerms — Tıbbi terminoloji',hero:'Tıbbi terminolojide ustalaşın',lead:'2934 terim, flashcard, boşluk doldurma, ses ve 5 oyun modu — Fachsprachprüfung için özel olarak.',cta:'Uygulamayı aç',home:'Ana sayfa',privacy:'Gizlilik',terms:'Şartlar',support:'Destek',sterms:'Terim',saudio:'Ses dosyası',smodes:'Oyun modu',slangs:'UI dili',f1t:'Flashcard',f1:'Latince–Almanca–Hasta dili, tanımlar ve klinik örneklerle.',f2t:'Ses',f2:'17.604 dosya, iki ses (erkek ve kadın).',f3t:'Eyalet filtresi',f3:'Eyaletinize yönelik hedefli hazırlık — 16 bölge.',f4t:'5 Oyun modu',f4:'Flashcard, Quiz, Cloze, Matching ve Günlük Görev.',ctt:'Fachsprachprüfung için hazır mısınız?',cts:'MedTerms\'i indirin ve bugün başlayın.',tag:'Tıbbi terminolojide ustalaşın'},
+ar:{title:'MedTerms — المصطلحات الطبية',hero:'أتقن المصطلحات الطبية',lead:'2934 مصطلحًا مع البطاقات التعليمية واختبارات الملء والصوت و 5 أوضاع تعلم — مصمم خصيصًا لـ Fachsprachprüfung.',cta:'افتح التطبيق',home:'الرئيسية',privacy:'الخصوصية',terms:'الشروط',support:'الدعم',sterms:'مصطلح',saudio:'ملف صوتي',smodes:'أوضاع الألعاب',slangs:'لغات الواجهة',f1t:'البطاقات التعليمية',f1:'اللاتينية–الألمانية–لغة المريض مع التعريفات والأمثلة السريرية.',f2t:'الصوت',f2:'17,604 ملف بصوتين (ذكر وأنثى).',f3t:'فلتر الولاية',f3:'تحضير موجه لولايتك — 16 منطقة.',f4t:'5 أوضاع لعب',f4:'البطاقات، الاختبارات، الملء، المطابقة والتحدي اليومي.',ctt:'هل أنت جاهز لـ Fachsprachprüfung؟',cts:'حمّل MedTerms وابدأ اليوم.',tag:'أتقن المصطلحات الطبية'},
+fr:{title:'MedTerms — Terminologie médicale',hero:'Maîtrisez la terminologie médicale',lead:'2934 termes avec cartes mémoire, textes à trous, audio et 5 modes d\'apprentissage — spécialement pour le Fachsprachprüfung.',cta:'Ouvrir l\'app',home:'Accueil',privacy:'Confidentialité',terms:'Conditions',support:'Support',sterms:'Termes',saudio:'Fichiers audio',smodes:'Modes de jeu',slangs:'Langues UI',f1t:'Cartes mémoire',f1:'Latin–Allemand–Langue du patient avec définitions et exemples cliniques.',f2t:'Audio',f2:'17 604 fichiers avec deux voix (homme et femme).',f3t:'Filtre par Land',f3:'Préparation ciblée pour votre Land — 16 régions.',f4t:'5 modes de jeu',f4:'Cartes, Quiz, Cloze, Matching et Défi quotidien.',ctt:'Prêt pour le Fachsprachprüfung ?',cts:'Téléchargez MedTerms et commencez aujourd\'hui.',tag:'Maîtrisez la terminologie médicale'},
+es:{title:'MedTerms — Terminología médica',hero:'Domina la terminología médica',lead:'2934 términos con tarjetas de memoria, ejercicios de cloze, audio y 5 modos de aprendizaje — especialmente para el Fachsprachprüfung.',cta:'Abrir app',home:'Inicio',privacy:'Privacidad',terms:'Términos',support:'Soporte',sterms:'Términos',saudio:'Archivos audio',smodes:'Modos de juego',slangs:'Idiomas UI',f1t:'Tarjetas',f1:'Latín–Alemán–Lengua del paciente con definiciones y ejemplos clínicos.',f2t:'Audio',f2:'17.604 archivos con dos voces (masculina y femenina).',f3t:'Filtro por estado',f3:'Preparación dirigida para tu estado — 16 regiones.',f4t:'5 modos de juego',f4:'Tarjetas, Quiz, Cloze, Matching y Reto diario.',ctt:'¿Listo para el Fachsprachprüfung?',cts:'Descarga MedTerms y empieza hoy.',tag:'Domina la terminología médica'},
+pl:{title:'MedTerms — Terminologia medyczna',hero:'Opanuj terminologię medyczną',lead:'2934 terminy z fiszkami, ćwiczeniami cloze, audio i 5 trybami nauki — specjalnie dla Fachsprachprüfung.',cta:'Otwórz aplikację',home:'Start',privacy:'Prywatność',terms:'Warunki',support:'Wsparcie',sterms:'Terminów',saudio:'Plików audio',smodes:'Trybów gry',slangs:'Języków UI',f1t:'Fiszki',f1:'Łacina–Niemiecki–Język pacjenta z definicjami i przykładami klinicznymi.',f2t:'Audio',f2:'17 604 pliki z dwoma głosami (męskim i żeńskim).',f3t:'Filtr landu',f3:'Ukierunkowane przygotowanie dla twojego landu — 16 regionów.',f4t:'5 trybów gry',f4:'Fiszki, Quiz, Cloze, Matching i Codzienne wyzwanie.',ctt:'Gotowy na Fachsprachprüfung?',cts:'Pobierz MedTerms i zacznij dziś.',tag:'Opanuj terminologię medyczną'},
+el:{title:'MedTerms — Ιατρική ορολογία',hero:'Κατακτήστε την ιατρική ορολογία',lead:'2934 όροι με κάρτες, ασκήσεις cloze, ήχο και 5 λειτουργίες εκμάθησης — ειδικά για το Fachsprachprüfung.',cta:'Άνοιγμα εφαρμογής',home:'Αρχική',privacy:'Απόρρητο',terms:'Όροι',support:'Υποστήριξη',sterms:'Όροι',saudio:'Αρχεία ήχου',smodes:'Λειτουργίες',slangs:'Γλώσσες UI',f1t:'Κάρτες',f1:'Λατινικά–Γερμανικά–Γλώσσα ασθενούς με ορισμούς και κλινικά παραδείγματα.',f2t:'Ήχος',f2:'17.604 αρχεία με δύο φωνές (ανδρική και γυναικεία).',f3t:'Φίλτρο Land',f3:'Στοχευμένη προετοιμασία για το Land σας — 16 περιοχές.',f4t:'5 λειτουργίες',f4:'Κάρτες, Quiz, Cloze, Matching και Ημερήσια πρόκληση.',ctt:'Έτοιμοι για το Fachsprachprüfung;',cts:'Κατεβάστε το MedTerms και ξεκινήστε σήμερα.',tag:'Κατακτήστε την ιατρική ορολογία'},
+ro:{title:'MedTerms — Terminologie medicală',hero:'Stăpâniți terminologia medicală',lead:'2934 de termeni cu cartonașe, exerciții cloze, audio și 5 moduri de învățare — special pentru Fachsprachprüfung.',cta:'Deschide aplicația',home:'Acasă',privacy:'Confidențialitate',terms:'Termeni',support:'Asistență',sterms:'Termeni',saudio:'Fișiere audio',smodes:'Moduri de joc',slangs:'Limbi UI',f1t:'Cartonașe',f1:'Latină–Germană–Limbajul pacientului cu definiții și exemple clinice.',f2t:'Audio',f2:'17.604 fișiere cu două voci (masculină și feminină).',f3t:'Filtru Land',f3:'Pregătire țintită pentru Land-ul dvs. — 16 regiuni.',f4t:'5 moduri de joc',f4:'Cartonașe, Quiz, Cloze, Matching și Provocarea zilnică.',ctt:'Gata pentru Fachsprachprüfung?',cts:'Descarcă MedTerms și începe astăzi.',tag:'Stăpâniți terminologia medicală'}
+};
 
+function normalizeLang(raw){
+  if(raw==null||raw==='')return null;
+  var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);
+  return T[c]?c:null;
+}
+function getUrlLang(){
+  var q=new URLSearchParams(window.location.search);
+  return q.get('lang')||'';
+}
+var lc=normalizeLang(getUrlLang())||normalizeLang((navigator.language||'de').slice(0,2).toLowerCase())||'de';
+var tr=T[lc]||T.de;
+
+document.documentElement.setAttribute('lang',lc);
+document.documentElement.setAttribute('dir',lc==='ar'?'rtl':'ltr');
+document.body.style.direction=(lc==='ar'?'rtl':'ltr');
+document.title=tr.title;
+
+function setText(id,text){var el=document.getElementById(id);if(el)el.textContent=text}
+setText('hero-title',tr.hero);
+setText('hero-lead',tr.lead);
+setText('hero-cta-text',tr.cta);
+setText('nav-home',tr.home);
+setText('nav-privacy',tr.privacy);
+setText('nav-terms',tr.terms);
+setText('nav-support',tr.support);
+setText('stat-terms',tr.sterms);
+setText('stat-audio',tr.saudio);
+setText('stat-modes',tr.smodes);
+setText('stat-langs',tr.slangs);
+setText('f1-title',tr.f1t);setText('f1-text',tr.f1);
+setText('f2-title',tr.f2t);setText('f2-text',tr.f2);
+setText('f3-title',tr.f3t);setText('f3-text',tr.f3);
+setText('f4-title',tr.f4t);setText('f4-text',tr.f4);
+setText('cta-title',tr.ctt);setText('cta-subtitle',tr.cts);
+setText('cta-btn',tr.cta);
+setText('f-tagline','· '+tr.tag);
+setText('f-privacy',tr.privacy);
+setText('f-terms',tr.terms);
+setText('f-support',tr.support);
+</script>
 </body>
 </html>
