@@ -10,14 +10,17 @@
 html{scroll-behavior:smooth}
 body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC;min-height:100vh;color:#242833;line-height:1.65}
 
-.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(17,24,39,.05);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
-.nav .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav .brand-logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;box-shadow:0 4px 12px rgba(149,134,253,.25)}
-.nav .brand-name{font-weight:700;color:#242833;font-size:17px;letter-spacing:.3px}
-.nav-links{display:flex;gap:4px}
-.nav-links a{color:#6B7280;text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:10px;transition:color .15s,background .15s}
-.nav-links a:hover,.nav-links a.active{color:#242833;background:#EEF2FA}
-.nav-links a.active{color:#9586FD}
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(17,24,39,.05);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px;box-shadow:0 4px 12px rgba(149,134,253,.25)}
+.brand-name{font-weight:700;color:#242833;font-size:16px;letter-spacing:.3px}
+.nav-right{display:flex;align-items:center;gap:4px;flex:1;justify-content:flex-end;min-width:0}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:#6B7280;text-decoration:none;font-size:13px;font-weight:500;padding:7px 11px;border-radius:8px;transition:color .15s,background .15s;white-space:nowrap;flex-shrink:0}
+.nav-links a:hover,.nav-links a.active{color:#9586FD;background:#EEF2FA}
+.lang-picker{background:#fff;border:1px solid #E4E9F5;border-radius:8px;padding:6px 8px;font-family:inherit;font-size:12px;color:#4B5563;cursor:pointer;font-weight:500;outline:none;transition:border-color .15s;flex-shrink:0}
+.lang-picker:hover,.lang-picker:focus{border-color:#9586FD}
 
 .hero{padding:48px 24px 24px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(149,134,253,.12),transparent 60%);pointer-events:none;z-index:0}
@@ -47,20 +50,15 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:32px 24px 24px;text-
 .footer-links a:hover{color:#7D9BFF}
 .footer-copy{font-size:12px;color:#959FBA}
 
-@media (max-width:768px){
-  .nav{padding:12px 16px}
-  .nav .brand-name{font-size:15px}
-  .nav-links a{font-size:13px;padding:6px 10px}
-  .hero{padding:36px 20px 20px}
-  .hero h1{font-size:26px}
-  .container{padding:8px 16px 48px}
-  .section{padding:22px 18px}
+@media (max-width:640px){
+  .nav{padding:10px 14px}
+  .brand-name{display:none}
+  .nav-links a{font-size:12px;padding:6px 9px}
+  .hero{padding:32px 18px 18px}
+  .hero h1{font-size:24px}
+  .container{padding:8px 14px 40px}
+  .section{padding:20px 16px}
   .section h2{font-size:15px}
-}
-@media (max-width:480px){
-  .nav-links{gap:0}
-  .nav-links a{padding:6px 8px;font-size:12px}
-  .hero h1{font-size:22px}
 }
 </style>
 </head>
@@ -71,11 +69,16 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:32px 24px 24px;text-
     <div class="brand-logo">M</div>
     <div class="brand-name">MedTerms</div>
   </a>
-  <div class="nav-links">
-    <a href="/" id="nav-home">Start</a>
-    <a href="/privacy" class="active" id="nav-privacy">Privacy</a>
-    <a href="/terms" id="nav-terms">Terms</a>
-    <a href="/support" id="nav-support">Support</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="/" id="nav-home">Start</a>
+      <a href="/privacy" class="active" id="nav-privacy">Privacy</a>
+      <a href="/terms" id="nav-terms">Terms</a>
+      <a href="/support" id="nav-support">Support</a>
+    </div>
+    <select class="lang-picker" id="lang-picker" aria-label="Language">
+      <option value="de">DE</option><option value="en">EN</option><option value="uk">UK</option><option value="ru">RU</option><option value="tr">TR</option><option value="ar">AR</option><option value="fr">FR</option><option value="es">ES</option><option value="pl">PL</option><option value="el">EL</option><option value="ro">RO</option>
+    </select>
   </div>
 </nav>
 
@@ -91,7 +94,7 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:32px 24px 24px;text-
   <div class="section">
     <h2 id="s1-title">1. Verantwortlicher</h2>
     <p id="s1-p1">Verantwortlich für die Verarbeitung personenbezogener Daten im Rahmen der MedTerms App:</p>
-    <p><strong>Oleg Kuntyi</strong><br>Max-Steenbeckstraße 19<br>07745 Jena, Deutschland</p>
+    <p><strong>GermanMove Education</strong></p>
     <p><span id="s1-email">E-Mail:</span> <a href="mailto:germanmoveeducation@gmail.com">germanmoveeducation@gmail.com</a></p>
   </div>
 
@@ -283,34 +286,33 @@ s8t:'8. Contact',s8p1:'Pentru întrebări despre protecția datelor:'
 }
 };
 
-function normalizeLang(raw){
-  if(raw==null||raw==='')return null;
-  var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);
-  return T[c]?c:null;
-}
-function getUrlLang(){
-  return new URLSearchParams(window.location.search).get('lang')||'';
-}
-var lc=normalizeLang(getUrlLang())||normalizeLang((navigator.language||'de').slice(0,2).toLowerCase())||'de';
-var tr=T[lc]||T.de;
+function normalizeLang(raw){if(raw==null||raw==='')return null;var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);return T[c]?c:null}
+function getUrlLang(){return new URLSearchParams(window.location.search).get('lang')||''}
+var savedLang=null;try{savedLang=localStorage.getItem('medterms_lang')}catch(e){}
+var lc=normalizeLang(getUrlLang())||normalizeLang(savedLang)||normalizeLang((navigator.language||'de').slice(0,2).toLowerCase())||'de';
 
-document.documentElement.setAttribute('lang',lc);
-document.documentElement.setAttribute('dir',lc==='ar'?'rtl':'ltr');
-document.body.style.direction=(lc==='ar'?'rtl':'ltr');
-document.title=tr.title;
-
-function setText(id,text){var el=document.getElementById(id);if(el)el.textContent=text}
-setText('nav-home',tr.home);setText('nav-privacy',tr.privacy);setText('nav-terms',tr.terms);setText('nav-support',tr.support);
-setText('page-title',tr.page);setText('page-date',tr.date);
-setText('s1-title',tr.s1t);setText('s1-p1',tr.s1p1);setText('s1-email',tr.s1e);
-setText('s2-title',tr.s2t);setText('s2-p1',tr.s2p1);setText('s2-l1',tr.s2l1);setText('s2-l2',tr.s2l2);setText('s2-l3',tr.s2l3);setText('s2-l4',tr.s2l4);
-setText('s3-title',tr.s3t);setText('s3-l1',tr.s3l1);setText('s3-l2',tr.s3l2);setText('s3-l3',tr.s3l3);setText('s3-l4',tr.s3l4);
-setText('s4-title',tr.s4t);setText('s4-l1',tr.s4l1);setText('s4-l2',tr.s4l2);setText('s4-l3',tr.s4l3);setText('s4-l4',tr.s4l4);setText('s4-l5',tr.s4l5);setText('s4-l6',tr.s4l6);
-setText('s5-title',tr.s5t);setText('s5-p1',tr.s5p1);
-setText('s6-title',tr.s6t);setText('s6-l1',tr.s6l1);setText('s6-l2',tr.s6l2);setText('s6-l3',tr.s6l3);setText('s6-l4',tr.s6l4);setText('s6-l5',tr.s6l5);
-setText('s7-title',tr.s7t);setText('s7-p1',tr.s7p1);
-setText('s8-title',tr.s8t);setText('s8-p1',tr.s8p1);
-setText('f-tagline',tr.tag);setText('f-privacy',tr.privacy);setText('f-terms',tr.terms);setText('f-support',tr.support);
+function applyLang(code){
+  var tr=T[code]||T.de;
+  document.documentElement.setAttribute('lang',code);
+  document.documentElement.setAttribute('dir',code==='ar'?'rtl':'ltr');
+  document.body.style.direction=(code==='ar'?'rtl':'ltr');
+  document.title=tr.title;
+  function s(id,t){var el=document.getElementById(id);if(el)el.textContent=t}
+  s('nav-home',tr.home);s('nav-privacy',tr.privacy);s('nav-terms',tr.terms);s('nav-support',tr.support);
+  s('page-title',tr.page);s('page-date',tr.date);
+  s('s1-title',tr.s1t);s('s1-p1',tr.s1p1);s('s1-email',tr.s1e);
+  s('s2-title',tr.s2t);s('s2-p1',tr.s2p1);s('s2-l1',tr.s2l1);s('s2-l2',tr.s2l2);s('s2-l3',tr.s2l3);s('s2-l4',tr.s2l4);
+  s('s3-title',tr.s3t);s('s3-l1',tr.s3l1);s('s3-l2',tr.s3l2);s('s3-l3',tr.s3l3);s('s3-l4',tr.s3l4);
+  s('s4-title',tr.s4t);s('s4-l1',tr.s4l1);s('s4-l2',tr.s4l2);s('s4-l3',tr.s4l3);s('s4-l4',tr.s4l4);s('s4-l5',tr.s4l5);s('s4-l6',tr.s4l6);
+  s('s5-title',tr.s5t);s('s5-p1',tr.s5p1);
+  s('s6-title',tr.s6t);s('s6-l1',tr.s6l1);s('s6-l2',tr.s6l2);s('s6-l3',tr.s6l3);s('s6-l4',tr.s6l4);s('s6-l5',tr.s6l5);
+  s('s7-title',tr.s7t);s('s7-p1',tr.s7p1);
+  s('s8-title',tr.s8t);s('s8-p1',tr.s8p1);
+  s('f-tagline',tr.tag);s('f-privacy',tr.privacy);s('f-terms',tr.terms);s('f-support',tr.support);
+  var p=document.getElementById('lang-picker');if(p)p.value=code;
+}
+applyLang(lc);
+document.getElementById('lang-picker').addEventListener('change',function(e){var c=e.target.value;try{localStorage.setItem('medterms_lang',c)}catch(err){}applyLang(c)});
 </script>
 </body>
 </html>

@@ -8,8 +8,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:24px;color:#242833;line-height:1.6}
-.card{background:#fff;border-radius:20px;max-width:560px;width:100%;box-shadow:0 8px 32px rgba(17,24,39,.06);overflow:hidden;margin:24px 0}
+body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC;min-height:100vh;color:#242833;line-height:1.6}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(17,24,39,.05);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px;box-shadow:0 4px 12px rgba(149,134,253,.25)}
+.brand-name{font-weight:700;color:#242833;font-size:16px;letter-spacing:.3px}
+.nav-right{display:flex;align-items:center;gap:4px;flex:1;justify-content:flex-end;min-width:0}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:#6B7280;text-decoration:none;font-size:13px;font-weight:500;padding:7px 11px;border-radius:8px;transition:color .15s,background .15s;white-space:nowrap;flex-shrink:0}
+.nav-links a:hover,.nav-links a.active{color:#9586FD;background:#EEF2FA}
+.lang-picker{background:#fff;border:1px solid #E4E9F5;border-radius:8px;padding:6px 8px;font-family:inherit;font-size:12px;color:#4B5563;cursor:pointer;font-weight:500;outline:none;flex-shrink:0}
+.lang-picker:hover,.lang-picker:focus{border-color:#9586FD}
+
+.wrap{display:flex;justify-content:center;padding:24px}
+.card{background:#fff;border-radius:20px;max-width:560px;width:100%;box-shadow:0 8px 32px rgba(17,24,39,.06);overflow:hidden;margin:16px 0}
 .header{background:linear-gradient(135deg,#78B5FA,#9586FD);padding:40px 28px 28px;text-align:center;position:relative;overflow:hidden}
 .header::before{content:"";position:absolute;top:-50%;right:-20%;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,.2),transparent 70%);border-radius:50%}
 .header::after{content:"";position:absolute;bottom:-40%;left:-15%;width:180px;height:180px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%}
@@ -49,8 +63,12 @@ body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC
 .footer a{color:#9586FD;text-decoration:none;margin:0 8px}
 .footer a:hover{text-decoration:underline}
 
-@media (max-width:480px){
-  .card{border-radius:16px;margin:8px 0}
+@media (max-width:640px){
+  .nav{padding:10px 14px}
+  .brand-name{display:none}
+  .nav-links a{font-size:12px;padding:6px 9px}
+  .wrap{padding:16px}
+  .card{border-radius:16px;margin:0}
   .header{padding:32px 20px 24px}
   .header h1{font-size:24px}
   .hero{padding:28px 20px 16px}
@@ -69,6 +87,25 @@ body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC
   </defs>
 </svg>
 
+<nav class="nav">
+  <a href="/" class="brand">
+    <div class="brand-logo">M</div>
+    <div class="brand-name">MedTerms</div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="/" id="nav-home">Start</a>
+      <a href="/privacy" id="nav-privacy">Privacy</a>
+      <a href="/terms" id="nav-terms">Terms</a>
+      <a href="/support" class="active" id="nav-support">Support</a>
+    </div>
+    <select class="lang-picker" id="lang-picker" aria-label="Language">
+      <option value="de">DE</option><option value="en">EN</option><option value="uk">UK</option><option value="ru">RU</option><option value="tr">TR</option><option value="ar">AR</option><option value="fr">FR</option><option value="es">ES</option><option value="pl">PL</option><option value="el">EL</option><option value="ro">RO</option>
+    </select>
+  </div>
+</nav>
+
+<div class="wrap">
 <div class="card">
   <div class="header">
     <h1>MedTerms</h1>
@@ -132,10 +169,11 @@ body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC
   <div class="footer">
     <p>
       © 2026 GermanMove Education ·
-      <a href="/privacy">Privacy</a> ·
-      <a href="/terms">Terms</a>
+      <a href="/privacy" id="f-privacy">Privacy</a> ·
+      <a href="/terms" id="f-terms">Terms</a>
     </p>
   </div>
+</div>
 </div>
 
 <script>
@@ -219,42 +257,30 @@ q5:'În ce limbi este disponibil MedTerms?',a5:'Interfața este disponibilă în
 }
 };
 
-function normalizeLang(raw){
-  if(raw==null||raw==='')return null;
-  var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);
-  return T[c]?c:null;
-}
-function getUrlLang(){
-  var q=new URLSearchParams(window.location.search);
-  var h=new URLSearchParams(window.location.hash.substring(1));
-  return q.get('lang')||h.get('lang')||'';
-}
-var navLangCode=(navigator.language||'de').slice(0,2).toLowerCase();
-var lc=normalizeLang(getUrlLang())||normalizeLang(navLangCode)||'de';
-var tr=T[lc]||T.de;
+const NAV={de:{home:'Start',privacy:'Privacy',terms:'Terms',support:'Support'},en:{home:'Home',privacy:'Privacy',terms:'Terms',support:'Support'},uk:{home:'Головна',privacy:'Конфіденційність',terms:'Умови',support:'Підтримка'},ru:{home:'Главная',privacy:'Конфиденциальность',terms:'Условия',support:'Поддержка'},tr:{home:'Ana sayfa',privacy:'Gizlilik',terms:'Şartlar',support:'Destek'},ar:{home:'الرئيسية',privacy:'الخصوصية',terms:'الشروط',support:'الدعم'},fr:{home:'Accueil',privacy:'Confidentialité',terms:'Conditions',support:'Support'},es:{home:'Inicio',privacy:'Privacidad',terms:'Términos',support:'Soporte'},pl:{home:'Start',privacy:'Prywatność',terms:'Warunki',support:'Wsparcie'},el:{home:'Αρχική',privacy:'Απόρρητο',terms:'Όροι',support:'Υποστήριξη'},ro:{home:'Acasă',privacy:'Confidențialitate',terms:'Termeni',support:'Asistență'}};
 
-document.documentElement.setAttribute('lang',lc);
-document.documentElement.setAttribute('dir',lc==='ar'?'rtl':'ltr');
-document.body.style.direction=(lc==='ar'?'rtl':'ltr');
-document.title=tr.pageTitle;
-document.getElementById('header-tagline').textContent=tr.tagline;
-document.getElementById('hero-title').textContent=tr.hero;
-document.getElementById('hero-subtitle').textContent=tr.heroSub;
-document.getElementById('contact-label').textContent=tr.label;
-document.getElementById('response-time').textContent=tr.response;
-document.getElementById('faq-title').textContent=tr.faqTitle;
-document.getElementById('open-app-btn').textContent=tr.btn;
+function normalizeLang(raw){if(raw==null||raw==='')return null;var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);return T[c]?c:null}
+function getUrlLang(){var q=new URLSearchParams(window.location.search);var h=new URLSearchParams(window.location.hash.substring(1));return q.get('lang')||h.get('lang')||''}
+var savedLang=null;try{savedLang=localStorage.getItem('medterms_lang')}catch(e){}
+var lc=normalizeLang(getUrlLang())||normalizeLang(savedLang)||normalizeLang((navigator.language||'de').slice(0,2).toLowerCase())||'de';
 
-document.getElementById('faq1-q').textContent=tr.q1;
-document.getElementById('faq1-a').textContent=tr.a1;
-document.getElementById('faq2-q').textContent=tr.q2;
-document.getElementById('faq2-a').textContent=tr.a2;
-document.getElementById('faq3-q').textContent=tr.q3;
-document.getElementById('faq3-a').textContent=tr.a3;
-document.getElementById('faq4-q').textContent=tr.q4;
-document.getElementById('faq4-a').textContent=tr.a4;
-document.getElementById('faq5-q').textContent=tr.q5;
-document.getElementById('faq5-a').textContent=tr.a5;
+function applyLang(code){
+  var tr=T[code]||T.de;
+  var nav=NAV[code]||NAV.de;
+  document.documentElement.setAttribute('lang',code);
+  document.documentElement.setAttribute('dir',code==='ar'?'rtl':'ltr');
+  document.body.style.direction=(code==='ar'?'rtl':'ltr');
+  document.title=tr.pageTitle;
+  function s(id,t){var el=document.getElementById(id);if(el)el.textContent=t}
+  s('header-tagline',tr.tagline);s('hero-title',tr.hero);s('hero-subtitle',tr.heroSub);
+  s('contact-label',tr.label);s('response-time',tr.response);s('faq-title',tr.faqTitle);s('open-app-btn',tr.btn);
+  s('faq1-q',tr.q1);s('faq1-a',tr.a1);s('faq2-q',tr.q2);s('faq2-a',tr.a2);s('faq3-q',tr.q3);s('faq3-a',tr.a3);s('faq4-q',tr.q4);s('faq4-a',tr.a4);s('faq5-q',tr.q5);s('faq5-a',tr.a5);
+  s('nav-home',nav.home);s('nav-privacy',nav.privacy);s('nav-terms',nav.terms);s('nav-support',nav.support);
+  s('f-privacy',nav.privacy);s('f-terms',nav.terms);
+  var p=document.getElementById('lang-picker');if(p)p.value=code;
+}
+applyLang(lc);
+document.getElementById('lang-picker').addEventListener('change',function(e){var c=e.target.value;try{localStorage.setItem('medterms_lang',c)}catch(err){}applyLang(c)});
 </script>
 </body>
 </html>

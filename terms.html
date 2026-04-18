@@ -1,226 +1,313 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nutzungsbedingungen — GermanMove Terms</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --teal: #4eb7a7;
-      --teal-dark: #2a7c6f;
-      --ok-2: #78e08f;
-      --text: #f3f6f9;
-      --muted: rgba(243, 246, 249, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-strong: rgba(255, 255, 255, 0.08);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0d1117;
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    .bg-mesh { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
-    .bg-mesh .orb {
-      position: absolute; border-radius: 50%;
-      filter: blur(80px); opacity: 0.35;
-      animation: float 20s ease-in-out infinite;
-    }
-    .bg-mesh .orb:nth-child(1) {
-      width: 450px; height: 450px;
-      background: radial-gradient(circle, #2a7c6f, transparent 70%);
-      top: -10%; left: -10%; animation-duration: 25s;
-    }
-    .bg-mesh .orb:nth-child(2) {
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, #1a5276, transparent 70%);
-      bottom: 10%; right: -10%; animation-duration: 22s; animation-delay: -7s;
-    }
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(30px, -40px) scale(1.05); }
-      50% { transform: translate(-20px, 20px) scale(0.95); }
-      75% { transform: translate(15px, 35px) scale(1.02); }
-    }
-    .header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(78, 183, 167, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 0 30px; height: 56px;
-      display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .header .logo {
-      font-size: 20px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      animation: glow 4s infinite alternate;
-      color: white; text-decoration: none;
-    }
-    .header nav { display: flex; gap: 6px; }
-    .header nav a {
-      color: rgba(255,255,255,0.85); text-decoration: none;
-      font-size: 13px; font-weight: 500;
-      padding: 6px 14px; border-radius: 8px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .header nav a:hover, .header nav a.active {
-      background: rgba(255,255,255,0.15); color: #fff;
-    }
-    @keyframes glow {
-      0% { text-shadow: none; }
-      50% { text-shadow: 0 0 3px rgba(255,255,255,0.5); }
-      100% { text-shadow: 0 0 6px #fff, 0 0 12px rgba(78,183,167,0.5); }
-    }
-    .container {
-      position: relative; z-index: 1;
-      max-width: 680px; margin: 0 auto;
-      padding: 36px 20px 60px;
-    }
-    h1 {
-      font-size: 24px; font-weight: 700; margin-bottom: 6px;
-      background: linear-gradient(135deg, var(--teal), var(--ok-2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .date { font-size: 12px; color: var(--muted); margin-bottom: 28px; }
-    .section {
-      background: var(--glass-strong);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 22px 20px;
-      margin-bottom: 14px;
-      backdrop-filter: blur(10px);
-      transition: border-color 0.2s;
-    }
-    .section:hover { border-color: rgba(78,183,167,0.2); }
-    .section h2 {
-      font-size: 15px; font-weight: 600;
-      color: var(--teal); margin-bottom: 10px;
-    }
-    .section p, .section li {
-      font-size: 13px; line-height: 1.7;
-      color: var(--muted); text-align: left;
-    }
-    .section ul { list-style: none; padding: 0; margin-top: 8px; }
-    .section li { padding: 3px 0 3px 18px; position: relative; }
-    .section li::before {
-      content: ''; position: absolute; left: 0; top: 10px;
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--teal); opacity: 0.6;
-    }
-    a { color: var(--teal); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .footer {
-      position: relative; z-index: 1;
-      text-align: center; padding: 24px 20px;
-      color: var(--muted); font-size: 12px;
-      border-top: 1px solid var(--glass-border);
-    }
-    @media (max-width: 480px) {
-      .header { padding: 0 16px; height: 52px; }
-      .header .logo { font-size: 16px; letter-spacing: 1px; }
-      .header nav a { font-size: 11px; padding: 5px 10px; }
-      .container { padding: 24px 16px 40px; }
-      .section { padding: 18px 16px; }
-      h1 { font-size: 20px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MedTerms — Nutzungsbedingungen</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC;min-height:100vh;color:#242833;line-height:1.65}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(17,24,39,.05);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px;box-shadow:0 4px 12px rgba(149,134,253,.25)}
+.brand-name{font-weight:700;color:#242833;font-size:16px;letter-spacing:.3px}
+.nav-right{display:flex;align-items:center;gap:4px;flex:1;justify-content:flex-end;min-width:0}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:#6B7280;text-decoration:none;font-size:13px;font-weight:500;padding:7px 11px;border-radius:8px;transition:color .15s,background .15s;white-space:nowrap;flex-shrink:0}
+.nav-links a:hover,.nav-links a.active{color:#9586FD;background:#EEF2FA}
+.lang-picker{background:#fff;border:1px solid #E4E9F5;border-radius:8px;padding:6px 8px;font-family:inherit;font-size:12px;color:#4B5563;cursor:pointer;font-weight:500;outline:none;transition:border-color .15s;flex-shrink:0}
+.lang-picker:hover,.lang-picker:focus{border-color:#9586FD}
+
+.hero{padding:48px 24px 24px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(149,134,253,.12),transparent 60%);pointer-events:none;z-index:0}
+.hero-inner{position:relative;z-index:1}
+.hero h1{font-size:34px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px;background:linear-gradient(135deg,#78B5FA,#9586FD);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
+.hero .date{font-size:13px;color:#7E8494;font-weight:500}
+
+.container{max-width:720px;margin:0 auto;padding:12px 24px 60px}
+.section{background:#fff;border:1px solid #EEF0F9;border-radius:18px;padding:26px 24px;margin-bottom:14px;transition:transform .15s,box-shadow .15s}
+.section:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(17,24,39,.05)}
+.section h2{font-size:17px;font-weight:600;color:#242833;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section h2::before{content:"";width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#78B5FA,#9586FD);flex-shrink:0}
+.section p,.section li{font-size:14px;color:#4B5563;line-height:1.7}
+.section ul{list-style:none;padding:0;margin-top:6px}
+.section li{padding:4px 0 4px 22px;position:relative}
+.section li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#C5CAE0}
+.section a{color:#7D9BFF;text-decoration:none;font-weight:500}
+.section a:hover{text-decoration:underline}
+.section strong{color:#242833;font-weight:600}
+
+footer{background:#fff;border-top:1px solid #EEF0F9;padding:32px 24px 24px;text-align:center}
+.footer-inner{max-width:720px;margin:0 auto}
+.footer-brand{font-size:14px;color:#6B7280;margin-bottom:12px}
+.footer-brand strong{color:#242833;font-weight:600}
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.footer-links a{color:#9586FD;text-decoration:none;font-size:14px;font-weight:500}
+.footer-links a:hover{color:#7D9BFF}
+.footer-copy{font-size:12px;color:#959FBA}
+
+@media (max-width:640px){
+  .nav{padding:10px 14px}
+  .brand-name{display:none}
+  .nav-links a{font-size:12px;padding:6px 9px}
+  .hero{padding:32px 18px 18px}
+  .hero h1{font-size:24px}
+  .container{padding:8px 14px 40px}
+  .section{padding:20px 16px}
+  .section h2{font-size:15px}
+}
+</style>
 </head>
 <body>
-  <div class="bg-mesh"><div class="orb"></div><div class="orb"></div></div>
 
-  <div class="header">
-    <a href="index.html" class="logo">GermanMove Terms</a>
-    <nav>
-      <a href="index.html">Start</a>
-      <a href="privacy.html">Datenschutz</a>
-      <a href="terms.html" class="active">AGB</a>
-    </nav>
+<nav class="nav">
+  <a href="/" class="brand">
+    <div class="brand-logo">M</div>
+    <div class="brand-name">MedTerms</div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="/" id="nav-home">Start</a>
+      <a href="/privacy" id="nav-privacy">Privacy</a>
+      <a href="/terms" class="active" id="nav-terms">Terms</a>
+      <a href="/support" id="nav-support">Support</a>
+    </div>
+    <select class="lang-picker" id="lang-picker" aria-label="Language">
+      <option value="de">DE</option>
+      <option value="en">EN</option>
+      <option value="uk">UK</option>
+      <option value="ru">RU</option>
+      <option value="tr">TR</option>
+      <option value="ar">AR</option>
+      <option value="fr">FR</option>
+      <option value="es">ES</option>
+      <option value="pl">PL</option>
+      <option value="el">EL</option>
+      <option value="ro">RO</option>
+    </select>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1 id="page-title">Nutzungsbedingungen</h1>
+    <div class="date" id="page-date">Stand: April 2026</div>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="section">
+    <h2 id="s1-title">1. Geltungsbereich</h2>
+    <p id="s1-p1">Diese Nutzungsbedingungen gelten für die mobile App „MedTerms" und die Website medterms.app. Mit der Nutzung akzeptieren Sie diese Bedingungen.</p>
   </div>
 
-  <div class="container">
-    <h1>Nutzungsbedingungen</h1>
-    <div class="date">Stand: April 2026</div>
-
-    <div class="section">
-      <h2>1. Geltungsbereich</h2>
-      <p>
-        Diese Nutzungsbedingungen gelten fur die mobile App „GermanMove Terms".
-        Mit der Nutzung der App akzeptieren Sie diese Bedingungen.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>2. Leistungsbeschreibung</h2>
-      <p>
-        Die App bietet ein Lernwerkzeug fur medizinische Fachbegriffe zur Vorbereitung
-        auf die Fachsprachprufung (FSP) und den arztlichen Alltag in Deutschland.
-        Die Inhalte dienen ausschliesslich Lernzwecken und ersetzen keine medizinische Fachliteratur.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>3. Kostenlose und Premium-Version</h2>
-      <ul>
-        <li><strong>Kostenlose Version:</strong> Zugang zu allen Lerninhalten mit Werbeanzeigen</li>
-        <li><strong>Premium-Abonnement:</strong> Werbefreie Nutzung, erweiterte Statistiken, Bestenliste</li>
-        <li>Abonnements werden uber Apple App Store oder Google Play Store abgewickelt</li>
-        <li>Die Kundigung erfolgt uber den jeweiligen Store</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>4. Benutzerkonto</h2>
-      <p>
-        Fur die vollstandige Nutzung ist ein Benutzerkonto erforderlich.
-        Sie sind fur die Sicherheit Ihrer Zugangsdaten verantwortlich.
-        Jeder Benutzer darf nur ein Konto erstellen.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>5. Geistiges Eigentum</h2>
-      <p>
-        Alle Inhalte der App (Texte, Audiodateien, Ubungen, Design) sind urheberrechtlich geschutzt.
-        Eine Vervielfaltigung, Verbreitung oder kommerzielle Nutzung ohne Genehmigung ist untersagt.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>6. Haftungsausschluss</h2>
-      <p>
-        Die medizinischen Inhalte der App sind sorgfaltig recherchiert, jedoch wird keine
-        Gewahrleistung fur Vollstandigkeit oder Richtigkeit ubernommen.
-        Die Nutzung erfolgt auf eigene Verantwortung.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>7. Verfugbarkeit</h2>
-      <p>
-        Es wird keine unterbrechungsfreie Nutzung garantiert. Wartungsarbeiten und
-        technische Storungen konnen zu vorubergehenden Einschrankungen fuhren.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>8. Anderungen</h2>
-      <p>
-        Diese Nutzungsbedingungen konnen jederzeit geandert werden.
-        Uber wesentliche Anderungen werden die Nutzer informiert.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>9. Kontakt</h2>
-      <p><a href="mailto:germanmoveeducation@gmail.com">germanmoveeducation@gmail.com</a></p>
-    </div>
+  <div class="section">
+    <h2 id="s2-title">2. Leistungsbeschreibung</h2>
+    <p id="s2-p1">Die App bietet ein Lernwerkzeug für medizinische Fachbegriffe zur Vorbereitung auf die Fachsprachprüfung (FSP) und den ärztlichen Alltag in Deutschland. Die Inhalte dienen ausschließlich Lernzwecken und ersetzen keine medizinische Fachliteratur oder ärztliche Beratung.</p>
   </div>
 
-  <div class="footer">&copy; 2026 GermanMove Terms</div>
+  <div class="section">
+    <h2 id="s3-title">3. Kostenlose und Premium-Version</h2>
+    <ul>
+      <li><strong id="s3-l1s">Kostenlose Version:</strong> <span id="s3-l1">Zugang zu allen Lerninhalten mit Werbeanzeigen</span></li>
+      <li><strong id="s3-l2s">Premium-Abonnement:</strong> <span id="s3-l2">Werbefreie Nutzung, erweiterte Statistiken, Bestenliste</span></li>
+      <li id="s3-l3">Abonnements werden über Apple App Store oder Google Play Store abgewickelt</li>
+      <li id="s3-l4">Die Kündigung erfolgt über den jeweiligen Store</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 id="s4-title">4. Benutzerkonto</h2>
+    <p id="s4-p1">Für die vollständige Nutzung ist ein Benutzerkonto erforderlich. Sie sind für die Sicherheit Ihrer Zugangsdaten verantwortlich. Jeder Benutzer darf nur ein Konto erstellen. Das Konto kann jederzeit über die App gelöscht werden.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="s5-title">5. Geistiges Eigentum</h2>
+    <p id="s5-p1">Alle Inhalte (Texte, Audio, Definitionen, Design) sind urheberrechtlich geschützt. Die Nutzung ist nur im Rahmen der App erlaubt. Weiterverbreitung, Kopieren oder kommerzielle Nutzung ist untersagt.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="s6-title">6. Haftungsausschluss</h2>
+    <p id="s6-p1">Die Inhalte wurden sorgfältig geprüft, jedoch ohne Gewähr auf Vollständigkeit oder Richtigkeit. MedTerms haftet nicht für Schäden, die durch die Nutzung der Informationen entstehen. Medizinische Entscheidungen dürfen nicht ausschließlich auf Grundlage dieser App getroffen werden.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="s7-title">7. Änderungen</h2>
+    <p id="s7-p1">Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern. Über wesentliche Änderungen werden Sie per E-Mail oder in der App informiert.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="s8-title">8. Anwendbares Recht</h2>
+    <p id="s8-p1">Es gilt deutsches Recht. Gerichtsstand ist Jena, Deutschland.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="s9-title">9. Kontakt</h2>
+    <p id="s9-p1">Bei Fragen zu diesen Bedingungen kontaktieren Sie uns:</p>
+    <p><a href="mailto:germanmoveeducation@gmail.com">germanmoveeducation@gmail.com</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><strong>MedTerms</strong> · <span id="f-tagline">Medizinische Fachbegriffe meistern</span></div>
+    <div class="footer-links">
+      <a href="/privacy" id="f-privacy">Privacy</a>
+      <a href="/terms" id="f-terms">Terms</a>
+      <a href="/support" id="f-support">Support</a>
+    </div>
+    <div class="footer-copy">© 2026 GermanMove Education</div>
+  </div>
+</footer>
+
+<script>
+const T={
+de:{title:'MedTerms — Nutzungsbedingungen',page:'Nutzungsbedingungen',date:'Stand: April 2026',home:'Start',privacy:'Privacy',terms:'Terms',support:'Support',tag:'Medizinische Fachbegriffe meistern',
+s1t:'1. Geltungsbereich',s1p1:'Diese Nutzungsbedingungen gelten für die mobile App „MedTerms" und die Website medterms.app. Mit der Nutzung akzeptieren Sie diese Bedingungen.',
+s2t:'2. Leistungsbeschreibung',s2p1:'Die App bietet ein Lernwerkzeug für medizinische Fachbegriffe zur Vorbereitung auf die Fachsprachprüfung (FSP) und den ärztlichen Alltag in Deutschland. Die Inhalte dienen ausschließlich Lernzwecken und ersetzen keine medizinische Fachliteratur oder ärztliche Beratung.',
+s3t:'3. Kostenlose und Premium-Version',s3l1s:'Kostenlose Version:',s3l1:'Zugang zu allen Lerninhalten mit Werbeanzeigen',s3l2s:'Premium-Abonnement:',s3l2:'Werbefreie Nutzung, erweiterte Statistiken, Bestenliste',s3l3:'Abonnements werden über Apple App Store oder Google Play Store abgewickelt',s3l4:'Die Kündigung erfolgt über den jeweiligen Store',
+s4t:'4. Benutzerkonto',s4p1:'Für die vollständige Nutzung ist ein Benutzerkonto erforderlich. Sie sind für die Sicherheit Ihrer Zugangsdaten verantwortlich. Jeder Benutzer darf nur ein Konto erstellen. Das Konto kann jederzeit über die App gelöscht werden.',
+s5t:'5. Geistiges Eigentum',s5p1:'Alle Inhalte (Texte, Audio, Definitionen, Design) sind urheberrechtlich geschützt. Die Nutzung ist nur im Rahmen der App erlaubt. Weiterverbreitung, Kopieren oder kommerzielle Nutzung ist untersagt.',
+s6t:'6. Haftungsausschluss',s6p1:'Die Inhalte wurden sorgfältig geprüft, jedoch ohne Gewähr auf Vollständigkeit oder Richtigkeit. MedTerms haftet nicht für Schäden, die durch die Nutzung der Informationen entstehen. Medizinische Entscheidungen dürfen nicht ausschließlich auf Grundlage dieser App getroffen werden.',
+s7t:'7. Änderungen',s7p1:'Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern. Über wesentliche Änderungen werden Sie per E-Mail oder in der App informiert.',
+s8t:'8. Anwendbares Recht',s8p1:'Es gilt deutsches Recht. Gerichtsstand ist Jena, Deutschland.',
+s9t:'9. Kontakt',s9p1:'Bei Fragen zu diesen Bedingungen kontaktieren Sie uns:'},
+en:{title:'MedTerms — Terms of Service',page:'Terms of Service',date:'Last updated: April 2026',home:'Home',privacy:'Privacy',terms:'Terms',support:'Support',tag:'Master medical terminology',
+s1t:'1. Scope',s1p1:'These Terms apply to the MedTerms mobile app and medterms.app website. By using either, you accept these Terms.',
+s2t:'2. Service Description',s2p1:'The app is a learning tool for medical terminology, designed to prepare for the Fachsprachprüfung (FSP) exam and daily medical practice in Germany. Content is for learning purposes only and does not replace medical literature or professional advice.',
+s3t:'3. Free and Premium Versions',s3l1s:'Free version:',s3l1:'Access to all learning content with ads',s3l2s:'Premium subscription:',s3l2:'Ad-free, extended statistics, leaderboard',s3l3:'Subscriptions are handled via Apple App Store or Google Play Store',s3l4:'Cancellation is managed through the respective store',
+s4t:'4. User Account',s4p1:'A user account is required for full access. You are responsible for the security of your credentials. Each user may only create one account. The account can be deleted at any time from within the app.',
+s5t:'5. Intellectual Property',s5p1:'All content (texts, audio, definitions, design) is protected by copyright. Use is permitted only within the app. Redistribution, copying, or commercial use is prohibited.',
+s6t:'6. Disclaimer',s6p1:'Content has been carefully reviewed but is provided without warranty of completeness or accuracy. MedTerms is not liable for damages arising from use of this information. Medical decisions must not be made solely based on this app.',
+s7t:'7. Changes',s7p1:'We reserve the right to change these Terms at any time. You will be notified of material changes by email or within the app.',
+s8t:'8. Governing Law',s8p1:'German law applies. Place of jurisdiction is Jena, Germany.',
+s9t:'9. Contact',s9p1:'For questions about these Terms contact us:'},
+uk:{title:'MedTerms — Умови використання',page:'Умови використання',date:'Оновлено: квітень 2026',home:'Головна',privacy:'Конфіденційність',terms:'Умови',support:'Підтримка',tag:'Опануйте медичну термінологію',
+s1t:'1. Сфера застосування',s1p1:'Ці умови діють для мобільного додатка MedTerms і сайту medterms.app. Використовуючи їх, ви погоджуєтеся з цими умовами.',
+s2t:'2. Опис послуги',s2p1:'Додаток — це навчальний інструмент для медичної термінології, створений для підготовки до Fachsprachprüfung (FSP) і лікарської практики в Німеччині. Матеріали є виключно навчальними і не замінюють медичну літературу чи консультацію фахівця.',
+s3t:'3. Безкоштовна та Premium-версія',s3l1s:'Безкоштовна версія:',s3l1:'Доступ до всього контенту з рекламою',s3l2s:'Premium-підписка:',s3l2:'Без реклами, розширена статистика, рейтинг',s3l3:'Підписки оформлюються через Apple App Store або Google Play',s3l4:'Скасування — через відповідний Store',
+s4t:'4. Обліковий запис',s4p1:'Для повного доступу потрібен обліковий запис. Ви відповідальні за безпеку своїх даних. Один користувач — один акаунт. Акаунт можна видалити в будь-який час через додаток.',
+s5t:'5. Інтелектуальна власність',s5p1:'Весь контент (тексти, аудіо, визначення, дизайн) захищений авторським правом. Використання дозволене лише в межах додатка. Розповсюдження, копіювання чи комерційне використання заборонені.',
+s6t:'6. Відмова від відповідальності',s6p1:'Контент ретельно перевірений, але надається без гарантії повноти чи точності. MedTerms не несе відповідальності за збитки від використання інформації. Медичні рішення не можуть ґрунтуватися виключно на цьому додатку.',
+s7t:'7. Зміни',s7p1:'Ми залишаємо за собою право змінювати ці умови будь-коли. Про суттєві зміни повідомимо через email або в додатку.',
+s8t:'8. Застосовне право',s8p1:'Застосовується німецьке право. Місце юрисдикції — Єна, Німеччина.',
+s9t:'9. Контакти',s9p1:'З питань щодо цих умов зв\'яжіться з нами:'},
+ru:{title:'MedTerms — Условия использования',page:'Условия использования',date:'Обновлено: апрель 2026',home:'Главная',privacy:'Конфиденциальность',terms:'Условия',support:'Поддержка',tag:'Освойте медицинскую терминологию',
+s1t:'1. Сфера применения',s1p1:'Эти условия действуют для мобильного приложения MedTerms и сайта medterms.app. Используя их, вы соглашаетесь с этими условиями.',
+s2t:'2. Описание услуги',s2p1:'Приложение — учебный инструмент для медицинской терминологии, созданный для подготовки к Fachsprachprüfung (FSP) и врачебной практики в Германии. Материалы исключительно учебные и не заменяют медицинскую литературу или консультацию специалиста.',
+s3t:'3. Бесплатная и Premium-версия',s3l1s:'Бесплатная версия:',s3l1:'Доступ ко всему контенту с рекламой',s3l2s:'Premium-подписка:',s3l2:'Без рекламы, расширенная статистика, рейтинг',s3l3:'Подписки оформляются через Apple App Store или Google Play',s3l4:'Отмена — через соответствующий Store',
+s4t:'4. Учётная запись',s4p1:'Для полного доступа нужна учётная запись. Вы отвечаете за безопасность своих данных. Один пользователь — один аккаунт. Аккаунт можно удалить в любое время через приложение.',
+s5t:'5. Интеллектуальная собственность',s5p1:'Весь контент (тексты, аудио, определения, дизайн) защищён авторским правом. Использование разрешено только в рамках приложения. Распространение, копирование или коммерческое использование запрещены.',
+s6t:'6. Отказ от ответственности',s6p1:'Контент тщательно проверен, но предоставляется без гарантии полноты или точности. MedTerms не несёт ответственности за ущерб от использования информации. Медицинские решения не могут основываться исключительно на этом приложении.',
+s7t:'7. Изменения',s7p1:'Мы оставляем за собой право изменять эти условия в любое время. О существенных изменениях сообщим через email или в приложении.',
+s8t:'8. Применимое право',s8p1:'Применяется немецкое право. Место юрисдикции — Йена, Германия.',
+s9t:'9. Контакты',s9p1:'По вопросам об этих условиях свяжитесь с нами:'},
+tr:{title:'MedTerms — Kullanım Şartları',page:'Kullanım Şartları',date:'Güncellendi: Nisan 2026',home:'Ana sayfa',privacy:'Gizlilik',terms:'Şartlar',support:'Destek',tag:'Tıbbi terminolojide ustalaşın',
+s1t:'1. Kapsam',s1p1:'Bu şartlar MedTerms mobil uygulaması ve medterms.app web sitesi için geçerlidir. Kullanarak bu şartları kabul edersiniz.',
+s2t:'2. Hizmet Tanımı',s2p1:'Uygulama, Fachsprachprüfung (FSP) sınavı ve Almanya\'da günlük tıbbi pratik için hazırlık amaçlı bir öğrenme aracıdır. İçerik yalnızca öğrenme amaçlıdır ve tıbbi literatür veya profesyonel tavsiyenin yerine geçmez.',
+s3t:'3. Ücretsiz ve Premium Sürüm',s3l1s:'Ücretsiz sürüm:',s3l1:'Reklamlı tüm içeriğe erişim',s3l2s:'Premium abonelik:',s3l2:'Reklamsız, gelişmiş istatistikler, skor tablosu',s3l3:'Abonelikler Apple App Store veya Google Play Store üzerinden yönetilir',s3l4:'İptal ilgili Store üzerinden yapılır',
+s4t:'4. Kullanıcı Hesabı',s4p1:'Tam erişim için kullanıcı hesabı gereklidir. Bilgilerinizin güvenliğinden siz sorumlusunuz. Her kullanıcı yalnızca bir hesap oluşturabilir. Hesap uygulama içinden istediğiniz zaman silinebilir.',
+s5t:'5. Fikri Mülkiyet',s5p1:'Tüm içerik (metin, ses, tanımlar, tasarım) telif hakkı ile korunmaktadır. Kullanım yalnızca uygulama içinde izinlidir. Yeniden dağıtım, kopyalama veya ticari kullanım yasaktır.',
+s6t:'6. Sorumluluk Reddi',s6p1:'İçerik dikkatle incelenmiştir ancak eksiksizlik veya doğruluk garantisi verilmez. MedTerms, bilgilerin kullanımından doğan zararlardan sorumlu değildir. Tıbbi kararlar yalnızca bu uygulamaya dayanılarak verilmemelidir.',
+s7t:'7. Değişiklikler',s7p1:'Bu şartları istediğimiz zaman değiştirme hakkımız saklıdır. Önemli değişiklikler hakkında e-posta veya uygulama içinde bilgilendirileceksiniz.',
+s8t:'8. Uygulanacak Hukuk',s8p1:'Alman hukuku uygulanır. Yargı yeri Jena, Almanya\'dır.',
+s9t:'9. İletişim',s9p1:'Bu şartlarla ilgili sorularınız için bize ulaşın:'},
+ar:{title:'MedTerms — شروط الاستخدام',page:'شروط الاستخدام',date:'آخر تحديث: أبريل 2026',home:'الرئيسية',privacy:'الخصوصية',terms:'الشروط',support:'الدعم',tag:'أتقن المصطلحات الطبية',
+s1t:'1. النطاق',s1p1:'تنطبق هذه الشروط على تطبيق MedTerms للجوال وموقع medterms.app. باستخدام أي منهما، فإنك توافق على هذه الشروط.',
+s2t:'2. وصف الخدمة',s2p1:'التطبيق أداة تعليمية للمصطلحات الطبية، مصممة للتحضير لامتحان Fachsprachprüfung (FSP) والممارسة الطبية اليومية في ألمانيا. المحتوى لأغراض التعلم فقط ولا يحل محل الأدب الطبي أو المشورة المهنية.',
+s3t:'3. الإصدار المجاني والمميز',s3l1s:'الإصدار المجاني:',s3l1:'الوصول إلى جميع المحتوى التعليمي مع الإعلانات',s3l2s:'اشتراك Premium:',s3l2:'بدون إعلانات، إحصائيات موسعة، لوحة المتصدرين',s3l3:'تتم إدارة الاشتراكات عبر Apple App Store أو Google Play Store',s3l4:'يتم الإلغاء من خلال المتجر المعني',
+s4t:'4. حساب المستخدم',s4p1:'حساب المستخدم مطلوب للوصول الكامل. أنت مسؤول عن أمان بيانات اعتمادك. يجوز لكل مستخدم إنشاء حساب واحد فقط. يمكن حذف الحساب في أي وقت من داخل التطبيق.',
+s5t:'5. الملكية الفكرية',s5p1:'جميع المحتويات (النصوص، الصوت، التعريفات، التصميم) محمية بحقوق الطبع والنشر. يُسمح بالاستخدام فقط داخل التطبيق. يُحظر إعادة التوزيع أو النسخ أو الاستخدام التجاري.',
+s6t:'6. إخلاء المسؤولية',s6p1:'تمت مراجعة المحتوى بعناية ولكنه مقدم دون ضمان الاكتمال أو الدقة. MedTerms ليس مسؤولاً عن الأضرار الناجمة عن استخدام هذه المعلومات. لا يجوز اتخاذ القرارات الطبية بناءً على هذا التطبيق فقط.',
+s7t:'7. التغييرات',s7p1:'نحتفظ بالحق في تغيير هذه الشروط في أي وقت. سيتم إخطارك بالتغييرات الجوهرية عبر البريد الإلكتروني أو داخل التطبيق.',
+s8t:'8. القانون المعمول به',s8p1:'ينطبق القانون الألماني. مكان الاختصاص القضائي هو ينا، ألمانيا.',
+s9t:'9. اتصل بنا',s9p1:'للأسئلة حول هذه الشروط اتصل بنا:'},
+fr:{title:'MedTerms — Conditions d\'utilisation',page:'Conditions d\'utilisation',date:'Mis à jour : avril 2026',home:'Accueil',privacy:'Confidentialité',terms:'Conditions',support:'Support',tag:'Maîtrisez la terminologie médicale',
+s1t:'1. Champ d\'application',s1p1:'Ces conditions s\'appliquent à l\'application mobile MedTerms et au site medterms.app. En les utilisant, vous acceptez ces conditions.',
+s2t:'2. Description du service',s2p1:'L\'application est un outil d\'apprentissage pour la terminologie médicale, conçu pour la préparation au Fachsprachprüfung (FSP) et la pratique médicale quotidienne en Allemagne. Le contenu est à des fins d\'apprentissage uniquement et ne remplace pas la littérature médicale ni les conseils professionnels.',
+s3t:'3. Version gratuite et Premium',s3l1s:'Version gratuite :',s3l1:'Accès à tout le contenu avec publicités',s3l2s:'Abonnement Premium :',s3l2:'Sans publicité, statistiques étendues, classement',s3l3:'Les abonnements sont gérés via Apple App Store ou Google Play Store',s3l4:'L\'annulation se fait via le Store concerné',
+s4t:'4. Compte utilisateur',s4p1:'Un compte utilisateur est requis pour un accès complet. Vous êtes responsable de la sécurité de vos identifiants. Chaque utilisateur ne peut créer qu\'un seul compte. Le compte peut être supprimé à tout moment depuis l\'application.',
+s5t:'5. Propriété intellectuelle',s5p1:'Tout le contenu (textes, audio, définitions, design) est protégé par le droit d\'auteur. L\'utilisation n\'est autorisée que dans le cadre de l\'application. La redistribution, la copie ou l\'utilisation commerciale sont interdites.',
+s6t:'6. Avis de non-responsabilité',s6p1:'Le contenu a été soigneusement examiné mais est fourni sans garantie d\'exhaustivité ou d\'exactitude. MedTerms n\'est pas responsable des dommages résultant de l\'utilisation de ces informations. Les décisions médicales ne doivent pas être prises uniquement sur la base de cette application.',
+s7t:'7. Modifications',s7p1:'Nous nous réservons le droit de modifier ces conditions à tout moment. Vous serez informé des modifications importantes par e-mail ou dans l\'application.',
+s8t:'8. Droit applicable',s8p1:'Le droit allemand s\'applique. Le lieu de juridiction est Jena, Allemagne.',
+s9t:'9. Contact',s9p1:'Pour toute question concernant ces conditions contactez-nous :'},
+es:{title:'MedTerms — Términos de servicio',page:'Términos de servicio',date:'Actualizado: abril 2026',home:'Inicio',privacy:'Privacidad',terms:'Términos',support:'Soporte',tag:'Domina la terminología médica',
+s1t:'1. Ámbito',s1p1:'Estos términos se aplican a la app móvil MedTerms y al sitio medterms.app. Al usarlos, aceptas estos términos.',
+s2t:'2. Descripción del servicio',s2p1:'La app es una herramienta de aprendizaje para terminología médica, diseñada para preparar el examen Fachsprachprüfung (FSP) y la práctica médica diaria en Alemania. El contenido es solo con fines de aprendizaje y no sustituye la literatura médica ni el consejo profesional.',
+s3t:'3. Versión gratuita y Premium',s3l1s:'Versión gratuita:',s3l1:'Acceso a todo el contenido con anuncios',s3l2s:'Suscripción Premium:',s3l2:'Sin anuncios, estadísticas ampliadas, tabla de clasificación',s3l3:'Las suscripciones se gestionan mediante Apple App Store o Google Play Store',s3l4:'La cancelación se hace a través del Store correspondiente',
+s4t:'4. Cuenta de usuario',s4p1:'Se requiere una cuenta de usuario para el acceso completo. Eres responsable de la seguridad de tus credenciales. Cada usuario solo puede crear una cuenta. La cuenta puede eliminarse en cualquier momento desde la app.',
+s5t:'5. Propiedad intelectual',s5p1:'Todo el contenido (textos, audio, definiciones, diseño) está protegido por derechos de autor. El uso solo está permitido dentro de la app. Se prohíbe la redistribución, copia o uso comercial.',
+s6t:'6. Exención de responsabilidad',s6p1:'El contenido ha sido cuidadosamente revisado pero se proporciona sin garantía de integridad o exactitud. MedTerms no es responsable de daños derivados del uso de esta información. Las decisiones médicas no deben tomarse únicamente basándose en esta app.',
+s7t:'7. Cambios',s7p1:'Nos reservamos el derecho de cambiar estos términos en cualquier momento. Se te notificará sobre cambios importantes por email o en la app.',
+s8t:'8. Ley aplicable',s8p1:'Se aplica la ley alemana. El lugar de jurisdicción es Jena, Alemania.',
+s9t:'9. Contacto',s9p1:'Para preguntas sobre estos términos contáctanos:'},
+pl:{title:'MedTerms — Warunki korzystania',page:'Warunki korzystania',date:'Aktualizacja: kwiecień 2026',home:'Start',privacy:'Prywatność',terms:'Warunki',support:'Wsparcie',tag:'Opanuj terminologię medyczną',
+s1t:'1. Zakres',s1p1:'Niniejsze warunki dotyczą aplikacji mobilnej MedTerms i strony medterms.app. Korzystając z nich, akceptujesz te warunki.',
+s2t:'2. Opis usługi',s2p1:'Aplikacja to narzędzie edukacyjne do terminologii medycznej, przeznaczone do przygotowania do egzaminu Fachsprachprüfung (FSP) oraz codziennej praktyki lekarskiej w Niemczech. Treści służą wyłącznie celom edukacyjnym i nie zastępują literatury medycznej ani porady specjalisty.',
+s3t:'3. Wersja bezpłatna i Premium',s3l1s:'Wersja bezpłatna:',s3l1:'Dostęp do całej zawartości z reklamami',s3l2s:'Subskrypcja Premium:',s3l2:'Bez reklam, rozszerzone statystyki, ranking',s3l3:'Subskrypcje obsługiwane przez Apple App Store lub Google Play Store',s3l4:'Anulowanie przez odpowiedni Store',
+s4t:'4. Konto użytkownika',s4p1:'Do pełnego dostępu wymagane jest konto. Odpowiadasz za bezpieczeństwo danych logowania. Każdy użytkownik może utworzyć tylko jedno konto. Konto można usunąć w dowolnym momencie z aplikacji.',
+s5t:'5. Własność intelektualna',s5p1:'Cała zawartość (teksty, audio, definicje, design) chroniona jest prawami autorskimi. Użytkowanie dozwolone wyłącznie w ramach aplikacji. Redystrybucja, kopiowanie lub komercyjne wykorzystanie są zabronione.',
+s6t:'6. Wyłączenie odpowiedzialności',s6p1:'Treści zostały starannie sprawdzone, ale są dostarczane bez gwarancji kompletności i poprawności. MedTerms nie ponosi odpowiedzialności za szkody wynikłe z korzystania z tych informacji. Decyzje medyczne nie mogą być podejmowane wyłącznie na podstawie tej aplikacji.',
+s7t:'7. Zmiany',s7p1:'Zastrzegamy sobie prawo do zmiany niniejszych warunków w dowolnym momencie. O istotnych zmianach poinformujemy e-mailem lub w aplikacji.',
+s8t:'8. Prawo właściwe',s8p1:'Stosuje się prawo niemieckie. Miejsce jurysdykcji — Jena, Niemcy.',
+s9t:'9. Kontakt',s9p1:'W sprawie pytań dotyczących tych warunków skontaktuj się z nami:'},
+el:{title:'MedTerms — Όροι χρήσης',page:'Όροι χρήσης',date:'Ενημερώθηκε: Απρίλιος 2026',home:'Αρχική',privacy:'Απόρρητο',terms:'Όροι',support:'Υποστήριξη',tag:'Κατακτήστε την ιατρική ορολογία',
+s1t:'1. Πεδίο εφαρμογής',s1p1:'Αυτοί οι όροι ισχύουν για την εφαρμογή MedTerms και τον ιστότοπο medterms.app. Χρησιμοποιώντας τα, αποδέχεστε αυτούς τους όρους.',
+s2t:'2. Περιγραφή υπηρεσίας',s2p1:'Η εφαρμογή είναι ένα εργαλείο μάθησης ιατρικής ορολογίας, σχεδιασμένο για την προετοιμασία της εξέτασης Fachsprachprüfung (FSP) και την καθημερινή ιατρική πρακτική στη Γερμανία. Το περιεχόμενο είναι αποκλειστικά για σκοπούς μάθησης και δεν αντικαθιστά την ιατρική βιβλιογραφία ή την επαγγελματική συμβουλή.',
+s3t:'3. Δωρεάν και Premium έκδοση',s3l1s:'Δωρεάν έκδοση:',s3l1:'Πρόσβαση σε όλο το περιεχόμενο με διαφημίσεις',s3l2s:'Premium συνδρομή:',s3l2:'Χωρίς διαφημίσεις, εκτεταμένα στατιστικά, πίνακας κατάταξης',s3l3:'Οι συνδρομές διαχειρίζονται μέσω Apple App Store ή Google Play Store',s3l4:'Η ακύρωση γίνεται μέσω του αντίστοιχου Store',
+s4t:'4. Λογαριασμός χρήστη',s4p1:'Απαιτείται λογαριασμός χρήστη για πλήρη πρόσβαση. Είστε υπεύθυνοι για την ασφάλεια των διαπιστευτηρίων σας. Κάθε χρήστης μπορεί να δημιουργήσει μόνο έναν λογαριασμό. Ο λογαριασμός μπορεί να διαγραφεί ανά πάσα στιγμή από την εφαρμογή.',
+s5t:'5. Πνευματική ιδιοκτησία',s5p1:'Όλο το περιεχόμενο (κείμενα, ήχος, ορισμοί, σχεδίαση) προστατεύεται από πνευματικά δικαιώματα. Η χρήση επιτρέπεται μόνο εντός της εφαρμογής. Απαγορεύεται η αναδιανομή, αντιγραφή ή εμπορική χρήση.',
+s6t:'6. Αποποίηση ευθύνης',s6p1:'Το περιεχόμενο έχει ελεγχθεί προσεκτικά αλλά παρέχεται χωρίς εγγύηση πληρότητας ή ακρίβειας. Η MedTerms δεν ευθύνεται για ζημιές από τη χρήση αυτών των πληροφοριών. Οι ιατρικές αποφάσεις δεν πρέπει να λαμβάνονται αποκλειστικά βάσει αυτής της εφαρμογής.',
+s7t:'7. Αλλαγές',s7p1:'Διατηρούμε το δικαίωμα να αλλάξουμε αυτούς τους όρους ανά πάσα στιγμή. Θα ενημερωθείτε για ουσιώδεις αλλαγές μέσω email ή εντός της εφαρμογής.',
+s8t:'8. Εφαρμοστέο δίκαιο',s8p1:'Εφαρμόζεται το γερμανικό δίκαιο. Τόπος δικαιοδοσίας είναι η Jena, Γερμανία.',
+s9t:'9. Επικοινωνία',s9p1:'Για ερωτήσεις σχετικά με αυτούς τους όρους επικοινωνήστε μαζί μας:'},
+ro:{title:'MedTerms — Termeni de utilizare',page:'Termeni de utilizare',date:'Actualizat: aprilie 2026',home:'Acasă',privacy:'Confidențialitate',terms:'Termeni',support:'Asistență',tag:'Stăpâniți terminologia medicală',
+s1t:'1. Domeniu de aplicare',s1p1:'Acești termeni se aplică aplicației mobile MedTerms și site-ului medterms.app. Prin utilizare, acceptați acești termeni.',
+s2t:'2. Descrierea serviciului',s2p1:'Aplicația este un instrument de învățare pentru terminologia medicală, conceput pentru pregătirea examenului Fachsprachprüfung (FSP) și practica medicală zilnică în Germania. Conținutul este doar în scopuri educaționale și nu înlocuiește literatura medicală sau sfatul profesional.',
+s3t:'3. Versiunea gratuită și Premium',s3l1s:'Versiunea gratuită:',s3l1:'Acces la tot conținutul cu reclame',s3l2s:'Abonament Premium:',s3l2:'Fără reclame, statistici extinse, clasament',s3l3:'Abonamentele sunt gestionate prin Apple App Store sau Google Play Store',s3l4:'Anularea se face prin Store-ul corespunzător',
+s4t:'4. Cont de utilizator',s4p1:'Este necesar un cont de utilizator pentru acces complet. Sunteți responsabil pentru securitatea datelor de autentificare. Fiecare utilizator poate crea doar un singur cont. Contul poate fi șters oricând din aplicație.',
+s5t:'5. Proprietate intelectuală',s5p1:'Tot conținutul (texte, audio, definiții, design) este protejat de drepturi de autor. Utilizarea este permisă doar în cadrul aplicației. Redistribuirea, copierea sau utilizarea comercială sunt interzise.',
+s6t:'6. Limitarea răspunderii',s6p1:'Conținutul a fost revizuit atent dar este furnizat fără garanția completitudinii sau acurateței. MedTerms nu răspunde pentru daunele rezultate din utilizarea acestor informații. Deciziile medicale nu trebuie luate exclusiv pe baza acestei aplicații.',
+s7t:'7. Modificări',s7p1:'Ne rezervăm dreptul de a modifica acești termeni oricând. Veți fi notificat despre modificările substanțiale prin e-mail sau în aplicație.',
+s8t:'8. Legea aplicabilă',s8p1:'Se aplică legea germană. Locul jurisdicției este Jena, Germania.',
+s9t:'9. Contact',s9p1:'Pentru întrebări despre acești termeni contactați-ne:'}
+};
+
+function normalizeLang(raw){if(raw==null||raw==='')return null;var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);return T[c]?c:null}
+function getUrlLang(){return new URLSearchParams(window.location.search).get('lang')||''}
+var savedLang=null;try{savedLang=localStorage.getItem('medterms_lang')}catch(e){}
+var lc=normalizeLang(getUrlLang())||normalizeLang(savedLang)||normalizeLang((navigator.language||'de').slice(0,2).toLowerCase())||'de';
+
+function applyLang(code){
+  var tr=T[code]||T.de;
+  document.documentElement.setAttribute('lang',code);
+  document.documentElement.setAttribute('dir',code==='ar'?'rtl':'ltr');
+  document.body.style.direction=(code==='ar'?'rtl':'ltr');
+  document.title=tr.title;
+  function s(id,t){var el=document.getElementById(id);if(el)el.textContent=t}
+  s('nav-home',tr.home);s('nav-privacy',tr.privacy);s('nav-terms',tr.terms);s('nav-support',tr.support);
+  s('page-title',tr.page);s('page-date',tr.date);
+  s('s1-title',tr.s1t);s('s1-p1',tr.s1p1);
+  s('s2-title',tr.s2t);s('s2-p1',tr.s2p1);
+  s('s3-title',tr.s3t);s('s3-l1s',tr.s3l1s);s('s3-l1',tr.s3l1);s('s3-l2s',tr.s3l2s);s('s3-l2',tr.s3l2);s('s3-l3',tr.s3l3);s('s3-l4',tr.s3l4);
+  s('s4-title',tr.s4t);s('s4-p1',tr.s4p1);
+  s('s5-title',tr.s5t);s('s5-p1',tr.s5p1);
+  s('s6-title',tr.s6t);s('s6-p1',tr.s6p1);
+  s('s7-title',tr.s7t);s('s7-p1',tr.s7p1);
+  s('s8-title',tr.s8t);s('s8-p1',tr.s8p1);
+  s('s9-title',tr.s9t);s('s9-p1',tr.s9p1);
+  s('f-tagline',tr.tag);s('f-privacy',tr.privacy);s('f-terms',tr.terms);s('f-support',tr.support);
+  var p=document.getElementById('lang-picker');if(p)p.value=code;
+}
+applyLang(lc);
+document.getElementById('lang-picker').addEventListener('change',function(e){var c=e.target.value;try{localStorage.setItem('medterms_lang',c)}catch(err){}applyLang(c)});
+</script>
 </body>
 </html>
