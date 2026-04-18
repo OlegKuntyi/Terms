@@ -1,222 +1,316 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Datenschutz — GermanMove Terms</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --teal: #4eb7a7;
-      --teal-dark: #2a7c6f;
-      --ok-2: #78e08f;
-      --text: #f3f6f9;
-      --muted: rgba(243, 246, 249, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-strong: rgba(255, 255, 255, 0.08);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0d1117;
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    .bg-mesh { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
-    .bg-mesh .orb {
-      position: absolute; border-radius: 50%;
-      filter: blur(80px); opacity: 0.35;
-      animation: float 20s ease-in-out infinite;
-    }
-    .bg-mesh .orb:nth-child(1) {
-      width: 450px; height: 450px;
-      background: radial-gradient(circle, #2a7c6f, transparent 70%);
-      top: -10%; right: -10%; animation-duration: 25s;
-    }
-    .bg-mesh .orb:nth-child(2) {
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, #1a5276, transparent 70%);
-      bottom: 10%; left: -10%; animation-duration: 22s; animation-delay: -7s;
-    }
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(30px, -40px) scale(1.05); }
-      50% { transform: translate(-20px, 20px) scale(0.95); }
-      75% { transform: translate(15px, 35px) scale(1.02); }
-    }
-    .header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(78, 183, 167, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 0 30px; height: 56px;
-      display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .header .logo {
-      font-size: 20px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      animation: glow 4s infinite alternate;
-      color: white; text-decoration: none;
-    }
-    .header nav { display: flex; gap: 6px; }
-    .header nav a {
-      color: rgba(255,255,255,0.85); text-decoration: none;
-      font-size: 13px; font-weight: 500;
-      padding: 6px 14px; border-radius: 8px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .header nav a:hover, .header nav a.active {
-      background: rgba(255,255,255,0.15); color: #fff;
-    }
-    @keyframes glow {
-      0% { text-shadow: none; }
-      50% { text-shadow: 0 0 3px rgba(255,255,255,0.5); }
-      100% { text-shadow: 0 0 6px #fff, 0 0 12px rgba(78,183,167,0.5); }
-    }
-    .container {
-      position: relative; z-index: 1;
-      max-width: 680px; margin: 0 auto;
-      padding: 36px 20px 60px;
-    }
-    h1 {
-      font-size: 24px; font-weight: 700; margin-bottom: 6px;
-      background: linear-gradient(135deg, var(--teal), var(--ok-2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .date { font-size: 12px; color: var(--muted); margin-bottom: 28px; }
-    .section {
-      background: var(--glass-strong);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 22px 20px;
-      margin-bottom: 14px;
-      backdrop-filter: blur(10px);
-      transition: border-color 0.2s;
-    }
-    .section:hover { border-color: rgba(78,183,167,0.2); }
-    .section h2 {
-      font-size: 15px; font-weight: 600;
-      color: var(--teal); margin-bottom: 10px;
-    }
-    .section p, .section li {
-      font-size: 13px; line-height: 1.7;
-      color: var(--muted); text-align: left;
-    }
-    .section ul { list-style: none; padding: 0; margin-top: 8px; }
-    .section li { padding: 3px 0 3px 18px; position: relative; }
-    .section li::before {
-      content: ''; position: absolute; left: 0; top: 10px;
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--teal); opacity: 0.6;
-    }
-    a { color: var(--teal); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .footer {
-      position: relative; z-index: 1;
-      text-align: center; padding: 24px 20px;
-      color: var(--muted); font-size: 12px;
-      border-top: 1px solid var(--glass-border);
-    }
-    @media (max-width: 480px) {
-      .header { padding: 0 16px; height: 52px; }
-      .header .logo { font-size: 16px; letter-spacing: 1px; }
-      .header nav a { font-size: 11px; padding: 5px 10px; }
-      .container { padding: 24px 16px 40px; }
-      .section { padding: 18px 16px; }
-      h1 { font-size: 20px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MedTerms — Datenschutz</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC;min-height:100vh;color:#242833;line-height:1.65}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(17,24,39,.05);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.nav .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav .brand-logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#78B5FA,#9586FD);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;box-shadow:0 4px 12px rgba(149,134,253,.25)}
+.nav .brand-name{font-weight:700;color:#242833;font-size:17px;letter-spacing:.3px}
+.nav-links{display:flex;gap:4px}
+.nav-links a{color:#6B7280;text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:10px;transition:color .15s,background .15s}
+.nav-links a:hover,.nav-links a.active{color:#242833;background:#EEF2FA}
+.nav-links a.active{color:#9586FD}
+
+.hero{padding:48px 24px 24px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(149,134,253,.12),transparent 60%);pointer-events:none;z-index:0}
+.hero-inner{position:relative;z-index:1}
+.hero h1{font-size:34px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px;background:linear-gradient(135deg,#78B5FA,#9586FD);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
+.hero .date{font-size:13px;color:#7E8494;font-weight:500}
+
+.container{max-width:720px;margin:0 auto;padding:12px 24px 60px}
+.section{background:#fff;border:1px solid #EEF0F9;border-radius:18px;padding:26px 24px;margin-bottom:14px;transition:transform .15s,box-shadow .15s}
+.section:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(17,24,39,.05)}
+.section h2{font-size:17px;font-weight:600;color:#242833;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section h2::before{content:"";width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#78B5FA,#9586FD);flex-shrink:0}
+.section p,.section li{font-size:14px;color:#4B5563;line-height:1.7}
+.section ul{list-style:none;padding:0;margin-top:6px}
+.section li{padding:4px 0 4px 22px;position:relative}
+.section li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#C5CAE0}
+.section a{color:#7D9BFF;text-decoration:none;font-weight:500}
+.section a:hover{text-decoration:underline}
+.section strong{color:#242833;font-weight:600}
+
+footer{background:#fff;border-top:1px solid #EEF0F9;padding:32px 24px 24px;text-align:center}
+.footer-inner{max-width:720px;margin:0 auto}
+.footer-brand{font-size:14px;color:#6B7280;margin-bottom:12px}
+.footer-brand strong{color:#242833;font-weight:600}
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.footer-links a{color:#9586FD;text-decoration:none;font-size:14px;font-weight:500}
+.footer-links a:hover{color:#7D9BFF}
+.footer-copy{font-size:12px;color:#959FBA}
+
+@media (max-width:768px){
+  .nav{padding:12px 16px}
+  .nav .brand-name{font-size:15px}
+  .nav-links a{font-size:13px;padding:6px 10px}
+  .hero{padding:36px 20px 20px}
+  .hero h1{font-size:26px}
+  .container{padding:8px 16px 48px}
+  .section{padding:22px 18px}
+  .section h2{font-size:15px}
+}
+@media (max-width:480px){
+  .nav-links{gap:0}
+  .nav-links a{padding:6px 8px;font-size:12px}
+  .hero h1{font-size:22px}
+}
+</style>
 </head>
 <body>
-  <div class="bg-mesh"><div class="orb"></div><div class="orb"></div></div>
 
-  <div class="header">
-    <a href="index.html" class="logo">GermanMove Terms</a>
-    <nav>
-      <a href="index.html">Start</a>
-      <a href="privacy.html" class="active">Datenschutz</a>
-      <a href="terms.html">AGB</a>
-    </nav>
+<nav class="nav">
+  <a href="/" class="brand">
+    <div class="brand-logo">M</div>
+    <div class="brand-name">MedTerms</div>
+  </a>
+  <div class="nav-links">
+    <a href="/" id="nav-home">Start</a>
+    <a href="/privacy" class="active" id="nav-privacy">Privacy</a>
+    <a href="/terms" id="nav-terms">Terms</a>
+    <a href="/support" id="nav-support">Support</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1 id="page-title">Datenschutzerklärung</h1>
+    <div class="date" id="page-date">Stand: April 2026</div>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="section">
+    <h2 id="s1-title">1. Verantwortlicher</h2>
+    <p id="s1-p1">Verantwortlich für die Verarbeitung personenbezogener Daten im Rahmen der MedTerms App:</p>
+    <p><strong>Oleg Kuntyi</strong><br>Max-Steenbeckstraße 19<br>07745 Jena, Deutschland</p>
+    <p><span id="s1-email">E-Mail:</span> <a href="mailto:germanmoveeducation@gmail.com">germanmoveeducation@gmail.com</a></p>
   </div>
 
-  <div class="container">
-    <h1>Datenschutzerklarung</h1>
-    <div class="date">Stand: April 2026</div>
-
-    <div class="section">
-      <h2>1. Verantwortlicher</h2>
-      <p>E-Mail: <a href="mailto:germanmoveeducation@gmail.com">germanmoveeducation@gmail.com</a></p>
-    </div>
-
-    <div class="section">
-      <h2>2. Erhobene Daten</h2>
-      <p>Bei der Nutzung der App werden folgende Daten verarbeitet:</p>
-      <ul>
-        <li>E-Mail-Adresse und Passwort (Registrierung)</li>
-        <li>Lernfortschritt und Statistiken</li>
-        <li>Gerateinformationen (fur Fehlerberichte)</li>
-        <li>Nutzungsdaten (anonymisiert, fur Verbesserungen)</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>3. Zweck der Datenverarbeitung</h2>
-      <ul>
-        <li>Bereitstellung und Verbesserung der App-Funktionen</li>
-        <li>Synchronisierung des Lernfortschritts zwischen Geraten</li>
-        <li>Anzeige personalisierter Werbung (kostenlose Version)</li>
-        <li>Verwaltung von Abonnements</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>4. Drittanbieter-Dienste</h2>
-      <ul>
-        <li><strong>Supabase</strong> — Authentifizierung und Datenspeicherung (EU-Server)</li>
-        <li><strong>Google AdMob</strong> — Werbeanzeigen (kostenlose Version)</li>
-        <li><strong>RevenueCat</strong> — Abonnementverwaltung</li>
-        <li><strong>Apple / Google</strong> — In-App-Kaufe</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>5. Datenspeicherung</h2>
-      <p>
-        Ihre Daten werden auf Servern von Supabase (EU) gespeichert.
-        Lernfortschrittsdaten werden lokal auf Ihrem Gerat und in der Cloud gesichert.
-        Bei Loschung Ihres Kontos werden alle personenbezogenen Daten innerhalb von 30 Tagen entfernt.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>6. Ihre Rechte (DSGVO)</h2>
-      <ul>
-        <li>Recht auf Auskunft uber gespeicherte Daten</li>
-        <li>Recht auf Berichtigung unrichtiger Daten</li>
-        <li>Recht auf Loschung Ihrer Daten</li>
-        <li>Recht auf Datenubertragbarkeit</li>
-        <li>Recht auf Widerspruch gegen die Verarbeitung</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>7. Werbung</h2>
-      <p>
-        Die kostenlose Version der App zeigt Werbung uber Google AdMob.
-        Sie konnen personalisierte Werbung in den Gerateeinstellungen deaktivieren.
-        Mit einem Premium-Abonnement wird die gesamte Werbung entfernt.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>8. Kontakt</h2>
-      <p><a href="mailto:germanmoveeducation@gmail.com">germanmoveeducation@gmail.com</a></p>
-    </div>
+  <div class="section">
+    <h2 id="s2-title">2. Erhobene Daten</h2>
+    <p id="s2-p1">Bei der Nutzung der App werden folgende Daten verarbeitet:</p>
+    <ul>
+      <li id="s2-l1">E-Mail-Adresse und Passwort (Registrierung)</li>
+      <li id="s2-l2">Lernfortschritt und Statistiken</li>
+      <li id="s2-l3">Geräteinformationen (für Fehlerberichte)</li>
+      <li id="s2-l4">Nutzungsdaten (anonymisiert, für Verbesserungen)</li>
+    </ul>
   </div>
 
-  <div class="footer">&copy; 2026 GermanMove Terms</div>
+  <div class="section">
+    <h2 id="s3-title">3. Zweck der Datenverarbeitung</h2>
+    <ul>
+      <li id="s3-l1">Bereitstellung und Verbesserung der App-Funktionen</li>
+      <li id="s3-l2">Synchronisierung des Lernfortschritts zwischen Geräten</li>
+      <li id="s3-l3">Anzeige personalisierter Werbung (kostenlose Version)</li>
+      <li id="s3-l4">Verwaltung von Abonnements</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 id="s4-title">4. Drittanbieter-Dienste</h2>
+    <ul>
+      <li><strong>Supabase</strong> — <span id="s4-l1">Authentifizierung und Datenspeicherung (EU-Server)</span></li>
+      <li><strong>Google AdMob</strong> — <span id="s4-l2">Werbeanzeigen (kostenlose Version)</span></li>
+      <li><strong>RevenueCat</strong> — <span id="s4-l3">Abonnementverwaltung</span></li>
+      <li><strong>Apple / Google</strong> — <span id="s4-l4">In-App-Käufe</span></li>
+      <li><strong>Sentry</strong> — <span id="s4-l5">Fehlerüberwachung</span></li>
+      <li><strong>Cloudflare</strong> — <span id="s4-l6">Hosting der Audio-Dateien</span></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 id="s5-title">5. Datenspeicherung</h2>
+    <p id="s5-p1">Ihre Daten werden auf Servern von Supabase (EU) gespeichert. Lernfortschrittsdaten werden lokal auf Ihrem Gerät und in der Cloud gesichert. Bei Löschung Ihres Kontos werden alle personenbezogenen Daten innerhalb von 30 Tagen entfernt.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="s6-title">6. Ihre Rechte (DSGVO)</h2>
+    <ul>
+      <li id="s6-l1">Recht auf Auskunft über gespeicherte Daten</li>
+      <li id="s6-l2">Recht auf Berichtigung unrichtiger Daten</li>
+      <li id="s6-l3">Recht auf Löschung Ihrer Daten</li>
+      <li id="s6-l4">Recht auf Datenübertragbarkeit</li>
+      <li id="s6-l5">Recht auf Widerspruch gegen die Verarbeitung</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 id="s7-title">7. Werbung</h2>
+    <p id="s7-p1">Die kostenlose Version der App zeigt Werbung über Google AdMob. Sie können personalisierte Werbung in den Geräteeinstellungen deaktivieren. Mit einem Premium-Abonnement wird die gesamte Werbung entfernt.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="s8-title">8. Kontakt</h2>
+    <p id="s8-p1">Bei Fragen zum Datenschutz kontaktieren Sie uns:</p>
+    <p><a href="mailto:germanmoveeducation@gmail.com">germanmoveeducation@gmail.com</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><strong>MedTerms</strong> · <span id="f-tagline">Medizinische Fachbegriffe meistern</span></div>
+    <div class="footer-links">
+      <a href="/privacy" id="f-privacy">Privacy</a>
+      <a href="/terms" id="f-terms">Terms</a>
+      <a href="/support" id="f-support">Support</a>
+    </div>
+    <div class="footer-copy">© 2026 GermanMove Education</div>
+  </div>
+</footer>
+
+<script>
+const T={
+de:{title:'MedTerms — Datenschutz',page:'Datenschutzerklärung',date:'Stand: April 2026',home:'Start',privacy:'Privacy',terms:'Terms',support:'Support',tag:'Medizinische Fachbegriffe meistern',
+s1t:'1. Verantwortlicher',s1p1:'Verantwortlich für die Verarbeitung personenbezogener Daten im Rahmen der MedTerms App:',s1e:'E-Mail:',
+s2t:'2. Erhobene Daten',s2p1:'Bei der Nutzung der App werden folgende Daten verarbeitet:',s2l1:'E-Mail-Adresse und Passwort (Registrierung)',s2l2:'Lernfortschritt und Statistiken',s2l3:'Geräteinformationen (für Fehlerberichte)',s2l4:'Nutzungsdaten (anonymisiert, für Verbesserungen)',
+s3t:'3. Zweck der Datenverarbeitung',s3l1:'Bereitstellung und Verbesserung der App-Funktionen',s3l2:'Synchronisierung des Lernfortschritts zwischen Geräten',s3l3:'Anzeige personalisierter Werbung (kostenlose Version)',s3l4:'Verwaltung von Abonnements',
+s4t:'4. Drittanbieter-Dienste',s4l1:'Authentifizierung und Datenspeicherung (EU-Server)',s4l2:'Werbeanzeigen (kostenlose Version)',s4l3:'Abonnementverwaltung',s4l4:'In-App-Käufe',s4l5:'Fehlerüberwachung',s4l6:'Hosting der Audio-Dateien',
+s5t:'5. Datenspeicherung',s5p1:'Ihre Daten werden auf Servern von Supabase (EU) gespeichert. Lernfortschrittsdaten werden lokal auf Ihrem Gerät und in der Cloud gesichert. Bei Löschung Ihres Kontos werden alle personenbezogenen Daten innerhalb von 30 Tagen entfernt.',
+s6t:'6. Ihre Rechte (DSGVO)',s6l1:'Recht auf Auskunft über gespeicherte Daten',s6l2:'Recht auf Berichtigung unrichtiger Daten',s6l3:'Recht auf Löschung Ihrer Daten',s6l4:'Recht auf Datenübertragbarkeit',s6l5:'Recht auf Widerspruch gegen die Verarbeitung',
+s7t:'7. Werbung',s7p1:'Die kostenlose Version der App zeigt Werbung über Google AdMob. Sie können personalisierte Werbung in den Geräteeinstellungen deaktivieren. Mit einem Premium-Abonnement wird die gesamte Werbung entfernt.',
+s8t:'8. Kontakt',s8p1:'Bei Fragen zum Datenschutz kontaktieren Sie uns:'
+},
+en:{title:'MedTerms — Privacy Policy',page:'Privacy Policy',date:'Last updated: April 2026',home:'Home',privacy:'Privacy',terms:'Terms',support:'Support',tag:'Master medical terminology',
+s1t:'1. Data Controller',s1p1:'Responsible for personal data processing in the MedTerms app:',s1e:'Email:',
+s2t:'2. Data Collected',s2p1:'The following data is processed when using the app:',s2l1:'Email address and password (registration)',s2l2:'Learning progress and statistics',s2l3:'Device information (for error reports)',s2l4:'Usage data (anonymised, for improvements)',
+s3t:'3. Purpose of Processing',s3l1:'Providing and improving app functions',s3l2:'Syncing learning progress between devices',s3l3:'Displaying personalised ads (free version)',s3l4:'Managing subscriptions',
+s4t:'4. Third-Party Services',s4l1:'Authentication and data storage (EU servers)',s4l2:'Advertising (free version)',s4l3:'Subscription management',s4l4:'In-app purchases',s4l5:'Error monitoring',s4l6:'Audio files hosting',
+s5t:'5. Data Storage',s5p1:'Your data is stored on Supabase servers (EU). Learning progress is backed up locally on your device and in the cloud. When you delete your account, all personal data is removed within 30 days.',
+s6t:'6. Your Rights (GDPR)',s6l1:'Right to access stored data',s6l2:'Right to rectification of inaccurate data',s6l3:'Right to deletion of your data',s6l4:'Right to data portability',s6l5:'Right to object to processing',
+s7t:'7. Advertising',s7p1:'The free version displays ads via Google AdMob. You can disable personalised ads in your device settings. A Premium subscription removes all advertising.',
+s8t:'8. Contact',s8p1:'For data protection questions, contact us:'
+},
+uk:{title:'MedTerms — Політика конфіденційності',page:'Політика конфіденційності',date:'Оновлено: квітень 2026',home:'Головна',privacy:'Конфіденційність',terms:'Умови',support:'Підтримка',tag:'Опануйте медичну термінологію',
+s1t:'1. Контролер даних',s1p1:'Відповідальний за обробку персональних даних у додатку MedTerms:',s1e:'Email:',
+s2t:'2. Збирані дані',s2p1:'Під час користування додатком обробляються такі дані:',s2l1:'Email та пароль (реєстрація)',s2l2:'Прогрес навчання та статистика',s2l3:'Інформація про пристрій (для звітів про помилки)',s2l4:'Дані використання (анонімно, для покращень)',
+s3t:'3. Мета обробки',s3l1:'Надання та покращення функцій додатка',s3l2:'Синхронізація прогресу між пристроями',s3l3:'Показ персоналізованої реклами (безкоштовна версія)',s3l4:'Керування підписками',
+s4t:'4. Сторонні сервіси',s4l1:'Автентифікація та зберігання даних (сервери в ЄС)',s4l2:'Реклама (безкоштовна версія)',s4l3:'Керування підписками',s4l4:'Внутрішньододаткові покупки',s4l5:'Моніторинг помилок',s4l6:'Хостинг аудіофайлів',
+s5t:'5. Зберігання даних',s5p1:'Ваші дані зберігаються на серверах Supabase (ЄС). Прогрес резервується локально та в хмарі. При видаленні акаунту всі персональні дані видаляються протягом 30 днів.',
+s6t:'6. Ваші права (GDPR)',s6l1:'Право доступу до збережених даних',s6l2:'Право на виправлення неточних даних',s6l3:'Право на видалення даних',s6l4:'Право на портативність даних',s6l5:'Право заперечувати проти обробки',
+s7t:'7. Реклама',s7p1:'Безкоштовна версія показує рекламу через Google AdMob. Ви можете вимкнути персоналізовану рекламу у налаштуваннях пристрою. Premium-підписка прибирає всю рекламу.',
+s8t:'8. Контакти',s8p1:'З питань захисту даних зв\'яжіться з нами:'
+},
+ru:{title:'MedTerms — Политика конфиденциальности',page:'Политика конфиденциальности',date:'Обновлено: апрель 2026',home:'Главная',privacy:'Конфиденциальность',terms:'Условия',support:'Поддержка',tag:'Освойте медицинскую терминологию',
+s1t:'1. Контролер данных',s1p1:'Ответственный за обработку персональных данных в приложении MedTerms:',s1e:'Email:',
+s2t:'2. Собираемые данные',s2p1:'При использовании приложения обрабатываются следующие данные:',s2l1:'Email и пароль (регистрация)',s2l2:'Прогресс обучения и статистика',s2l3:'Информация об устройстве (для отчётов об ошибках)',s2l4:'Данные использования (анонимно, для улучшений)',
+s3t:'3. Цель обработки',s3l1:'Предоставление и улучшение функций приложения',s3l2:'Синхронизация прогресса между устройствами',s3l3:'Показ персонализированной рекламы (бесплатная версия)',s3l4:'Управление подписками',
+s4t:'4. Сторонние сервисы',s4l1:'Аутентификация и хранение данных (серверы в ЕС)',s4l2:'Реклама (бесплатная версия)',s4l3:'Управление подписками',s4l4:'Встроенные покупки',s4l5:'Мониторинг ошибок',s4l6:'Хостинг аудиофайлов',
+s5t:'5. Хранение данных',s5p1:'Ваши данные хранятся на серверах Supabase (ЕС). Прогресс резервируется локально и в облаке. При удалении аккаунта все персональные данные удаляются в течение 30 дней.',
+s6t:'6. Ваши права (GDPR)',s6l1:'Право доступа к сохранённым данным',s6l2:'Право на исправление неточных данных',s6l3:'Право на удаление данных',s6l4:'Право на переносимость данных',s6l5:'Право возражать против обработки',
+s7t:'7. Реклама',s7p1:'Бесплатная версия показывает рекламу через Google AdMob. Вы можете отключить персонализированную рекламу в настройках устройства. Premium-подписка убирает всю рекламу.',
+s8t:'8. Контакты',s8p1:'По вопросам защиты данных свяжитесь с нами:'
+},
+tr:{title:'MedTerms — Gizlilik Politikası',page:'Gizlilik Politikası',date:'Güncellendi: Nisan 2026',home:'Ana sayfa',privacy:'Gizlilik',terms:'Şartlar',support:'Destek',tag:'Tıbbi terminolojide ustalaşın',
+s1t:'1. Veri Sorumlusu',s1p1:'MedTerms uygulamasında kişisel verilerin işlenmesinden sorumlu:',s1e:'E-posta:',
+s2t:'2. Toplanan Veriler',s2p1:'Uygulama kullanımında şu veriler işlenir:',s2l1:'E-posta ve şifre (kayıt)',s2l2:'Öğrenme ilerlemesi ve istatistikler',s2l3:'Cihaz bilgisi (hata raporları için)',s2l4:'Kullanım verileri (anonim, iyileştirmeler için)',
+s3t:'3. İşleme Amacı',s3l1:'Uygulama işlevlerinin sağlanması ve iyileştirilmesi',s3l2:'Cihazlar arası ilerleme senkronizasyonu',s3l3:'Kişiselleştirilmiş reklam gösterimi (ücretsiz sürüm)',s3l4:'Abonelik yönetimi',
+s4t:'4. Üçüncü Taraf Hizmetleri',s4l1:'Kimlik doğrulama ve veri depolama (AB sunucuları)',s4l2:'Reklam (ücretsiz sürüm)',s4l3:'Abonelik yönetimi',s4l4:'Uygulama içi satın alımlar',s4l5:'Hata izleme',s4l6:'Ses dosyası hosting',
+s5t:'5. Veri Saklama',s5p1:'Verileriniz Supabase sunucularında (AB) saklanır. Öğrenme ilerlemesi cihazınızda ve bulutta yedeklenir. Hesabınızı sildiğinizde tüm kişisel veriler 30 gün içinde kaldırılır.',
+s6t:'6. Haklarınız (GDPR)',s6l1:'Saklanan verilere erişim hakkı',s6l2:'Yanlış verilerin düzeltilmesi hakkı',s6l3:'Verilerinizin silinmesi hakkı',s6l4:'Veri taşınabilirliği hakkı',s6l5:'İşlemeye itiraz etme hakkı',
+s7t:'7. Reklam',s7p1:'Ücretsiz sürüm Google AdMob üzerinden reklam gösterir. Cihaz ayarlarından kişiselleştirilmiş reklamları devre dışı bırakabilirsiniz. Premium abonelik tüm reklamları kaldırır.',
+s8t:'8. İletişim',s8p1:'Veri koruma ile ilgili sorularınız için bize ulaşın:'
+},
+ar:{title:'MedTerms — سياسة الخصوصية',page:'سياسة الخصوصية',date:'آخر تحديث: أبريل 2026',home:'الرئيسية',privacy:'الخصوصية',terms:'الشروط',support:'الدعم',tag:'أتقن المصطلحات الطبية',
+s1t:'1. المسؤول عن البيانات',s1p1:'المسؤول عن معالجة البيانات الشخصية في تطبيق MedTerms:',s1e:'البريد الإلكتروني:',
+s2t:'2. البيانات المجمعة',s2p1:'تتم معالجة البيانات التالية عند استخدام التطبيق:',s2l1:'البريد الإلكتروني وكلمة المرور (التسجيل)',s2l2:'تقدم التعلم والإحصائيات',s2l3:'معلومات الجهاز (لتقارير الأخطاء)',s2l4:'بيانات الاستخدام (مجهولة الهوية، للتحسينات)',
+s3t:'3. الغرض من المعالجة',s3l1:'توفير وتحسين وظائف التطبيق',s3l2:'مزامنة تقدم التعلم بين الأجهزة',s3l3:'عرض الإعلانات المخصصة (الإصدار المجاني)',s3l4:'إدارة الاشتراكات',
+s4t:'4. خدمات الطرف الثالث',s4l1:'المصادقة وتخزين البيانات (خوادم الاتحاد الأوروبي)',s4l2:'الإعلانات (الإصدار المجاني)',s4l3:'إدارة الاشتراكات',s4l4:'المشتريات داخل التطبيق',s4l5:'مراقبة الأخطاء',s4l6:'استضافة الملفات الصوتية',
+s5t:'5. تخزين البيانات',s5p1:'يتم تخزين بياناتك على خوادم Supabase (الاتحاد الأوروبي). يتم نسخ تقدم التعلم احتياطياً محلياً وفي السحابة. عند حذف حسابك، تتم إزالة جميع البيانات الشخصية خلال 30 يوماً.',
+s6t:'6. حقوقك (GDPR)',s6l1:'الحق في الوصول إلى البيانات المخزنة',s6l2:'الحق في تصحيح البيانات غير الدقيقة',s6l3:'الحق في حذف بياناتك',s6l4:'الحق في نقل البيانات',s6l5:'الحق في الاعتراض على المعالجة',
+s7t:'7. الإعلانات',s7p1:'يعرض الإصدار المجاني إعلانات عبر Google AdMob. يمكنك تعطيل الإعلانات المخصصة في إعدادات جهازك. يزيل الاشتراك المميز جميع الإعلانات.',
+s8t:'8. التواصل',s8p1:'لأسئلة حماية البيانات، اتصل بنا:'
+},
+fr:{title:'MedTerms — Politique de confidentialité',page:'Politique de confidentialité',date:'Mis à jour : avril 2026',home:'Accueil',privacy:'Confidentialité',terms:'Conditions',support:'Support',tag:'Maîtrisez la terminologie médicale',
+s1t:'1. Responsable du traitement',s1p1:'Responsable du traitement des données personnelles dans l\'application MedTerms :',s1e:'E-mail :',
+s2t:'2. Données collectées',s2p1:'Les données suivantes sont traitées lors de l\'utilisation :',s2l1:'E-mail et mot de passe (inscription)',s2l2:'Progression d\'apprentissage et statistiques',s2l3:'Informations sur l\'appareil (pour rapports d\'erreurs)',s2l4:'Données d\'utilisation (anonymes, pour améliorations)',
+s3t:'3. Finalité du traitement',s3l1:'Fourniture et amélioration des fonctions de l\'app',s3l2:'Synchronisation entre appareils',s3l3:'Affichage de publicités personnalisées (version gratuite)',s3l4:'Gestion des abonnements',
+s4t:'4. Services tiers',s4l1:'Authentification et stockage (serveurs UE)',s4l2:'Publicités (version gratuite)',s4l3:'Gestion des abonnements',s4l4:'Achats in-app',s4l5:'Surveillance des erreurs',s4l6:'Hébergement audio',
+s5t:'5. Stockage des données',s5p1:'Vos données sont stockées sur les serveurs Supabase (UE). La progression est sauvegardée localement et dans le cloud. Lors de la suppression de votre compte, toutes les données personnelles sont supprimées sous 30 jours.',
+s6t:'6. Vos droits (RGPD)',s6l1:'Droit d\'accès aux données stockées',s6l2:'Droit de rectification',s6l3:'Droit à l\'effacement',s6l4:'Droit à la portabilité',s6l5:'Droit d\'opposition au traitement',
+s7t:'7. Publicité',s7p1:'La version gratuite affiche des publicités via Google AdMob. Vous pouvez désactiver les publicités personnalisées dans les paramètres. Un abonnement Premium supprime toutes les publicités.',
+s8t:'8. Contact',s8p1:'Pour toute question sur la protection des données :'
+},
+es:{title:'MedTerms — Política de privacidad',page:'Política de privacidad',date:'Actualizado: abril 2026',home:'Inicio',privacy:'Privacidad',terms:'Términos',support:'Soporte',tag:'Domina la terminología médica',
+s1t:'1. Responsable',s1p1:'Responsable del tratamiento de datos personales en la app MedTerms:',s1e:'Email:',
+s2t:'2. Datos recopilados',s2p1:'Se procesan los siguientes datos al usar la app:',s2l1:'Email y contraseña (registro)',s2l2:'Progreso de aprendizaje y estadísticas',s2l3:'Información del dispositivo (para informes de errores)',s2l4:'Datos de uso (anónimos, para mejoras)',
+s3t:'3. Finalidad del tratamiento',s3l1:'Proporcionar y mejorar las funciones de la app',s3l2:'Sincronización entre dispositivos',s3l3:'Mostrar anuncios personalizados (versión gratuita)',s3l4:'Gestión de suscripciones',
+s4t:'4. Servicios de terceros',s4l1:'Autenticación y almacenamiento (servidores UE)',s4l2:'Publicidad (versión gratuita)',s4l3:'Gestión de suscripciones',s4l4:'Compras dentro de la app',s4l5:'Monitoreo de errores',s4l6:'Alojamiento de audio',
+s5t:'5. Almacenamiento de datos',s5p1:'Tus datos se almacenan en servidores Supabase (UE). El progreso se respalda localmente y en la nube. Al eliminar tu cuenta, todos los datos personales se eliminan en 30 días.',
+s6t:'6. Tus derechos (RGPD)',s6l1:'Derecho de acceso a datos almacenados',s6l2:'Derecho de rectificación',s6l3:'Derecho de supresión',s6l4:'Derecho a la portabilidad',s6l5:'Derecho a oponerse al tratamiento',
+s7t:'7. Publicidad',s7p1:'La versión gratuita muestra anuncios mediante Google AdMob. Puedes desactivar los anuncios personalizados en los ajustes del dispositivo. La suscripción Premium elimina toda la publicidad.',
+s8t:'8. Contacto',s8p1:'Para preguntas sobre protección de datos:'
+},
+pl:{title:'MedTerms — Polityka prywatności',page:'Polityka prywatności',date:'Aktualizacja: kwiecień 2026',home:'Start',privacy:'Prywatność',terms:'Warunki',support:'Wsparcie',tag:'Opanuj terminologię medyczną',
+s1t:'1. Administrator danych',s1p1:'Odpowiedzialny za przetwarzanie danych osobowych w aplikacji MedTerms:',s1e:'E-mail:',
+s2t:'2. Zbierane dane',s2p1:'Podczas korzystania z aplikacji przetwarzane są następujące dane:',s2l1:'E-mail i hasło (rejestracja)',s2l2:'Postępy w nauce i statystyki',s2l3:'Informacje o urządzeniu (do raportów błędów)',s2l4:'Dane użytkowania (anonimowe, do ulepszeń)',
+s3t:'3. Cel przetwarzania',s3l1:'Zapewnianie i ulepszanie funkcji aplikacji',s3l2:'Synchronizacja między urządzeniami',s3l3:'Wyświetlanie spersonalizowanych reklam (wersja bezpłatna)',s3l4:'Zarządzanie subskrypcjami',
+s4t:'4. Usługi stron trzecich',s4l1:'Uwierzytelnianie i przechowywanie danych (serwery UE)',s4l2:'Reklamy (wersja bezpłatna)',s4l3:'Zarządzanie subskrypcjami',s4l4:'Zakupy w aplikacji',s4l5:'Monitorowanie błędów',s4l6:'Hosting plików audio',
+s5t:'5. Przechowywanie danych',s5p1:'Twoje dane są przechowywane na serwerach Supabase (UE). Postępy są kopiowane lokalnie i w chmurze. Przy usuwaniu konta wszystkie dane osobowe są usuwane w ciągu 30 dni.',
+s6t:'6. Twoje prawa (RODO)',s6l1:'Prawo dostępu do przechowywanych danych',s6l2:'Prawo do sprostowania',s6l3:'Prawo do usunięcia danych',s6l4:'Prawo do przenoszenia danych',s6l5:'Prawo do sprzeciwu',
+s7t:'7. Reklama',s7p1:'Wersja bezpłatna wyświetla reklamy przez Google AdMob. Możesz wyłączyć spersonalizowane reklamy w ustawieniach urządzenia. Subskrypcja Premium usuwa wszystkie reklamy.',
+s8t:'8. Kontakt',s8p1:'W sprawach ochrony danych skontaktuj się z nami:'
+},
+el:{title:'MedTerms — Πολιτική απορρήτου',page:'Πολιτική απορρήτου',date:'Ενημερώθηκε: Απρίλιος 2026',home:'Αρχική',privacy:'Απόρρητο',terms:'Όροι',support:'Υποστήριξη',tag:'Κατακτήστε την ιατρική ορολογία',
+s1t:'1. Υπεύθυνος επεξεργασίας',s1p1:'Υπεύθυνος για την επεξεργασία προσωπικών δεδομένων στην εφαρμογή MedTerms:',s1e:'Email:',
+s2t:'2. Συλλεγόμενα δεδομένα',s2p1:'Κατά τη χρήση της εφαρμογής επεξεργάζονται τα ακόλουθα δεδομένα:',s2l1:'Email και κωδικός (εγγραφή)',s2l2:'Πρόοδος μάθησης και στατιστικά',s2l3:'Πληροφορίες συσκευής (για αναφορές σφαλμάτων)',s2l4:'Δεδομένα χρήσης (ανώνυμα, για βελτιώσεις)',
+s3t:'3. Σκοπός επεξεργασίας',s3l1:'Παροχή και βελτίωση λειτουργιών εφαρμογής',s3l2:'Συγχρονισμός μεταξύ συσκευών',s3l3:'Εμφάνιση εξατομικευμένων διαφημίσεων (δωρεάν έκδοση)',s3l4:'Διαχείριση συνδρομών',
+s4t:'4. Υπηρεσίες τρίτων',s4l1:'Ταυτοποίηση και αποθήκευση δεδομένων (διακομιστές ΕΕ)',s4l2:'Διαφήμιση (δωρεάν έκδοση)',s4l3:'Διαχείριση συνδρομών',s4l4:'Αγορές εντός εφαρμογής',s4l5:'Παρακολούθηση σφαλμάτων',s4l6:'Φιλοξενία αρχείων ήχου',
+s5t:'5. Αποθήκευση δεδομένων',s5p1:'Τα δεδομένα σας αποθηκεύονται σε διακομιστές Supabase (ΕΕ). Η πρόοδος αποθηκεύεται τοπικά και στο cloud. Κατά τη διαγραφή του λογαριασμού, όλα τα προσωπικά δεδομένα αφαιρούνται εντός 30 ημερών.',
+s6t:'6. Τα δικαιώματά σας (GDPR)',s6l1:'Δικαίωμα πρόσβασης',s6l2:'Δικαίωμα διόρθωσης',s6l3:'Δικαίωμα διαγραφής',s6l4:'Δικαίωμα φορητότητας',s6l5:'Δικαίωμα εναντίωσης',
+s7t:'7. Διαφήμιση',s7p1:'Η δωρεάν έκδοση εμφανίζει διαφημίσεις μέσω Google AdMob. Μπορείτε να απενεργοποιήσετε τις εξατομικευμένες διαφημίσεις στις ρυθμίσεις. Η Premium συνδρομή αφαιρεί όλες τις διαφημίσεις.',
+s8t:'8. Επικοινωνία',s8p1:'Για ερωτήσεις προστασίας δεδομένων:'
+},
+ro:{title:'MedTerms — Politica de confidențialitate',page:'Politica de confidențialitate',date:'Actualizat: aprilie 2026',home:'Acasă',privacy:'Confidențialitate',terms:'Termeni',support:'Asistență',tag:'Stăpâniți terminologia medicală',
+s1t:'1. Operator de date',s1p1:'Responsabil pentru prelucrarea datelor personale în aplicația MedTerms:',s1e:'E-mail:',
+s2t:'2. Date colectate',s2p1:'Următoarele date sunt prelucrate la utilizarea aplicației:',s2l1:'E-mail și parolă (înregistrare)',s2l2:'Progres de învățare și statistici',s2l3:'Informații despre dispozitiv (pentru rapoarte de erori)',s2l4:'Date de utilizare (anonimizate, pentru îmbunătățiri)',
+s3t:'3. Scopul prelucrării',s3l1:'Furnizarea și îmbunătățirea funcțiilor aplicației',s3l2:'Sincronizare între dispozitive',s3l3:'Afișarea reclamelor personalizate (versiunea gratuită)',s3l4:'Gestionarea abonamentelor',
+s4t:'4. Servicii terțe',s4l1:'Autentificare și stocare (servere UE)',s4l2:'Publicitate (versiunea gratuită)',s4l3:'Gestionarea abonamentelor',s4l4:'Achiziții in-app',s4l5:'Monitorizare erori',s4l6:'Găzduire fișiere audio',
+s5t:'5. Stocarea datelor',s5p1:'Datele dvs. sunt stocate pe servere Supabase (UE). Progresul este salvat local și în cloud. La ștergerea contului, toate datele personale sunt eliminate în 30 de zile.',
+s6t:'6. Drepturile dvs. (GDPR)',s6l1:'Dreptul de acces la date',s6l2:'Dreptul la rectificare',s6l3:'Dreptul la ștergere',s6l4:'Dreptul la portabilitate',s6l5:'Dreptul de opoziție',
+s7t:'7. Publicitate',s7p1:'Versiunea gratuită afișează reclame prin Google AdMob. Puteți dezactiva reclamele personalizate în setările dispozitivului. Abonamentul Premium elimină toate reclamele.',
+s8t:'8. Contact',s8p1:'Pentru întrebări despre protecția datelor:'
+}
+};
+
+function normalizeLang(raw){
+  if(raw==null||raw==='')return null;
+  var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);
+  return T[c]?c:null;
+}
+function getUrlLang(){
+  return new URLSearchParams(window.location.search).get('lang')||'';
+}
+var lc=normalizeLang(getUrlLang())||normalizeLang((navigator.language||'de').slice(0,2).toLowerCase())||'de';
+var tr=T[lc]||T.de;
+
+document.documentElement.setAttribute('lang',lc);
+document.documentElement.setAttribute('dir',lc==='ar'?'rtl':'ltr');
+document.body.style.direction=(lc==='ar'?'rtl':'ltr');
+document.title=tr.title;
+
+function setText(id,text){var el=document.getElementById(id);if(el)el.textContent=text}
+setText('nav-home',tr.home);setText('nav-privacy',tr.privacy);setText('nav-terms',tr.terms);setText('nav-support',tr.support);
+setText('page-title',tr.page);setText('page-date',tr.date);
+setText('s1-title',tr.s1t);setText('s1-p1',tr.s1p1);setText('s1-email',tr.s1e);
+setText('s2-title',tr.s2t);setText('s2-p1',tr.s2p1);setText('s2-l1',tr.s2l1);setText('s2-l2',tr.s2l2);setText('s2-l3',tr.s2l3);setText('s2-l4',tr.s2l4);
+setText('s3-title',tr.s3t);setText('s3-l1',tr.s3l1);setText('s3-l2',tr.s3l2);setText('s3-l3',tr.s3l3);setText('s3-l4',tr.s3l4);
+setText('s4-title',tr.s4t);setText('s4-l1',tr.s4l1);setText('s4-l2',tr.s4l2);setText('s4-l3',tr.s4l3);setText('s4-l4',tr.s4l4);setText('s4-l5',tr.s4l5);setText('s4-l6',tr.s4l6);
+setText('s5-title',tr.s5t);setText('s5-p1',tr.s5p1);
+setText('s6-title',tr.s6t);setText('s6-l1',tr.s6l1);setText('s6-l2',tr.s6l2);setText('s6-l3',tr.s6l3);setText('s6-l4',tr.s6l4);setText('s6-l5',tr.s6l5);
+setText('s7-title',tr.s7t);setText('s7-p1',tr.s7p1);
+setText('s8-title',tr.s8t);setText('s8-p1',tr.s8p1);
+setText('f-tagline',tr.tag);setText('f-privacy',tr.privacy);setText('f-terms',tr.terms);setText('f-support',tr.support);
+</script>
 </body>
 </html>
