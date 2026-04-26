@@ -1,0 +1,18 @@
+
+# Internal Cursor task docs — НЕ для публічного GitHub
+CURSOR_*.md
+_archive/
+_scripts/
+medterms_app/
+audio/
+medicalTerms.json
+medicalTerms_with_cloze_improved.js
+*.png
+
+# Whitelist favicon / app-icon assets used by index.html
+!favicon-16.png
+!favicon-32.png
+!apple-touch-icon.png
+!icon-192.png
+!icon-512.png
+
