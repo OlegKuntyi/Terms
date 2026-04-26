@@ -134,20 +134,74 @@ body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC
 .feature h3{font-size:16px;font-weight:600;color:#242833;margin-bottom:8px}
 .feature p{font-size:14px;color:#6B7280;line-height:1.6}
 
-/* ===== Capabilities (full feature breakdown) ===== */
-.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-@media(min-width:1100px){.cats{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:760px){.cats{grid-template-columns:1fr}}
-.feature-cat{background:#fff;border:1px solid #EEF0F9;border-radius:18px;padding:24px;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden}
-.feature-cat:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(17,24,39,.06);border-color:#D8DFF1}
-.feature-cat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#78B5FA,#9586FD);opacity:0;transition:opacity .15s}
-.feature-cat:hover::before{opacity:1}
-.cat-icon{font-size:28px;margin-bottom:14px;line-height:1;display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#F0E9FF,#E0ECFF)}
-.feature-cat h3{font-size:16px;font-weight:700;color:#242833;margin-bottom:14px;letter-spacing:-.2px;line-height:1.3}
-.feature-cat ul{list-style:none;padding:0}
-.feature-cat ul li{font-size:13px;color:#4B5563;line-height:1.55;padding:5px 0 5px 22px;position:relative}
-.feature-cat ul li::before{content:"";position:absolute;left:2px;top:11px;width:12px;height:12px;background:linear-gradient(135deg,#78B5FA,#9586FD);border-radius:50%;opacity:.18}
-.feature-cat ul li::after{content:"";position:absolute;left:5px;top:14px;width:6px;height:6px;background:#9586FD;border-radius:50%}
+/* ===== Capabilities (tabbed switcher — Stripe/Linear pattern) ===== */
+.cap-tabs-wrap{position:relative;margin-bottom:28px;border-bottom:1px solid #EEF0F9}
+.cap-tabs-wrap::after{content:"";position:absolute;right:0;top:0;bottom:1px;width:36px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff);pointer-events:none;opacity:0;transition:opacity .2s}
+.cap-tabs-wrap.has-overflow::after{opacity:1}
+.cap-tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 2px}
+.cap-tabs::-webkit-scrollbar{display:none}
+.cap-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;padding:11px 16px 13px;background:transparent;border:0;border-bottom:2px solid transparent;font-family:inherit;font-size:13px;font-weight:600;color:#7E8494;letter-spacing:-.1px;cursor:pointer;white-space:nowrap;transition:color .15s,background-color .2s;position:relative;margin-bottom:-1px;border-radius:10px 10px 0 0}
+.cap-tab:hover{color:#4B5563;background:rgba(120,181,250,.06)}
+.cap-tab .cap-tab-icon{font-size:16px;line-height:1;filter:grayscale(.4);transition:filter .2s,transform .2s}
+.cap-tab:hover .cap-tab-icon{filter:grayscale(0);transform:scale(1.08)}
+.cap-tab.active{color:#242833}
+.cap-tab.active .cap-tab-icon{filter:grayscale(0);animation:capIconPulse 2.4s ease-in-out infinite}
+/* Static thin track under active tab */
+.cap-tab.active::before{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:2px;background:rgba(149,134,253,.18);border-radius:2px 2px 0 0}
+/* Animated progress fill — auto-rotate timer */
+.cap-tab.active::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:2px;background:linear-gradient(90deg,#78B5FA,#9586FD);border-radius:2px 2px 0 0;transform-origin:left center;transform:scaleX(0);animation:capTabProgress var(--cap-rotate-dur,6.5s) linear forwards}
+.cap-tabs-wrap.is-paused .cap-tab.active::after{animation-play-state:paused}
+.cap-tabs-wrap.no-rotate .cap-tab.active::after{display:none}
+.cap-tabs-wrap.no-rotate .cap-tab.active::before{display:none}
+.cap-tab:focus-visible{outline:2px solid #9586FD;outline-offset:-2px}
+@keyframes capTabProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes capIconPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media(prefers-reduced-motion:reduce){
+  .cap-tab.active .cap-tab-icon{animation:none}
+  .cap-tab.active::after{display:none}
+  .cap-tab.active::before{display:none}
+}
+.cap-stage{position:relative;min-height:280px}
+.cap-panel{display:none;animation:capFade .35s ease both}
+.cap-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.cap-panel .cap-body{background:#fff;border:1px solid #EEF0F9;border-radius:18px;padding:28px 30px;position:relative;overflow:hidden}
+.cap-panel .cap-body::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#78B5FA,#9586FD)}
+.cap-panel h3{font-size:20px;font-weight:700;color:#242833;margin-bottom:16px;letter-spacing:-.3px;line-height:1.25;display:flex;align-items:center;gap:12px}
+.cap-panel h3 .cap-panel-emoji{font-size:24px;width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:linear-gradient(135deg,#F0E9FF,#E0ECFF);flex:0 0 42px}
+.cap-panel ul{list-style:none;padding:0;margin:0}
+.cap-panel ul li{font-size:14px;color:#4B5563;line-height:1.6;padding:7px 0 7px 24px;position:relative;animation:capRowIn .4s ease both}
+.cap-panel ul li::before{content:"";position:absolute;left:2px;top:13px;width:12px;height:12px;background:linear-gradient(135deg,#78B5FA,#9586FD);border-radius:50%;opacity:.2}
+.cap-panel ul li::after{content:"";position:absolute;left:5px;top:16px;width:6px;height:6px;background:#9586FD;border-radius:50%}
+.cap-panel ul li:nth-child(1){animation-delay:.05s}
+.cap-panel ul li:nth-child(2){animation-delay:.09s}
+.cap-panel ul li:nth-child(3){animation-delay:.13s}
+.cap-panel ul li:nth-child(4){animation-delay:.17s}
+.cap-panel ul li:nth-child(5){animation-delay:.21s}
+.cap-panel ul li:nth-child(6){animation-delay:.25s}
+.cap-panel ul li:nth-child(7){animation-delay:.29s}
+/* Right column: quote OR illustrative empty space */
+.cap-aside{display:flex;align-items:center;justify-content:center;min-height:240px;padding:8px}
+.cap-aside .pull-quote{position:relative;background:linear-gradient(135deg,rgba(120,181,250,.08),rgba(149,134,253,.10));border:1px solid rgba(149,134,253,.14);border-radius:18px;padding:32px 30px 28px;max-width:420px;animation:capQuoteIn .6s .15s cubic-bezier(.2,.7,.2,1) both}
+.cap-aside .pull-quote::before{content:"\201C";position:absolute;top:8px;left:18px;font-size:64px;font-family:Georgia,serif;color:#9586FD;opacity:.25;line-height:1}
+.cap-aside .pull-quote .quote-body{font-size:17px;line-height:1.45;color:#242833;font-style:italic;font-weight:500;letter-spacing:-.1px;position:relative;z-index:1}
+.cap-aside .pull-quote .attr{display:block;margin-top:14px;font-size:12px;font-style:normal;color:#7E8494;letter-spacing:.2px;font-weight:500}
+@keyframes capFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes capRowIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+@keyframes capQuoteIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:900px){
+  .cap-panel.active{grid-template-columns:1fr;gap:18px}
+  .cap-aside{min-height:0;padding:0}
+  .cap-aside .pull-quote{max-width:none;padding:22px 22px 20px}
+  .cap-aside .pull-quote .quote-body{font-size:15px}
+}
+@media(max-width:600px){
+  .cap-tab{padding:10px 12px 12px;font-size:12px;gap:6px}
+  .cap-tab .cap-tab-icon{font-size:14px}
+  .cap-panel .cap-body{padding:22px 20px;border-radius:14px}
+  .cap-panel h3{font-size:17px}
+  .cap-panel h3 .cap-panel-emoji{font-size:20px;width:36px;height:36px;flex:0 0 36px;border-radius:10px}
+  .cap-panel ul li{font-size:13px}
+}
 
 /* ===== Comparison ===== */
 .compare{background:#fff;border:1px solid #EEF0F9;border-radius:22px;overflow:hidden;box-shadow:0 4px 16px rgba(17,24,39,.04)}
@@ -209,7 +263,6 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
   .phone{max-width:260px}
   .features,.steps{grid-template-columns:repeat(2,1fr)}
   .stats{grid-template-columns:repeat(3,1fr)}
-  .cats{grid-template-columns:repeat(2,1fr);gap:14px}
 }
 @media (max-width:768px){
   .nav{padding:10px 14px}
@@ -223,8 +276,6 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
   .section-title h2{font-size:26px}
   .stats{grid-template-columns:repeat(3,1fr);gap:10px}
   .features,.steps{grid-template-columns:1fr}
-  .cats{grid-template-columns:1fr;gap:12px}
-  .feature-cat{padding:20px;border-radius:14px}
   .cta-bottom{padding:40px 24px;margin:32px 16px}
   .cta-bottom h2{font-size:24px}
   .testimonial{padding:24px 20px}
@@ -255,9 +306,6 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
   .stat{padding:18px 8px;border-radius:14px}
   .stat .num{font-size:22px}
   .stat .label{font-size:9px;letter-spacing:.6px}
-  .feature-cat h3{font-size:15px}
-  .feature-cat ul li{font-size:12px}
-  .cat-icon{font-size:24px;width:40px;height:40px;border-radius:12px}
   .step{padding:22px 18px}
   .step h3{font-size:15px}
   .step p{font-size:13px}
@@ -431,98 +479,180 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
     <h2 id="cap-title">Mehr als ein Vokabeltrainer</h2>
     <p id="cap-sub">MedTerms begleitet dich durch den ganzen Approbations-Weg — von der ersten Vokabel bis zur Stellenbewerbung.</p>
   </div>
-  <div class="cats">
-
-    <div class="feature-cat">
-      <div class="cat-icon">🎯</div>
-      <h3 id="cat1-title">Lernspiele &amp; Spaced Repetition</h3>
-      <ul>
-        <li id="cat1-li1">Karteikarten mit Audio-Aussprache</li>
-        <li id="cat1-li2">Multiple-Choice-Quiz</li>
-        <li id="cat1-li3">Lückentexte (Cloze)</li>
-        <li id="cat1-li4">Matching-Spiel</li>
-        <li id="cat1-li5">Glücksrad — Solo &amp; Multiplayer</li>
-        <li id="cat1-li6">Tägliche Challenge mit Bestenliste</li>
-        <li id="cat1-li7">Spaced Repetition (Score 3/2/1/0)</li>
-      </ul>
+  <div class="cap-tabs-wrap">
+    <div class="cap-tabs" role="tablist" id="capTabs">
+      <button class="cap-tab active" data-cap="1" role="tab" aria-selected="true" aria-controls="cap-panel-1">
+        <span class="cap-tab-icon" aria-hidden="true">🎯</span>
+        <span class="cap-tab-label" id="cat1-tab">Lernspiele</span>
+      </button>
+      <button class="cap-tab" data-cap="2" role="tab" aria-selected="false" aria-controls="cap-panel-2">
+        <span class="cap-tab-icon" aria-hidden="true">📅</span>
+        <span class="cap-tab-label" id="cat2-tab">Pläne</span>
+      </button>
+      <button class="cap-tab" data-cap="3" role="tab" aria-selected="false" aria-controls="cap-panel-3">
+        <span class="cap-tab-icon" aria-hidden="true">🏥</span>
+        <span class="cap-tab-label" id="cat3-tab">Approbation</span>
+      </button>
+      <button class="cap-tab" data-cap="4" role="tab" aria-selected="false" aria-controls="cap-panel-4">
+        <span class="cap-tab-icon" aria-hidden="true">🎙️</span>
+        <span class="cap-tab-label" id="cat4-tab">FSP-Praxis</span>
+      </button>
+      <button class="cap-tab" data-cap="5" role="tab" aria-selected="false" aria-controls="cap-panel-5">
+        <span class="cap-tab-icon" aria-hidden="true">📚</span>
+        <span class="cap-tab-label" id="cat5-tab">Wissen &amp; Job</span>
+      </button>
+      <button class="cap-tab" data-cap="6" role="tab" aria-selected="false" aria-controls="cap-panel-6">
+        <span class="cap-tab-icon" aria-hidden="true">⚙️</span>
+        <span class="cap-tab-label" id="cat6-tab">Komfort</span>
+      </button>
+      <button class="cap-tab" data-cap="7" role="tab" aria-selected="false" aria-controls="cap-panel-7">
+        <span class="cap-tab-icon" aria-hidden="true">👥</span>
+        <span class="cap-tab-label" id="cat7-tab">Community</span>
+      </button>
     </div>
+  </div>
 
-    <div class="feature-cat">
-      <div class="cat-icon">📅</div>
-      <h3 id="cat2-title">Persönliche Studienpläne</h3>
-      <ul>
-        <li id="cat2-li1">KP-Plan: eigene Themen, Tempo, Reihenfolge</li>
-        <li id="cat2-li2">FSP-Plan nach deinem Bundesland</li>
-        <li id="cat2-li3">Prüfungsdatum, Wochentage, Themen pro Tag</li>
-        <li id="cat2-li4">Themen verschieben, fixieren, überspringen</li>
-        <li id="cat2-li5">Tägliche Erinnerung zur Wunschzeit</li>
-        <li id="cat2-li6">PDF-Export für Druck oder Notizbuch</li>
-      </ul>
-    </div>
+  <div class="cap-stage">
 
-    <div class="feature-cat">
-      <div class="cat-icon">🏥</div>
-      <h3 id="cat3-title">Approbations-Hub</h3>
-      <ul>
-        <li id="cat3-li1">Etappenplan EU &amp; Nicht-EU</li>
-        <li id="cat3-li2">Approbationsbehörden aller 16 Bundesländer</li>
-        <li id="cat3-li3">Sprachschulen mit Adressen &amp; Kursen</li>
-        <li id="cat3-li4">Ärztekammern &amp; Kontakte</li>
-        <li id="cat3-li5">Dokumenten-Checkliste</li>
-        <li id="cat3-li6">Lebenslauf-Vorlagen mit Beispielen</li>
-      </ul>
-    </div>
+    <article class="cap-panel active" id="cap-panel-1" data-panel="1" role="tabpanel" aria-labelledby="cat1-tab">
+      <div class="cap-body">
+        <h3><span class="cap-panel-emoji" aria-hidden="true">🎯</span><span id="cat1-title">Lernspiele &amp; Spaced Repetition</span></h3>
+        <ul>
+          <li id="cat1-li1">Karteikarten mit Audio-Aussprache</li>
+          <li id="cat1-li2">Multiple-Choice-Quiz</li>
+          <li id="cat1-li3">Lückentexte (Cloze)</li>
+          <li id="cat1-li4">Matching-Spiel</li>
+          <li id="cat1-li5">Glücksrad — Solo &amp; Multiplayer</li>
+          <li id="cat1-li6">Tägliche Challenge mit Bestenliste</li>
+          <li id="cat1-li7">Spaced Repetition (Score 3/2/1/0)</li>
+        </ul>
+      </div>
+      <aside class="cap-aside">
+        <blockquote class="pull-quote">
+          <span class="quote-body" id="cat1-quote">„Unterbrich nie die Kette."</span>
+          <span class="attr">— <span id="cat1-quote-attr">Jerry Seinfeld, zit. nach J. Clear, <em>Atomic Habits</em></span></span>
+        </blockquote>
+      </aside>
+    </article>
 
-    <div class="feature-cat">
-      <div class="cat-icon">🎙️</div>
-      <h3 id="cat4-title">FSP-Praxis (mündlich)</h3>
-      <ul>
-        <li id="cat4-li1">Patientenfälle: Anamnese &amp; Vorstellung</li>
-        <li id="cat4-li2">Bundesland-spezifische Cases</li>
-        <li id="cat4-li3">Trafarette — Standardphrasen für FSP</li>
-        <li id="cat4-li4">Patient-Rollenspiele zum Üben</li>
-        <li id="cat4-li5">Latein → Deutsch → Patientensprache</li>
-        <li id="cat4-li6">Fall-spezifische Fragen &amp; Antworten</li>
-      </ul>
-    </div>
+    <article class="cap-panel" id="cap-panel-2" data-panel="2" role="tabpanel" aria-labelledby="cat2-tab" hidden>
+      <div class="cap-body">
+        <h3><span class="cap-panel-emoji" aria-hidden="true">📅</span><span id="cat2-title">Persönliche Studienpläne</span></h3>
+        <ul>
+          <li id="cat2-li1">KP-Plan: eigene Themen, Tempo, Reihenfolge</li>
+          <li id="cat2-li2">FSP-Plan nach deinem Bundesland</li>
+          <li id="cat2-li3">Prüfungsdatum, Wochentage, Themen pro Tag</li>
+          <li id="cat2-li4">Themen verschieben, fixieren, überspringen</li>
+          <li id="cat2-li5">Tägliche Erinnerung zur Wunschzeit</li>
+          <li id="cat2-li6">PDF-Export für Druck oder Notizbuch</li>
+        </ul>
+      </div>
+      <aside class="cap-aside">
+        <blockquote class="pull-quote">
+          <span class="quote-body" id="cat2-quote">„Jeden Morgen begann ich mit 120 Büroklammern in einem Glas — und hörte erst auf zu telefonieren, als alle im zweiten Glas waren."</span>
+          <span class="attr">— <span id="cat2-quote-attr">Trent Dyrsmid, zit. nach J. Clear, <em>Atomic Habits</em>, Kap. 16</span></span>
+        </blockquote>
+      </aside>
+    </article>
 
-    <div class="feature-cat">
-      <div class="cat-icon">📚</div>
-      <h3 id="cat5-title">Wissens-Hub &amp; Job</h3>
-      <ul>
-        <li id="cat5-li1">Artikel zur FSP- &amp; KP-Vorbereitung</li>
-        <li id="cat5-li2">Tipps von erfahrenen Ärzten</li>
-        <li id="cat5-li3">Job-Ressourcen für deutsche Kliniken</li>
-        <li id="cat5-li4">Bewerbungs-Vorlagen</li>
-        <li id="cat5-li5">Praxis-Hinweise zu jedem Schritt</li>
-      </ul>
-    </div>
+    <article class="cap-panel" id="cap-panel-3" data-panel="3" role="tabpanel" aria-labelledby="cat3-tab" hidden>
+      <div class="cap-body">
+        <h3><span class="cap-panel-emoji" aria-hidden="true">🏥</span><span id="cat3-title">Approbations-Hub</span></h3>
+        <ul>
+          <li id="cat3-li1">Etappenplan EU &amp; Nicht-EU</li>
+          <li id="cat3-li2">Approbationsbehörden aller 16 Bundesländer</li>
+          <li id="cat3-li3">Sprachschulen mit Adressen &amp; Kursen</li>
+          <li id="cat3-li4">Ärztekammern &amp; Kontakte</li>
+          <li id="cat3-li5">Dokumenten-Checkliste</li>
+          <li id="cat3-li6">Lebenslauf-Vorlagen mit Beispielen</li>
+        </ul>
+      </div>
+      <aside class="cap-aside">
+        <blockquote class="pull-quote">
+          <span class="quote-body" id="cat3-quote">„Du steigst nicht zur Höhe deiner Ziele auf — du fällst zur Höhe deiner Systeme."</span>
+          <span class="attr">— <span id="cat3-quote-attr">James Clear, <em>Atomic Habits</em></span></span>
+        </blockquote>
+      </aside>
+    </article>
 
-    <div class="feature-cat">
-      <div class="cat-icon">⚙️</div>
-      <h3 id="cat6-title">Komfort &amp; Synchronisation</h3>
-      <ul>
-        <li id="cat6-li1">Komplett offline-fähig</li>
-        <li id="cat6-li2">Heller &amp; dunkler Modus</li>
-        <li id="cat6-li3">Sync zwischen iPhone, iPad &amp; Android</li>
-        <li id="cat6-li4">Home-Screen-Widget</li>
-        <li id="cat6-li5">Werbefrei in Premium</li>
-        <li id="cat6-li6">11 UI-Sprachen inkl. Arabisch (RTL)</li>
-      </ul>
-    </div>
+    <article class="cap-panel" id="cap-panel-4" data-panel="4" role="tabpanel" aria-labelledby="cat4-tab" hidden>
+      <div class="cap-body">
+        <h3><span class="cap-panel-emoji" aria-hidden="true">🎙️</span><span id="cat4-title">FSP-Praxis (mündlich)</span></h3>
+        <ul>
+          <li id="cat4-li1">Patientenfälle: Anamnese &amp; Vorstellung</li>
+          <li id="cat4-li2">Bundesland-spezifische Cases</li>
+          <li id="cat4-li3">Trafarette — Standardphrasen für FSP</li>
+          <li id="cat4-li4">Patient-Rollenspiele zum Üben</li>
+          <li id="cat4-li5">Latein → Deutsch → Patientensprache</li>
+          <li id="cat4-li6">Fall-spezifische Fragen &amp; Antworten</li>
+        </ul>
+      </div>
+      <aside class="cap-aside">
+        <blockquote class="pull-quote">
+          <span class="quote-body" id="cat4-quote">„Verpasse nie zweimal."</span>
+          <span class="attr">— <span id="cat4-quote-attr">James Clear, <em>Atomic Habits</em></span></span>
+        </blockquote>
+      </aside>
+    </article>
 
-    <div class="feature-cat">
-      <div class="cat-icon">👥</div>
-      <h3 id="cat7-title">Community &amp; Updates</h3>
-      <ul>
-        <li id="cat7-li1">Übungspartner per Region finden (Simulation Partner)</li>
-        <li id="cat7-li2">FSP-Dialoge im In-App-Chat üben</li>
-        <li id="cat7-li3">Einladungen, Blockieren, sichere Verbindung</li>
-        <li id="cat7-li4">News-Feed zu FSP &amp; Approbation</li>
-        <li id="cat7-li5">Updates zu Bundesland-Anforderungen</li>
-        <li id="cat7-li6">Tipps von Ärzten, die schon bestanden haben</li>
-      </ul>
-    </div>
+    <article class="cap-panel" id="cap-panel-5" data-panel="5" role="tabpanel" aria-labelledby="cat5-tab" hidden>
+      <div class="cap-body">
+        <h3><span class="cap-panel-emoji" aria-hidden="true">📚</span><span id="cat5-title">Wissens-Hub &amp; Job</span></h3>
+        <ul>
+          <li id="cat5-li1">Artikel zur FSP- &amp; KP-Vorbereitung</li>
+          <li id="cat5-li2">Tipps von erfahrenen Ärzten</li>
+          <li id="cat5-li3">Job-Ressourcen für deutsche Kliniken</li>
+          <li id="cat5-li4">Bewerbungs-Vorlagen</li>
+          <li id="cat5-li5">Praxis-Hinweise zu jedem Schritt</li>
+        </ul>
+      </div>
+      <aside class="cap-aside">
+        <blockquote class="pull-quote">
+          <span class="quote-body" id="cat5-quote">„Jede Handlung ist eine Stimme für die Person, die du werden willst."</span>
+          <span class="attr">— <span id="cat5-quote-attr">James Clear, <em>Atomic Habits</em></span></span>
+        </blockquote>
+      </aside>
+    </article>
+
+    <article class="cap-panel" id="cap-panel-6" data-panel="6" role="tabpanel" aria-labelledby="cat6-tab" hidden>
+      <div class="cap-body">
+        <h3><span class="cap-panel-emoji" aria-hidden="true">⚙️</span><span id="cat6-title">Komfort &amp; Synchronisation</span></h3>
+        <ul>
+          <li id="cat6-li1">Komplett offline-fähig</li>
+          <li id="cat6-li2">Heller &amp; dunkler Modus</li>
+          <li id="cat6-li3">Sync zwischen iPhone, iPad &amp; Android</li>
+          <li id="cat6-li4">Home-Screen-Widget</li>
+          <li id="cat6-li5">Werbefrei in Premium</li>
+          <li id="cat6-li6">11 UI-Sprachen inkl. Arabisch (RTL)</li>
+        </ul>
+      </div>
+      <aside class="cap-aside">
+        <blockquote class="pull-quote">
+          <span class="quote-body" id="cat6-quote">„Je größer die Reibung, desto unwahrscheinlicher die Gewohnheit."</span>
+          <span class="attr">— <span id="cat6-quote-attr">James Clear, <em>Atomic Habits</em>, Kap. 12</span></span>
+        </blockquote>
+      </aside>
+    </article>
+
+    <article class="cap-panel" id="cap-panel-7" data-panel="7" role="tabpanel" aria-labelledby="cat7-tab" hidden>
+      <div class="cap-body">
+        <h3><span class="cap-panel-emoji" aria-hidden="true">👥</span><span id="cat7-title">Community &amp; Updates</span></h3>
+        <ul>
+          <li id="cat7-li1">Übungspartner per Region finden (Simulation Partner)</li>
+          <li id="cat7-li2">FSP-Dialoge im In-App-Chat üben</li>
+          <li id="cat7-li3">Einladungen, Blockieren, sichere Verbindung</li>
+          <li id="cat7-li4">News-Feed zu FSP &amp; Approbation</li>
+          <li id="cat7-li5">Updates zu Bundesland-Anforderungen</li>
+          <li id="cat7-li6">Tipps von Ärzten, die schon bestanden haben</li>
+        </ul>
+      </div>
+      <aside class="cap-aside">
+        <blockquote class="pull-quote">
+          <span class="quote-body" id="cat7-quote">„Du bist der Durchschnitt der fünf Menschen, mit denen du am meisten Zeit verbringst."</span>
+          <span class="attr">— <span id="cat7-quote-attr">Jim Rohn, zit. nach J. Clear, <em>Atomic Habits</em></span></span>
+        </blockquote>
+      </aside>
+    </article>
 
   </div>
 </section>
@@ -938,6 +1068,28 @@ ctaT:'Gata să treci FSP din prima încercare?',ctaSub:'Începe gratuit. Fără 
 }
 };
 
+/* ===== Capabilities tab labels + pull-quotes + asides (per-language) =====
+   keys per language:
+     cat1tb..cat7tb — short tab labels
+     cat1q/cat1qa — Seinfeld "don't break the chain" (cat1: Lernspiele)
+     cat2q/cat2qa — Dyrsmid "120 paper clips" (cat2: Studienpläne)
+     cat4q/cat4qa — Clear "never miss twice" (cat4: FSP-Praxis)
+     cat3a, cat5a, cat6a, cat7a — taglines for tabs without quote
+*/
+const Q={
+de:{cat1tb:'Spiele',cat2tb:'Pläne',cat3tb:'Approbation',cat4tb:'FSP-Praxis',cat5tb:'Wissen',cat6tb:'Komfort',cat7tb:'Community',cat1q:'„Unterbrich nie die Kette."',cat1qa:'Jerry Seinfeld, zit. nach J. Clear, <em>Atomic Habits</em>',cat2q:'„Jeden Morgen begann ich mit 120 Büroklammern in einem Glas — und hörte erst auf zu telefonieren, als alle im zweiten Glas waren."',cat2qa:'Trent Dyrsmid, zit. nach J. Clear, <em>Atomic Habits</em>, Kap. 16',cat3q:'„Du steigst nicht zur Höhe deiner Ziele auf — du fällst zur Höhe deiner Systeme."',cat3qa:'James Clear, <em>Atomic Habits</em>',cat4q:'„Verpasse nie zweimal."',cat4qa:'James Clear, <em>Atomic Habits</em>',cat5q:'„Jede Handlung ist eine Stimme für die Person, die du werden willst."',cat5qa:'James Clear, <em>Atomic Habits</em>',cat6q:'„Je größer die Reibung, desto unwahrscheinlicher die Gewohnheit."',cat6qa:'James Clear, <em>Atomic Habits</em>, Kap. 12',cat7q:'„Du bist der Durchschnitt der fünf Menschen, mit denen du am meisten Zeit verbringst."',cat7qa:'Jim Rohn, zit. nach J. Clear, <em>Atomic Habits</em>'},
+en:{cat1tb:'Games',cat2tb:'Plans',cat3tb:'Approbation',cat4tb:'FSP Practice',cat5tb:'Knowledge',cat6tb:'Comfort',cat7tb:'Community',cat1q:'"Never break the chain."',cat1qa:'Jerry Seinfeld, qtd. in J. Clear, <em>Atomic Habits</em>',cat2q:'"Every morning I started with 120 paper clips in one jar — and didn\'t stop calling until they\'d all moved to the other one."',cat2qa:'Trent Dyrsmid, qtd. in J. Clear, <em>Atomic Habits</em>, ch. 16',cat3q:'"You do not rise to the level of your goals. You fall to the level of your systems."',cat3qa:'James Clear, <em>Atomic Habits</em>',cat4q:'"Never miss twice."',cat4qa:'James Clear, <em>Atomic Habits</em>',cat5q:'"Every action you take is a vote for the type of person you wish to become."',cat5qa:'James Clear, <em>Atomic Habits</em>',cat6q:'"The greater the friction, the less likely the habit."',cat6qa:'James Clear, <em>Atomic Habits</em>, ch. 12',cat7q:'"You are the average of the five people you spend the most time with."',cat7qa:'Jim Rohn, qtd. in J. Clear, <em>Atomic Habits</em>'},
+uk:{cat1tb:'Ігри',cat2tb:'Плани',cat3tb:'Апробація',cat4tb:'FSP-практика',cat5tb:'Знання',cat6tb:'Зручність',cat7tb:'Спільнота',cat1q:'«Не розривайте ланцюжок».',cat1qa:'Джеррі Сейнфельд, цит. за Дж. Клір, <em>«Атомні звички»</em>',cat2q:'«Щоранку я починав зі ста двадцятьма скріпками в одній посудині, і не припиняв телефонувати, аж допоки не перекладав їх усі в другу».',cat2qa:'Трент Дирсмід, цит. за Дж. Клір, <em>«Атомні звички»</em>, розд. 16',cat3q:'«Ти не піднімаєшся до рівня своїх цілей — ти падаєш до рівня своїх систем».',cat3qa:'Джеймс Клір, <em>«Атомні звички»</em>',cat4q:'«Ніколи не пропускай двічі».',cat4qa:'Джеймс Клір, <em>«Атомні звички»</em>',cat5q:'«Кожна дія — це голос за людину, якою ти хочеш стати».',cat5qa:'Джеймс Клір, <em>«Атомні звички»</em>',cat6q:'«Чим більше тертя, тим менш імовірна звичка».',cat6qa:'Джеймс Клір, <em>«Атомні звички»</em>, розд. 12',cat7q:'«Ти — середнє з п\'яти людей, з якими проводиш найбільше часу».',cat7qa:'Джим Рон, цит. за Дж. Клір, <em>«Атомні звички»</em>'},
+ru:{cat1tb:'Игры',cat2tb:'Планы',cat3tb:'Апробация',cat4tb:'FSP-практика',cat5tb:'Знания',cat6tb:'Удобство',cat7tb:'Сообщество',cat1q:'«Никогда не разрывайте цепочку».',cat1qa:'Джерри Сейнфелд, цит. по Дж. Клир, <em>«Атомные привычки»</em>',cat2q:'«Каждое утро я начинал со 120 скрепок в одной банке — и не прекращал звонить, пока все не оказывались во второй».',cat2qa:'Трент Дирсмид, цит. по Дж. Клир, <em>«Атомные привычки»</em>, гл. 16',cat3q:'«Ты не поднимаешься до уровня своих целей — ты падаешь до уровня своих систем».',cat3qa:'Джеймс Клир, <em>«Атомные привычки»</em>',cat4q:'«Никогда не пропускай дважды».',cat4qa:'Джеймс Клир, <em>«Атомные привычки»</em>',cat5q:'«Каждое действие — это голос за человека, которым ты хочешь стать».',cat5qa:'Джеймс Клир, <em>«Атомные привычки»</em>',cat6q:'«Чем больше трение, тем менее вероятна привычка».',cat6qa:'Джеймс Клир, <em>«Атомные привычки»</em>, гл. 12',cat7q:'«Ты — среднее из пяти людей, с которыми проводишь больше всего времени».',cat7qa:'Джим Рон, цит. по Дж. Клир, <em>«Атомные привычки»</em>'},
+tr:{cat1tb:'Oyunlar',cat2tb:'Planlar',cat3tb:'Approbation',cat4tb:'FSP Pratik',cat5tb:'Bilgi',cat6tb:'Konfor',cat7tb:'Topluluk',cat1q:'"Zinciri asla kırma."',cat1qa:'Jerry Seinfeld, akt. J. Clear, <em>Atomik Alışkanlıklar</em>',cat2q:'"Her sabah bir kavanozda 120 ataşla başlardım — hepsi diğer kavanoza geçene kadar aramayı bırakmazdım."',cat2qa:'Trent Dyrsmid, akt. J. Clear, <em>Atomik Alışkanlıklar</em>, böl. 16',cat3q:'"Hedeflerinin seviyesine çıkmazsın — sistemlerinin seviyesine düşersin."',cat3qa:'James Clear, <em>Atomik Alışkanlıklar</em>',cat4q:'"Asla iki kez kaçırma."',cat4qa:'James Clear, <em>Atomik Alışkanlıklar</em>',cat5q:'"Her eylemin, olmak istediğin kişi için verilmiş bir oydur."',cat5qa:'James Clear, <em>Atomik Alışkanlıklar</em>',cat6q:'"Sürtünme ne kadar büyükse, alışkanlık o kadar olası değildir."',cat6qa:'James Clear, <em>Atomik Alışkanlıklar</em>, böl. 12',cat7q:'"En çok zaman geçirdiğin beş kişinin ortalamasısın."',cat7qa:'Jim Rohn, akt. J. Clear, <em>Atomik Alışkanlıklar</em>'},
+ar:{cat1tb:'ألعاب',cat2tb:'خطط',cat3tb:'Approbation',cat4tb:'تدريب FSP',cat5tb:'معرفة',cat6tb:'راحة',cat7tb:'مجتمع',cat1q:'«لا تكسر السلسلة أبداً».',cat1qa:'جيري ساينفيلد، نقلاً عن ج. كلير، <em>العادات الذرية</em>',cat2q:'«كل صباح أبدأ بـ 120 مشبك ورق في وعاء، ولا أتوقف عن الاتصال حتى تنتقل كلها إلى الوعاء الآخر».',cat2qa:'ترنت ديرسميد، نقلاً عن ج. كلير، <em>العادات الذرية</em>، الفصل 16',cat3q:'«لا ترتقي إلى مستوى أهدافك، بل تسقط إلى مستوى أنظمتك».',cat3qa:'جيمس كلير، <em>العادات الذرية</em>',cat4q:'«لا تفوّت مرتين أبدًا».',cat4qa:'جيمس كلير، <em>العادات الذرية</em>',cat5q:'«كل فعل تقوم به هو صوت لصالح الشخص الذي تريد أن تصبح عليه».',cat5qa:'جيمس كلير، <em>العادات الذرية</em>',cat6q:'«كلما زاد الاحتكاك، قلّ احتمال تكوّن العادة».',cat6qa:'جيمس كلير، <em>العادات الذرية</em>، الفصل 12',cat7q:'«أنت متوسط الأشخاص الخمسة الذين تقضي معهم أكثر وقتك».',cat7qa:'جيم رون، نقلاً عن ج. كلير، <em>العادات الذرية</em>'},
+fr:{cat1tb:'Jeux',cat2tb:'Plans',cat3tb:'Approbation',cat4tb:'Pratique FSP',cat5tb:'Savoir',cat6tb:'Confort',cat7tb:'Communauté',cat1q:'« Ne brisez jamais la chaîne. »',cat1qa:'Jerry Seinfeld, cité par J. Clear, <em>Atomic Habits</em>',cat2q:'« Chaque matin, je commençais avec 120 trombones dans un bocal — et je ne m\'arrêtais d\'appeler que lorsqu\'ils avaient tous migré vers l\'autre. »',cat2qa:'Trent Dyrsmid, cité par J. Clear, <em>Atomic Habits</em>, ch. 16',cat3q:'« Vous ne vous élevez pas au niveau de vos objectifs — vous retombez au niveau de vos systèmes. »',cat3qa:'James Clear, <em>Atomic Habits</em>',cat4q:'« Ne ratez jamais deux fois. »',cat4qa:'James Clear, <em>Atomic Habits</em>',cat5q:'« Chaque action est un vote pour la personne que vous voulez devenir. »',cat5qa:'James Clear, <em>Atomic Habits</em>',cat6q:'« Plus la friction est grande, moins l\'habitude est probable. »',cat6qa:'James Clear, <em>Atomic Habits</em>, ch. 12',cat7q:'« Vous êtes la moyenne des cinq personnes avec qui vous passez le plus de temps. »',cat7qa:'Jim Rohn, cité par J. Clear, <em>Atomic Habits</em>'},
+es:{cat1tb:'Juegos',cat2tb:'Planes',cat3tb:'Approbation',cat4tb:'Práctica FSP',cat5tb:'Saber',cat6tb:'Comodidad',cat7tb:'Comunidad',cat1q:'«Nunca rompas la cadena».',cat1qa:'Jerry Seinfeld, cit. en J. Clear, <em>Hábitos Atómicos</em>',cat2q:'«Cada mañana empezaba con 120 clips en un frasco — y no dejaba de llamar hasta que todos pasaban al otro».',cat2qa:'Trent Dyrsmid, cit. en J. Clear, <em>Hábitos Atómicos</em>, cap. 16',cat3q:'«No te elevas al nivel de tus metas — caes al nivel de tus sistemas».',cat3qa:'James Clear, <em>Hábitos Atómicos</em>',cat4q:'«Nunca falles dos veces».',cat4qa:'James Clear, <em>Hábitos Atómicos</em>',cat5q:'«Cada acción es un voto por la persona que quieres llegar a ser».',cat5qa:'James Clear, <em>Hábitos Atómicos</em>',cat6q:'«Cuanto mayor es la fricción, menos probable es el hábito».',cat6qa:'James Clear, <em>Hábitos Atómicos</em>, cap. 12',cat7q:'«Eres el promedio de las cinco personas con las que pasas más tiempo».',cat7qa:'Jim Rohn, cit. en J. Clear, <em>Hábitos Atómicos</em>'},
+pl:{cat1tb:'Gry',cat2tb:'Plany',cat3tb:'Approbation',cat4tb:'Praktyka FSP',cat5tb:'Wiedza',cat6tb:'Komfort',cat7tb:'Społeczność',cat1q:'„Nigdy nie przerywaj łańcucha".',cat1qa:'Jerry Seinfeld, cyt. za J. Clear, <em>Atomowe nawyki</em>',cat2q:'„Każdego ranka zaczynałem ze 120 spinaczami w jednym słoju — i nie przestawałem dzwonić, dopóki wszystkie nie znalazły się w drugim".',cat2qa:'Trent Dyrsmid, cyt. za J. Clear, <em>Atomowe nawyki</em>, rozdz. 16',cat3q:'„Nie wznosisz się na poziom swoich celów — spadasz do poziomu swoich systemów."',cat3qa:'James Clear, <em>Atomowe nawyki</em>',cat4q:'„Nigdy nie pomiń dwa razy."',cat4qa:'James Clear, <em>Atomowe nawyki</em>',cat5q:'„Każde działanie to głos na osobę, którą chcesz się stać."',cat5qa:'James Clear, <em>Atomowe nawyki</em>',cat6q:'„Im większy opór, tym mniejsze prawdopodobieństwo nawyku."',cat6qa:'James Clear, <em>Atomowe nawyki</em>, rozdz. 12',cat7q:'„Jesteś średnią pięciu osób, z którymi spędzasz najwięcej czasu."',cat7qa:'Jim Rohn, cyt. za J. Clear, <em>Atomowe nawyki</em>'},
+el:{cat1tb:'Παιχνίδια',cat2tb:'Σχέδια',cat3tb:'Approbation',cat4tb:'Πρακτική FSP',cat5tb:'Γνώση',cat6tb:'Άνεση',cat7tb:'Κοινότητα',cat1q:'«Ποτέ μη σπάσεις την αλυσίδα».',cat1qa:'Τζέρι Σάινφελντ, αναφ. στον J. Clear, <em>Ατομικές Συνήθειες</em>',cat2q:'«Κάθε πρωί ξεκινούσα με 120 συνδετήρες σε ένα βάζο — και δεν σταματούσα να τηλεφωνώ μέχρι να μεταφερθούν όλοι στο άλλο».',cat2qa:'Trent Dyrsmid, αναφ. στον J. Clear, <em>Ατομικές Συνήθειες</em>, κεφ. 16',cat3q:'«Δεν ανεβαίνεις στο επίπεδο των στόχων σου — πέφτεις στο επίπεδο των συστημάτων σου».',cat3qa:'James Clear, <em>Ατομικές Συνήθειες</em>',cat4q:'«Ποτέ μη χάσεις δύο φορές».',cat4qa:'James Clear, <em>Ατομικές Συνήθειες</em>',cat5q:'«Κάθε πράξη είναι μια ψήφος για το άτομο που θέλεις να γίνεις».',cat5qa:'James Clear, <em>Ατομικές Συνήθειες</em>',cat6q:'«Όσο μεγαλύτερη η τριβή, τόσο λιγότερο πιθανή η συνήθεια».',cat6qa:'James Clear, <em>Ατομικές Συνήθειες</em>, κεφ. 12',cat7q:'«Είσαι ο μέσος όρος των πέντε ανθρώπων με τους οποίους περνάς τον περισσότερο χρόνο».',cat7qa:'Jim Rohn, αναφ. στον J. Clear, <em>Ατομικές Συνήθειες</em>'},
+ro:{cat1tb:'Jocuri',cat2tb:'Planuri',cat3tb:'Approbation',cat4tb:'Practică FSP',cat5tb:'Cunoștințe',cat6tb:'Confort',cat7tb:'Comunitate',cat1q:'„Nu rupe niciodată lanțul."',cat1qa:'Jerry Seinfeld, cit. de J. Clear, <em>Atomic Habits</em>',cat2q:'„În fiecare dimineață începeam cu 120 de agrafe într-un borcan — și nu mă opream din apeluri până nu treceau toate în celălalt".',cat2qa:'Trent Dyrsmid, cit. de J. Clear, <em>Atomic Habits</em>, cap. 16',cat3q:'„Nu te ridici la nivelul obiectivelor tale — cazi la nivelul sistemelor tale."',cat3qa:'James Clear, <em>Atomic Habits</em>',cat4q:'„Nu rata niciodată de două ori."',cat4qa:'James Clear, <em>Atomic Habits</em>',cat5q:'„Fiecare acțiune este un vot pentru persoana care vrei să devii."',cat5qa:'James Clear, <em>Atomic Habits</em>',cat6q:'„Cu cât frecarea e mai mare, cu atât obiceiul e mai puțin probabil."',cat6qa:'James Clear, <em>Atomic Habits</em>, cap. 12',cat7q:'„Ești media celor cinci oameni cu care petreci cel mai mult timp."',cat7qa:'Jim Rohn, cit. de J. Clear, <em>Atomic Habits</em>'}
+};
+
 function normalizeLang(raw){if(raw==null||raw==='')return null;var c=String(raw).toLowerCase().split(/[-_]/)[0].slice(0,2);return T[c]?c:null}
 function getUrlLang(){return new URLSearchParams(window.location.search).get('lang')||''}
 var savedLang=null;try{savedLang=localStorage.getItem('medterms_lang')}catch(e){}
@@ -968,6 +1120,22 @@ function applyLang(code){
     s('cat5-title',tr.cat5t);s('cat5-li1',tr.cat5l1);s('cat5-li2',tr.cat5l2);s('cat5-li3',tr.cat5l3);s('cat5-li4',tr.cat5l4);s('cat5-li5',tr.cat5l5);
     s('cat6-title',tr.cat6t);s('cat6-li1',tr.cat6l1);s('cat6-li2',tr.cat6l2);s('cat6-li3',tr.cat6l3);s('cat6-li4',tr.cat6l4);s('cat6-li5',tr.cat6l5);s('cat6-li6',tr.cat6l6);
     if(tr.cat7t){s('cat7-title',tr.cat7t);s('cat7-li1',tr.cat7l1);s('cat7-li2',tr.cat7l2);s('cat7-li3',tr.cat7l3);s('cat7-li4',tr.cat7l4);s('cat7-li5',tr.cat7l5);s('cat7-li6',tr.cat7l6);}}
+  // Atomic Habits pull-quotes + tab labels + asides (Q dict separate from T).
+  // Use innerHTML for *-attr keys so <em> in book titles renders as italic.
+  function h(id,html){var el=document.getElementById(id);if(el)el.innerHTML=html}
+  var qr=Q[code]||Q.de;
+  if(qr){
+    // Short tab labels
+    s('cat1-tab',qr.cat1tb);s('cat2-tab',qr.cat2tb);s('cat3-tab',qr.cat3tb);s('cat4-tab',qr.cat4tb);s('cat5-tab',qr.cat5tb);s('cat6-tab',qr.cat6tb);s('cat7-tab',qr.cat7tb);
+    // Atomic Habits pull-quotes (one per tab, all 7)
+    s('cat1-quote',qr.cat1q);h('cat1-quote-attr',qr.cat1qa);
+    s('cat2-quote',qr.cat2q);h('cat2-quote-attr',qr.cat2qa);
+    s('cat3-quote',qr.cat3q);h('cat3-quote-attr',qr.cat3qa);
+    s('cat4-quote',qr.cat4q);h('cat4-quote-attr',qr.cat4qa);
+    s('cat5-quote',qr.cat5q);h('cat5-quote-attr',qr.cat5qa);
+    s('cat6-quote',qr.cat6q);h('cat6-quote-attr',qr.cat6qa);
+    s('cat7-quote',qr.cat7q);h('cat7-quote-attr',qr.cat7qa);
+  }
   s('cmp-title',tr.cT);s('cmp-sub',tr.cS);s('cmp-h-feature',tr.cH);s('cmp-r1',tr.c1);s('cmp-r2',tr.c2);s('cmp-r3',tr.c3);s('cmp-r4',tr.c4);s('cmp-r5',tr.c5);s('cmp-r6',tr.c6);
   s('faq-title',tr.faqT);s('faq-sub',tr.faqS);
   s('faq1-q',tr.q1);s('faq1-a',tr.a1);s('faq2-q',tr.q2);s('faq2-a',tr.a2);s('faq3-q',tr.q3);s('faq3-a',tr.a3);s('faq4-q',tr.q4);s('faq4-a',tr.a4);s('faq5-q',tr.q5);s('faq5-a',tr.a5);s('faq6-q',tr.q6);s('faq6-a',tr.a6);
@@ -991,6 +1159,148 @@ var io=new IntersectionObserver(function(entries){
   entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
 },{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(function(el){io.observe(el)});
+
+// Capabilities tab switcher with auto-rotation (Stripe-style)
+(function(){
+  var tabs=document.querySelectorAll('.cap-tab');
+  var panels=document.querySelectorAll('.cap-panel');
+  var tabsWrap=document.querySelector('.cap-tabs-wrap');
+  var tabsRow=document.querySelector('.cap-tabs');
+  var stage=document.querySelector('.cap-stage');
+  var section=document.getElementById('capabilities');
+  if(!tabs.length||!panels.length||!tabsWrap||!tabsRow)return;
+
+  var ROTATE_MS=6500;            // duration of one panel before auto-advance
+  var current=0;
+  var rotateTimer=null;
+  var paused=false;
+  var sectionVisible=false;
+  var prefersReducedMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  function activate(idx,opts){
+    opts=opts||{};
+    current=idx;
+    tabs.forEach(function(t,i){
+      var on=i===idx;
+      t.classList.toggle('active',on);
+      t.setAttribute('aria-selected',on?'true':'false');
+      t.setAttribute('tabindex',on?'0':'-1');
+    });
+    panels.forEach(function(p,i){
+      var on=i===idx;
+      p.classList.toggle('active',on);
+      if(on){p.removeAttribute('hidden');p.style.animation='none';void p.offsetWidth;p.style.animation=''}
+      else p.setAttribute('hidden','');
+    });
+    // Restart progress bar animation by toggling class (force CSS reflow)
+    if(!prefersReducedMotion&&!opts.skipProgress){
+      var active=tabs[idx];
+      if(active){
+        active.style.setProperty('--cap-rotate-dur',(ROTATE_MS/1000)+'s');
+        // Force restart of ::after animation via inline style trick
+        active.classList.remove('active');void active.offsetWidth;active.classList.add('active');
+      }
+    }
+    // Scroll active tab into view inside the horizontal tab strip
+    if(tabsRow.scrollWidth>tabsRow.clientWidth){
+      var t=tabs[idx];
+      var rL=t.offsetLeft, rR=t.offsetLeft+t.offsetWidth;
+      if(rL<tabsRow.scrollLeft+8) tabsRow.scrollTo({left:rL-8,behavior:'smooth'});
+      else if(rR>tabsRow.scrollLeft+tabsRow.clientWidth-8) tabsRow.scrollTo({left:rR-tabsRow.clientWidth+8,behavior:'smooth'});
+    }
+  }
+
+  function next(){activate((current+1)%tabs.length)}
+
+  function startRotate(){
+    if(prefersReducedMotion||paused||!sectionVisible)return;
+    stopRotate();
+    rotateTimer=setInterval(next,ROTATE_MS);
+    tabsWrap.classList.remove('is-paused','no-rotate');
+  }
+  function stopRotate(){
+    if(rotateTimer){clearInterval(rotateTimer);rotateTimer=null}
+  }
+  function pauseRotate(){
+    paused=true;
+    stopRotate();
+    tabsWrap.classList.add('is-paused');
+  }
+  function resumeRotate(){
+    paused=false;
+    tabsWrap.classList.remove('is-paused');
+    if(sectionVisible)startRotate();
+  }
+
+  // Tab interactions
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){
+      stopRotate();
+      activate(i);
+      t.focus();
+      // Resume auto-rotate after a short cooldown if user isn't hovering
+      setTimeout(function(){if(!paused&&sectionVisible)startRotate()},400);
+    });
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        e.preventDefault();
+        stopRotate();
+        var dir=e.key==='ArrowRight'?1:-1;
+        var nxt=(i+dir+tabs.length)%tabs.length;
+        activate(nxt);tabs[nxt].focus();
+        setTimeout(function(){if(!paused&&sectionVisible)startRotate()},400);
+      }
+    });
+  });
+
+  // Pause when user hovers/focuses inside the capabilities section
+  if(section){
+    section.addEventListener('mouseenter',pauseRotate);
+    section.addEventListener('mouseleave',resumeRotate);
+    section.addEventListener('focusin',pauseRotate);
+    section.addEventListener('focusout',function(e){
+      if(!section.contains(e.relatedTarget))resumeRotate();
+    });
+  }
+
+  // Pause when tab is hidden
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden)stopRotate();
+    else if(!paused&&sectionVisible)startRotate();
+  });
+
+  // Start rotating only once the section scrolls into view
+  if('IntersectionObserver' in window && section){
+    var rotateObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        sectionVisible=e.isIntersecting;
+        if(sectionVisible){
+          // Kick off the progress animation cleanly on first reveal
+          activate(current,{skipProgress:false});
+          if(!paused)startRotate();
+        }else{
+          stopRotate();
+        }
+      });
+    },{threshold:0.25});
+    rotateObs.observe(section);
+  }else{
+    sectionVisible=true;
+    if(!prefersReducedMotion)startRotate();
+  }
+
+  // Mark "no rotate" if reduced motion (hides progress bar)
+  if(prefersReducedMotion)tabsWrap.classList.add('no-rotate');
+
+  // Show right-edge fade hint when tabs row overflows horizontally
+  function checkOverflow(){
+    var hasOverflow=tabsRow.scrollWidth>tabsRow.clientWidth+2 && tabsRow.scrollLeft+tabsRow.clientWidth<tabsRow.scrollWidth-2;
+    tabsWrap.classList.toggle('has-overflow',hasOverflow);
+  }
+  tabsRow.addEventListener('scroll',checkOverflow);
+  window.addEventListener('resize',checkOverflow);
+  checkOverflow();setTimeout(checkOverflow,300);
+})();
 </script>
 </body>
 </html>
