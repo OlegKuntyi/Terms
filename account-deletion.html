@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Konto löschen — MedTerms</title>
+<meta name="description" content="So löschst du dein MedTerms-Konto und welche Daten dabei entfernt werden.">
+<style>
+  :root {
+    --bg: #F7F9FC;
+    --card: #FFFFFF;
+    --primary: #7DA2FF;
+    --text: #242833;
+    --muted: #7E8494;
+    --border: #E4E9F5;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  header { margin-bottom: 32px; position: relative; }
+  header .brand {
+    display: inline-block;
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+  }
+  header .lang-picker {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  header .lang-picker select {
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px 8px;
+    cursor: pointer;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 8px 0 4px;
+    line-height: 1.15;
+  }
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 32px 0 8px;
+    letter-spacing: -0.2px;
+  }
+  p, ul, ol { margin: 8px 0 12px; }
+  ul, ol { padding-left: 22px; }
+  li { margin: 4px 0; }
+  .lead { color: var(--muted); font-size: 17px; max-width: 56ch; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin: 24px 0;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  a { color: var(--primary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code, kbd {
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.92em;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+  [dir="rtl"] header .lang-picker { right: auto; left: 0; }
+  [dir="rtl"] ul, [dir="rtl"] ol { padding-left: 0; padding-right: 22px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <a class="brand" href="https://medterms.app">← MedTerms</a>
+    <div class="lang-picker">
+      <select id="lang-select" aria-label="Language">
+        <option value="de">Deutsch</option>
+        <option value="en">English</option>
+        <option value="uk">Українська</option>
+        <option value="ru">Русский</option>
+        <option value="tr">Türkçe</option>
+        <option value="ar">العربية</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="pl">Polski</option>
+        <option value="el">Ελληνικά</option>
+        <option value="ro">Română</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- ===================== DE ===================== -->
+  <div class="lang-section" data-lang="de">
+    <h1>Konto löschen</h1>
+    <p class="lead">
+      So entfernst du dein MedTerms-Konto und alle damit verbundenen Daten dauerhaft.
+    </p>
+
+    <div class="card">
+      <h2>So löschst du dein Konto in der App</h2>
+      <ol>
+        <li>Öffne <strong>MedTerms</strong> auf deinem Gerät und melde dich an.</li>
+        <li>Tippe unten rechts auf den Tab <strong>You</strong>.</li>
+        <li>Wähle <strong>Einstellungen</strong> → <strong>Konto löschen</strong>.</li>
+        <li>Bestätige im Dialog. Aus Sicherheitsgründen wirst du erneut zur
+            Anmeldung aufgefordert.</li>
+        <li>Nach der Bestätigung wird dein Konto sofort und unwiderruflich gelöscht.</li>
+      </ol>
+    </div>
+
+    <h2>Welche Daten werden gelöscht</h2>
+    <ul>
+      <li><strong>Profil</strong> — E-Mail, Anzeigename, Bundesland, Education-Region, Avatar</li>
+      <li><strong>Lernfortschritt</strong> — gelernte Begriffe, Status pro Term, Daily-Challenge-Streak</li>
+      <li><strong>KP- &amp; FSP-Pläne</strong> — Themenfortschritt, Prüfungsdatum, Erinnerungen</li>
+      <li><strong>Approbation-Schritte</strong> — abgehakte Aufgaben, aktiver Stage</li>
+      <li><strong>Dokumenten-Tracker</strong> — Status aller Pflichtdokumente</li>
+      <li><strong>Lebenslauf-Daten</strong> — alle Eingaben aus dem Lebenslauf-Builder</li>
+      <li><strong>Cloud-Sync</strong> — sämtliche serverseitig gespeicherten Daten in Supabase</li>
+      <li><strong>Tutorial- und Einstellungs-Status</strong>, lokaler Audio-Cache</li>
+    </ul>
+
+    <h2>Welche Daten werden gegebenenfalls aufbewahrt</h2>
+    <ul>
+      <li>Anonymisierte Diagnose-Logs ohne Personenbezug (max. 30 Tage)</li>
+      <li>Abrechnungsbelege bei aktivem oder vergangenem Abonnement
+          (gesetzliche Aufbewahrungspflicht, max. 10 Jahre)</li>
+    </ul>
+
+    <h2>Konto ohne Zugriff auf die App löschen</h2>
+    <p>
+      Falls du dich nicht mehr in die App einloggen kannst (z.&nbsp;B. nach
+      Geräteverlust), schreibe an
+      <a href="mailto:support@medterms.app?subject=Konto-L%C3%B6schung">support@medterms.app</a>
+      mit dem Betreff <kbd>Konto-Löschung</kbd>. Bitte gib die E-Mail-Adresse an,
+      mit der du registriert bist, und einen Identitätsnachweis
+      (z.&nbsp;B. Antwort auf eine Verifizierungs-E-Mail). Wir bearbeiten die
+      Anfrage innerhalb von 7 Werktagen.
+    </p>
+
+    <h2>Abonnement</h2>
+    <p>
+      Hast du ein aktives Premium-Abo?
+      Beende es <strong>vor</strong> der Konto-Löschung über die
+      Abo-Verwaltung deines App Stores
+      (Apple: <em>Einstellungen → Apple ID → Abonnements</em>,
+      Google: <em>Google Play → Abos</em>). Eine Konto-Löschung kündigt das
+      Abo nicht automatisch — die Abrechnung erfolgt durch den jeweiligen Store.
+    </p>
+
+    <div class="meta">
+      Letzte Aktualisierung: Mai 2026 ·
+      <a href="https://medterms.app/privacy">Datenschutzerklärung</a> ·
+      <a href="https://medterms.app/terms">Nutzungsbedingungen</a>
+    </div>
+  </div>
+
+  <!-- ===================== EN ===================== -->
+  <div class="lang-section" data-lang="en" hidden>
+    <h1>Delete your account</h1>
+    <p class="lead">
+      How to permanently remove your MedTerms account and all related data.
+    </p>
+
+    <div class="card">
+      <h2>How to delete your account from the app</h2>
+      <ol>
+        <li>Open <strong>MedTerms</strong> on your device and sign in.</li>
+        <li>Tap the <strong>You</strong> tab in the bottom-right.</li>
+        <li>Choose <strong>Settings</strong> → <strong>Delete account</strong>.</li>
+        <li>Confirm in the dialog. For security reasons you will be asked to sign in again.</li>
+        <li>Once confirmed, your account is deleted immediately and irreversibly.</li>
+      </ol>
+    </div>
+
+    <h2>Which data is deleted</h2>
+    <ul>
+      <li><strong>Profile</strong> — email, display name, Bundesland, education region, avatar</li>
+      <li><strong>Learning progress</strong> — learned terms, status per term, daily-challenge streak</li>
+      <li><strong>Kenntnisprüfung (KP) &amp; Fachsprachprüfung (FSP) plans</strong> — topic progress, exam date, reminders</li>
+      <li><strong>Approbation steps</strong> — completed tasks, active stage</li>
+      <li><strong>Document tracker</strong> — status of every required document</li>
+      <li><strong>Lebenslauf data</strong> — every entry from the Lebenslauf builder</li>
+      <li><strong>Cloud sync</strong> — all server-side data stored in Supabase</li>
+      <li><strong>Tutorial and settings state</strong>, local audio cache</li>
+    </ul>
+
+    <h2>Which data may be retained</h2>
+    <ul>
+      <li>Anonymised diagnostic logs without any personal reference (max. 30 days)</li>
+      <li>Billing records for active or past subscriptions
+          (statutory retention, max. 10 years)</li>
+    </ul>
+
+    <h2>Deleting your account without access to the app</h2>
+    <p>
+      If you can no longer sign in to the app (e.g. after losing your device),
+      please write to
+      <a href="mailto:support@medterms.app?subject=Account%20deletion">support@medterms.app</a>
+      with the subject <kbd>Account deletion</kbd>. Include the email address you
+      registered with and proof of identity (e.g. a reply to a verification email).
+      We will handle your request within 7 business days.
+    </p>
+
+    <h2>Subscription</h2>
+    <p>
+      Do you have an active premium subscription?
+      Cancel it <strong>before</strong> deleting your account through your app
+      store's subscription management
+      (Apple: <em>Settings → Apple ID → Subscriptions</em>,
+      Google: <em>Google Play → Subscriptions</em>). Deleting your account does
+      not automatically cancel the subscription — billing is handled by the
+      respective store.
+    </p>
+
+    <div class="meta">
+      Last updated: May 2026 ·
+      <a href="https://medterms.app/privacy">Privacy policy</a> ·
+      <a href="https://medterms.app/terms">Terms of use</a>
+    </div>
+  </div>
+
+  <!-- ===================== UK ===================== -->
+  <div class="lang-section" data-lang="uk" hidden>
+    <h1>Видалення акаунту</h1>
+    <p class="lead">
+      Як остаточно видалити твій акаунт MedTerms і всі пов'язані з ним дані.
+    </p>
+
+    <div class="card">
+      <h2>Як видалити акаунт у застосунку</h2>
+      <ol>
+        <li>Відкрий <strong>MedTerms</strong> на своєму пристрої та увійди.</li>
+        <li>Натисни вкладку <strong>You</strong> у правому нижньому куті.</li>
+        <li>Обери <strong>Налаштування</strong> → <strong>Видалити акаунт</strong>.</li>
+        <li>Підтверди в діалоговому вікні. З міркувань безпеки тебе попросять увійти знову.</li>
+        <li>Після підтвердження акаунт видаляється негайно та незворотно.</li>
+      </ol>
+    </div>
+
+    <h2>Які дані видаляються</h2>
+    <ul>
+      <li><strong>Профіль</strong> — e-mail, ім'я, Bundesland, освітній регіон, аватар</li>
+      <li><strong>Прогрес навчання</strong> — вивчені терміни, статус кожного терміна, серія Daily Challenge</li>
+      <li><strong>Плани Kenntnisprüfung (KP) і Fachsprachprüfung (FSP)</strong> — прогрес тем, дата іспиту, нагадування</li>
+      <li><strong>Кроки Approbation</strong> — позначені завдання, активний етап</li>
+      <li><strong>Трекер документів</strong> — статус усіх обов'язкових документів</li>
+      <li><strong>Дані Lebenslauf</strong> — усі введення з конструктора Lebenslauf</li>
+      <li><strong>Хмарна синхронізація</strong> — усі дані, збережені на сервері в Supabase</li>
+      <li><strong>Стан туторіалу та налаштувань</strong>, локальний аудіо-кеш</li>
+    </ul>
+
+    <h2>Які дані можуть зберігатися</h2>
+    <ul>
+      <li>Анонімізовані діагностичні логи без прив'язки до особи (макс. 30 днів)</li>
+      <li>Бухгалтерські документи за активною або минулою підпискою
+          (за вимогою закону, макс. 10 років)</li>
+    </ul>
+
+    <h2>Видалення акаунту без доступу до застосунку</h2>
+    <p>
+      Якщо ти більше не можеш увійти в застосунок (наприклад, після втрати
+      пристрою), напиши на
+      <a href="mailto:support@medterms.app?subject=%D0%92%D0%B8%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%20%D0%B0%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D1%83">support@medterms.app</a>
+      з темою <kbd>Видалення акаунту</kbd>. Вкажи e-mail, з яким ти зареєстрований,
+      і підтверди особу (наприклад, відповіддю на верифікаційний лист). Ми
+      обробимо запит протягом 7 робочих днів.
+    </p>
+
+    <h2>Підписка</h2>
+    <p>
+      Маєш активну преміум-підписку?
+      Скасуй її <strong>до</strong> видалення акаунту через керування підписками
+      твого app store
+      (Apple: <em>Налаштування → Apple ID → Підписки</em>,
+      Google: <em>Google Play → Підписки</em>). Видалення акаунту не скасовує
+      підписку автоматично — оплата здійснюється через відповідний магазин.
+    </p>
+
+    <div class="meta">
+      Останнє оновлення: травень 2026 ·
+      <a href="https://medterms.app/privacy">Політика конфіденційності</a> ·
+      <a href="https://medterms.app/terms">Умови використання</a>
+    </div>
+  </div>
+
+  <!-- ===================== RU ===================== -->
+  <div class="lang-section" data-lang="ru" hidden>
+    <h1>Удаление аккаунта</h1>
+    <p class="lead">
+      Как навсегда удалить твой аккаунт MedTerms и все связанные с ним данные.
+    </p>
+
+    <div class="card">
+      <h2>Как удалить аккаунт в приложении</h2>
+      <ol>
+        <li>Открой <strong>MedTerms</strong> на своём устройстве и войди.</li>
+        <li>Нажми вкладку <strong>You</strong> в правом нижнем углу.</li>
+        <li>Выбери <strong>Настройки</strong> → <strong>Удалить аккаунт</strong>.</li>
+        <li>Подтверди в диалоге. Из соображений безопасности тебя попросят войти снова.</li>
+        <li>После подтверждения аккаунт удаляется немедленно и безвозвратно.</li>
+      </ol>
+    </div>
+
+    <h2>Какие данные удаляются</h2>
+    <ul>
+      <li><strong>Профиль</strong> — e-mail, отображаемое имя, Bundesland, регион обучения, аватар</li>
+      <li><strong>Прогресс обучения</strong> — изученные термины, статус каждого термина, серия Daily Challenge</li>
+      <li><strong>Планы Kenntnisprüfung (KP) и Fachsprachprüfung (FSP)</strong> — прогресс тем, дата экзамена, напоминания</li>
+      <li><strong>Шаги Approbation</strong> — отмеченные задачи, активный этап</li>
+      <li><strong>Трекер документов</strong> — статус всех обязательных документов</li>
+      <li><strong>Данные Lebenslauf</strong> — все введённые данные из конструктора Lebenslauf</li>
+      <li><strong>Облачная синхронизация</strong> — все данные, сохранённые на сервере в Supabase</li>
+      <li><strong>Состояние обучающих экранов и настроек</strong>, локальный аудиокеш</li>
+    </ul>
+
+    <h2>Какие данные могут сохраняться</h2>
+    <ul>
+      <li>Анонимизированные диагностические логи без привязки к личности (макс. 30 дней)</li>
+      <li>Бухгалтерские документы по активной или прошедшей подписке
+          (по требованию закона, макс. 10 лет)</li>
+    </ul>
+
+    <h2>Удаление аккаунта без доступа к приложению</h2>
+    <p>
+      Если ты больше не можешь войти в приложение (например, после потери
+      устройства), напиши на
+      <a href="mailto:support@medterms.app?subject=%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D0%B0">support@medterms.app</a>
+      с темой <kbd>Удаление аккаунта</kbd>. Укажи e-mail, на который
+      зарегистрирован аккаунт, и подтверди личность (например, ответом на
+      проверочное письмо). Мы обработаем запрос в течение 7 рабочих дней.
+    </p>
+
+    <h2>Подписка</h2>
+    <p>
+      У тебя активная премиум-подписка?
+      Отмени её <strong>до</strong> удаления аккаунта через управление
+      подписками твоего app store
+      (Apple: <em>Настройки → Apple ID → Подписки</em>,
+      Google: <em>Google Play → Подписки</em>). Удаление аккаунта не отменяет
+      подписку автоматически — оплата производится через соответствующий магазин.
+    </p>
+
+    <div class="meta">
+      Последнее обновление: май 2026 ·
+      <a href="https://medterms.app/privacy">Политика конфиденциальности</a> ·
+      <a href="https://medterms.app/terms">Условия использования</a>
+    </div>
+  </div>
+
+  <!-- ===================== TR ===================== -->
+  <div class="lang-section" data-lang="tr" hidden>
+    <h1>Hesabı sil</h1>
+    <p class="lead">
+      MedTerms hesabını ve onunla bağlantılı tüm verileri kalıcı olarak nasıl silersin.
+    </p>
+
+    <div class="card">
+      <h2>Uygulamadan hesabı silme adımları</h2>
+      <ol>
+        <li>Cihazında <strong>MedTerms</strong>'i aç ve giriş yap.</li>
+        <li>Sağ alttaki <strong>You</strong> sekmesine dokun.</li>
+        <li><strong>Ayarlar</strong> → <strong>Hesabı sil</strong>'i seç.</li>
+        <li>Diyalogda onayla. Güvenlik nedeniyle yeniden giriş yapman istenir.</li>
+        <li>Onayladıktan sonra hesabın anında ve geri dönüşsüz biçimde silinir.</li>
+      </ol>
+    </div>
+
+    <h2>Hangi veriler silinir</h2>
+    <ul>
+      <li><strong>Profil</strong> — e-posta, görünen ad, Bundesland, eğitim bölgesi, avatar</li>
+      <li><strong>Öğrenme ilerlemesi</strong> — öğrenilen terimler, terim başına durum, Daily Challenge serisi</li>
+      <li><strong>Kenntnisprüfung (KP) ve Fachsprachprüfung (FSP) planları</strong> — konu ilerlemesi, sınav tarihi, hatırlatıcılar</li>
+      <li><strong>Approbation adımları</strong> — tamamlanan görevler, aktif aşama</li>
+      <li><strong>Belge takipçisi</strong> — tüm zorunlu belgelerin durumu</li>
+      <li><strong>Lebenslauf verileri</strong> — Lebenslauf oluşturucudaki tüm girdiler</li>
+      <li><strong>Bulut senkronizasyonu</strong> — Supabase'de sunucu tarafında saklanan tüm veriler</li>
+      <li><strong>Eğitim ekranı ve ayar durumu</strong>, yerel ses önbelleği</li>
+    </ul>
+
+    <h2>Hangi veriler saklanabilir</h2>
+    <ul>
+      <li>Kişisel referansı olmayan anonimleştirilmiş tanı günlükleri (en fazla 30 gün)</li>
+      <li>Aktif veya geçmiş abonelik için fatura belgeleri
+          (yasal saklama yükümlülüğü, en fazla 10 yıl)</li>
+    </ul>
+
+    <h2>Uygulamaya erişim olmadan hesabı silme</h2>
+    <p>
+      Uygulamaya artık giriş yapamıyorsan (örneğin cihazını kaybettiysen),
+      <a href="mailto:support@medterms.app?subject=Hesap%20silme">support@medterms.app</a>
+      adresine <kbd>Hesap silme</kbd> konusuyla yaz. Lütfen kayıtlı olduğun
+      e-posta adresini ve kimlik kanıtı (örneğin doğrulama e-postasına yanıt)
+      ekle. Talebi 7 iş günü içinde işleme alırız.
+    </p>
+
+    <h2>Abonelik</h2>
+    <p>
+      Aktif bir premium aboneliğin var mı?
+      Hesabı silmeden <strong>önce</strong> uygulama mağazandaki abonelik
+      yönetiminden iptal et
+      (Apple: <em>Ayarlar → Apple ID → Abonelikler</em>,
+      Google: <em>Google Play → Abonelikler</em>). Hesabı silmek aboneliği
+      otomatik olarak iptal etmez — ücretlendirme ilgili mağaza tarafından yapılır.
+    </p>
+
+    <div class="meta">
+      Son güncelleme: Mayıs 2026 ·
+      <a href="https://medterms.app/privacy">Gizlilik politikası</a> ·
+      <a href="https://medterms.app/terms">Kullanım koşulları</a>
+    </div>
+  </div>
+
+  <!-- ===================== AR ===================== -->
+  <div class="lang-section" data-lang="ar" hidden>
+    <h1>حذف الحساب</h1>
+    <p class="lead">
+      كيف تحذف حسابك في MedTerms وجميع البيانات المرتبطة به نهائيًا.
+    </p>
+
+    <div class="card">
+      <h2>كيفية حذف الحساب من التطبيق</h2>
+      <ol>
+        <li>افتح <strong>MedTerms</strong> على جهازك وسجّل الدخول.</li>
+        <li>اضغط على تبويب <strong>You</strong> في أسفل اليمين.</li>
+        <li>اختر <strong>الإعدادات</strong> ← <strong>حذف الحساب</strong>.</li>
+        <li>أكِّد العملية في النافذة المنبثقة. لأسباب أمنية سيُطلب منك تسجيل الدخول مجددًا.</li>
+        <li>بعد التأكيد يُحذف حسابك فورًا وبشكل لا رجعة فيه.</li>
+      </ol>
+    </div>
+
+    <h2>البيانات التي تُحذف</h2>
+    <ul>
+      <li><strong>الملف الشخصي</strong> — البريد الإلكتروني، اسم العرض، Bundesland، منطقة التعليم، الصورة الرمزية</li>
+      <li><strong>تقدّم التعلّم</strong> — المصطلحات المُتعلَّمة، حالة كل مصطلح، سلسلة Daily Challenge</li>
+      <li><strong>خطط Kenntnisprüfung (KP) و Fachsprachprüfung (FSP)</strong> — تقدّم المواضيع، تاريخ الامتحان، التذكيرات</li>
+      <li><strong>خطوات Approbation</strong> — المهام المُنجزة، المرحلة النشطة</li>
+      <li><strong>متتبّع المستندات</strong> — حالة جميع المستندات الإلزامية</li>
+      <li><strong>بيانات Lebenslauf</strong> — جميع المُدخلات في منشئ Lebenslauf</li>
+      <li><strong>المزامنة السحابية</strong> — جميع البيانات المخزّنة على الخادم في Supabase</li>
+      <li><strong>حالة الشروحات والإعدادات</strong> وذاكرة الصوت المحلية</li>
+    </ul>
+
+    <h2>البيانات التي قد يُحتفظ بها</h2>
+    <ul>
+      <li>سجلات تشخيص مجهولة الهوية بدون أي إشارة شخصية (حد أقصى 30 يومًا)</li>
+      <li>وثائق الفوترة لاشتراك نشط أو سابق
+          (التزام قانوني بالحفظ، حد أقصى 10 سنوات)</li>
+    </ul>
+
+    <h2>حذف الحساب بدون الوصول إلى التطبيق</h2>
+    <p>
+      إذا لم تعد قادرًا على تسجيل الدخول إلى التطبيق (مثلًا بعد فقدان الجهاز)،
+      راسلنا على
+      <a href="mailto:support@medterms.app?subject=%D8%AD%D8%B0%D9%81%20%D8%A7%D9%84%D8%AD%D8%B3%D8%A7%D8%A8">support@medterms.app</a>
+      بعنوان <kbd>حذف الحساب</kbd>. يُرجى ذكر البريد الإلكتروني الذي سجّلت به
+      وإثبات الهوية (مثلاً الردّ على بريد التحقّق). سنعالج الطلب خلال 7 أيام عمل.
+    </p>
+
+    <h2>الاشتراك</h2>
+    <p>
+      هل لديك اشتراك بريميوم نشط؟
+      ألغِه <strong>قبل</strong> حذف الحساب من خلال إدارة الاشتراكات في متجر
+      التطبيقات
+      (Apple: <em>الإعدادات ← Apple ID ← الاشتراكات</em>،
+      Google: <em>Google Play ← الاشتراكات</em>). حذف الحساب لا يُلغي الاشتراك
+      تلقائيًا — تتم الفوترة من قبل المتجر المعنيّ.
+    </p>
+
+    <div class="meta">
+      آخر تحديث: مايو 2026 ·
+      <a href="https://medterms.app/privacy">سياسة الخصوصية</a> ·
+      <a href="https://medterms.app/terms">شروط الاستخدام</a>
+    </div>
+  </div>
+
+  <!-- ===================== FR ===================== -->
+  <div class="lang-section" data-lang="fr" hidden>
+    <h1>Supprimer ton compte</h1>
+    <p class="lead">
+      Comment supprimer définitivement ton compte MedTerms et toutes les données associées.
+    </p>
+
+    <div class="card">
+      <h2>Comment supprimer ton compte depuis l'app</h2>
+      <ol>
+        <li>Ouvre <strong>MedTerms</strong> sur ton appareil et connecte-toi.</li>
+        <li>Touche l'onglet <strong>You</strong> en bas à droite.</li>
+        <li>Choisis <strong>Paramètres</strong> → <strong>Supprimer le compte</strong>.</li>
+        <li>Confirme dans la boîte de dialogue. Pour des raisons de sécurité, on te demandera de te reconnecter.</li>
+        <li>Après confirmation, ton compte est supprimé immédiatement et de manière irréversible.</li>
+      </ol>
+    </div>
+
+    <h2>Quelles données sont supprimées</h2>
+    <ul>
+      <li><strong>Profil</strong> — e-mail, nom affiché, Bundesland, région de formation, avatar</li>
+      <li><strong>Progression d'apprentissage</strong> — termes appris, statut par terme, série Daily Challenge</li>
+      <li><strong>Plans Kenntnisprüfung (KP) et Fachsprachprüfung (FSP)</strong> — progression des sujets, date d'examen, rappels</li>
+      <li><strong>Étapes Approbation</strong> — tâches cochées, étape active</li>
+      <li><strong>Suivi des documents</strong> — statut de tous les documents requis</li>
+      <li><strong>Données Lebenslauf</strong> — toutes les entrées du constructeur de Lebenslauf</li>
+      <li><strong>Synchronisation cloud</strong> — toutes les données stockées côté serveur dans Supabase</li>
+      <li><strong>État du tutoriel et des paramètres</strong>, cache audio local</li>
+    </ul>
+
+    <h2>Quelles données peuvent être conservées</h2>
+    <ul>
+      <li>Journaux de diagnostic anonymisés sans référence personnelle (max. 30 jours)</li>
+      <li>Justificatifs de facturation pour un abonnement actif ou passé
+          (obligation légale de conservation, max. 10 ans)</li>
+    </ul>
+
+    <h2>Supprimer ton compte sans accès à l'app</h2>
+    <p>
+      Si tu ne peux plus te connecter à l'app (par exemple après la perte de
+      ton appareil), écris à
+      <a href="mailto:support@medterms.app?subject=Suppression%20de%20compte">support@medterms.app</a>
+      avec pour objet <kbd>Suppression de compte</kbd>. Indique l'e-mail avec
+      lequel tu es inscrit et une preuve d'identité (par exemple une réponse à
+      un e-mail de vérification). Nous traiterons la demande sous 7 jours ouvrés.
+    </p>
+
+    <h2>Abonnement</h2>
+    <p>
+      As-tu un abonnement premium actif ?
+      Résilie-le <strong>avant</strong> de supprimer ton compte via la gestion
+      des abonnements de ton store
+      (Apple : <em>Réglages → Apple ID → Abonnements</em>,
+      Google : <em>Google Play → Abonnements</em>). La suppression du compte
+      n'annule pas l'abonnement automatiquement — la facturation est gérée par
+      le store concerné.
+    </p>
+
+    <div class="meta">
+      Dernière mise à jour : mai 2026 ·
+      <a href="https://medterms.app/privacy">Politique de confidentialité</a> ·
+      <a href="https://medterms.app/terms">Conditions d'utilisation</a>
+    </div>
+  </div>
+
+  <!-- ===================== ES ===================== -->
+  <div class="lang-section" data-lang="es" hidden>
+    <h1>Eliminar tu cuenta</h1>
+    <p class="lead">
+      Cómo eliminar de forma permanente tu cuenta de MedTerms y todos los datos asociados.
+    </p>
+
+    <div class="card">
+      <h2>Cómo eliminar tu cuenta desde la app</h2>
+      <ol>
+        <li>Abre <strong>MedTerms</strong> en tu dispositivo e inicia sesión.</li>
+        <li>Toca la pestaña <strong>You</strong> en la esquina inferior derecha.</li>
+        <li>Elige <strong>Ajustes</strong> → <strong>Eliminar cuenta</strong>.</li>
+        <li>Confirma en el diálogo. Por motivos de seguridad se te pedirá iniciar sesión de nuevo.</li>
+        <li>Tras la confirmación, tu cuenta se elimina de inmediato y de forma irreversible.</li>
+      </ol>
+    </div>
+
+    <h2>Qué datos se eliminan</h2>
+    <ul>
+      <li><strong>Perfil</strong> — e-mail, nombre visible, Bundesland, región educativa, avatar</li>
+      <li><strong>Progreso de aprendizaje</strong> — términos aprendidos, estado por término, racha del Daily Challenge</li>
+      <li><strong>Planes Kenntnisprüfung (KP) y Fachsprachprüfung (FSP)</strong> — progreso de temas, fecha del examen, recordatorios</li>
+      <li><strong>Pasos Approbation</strong> — tareas marcadas, etapa activa</li>
+      <li><strong>Seguimiento de documentos</strong> — estado de todos los documentos obligatorios</li>
+      <li><strong>Datos Lebenslauf</strong> — todas las entradas del constructor de Lebenslauf</li>
+      <li><strong>Sincronización en la nube</strong> — todos los datos almacenados en el servidor en Supabase</li>
+      <li><strong>Estado del tutorial y de los ajustes</strong>, caché de audio local</li>
+    </ul>
+
+    <h2>Qué datos pueden conservarse</h2>
+    <ul>
+      <li>Registros de diagnóstico anonimizados sin referencia personal (máx. 30 días)</li>
+      <li>Justificantes de facturación de una suscripción activa o pasada
+          (obligación legal de conservación, máx. 10 años)</li>
+    </ul>
+
+    <h2>Eliminar tu cuenta sin acceso a la app</h2>
+    <p>
+      Si ya no puedes iniciar sesión en la app (por ejemplo, tras perder tu
+      dispositivo), escribe a
+      <a href="mailto:support@medterms.app?subject=Eliminaci%C3%B3n%20de%20cuenta">support@medterms.app</a>
+      con el asunto <kbd>Eliminación de cuenta</kbd>. Indica el e-mail con el
+      que te registraste y una prueba de identidad (por ejemplo, una respuesta
+      a un e-mail de verificación). Tramitaremos la solicitud en un plazo de
+      7 días laborables.
+    </p>
+
+    <h2>Suscripción</h2>
+    <p>
+      ¿Tienes una suscripción premium activa?
+      Cancélala <strong>antes</strong> de eliminar tu cuenta desde la gestión
+      de suscripciones de tu app store
+      (Apple: <em>Ajustes → Apple ID → Suscripciones</em>,
+      Google: <em>Google Play → Suscripciones</em>). Eliminar la cuenta no
+      cancela la suscripción automáticamente — la facturación la gestiona la
+      tienda correspondiente.
+    </p>
+
+    <div class="meta">
+      Última actualización: mayo de 2026 ·
+      <a href="https://medterms.app/privacy">Política de privacidad</a> ·
+      <a href="https://medterms.app/terms">Términos de uso</a>
+    </div>
+  </div>
+
+  <!-- ===================== PL ===================== -->
+  <div class="lang-section" data-lang="pl" hidden>
+    <h1>Usuwanie konta</h1>
+    <p class="lead">
+      Jak trwale usunąć Twoje konto MedTerms i wszystkie powiązane z nim dane.
+    </p>
+
+    <div class="card">
+      <h2>Jak usunąć konto w aplikacji</h2>
+      <ol>
+        <li>Otwórz <strong>MedTerms</strong> na swoim urządzeniu i zaloguj się.</li>
+        <li>Dotknij zakładki <strong>You</strong> w prawym dolnym rogu.</li>
+        <li>Wybierz <strong>Ustawienia</strong> → <strong>Usuń konto</strong>.</li>
+        <li>Potwierdź w oknie dialogowym. Ze względów bezpieczeństwa system poprosi Cię o ponowne zalogowanie.</li>
+        <li>Po potwierdzeniu konto zostaje usunięte natychmiast i nieodwracalnie.</li>
+      </ol>
+    </div>
+
+    <h2>Jakie dane są usuwane</h2>
+    <ul>
+      <li><strong>Profil</strong> — e-mail, nazwa wyświetlana, Bundesland, region edukacyjny, awatar</li>
+      <li><strong>Postępy w nauce</strong> — nauczone terminy, status każdego terminu, seria Daily Challenge</li>
+      <li><strong>Plany Kenntnisprüfung (KP) i Fachsprachprüfung (FSP)</strong> — postęp tematów, data egzaminu, przypomnienia</li>
+      <li><strong>Kroki Approbation</strong> — odhaczone zadania, aktywny etap</li>
+      <li><strong>Tracker dokumentów</strong> — status wszystkich wymaganych dokumentów</li>
+      <li><strong>Dane Lebenslauf</strong> — wszystkie wpisy z kreatora Lebenslauf</li>
+      <li><strong>Synchronizacja w chmurze</strong> — wszystkie dane przechowywane po stronie serwera w Supabase</li>
+      <li><strong>Stan samouczka i ustawień</strong>, lokalna pamięć podręczna audio</li>
+    </ul>
+
+    <h2>Jakie dane mogą być zachowane</h2>
+    <ul>
+      <li>Zanonimizowane logi diagnostyczne bez odniesienia do osoby (maks. 30 dni)</li>
+      <li>Dokumenty rozliczeniowe aktywnej lub minionej subskrypcji
+          (ustawowy obowiązek przechowywania, maks. 10 lat)</li>
+    </ul>
+
+    <h2>Usuwanie konta bez dostępu do aplikacji</h2>
+    <p>
+      Jeśli nie możesz już zalogować się do aplikacji (np. po utracie
+      urządzenia), napisz na
+      <a href="mailto:support@medterms.app?subject=Usuni%C4%99cie%20konta">support@medterms.app</a>
+      z tematem <kbd>Usunięcie konta</kbd>. Podaj adres e-mail, na który jesteś
+      zarejestrowany, i potwierdzenie tożsamości (np. odpowiedź na wiadomość
+      weryfikacyjną). Rozpatrzymy zgłoszenie w ciągu 7 dni roboczych.
+    </p>
+
+    <h2>Subskrypcja</h2>
+    <p>
+      Masz aktywną subskrypcję premium?
+      Anuluj ją <strong>przed</strong> usunięciem konta poprzez zarządzanie
+      subskrypcjami w Twoim app store
+      (Apple: <em>Ustawienia → Apple ID → Subskrypcje</em>,
+      Google: <em>Google Play → Subskrypcje</em>). Usunięcie konta nie anuluje
+      subskrypcji automatycznie — rozliczanie odbywa się przez odpowiedni sklep.
+    </p>
+
+    <div class="meta">
+      Ostatnia aktualizacja: maj 2026 ·
+      <a href="https://medterms.app/privacy">Polityka prywatności</a> ·
+      <a href="https://medterms.app/terms">Warunki korzystania</a>
+    </div>
+  </div>
+
+  <!-- ===================== EL ===================== -->
+  <div class="lang-section" data-lang="el" hidden>
+    <h1>Διαγραφή λογαριασμού</h1>
+    <p class="lead">
+      Πώς να διαγράψεις οριστικά τον λογαριασμό σου στο MedTerms και όλα τα σχετικά δεδομένα.
+    </p>
+
+    <div class="card">
+      <h2>Πώς να διαγράψεις τον λογαριασμό σου από την εφαρμογή</h2>
+      <ol>
+        <li>Άνοιξε το <strong>MedTerms</strong> στη συσκευή σου και συνδέσου.</li>
+        <li>Πάτα την καρτέλα <strong>You</strong> κάτω δεξιά.</li>
+        <li>Επίλεξε <strong>Ρυθμίσεις</strong> → <strong>Διαγραφή λογαριασμού</strong>.</li>
+        <li>Επιβεβαίωσε στο παράθυρο διαλόγου. Για λόγους ασφαλείας θα σου ζητηθεί να συνδεθείς ξανά.</li>
+        <li>Μετά την επιβεβαίωση ο λογαριασμός σου διαγράφεται άμεσα και αμετάκλητα.</li>
+      </ol>
+    </div>
+
+    <h2>Ποια δεδομένα διαγράφονται</h2>
+    <ul>
+      <li><strong>Προφίλ</strong> — e-mail, όνομα εμφάνισης, Bundesland, περιοχή εκπαίδευσης, avatar</li>
+      <li><strong>Πρόοδος μάθησης</strong> — όροι που έχεις μάθει, κατάσταση ανά όρο, σερί Daily Challenge</li>
+      <li><strong>Σχέδια Kenntnisprüfung (KP) και Fachsprachprüfung (FSP)</strong> — πρόοδος θεμάτων, ημερομηνία εξετάσεων, υπενθυμίσεις</li>
+      <li><strong>Βήματα Approbation</strong> — ολοκληρωμένες εργασίες, ενεργό στάδιο</li>
+      <li><strong>Παρακολούθηση εγγράφων</strong> — κατάσταση όλων των υποχρεωτικών εγγράφων</li>
+      <li><strong>Δεδομένα Lebenslauf</strong> — όλες οι καταχωρήσεις από τον κατασκευαστή Lebenslauf</li>
+      <li><strong>Συγχρονισμός cloud</strong> — όλα τα δεδομένα που αποθηκεύονται στον διακομιστή στο Supabase</li>
+      <li><strong>Κατάσταση εκπαιδευτικών οθονών και ρυθμίσεων</strong>, τοπική προσωρινή μνήμη ήχου</li>
+    </ul>
+
+    <h2>Ποια δεδομένα ενδέχεται να διατηρηθούν</h2>
+    <ul>
+      <li>Ανωνυμοποιημένα διαγνωστικά αρχεία καταγραφής χωρίς προσωπική αναφορά (μέγ. 30 ημέρες)</li>
+      <li>Παραστατικά χρέωσης για ενεργή ή παρελθούσα συνδρομή
+          (νομική υποχρέωση διατήρησης, μέγ. 10 έτη)</li>
+    </ul>
+
+    <h2>Διαγραφή λογαριασμού χωρίς πρόσβαση στην εφαρμογή</h2>
+    <p>
+      Αν δεν μπορείς πια να συνδεθείς στην εφαρμογή (π.χ. μετά από απώλεια
+      συσκευής), γράψε στο
+      <a href="mailto:support@medterms.app?subject=%CE%94%CE%B9%CE%B1%CE%B3%CF%81%CE%B1%CF%86%CE%AE%20%CE%BB%CE%BF%CE%B3%CE%B1%CF%81%CE%B9%CE%B1%CF%83%CE%BC%CE%BF%CF%8D">support@medterms.app</a>
+      με θέμα <kbd>Διαγραφή λογαριασμού</kbd>. Ανάφερε το e-mail με το οποίο
+      έχεις εγγραφεί και αποδεικτικό ταυτότητας (π.χ. απάντηση σε e-mail
+      επαλήθευσης). Θα διεκπεραιώσουμε το αίτημα εντός 7 εργάσιμων ημερών.
+    </p>
+
+    <h2>Συνδρομή</h2>
+    <p>
+      Έχεις ενεργή συνδρομή premium;
+      Ακύρωσέ την <strong>πριν</strong> από τη διαγραφή του λογαριασμού μέσω
+      της διαχείρισης συνδρομών του app store
+      (Apple: <em>Ρυθμίσεις → Apple ID → Συνδρομές</em>,
+      Google: <em>Google Play → Συνδρομές</em>). Η διαγραφή του λογαριασμού
+      δεν ακυρώνει τη συνδρομή αυτόματα — η χρέωση γίνεται από το αντίστοιχο κατάστημα.
+    </p>
+
+    <div class="meta">
+      Τελευταία ενημέρωση: Μάιος 2026 ·
+      <a href="https://medterms.app/privacy">Πολιτική απορρήτου</a> ·
+      <a href="https://medterms.app/terms">Όροι χρήσης</a>
+    </div>
+  </div>
+
+  <!-- ===================== RO ===================== -->
+  <div class="lang-section" data-lang="ro" hidden>
+    <h1>Ștergerea contului</h1>
+    <p class="lead">
+      Cum să ștergi definitiv contul tău MedTerms și toate datele asociate.
+    </p>
+
+    <div class="card">
+      <h2>Cum ștergi contul din aplicație</h2>
+      <ol>
+        <li>Deschide <strong>MedTerms</strong> pe dispozitivul tău și autentifică-te.</li>
+        <li>Atinge fila <strong>You</strong> din colțul din dreapta jos.</li>
+        <li>Alege <strong>Setări</strong> → <strong>Șterge contul</strong>.</li>
+        <li>Confirmă în dialog. Din motive de securitate ți se va cere să te autentifici din nou.</li>
+        <li>După confirmare, contul tău este șters imediat și ireversibil.</li>
+      </ol>
+    </div>
+
+    <h2>Ce date sunt șterse</h2>
+    <ul>
+      <li><strong>Profil</strong> — e-mail, nume afișat, Bundesland, regiune educațională, avatar</li>
+      <li><strong>Progresul învățării</strong> — termeni învățați, statusul fiecărui termen, seria Daily Challenge</li>
+      <li><strong>Planuri Kenntnisprüfung (KP) și Fachsprachprüfung (FSP)</strong> — progresul temelor, data examenului, mementouri</li>
+      <li><strong>Pași Approbation</strong> — sarcini bifate, etapa activă</li>
+      <li><strong>Tracker documente</strong> — statusul tuturor documentelor obligatorii</li>
+      <li><strong>Date Lebenslauf</strong> — toate intrările din constructorul de Lebenslauf</li>
+      <li><strong>Sincronizare cloud</strong> — toate datele stocate pe server în Supabase</li>
+      <li><strong>Starea tutorialului și a setărilor</strong>, cache audio local</li>
+    </ul>
+
+    <h2>Ce date pot fi păstrate</h2>
+    <ul>
+      <li>Jurnale de diagnostic anonimizate, fără referință personală (max. 30 de zile)</li>
+      <li>Documente contabile pentru un abonament activ sau anterior
+          (obligație legală de păstrare, max. 10 ani)</li>
+    </ul>
+
+    <h2>Ștergerea contului fără acces la aplicație</h2>
+    <p>
+      Dacă nu te mai poți autentifica în aplicație (de exemplu după pierderea
+      dispozitivului), scrie la
+      <a href="mailto:support@medterms.app?subject=%C8%98tergere%20cont">support@medterms.app</a>
+      cu subiectul <kbd>Ștergere cont</kbd>. Te rugăm să indici adresa de e-mail
+      cu care te-ai înregistrat și o dovadă de identitate (de exemplu un răspuns
+      la un e-mail de verificare). Vom procesa cererea în 7 zile lucrătoare.
+    </p>
+
+    <h2>Abonament</h2>
+    <p>
+      Ai un abonament premium activ?
+      Anulează-l <strong>înainte</strong> de a-ți șterge contul din administrarea
+      abonamentelor din magazinul tău
+      (Apple: <em>Setări → Apple ID → Abonamente</em>,
+      Google: <em>Google Play → Abonamente</em>). Ștergerea contului nu
+      anulează automat abonamentul — facturarea este gestionată de magazinul
+      respectiv.
+    </p>
+
+    <div class="meta">
+      Ultima actualizare: mai 2026 ·
+      <a href="https://medterms.app/privacy">Politica de confidențialitate</a> ·
+      <a href="https://medterms.app/terms">Termeni de utilizare</a>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  (function () {
+    var SUPPORTED = ['de','en','uk','ru','tr','ar','fr','es','pl','el','ro'];
+    var DEFAULT_LANG = 'de';
+    var select = document.getElementById('lang-select');
+    var sections = document.querySelectorAll('.lang-section');
+
+    function applyLang(lang) {
+      if (SUPPORTED.indexOf(lang) === -1) lang = DEFAULT_LANG;
+      for (var i = 0; i < sections.length; i++) {
+        var el = sections[i];
+        if (el.getAttribute('data-lang') === lang) {
+          el.removeAttribute('hidden');
+        } else {
+          el.setAttribute('hidden', '');
+        }
+      }
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+      if (select && select.value !== lang) select.value = lang;
+    }
+
+    var browserLang = (navigator.language || 'de').toLowerCase().split('-')[0];
+    var initial = SUPPORTED.indexOf(browserLang) !== -1 ? browserLang : DEFAULT_LANG;
+    applyLang(initial);
+
+    if (select) {
+      select.addEventListener('change', function () {
+        applyLang(select.value);
+      });
+    }
+  })();
+</script>
+</body>
+</html>
