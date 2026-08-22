@@ -381,7 +381,7 @@ async function planEditor(id){
   $('#back').onclick = () => route('plans');
   if(id) $('#del').onclick = async () => { if(!confirm('Plan wirklich löschen?')) return; const { error } = await sb.from('author_plans').delete().eq('id', id); if(error) return toast(error.message); toast('Gelöscht'); route('plans'); };
 
-  const setExam = e => { if(exam!==e){ exam=e; order=[]; } for(const b of $('#exam').querySelectorAll('button')) b.classList.toggle('on', b.dataset.e===exam); $('#examhint').textContent = exam==='FSP' ? 'Diagnosen der FSP-Liste des gewählten Bundeslands. Bundesland unten wählen.' : 'Themen aus dem KP-Katalog (Fächer → Themen).'; renderPicker(); };
+  const setExam = e => { if(exam!==e){ exam=e; order=[]; } for(const b of $('#exam').querySelectorAll('button')) b.classList.toggle('on', b.dataset.e===exam); $('#examhint').textContent = exam==='FSP' ? 'Diagnosen der FSP-Liste des gewählten Bundeslands + optional Themen aus dem KP-Katalog. Bundesland unten wählen.' : 'Themen aus dem KP-Katalog (Fächer → Themen).'; renderPicker(); };
   for(const b of $('#exam').querySelectorAll('button')) b.onclick = () => setExam(b.dataset.e);
   const setVis = v => { published = v!=='draft'; if(v!=='draft') visibility = v; for(const b of $('#vis').querySelectorAll('button')) b.classList.toggle('on', b.dataset.v===(published?visibility:'draft')); $('#vishint').textContent = !published ? 'Nur du siehst diesen Plan.' : visibility==='groups' ? 'Nicht in der öffentlichen Liste. Sichtbar nur für Teilnehmer, denen du den Plan als Aufgabe schickst.' : 'Erscheint unter „Pläne von Autoren“ für alle Nutzer.'; };
   for(const b of $('#vis').querySelectorAll('button')) b.onclick = () => setVis(b.dataset.v);
@@ -393,8 +393,9 @@ async function planEditor(id){
   renderCustom();
 
   function toggle(k){ const i=order.indexOf(k); if(i>=0) order.splice(i,1); else order.push(k); renderPicker(); }
-  function allKeys(){ if(exam==='FSP'){ const key=fspKeyFor(region); return key? diagnosesFor(key):[]; } return manifest.categories.flatMap(c=>c.topics.map(t=>`${c.id}::${t.path}`)); }
-  function label(k){ if(exam==='FSP') return k; const i=k.indexOf('::'); return human(i<0?k:k.slice(i+2)); }
+  const kpKeys = () => manifest.categories.flatMap(c=>c.topics.map(t=>`${c.id}::${t.path}`));
+  function allKeys(){ if(exam==='FSP'){ const key=fspKeyFor(region); return key? [...diagnosesFor(key), ...kpKeys()] : []; } return kpKeys(); }
+  function label(k){ const i=k.indexOf('::'); return i<0 ? k : human(k.slice(i+2)); }
   function renderOrder(){
     $('#sn').textContent = `${order.length} ausgewählt`;
     const ul = $('#order');
@@ -409,12 +410,11 @@ async function planEditor(id){
     $('#all').onclick = () => { order = allKeys(); renderPicker(); };
     if($('#none')) $('#none').onclick = () => { order=[]; renderPicker(); };
     const pk = $('#picker');
-    if(exam==='FSP'){
-      const key = fspKeyFor(region);
-      if(!key){ pk.innerHTML = '<p class="hint">Bitte zuerst ein Bundesland wählen — die FSP-Themen hängen davon ab.</p>'; }
-      else pk.innerHTML = `<div class="cat open"><div class="b">${diagnosesFor(key).map(d=>`<label><input type="checkbox" data-k="${esc(d)}" ${sel.has(d)?'checked':''}>${esc(d)}</label>`).join('')}</div></div>`;
-    } else {
-      pk.innerHTML = manifest.categories.map(c=>{ const keys=c.topics.map(t=>`${c.id}::${t.path}`); const n=keys.filter(k=>sel.has(k)).length; const all=n===keys.length;
+    const key = exam==='FSP' ? fspKeyFor(region) : null;
+    if(exam==='FSP' && !key){ pk.innerHTML = '<p class="hint">Bitte zuerst ein Bundesland wählen — die FSP-Themen hängen davon ab.</p>'; }
+    else {
+      const fspBlock = exam==='FSP' ? `<div class="lbl" style="margin-top:4px">FSP-Diagnosen · ${esc(key)}</div><div class="cat open"><div class="b">${diagnosesFor(key).map(d=>`<label><input type="checkbox" data-k="${esc(d)}" ${sel.has(d)?'checked':''}>${esc(d)}</label>`).join('')}</div></div><div class="lbl">Zusätzlich aus dem KP-Katalog</div>` : '';
+      pk.innerHTML = fspBlock + manifest.categories.map(c=>{ const keys=c.topics.map(t=>`${c.id}::${t.path}`); const n=keys.filter(k=>sel.has(k)).length; const all=n===keys.length;
         return `<div class="cat" data-c="${c.id}"><div class="h"><span>${esc(c.titleDe)}</span><span class="n num">${n}/${keys.length}</span><input type="checkbox" class="ca" data-c="${c.id}" data-all="${all?0:1}" ${all?'checked':''} data-part="${(!all&&n>0)?1:0}" title="${all?'Alle abwählen':'Alle auswählen'}"></div>
           <div class="b">${c.topics.map(t=>{ const k=`${c.id}::${t.path}`; return `<label><input type="checkbox" data-k="${k}" ${sel.has(k)?'checked':''}>${esc(human(t.path))}</label>`; }).join('')}</div></div>`; }).join('');
       for(const h of pk.querySelectorAll('.cat>.h')) h.onclick = e => { if(e.target.closest('.ca')) return; h.parentElement.classList.toggle('open'); };
