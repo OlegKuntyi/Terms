@@ -1,4 +1,10 @@
 {
+  "applinks": {
+    "apps": [],
+    "details": [
+      { "appID": "TV4QD24BQ8.de.medterms.app", "paths": ["/join", "/join?*"] }
+    ]
+  },
   "webcredentials": {
     "apps": ["TV4QD24BQ8.de.medterms.app"]
   }

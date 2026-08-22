@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gruppe beitreten — MedTerms</title>
+<style>
+  :root{--bg:#F7F9FC;--card:#FFF;--ink:#14171C;--text:#242833;--muted:#7E8494;--border:#D3D7E0}
+  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Arial,sans-serif;line-height:1.5}
+  main{max-width:480px;margin:0 auto;padding:56px 24px 80px}
+  .brand{color:var(--ink);font-weight:800;font-size:14px;text-decoration:none}
+  h1{font-size:28px;font-weight:800;letter-spacing:-.5px;margin:16px 0 6px}
+  p{margin:6px 0 12px;color:var(--muted)}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin:20px 0}
+  .label{font-size:11px;font-weight:600;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+  .code{font-size:34px;font-weight:800;letter-spacing:6px;color:var(--ink);font-variant-numeric:tabular-nums;margin:6px 0 2px}
+  .cta{display:block;text-align:center;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;border-radius:12px;padding:14px;margin-top:12px}
+  .sec{display:block;text-align:center;color:var(--ink);text-decoration:none;font-weight:600;padding:12px}
+  ol{padding-left:20px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<main>
+  <a class="brand" href="https://medterms.app">MedTerms</a>
+  <h1>Gruppe beitreten</h1>
+  <p>Dein Lehrer hat dich zu einer MedTerms-Gruppe eingeladen.</p>
+  <div class="card">
+    <div class="label">Einladungscode</div>
+    <div class="code" id="code">——————</div>
+    <a class="cta" id="open" href="#">In MedTerms öffnen</a>
+    <a class="sec" href="https://apps.apple.com/app/id6762642827">App laden (App Store)</a>
+  </div>
+  <ol>
+    <li>Installiere MedTerms und melde dich an.</li>
+    <li>Öffne „Weg → Aufgaben → Gruppe beitreten“.</li>
+    <li>Gib den Code oben ein.</li>
+  </ol>
+</main>
+<script>
+  var c=(new URLSearchParams(location.search).get('code')||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);
+  if(c){document.getElementById('code').textContent=c;}
+  document.getElementById('open').href='medterms://join?code='+c;
+</script>
+</body>
+</html>
