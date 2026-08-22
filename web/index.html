@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>MedTerms · Lehrerbereich</title>
+<link rel="icon" href="../favicon-32.png">
+<style>
+  :root{
+    --bg:#F7F9FC;--card:#FFFFFF;--sel:#EEF2F7;--prog:#E5E8EE;
+    --t1:#242833;--t2:#7E8494;--t3:#959FBA;--sep:#D3D7E0;
+    --ink:#14171C;--on-ink:#FFFFFF;--ok:#1E9E63;--err:#D64545;--warn:#C98A12;
+    --r:16px;--rb:12px;--rs:8px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#0E1116;--card:#171A21;--sel:#1F2937;--prog:#2A2F3A;
+      --t1:#E6E8EE;--t2:#A1A7B5;--t3:#737A8A;--sep:#2E3341;--ink:#E9ECF2;--on-ink:#0E1116;}
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  html,body{margin:0;background:var(--bg);color:var(--t1);
+    font:15px/1.45 -apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  a{color:inherit}
+  button,input,select,textarea{font:inherit;color:inherit}
+  .num{font-variant-numeric:tabular-nums}
+  header{display:flex;align-items:center;gap:18px;padding:14px 24px;border-bottom:1px solid var(--sep);background:var(--card);position:sticky;top:0;z-index:5}
+  header .brand{font-weight:800;letter-spacing:-.01em}
+  header nav{display:flex;gap:4px}
+  header nav button{background:none;border:0;padding:8px 12px;border-radius:var(--rb);color:var(--t2);font-weight:600;cursor:pointer}
+  header nav button.on{background:var(--sel);color:var(--t1)}
+  header .me{margin-left:auto;color:var(--t2);font-size:13px;display:flex;align-items:center;gap:10px}
+  main{max-width:1080px;margin:0 auto;padding:24px 20px 80px}
+  .card{background:var(--card);border:1px solid var(--sep);border-radius:var(--r);padding:18px 20px;margin-bottom:14px}
+  .lbl{display:flex;align-items:baseline;justify-content:space-between;margin:18px 0 8px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--t2)}
+  .lbl:first-child{margin-top:0}
+  .lbl .tr{color:var(--t3);letter-spacing:0;text-transform:none;font-weight:700}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--sep);background:var(--card);border-radius:var(--rb);padding:9px 14px;font-weight:600;cursor:pointer}
+  .btn:hover{background:var(--sel)}
+  .btn.primary{background:var(--ink);color:var(--on-ink);border-color:var(--ink);height:44px;padding:0 20px}
+  .btn.primary:disabled{opacity:.45;cursor:default}
+  .btn.ghost{border-color:transparent;color:var(--t2)}
+  .btn.danger{color:var(--err)}
+  .btn.sm{padding:5px 10px;font-size:13px}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+  .tile{cursor:pointer}
+  .tile:hover{border-color:var(--t3)}
+  .tile h3{margin:0 0 6px;font-size:16px}
+  .meta{color:var(--t3);font-size:12.5px;font-weight:600}
+  .chip{display:inline-block;padding:2px 8px;border-radius:var(--rs);background:var(--prog);color:var(--t2);font-size:11px;font-weight:800}
+  .chip.ok{background:rgba(30,158,99,.14);color:var(--ok)}
+  .chip.warn{background:rgba(201,138,18,.14);color:var(--warn)}
+  .chip.ink{background:var(--ink);color:var(--on-ink)}
+  input[type=text],input[type=date],select,textarea{width:100%;background:var(--card);border:1px solid var(--sep);border-radius:var(--rb);padding:10px 12px;outline:0}
+  input:focus,select:focus,textarea:focus{border-color:var(--ink)}
+  label.f{display:block;margin-bottom:10px}
+  label.f>span{display:block;font-size:12.5px;font-weight:700;color:var(--t2);margin-bottom:4px}
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--sep);font-size:14px;vertical-align:middle}
+  th{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--t2)}
+  tr:last-child td{border-bottom:0}
+  .bar{height:6px;background:var(--prog);border-radius:999px;overflow:hidden;min-width:90px}
+  .bar i{display:block;height:100%;background:var(--ink)}
+  .code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:800;letter-spacing:.18em;font-size:22px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chips button{border:1px solid var(--sep);background:var(--card);border-radius:999px;padding:6px 12px;font-weight:600;cursor:pointer}
+  .chips button.on{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+  .hint{color:var(--t2);font-size:13px;margin:4px 0 0}
+  .cat{border:1px solid var(--sep);border-radius:var(--r);margin-bottom:8px;overflow:hidden}
+  .cat>.h{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;font-weight:700}
+  .cat>.h .n{margin-left:auto;color:var(--t3);font-size:12px;font-weight:700}
+  .cat>.h input.ca{width:18px;height:18px;accent-color:var(--ink);cursor:pointer}
+  .cat .b input[type=checkbox]{width:17px;height:17px;accent-color:var(--ink)}
+  .cat>.b{display:none;padding:4px 10px 10px}
+  .cat.open>.b{display:block}
+  .cat .b label{display:flex;gap:10px;align-items:center;padding:5px 6px;font-size:14px;cursor:pointer}
+  .ord{list-style:none;margin:0;padding:0}
+  .ord li{display:flex;align-items:center;gap:8px;padding:6px 8px;border-bottom:1px solid var(--sep);font-size:14px}
+  .ord li:last-child{border-bottom:0}
+  .ord li .i{width:26px;color:var(--t3);font-size:12px;font-weight:700}
+  .ord li .t{flex:1}
+  .ord li button{border:0;background:none;cursor:pointer;color:var(--t2);padding:2px 6px}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--on-ink);padding:10px 16px;border-radius:var(--rb);font-weight:600;opacity:0;transition:.2s;pointer-events:none;max-width:90vw}
+  .toast.show{opacity:1}
+  .center{min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center}
+  .center .card{max-width:420px}
+  .sp{width:18px;height:18px;border:2px solid var(--sep);border-top-color:var(--ink);border-radius:50%;animation:r 1s linear infinite;display:inline-block}
+  @keyframes r{to{transform:rotate(360deg)}}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:720px){.two{grid-template-columns:1fr}header{padding:12px 14px}main{padding:16px 12px 60px}}
+  .hero{background:linear-gradient(135deg,#14171C,#2A2F3A);color:#fff;border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+  .hero h2{margin:0 0 4px;font-size:20px}
+  .hero p{margin:0;color:rgba(255,255,255,.72);font-size:13.5px}
+  .empty{color:var(--t2);padding:18px 0;text-align:center}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px}
+  .kv b{color:var(--t2);font-weight:600}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">MedTerms · Lehrerbereich</div>
+  <nav id="nav" hidden>
+    <button data-v="groups" class="on">Gruppen</button>
+    <button data-v="plans">Pläne</button>
+  </nav>
+  <div class="me" id="me"></div>
+</header>
+<main id="app"><div class="center"><span class="sp"></span></div></main>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const SUPABASE_URL = 'https://dnngjjfipppdjrgmmjxo.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRubmdqamZpcHBwZGpyZ21tanhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNTczNzgsImV4cCI6MjA5MTczMzM3OH0.OMdU8wrV6evjoYEd9i1CYIXcPbSx0D4f4XgW-j0MiCM';
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON);
+
+const REGIONS = ['Bayern','Berlin','Brandenburg','Bremen','Hamburg','Hessen','Mecklenburg-Vorpommern','Niedersachsen','Nordrhein-Westfalen','Rheinland-Pfalz','Saarland','Sachsen','Sachsen-Anhalt','Schleswig-Holstein','Thüringen','Baden-Württemberg-Freiburg','Baden-Württemberg-Karlsruhe','Baden-Württemberg-Stuttgart','Baden-Württemberg-Reutlingen','Westfalen-Lippe'];
+const CUSTOM = 'custom::';
+const $ = (s, r=document) => r.querySelector(s);
+const app = $('#app');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtD = s => { if(!s) return ''; const d = new Date(s); return isNaN(d) ? s : d.toLocaleDateString('de-DE'); };
+const iso = d => d.toISOString().slice(0,10);
+const human = p => p.replace(/[_-]/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+let toastT; const toast = m => { const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2600); };
+
+let manifest = null, regionCases = null;
+async function data(){
+  if(!manifest){ manifest = await (await fetch('data/kp_plan_topics_manifest.json')).json(); }
+  if(!regionCases){ regionCases = await (await fetch('data/region_cases.json')).json(); }
+}
+const fspKeyFor = label => { if(!label) return null; const keys = Object.keys(regionCases.regions||{}); if(keys.includes(label)) return label; if(label.startsWith('Baden-Württemberg')) return keys.find(k=>k.startsWith('Baden-Württemberg'))||null; return null; };
+const diagnosesFor = key => { const v=(regionCases.regions||{})[key]; return Array.isArray(v)? v.map(x=> typeof x==='string'? x : (x.name||x.title||String(x))) : []; };
+
+// ---------------------------------------------------------------- auth
+let me = null, role = '';
+async function boot(){
+  const m = location.hash.match(/th=([A-Za-z0-9_\-\.]+)/);
+  if(m){
+    history.replaceState(null,'',location.pathname);
+    const { error } = await sb.auth.verifyOtp({ type:'magiclink', token_hash:m[1] });
+    if(error){ return loginView('Der QR-Link ist abgelaufen oder wurde schon benutzt. In der App einen neuen erzeugen.'); }
+  }
+  const { data:{ session } } = await sb.auth.getSession();
+  if(!session) return loginView();
+  me = session.user; role = me.user_metadata?.role || '';
+  if(!['teacher','author'].includes(role)) return loginView('Dieses Konto hat keine Lehrer-/Autorenrolle.');
+  $('#me').innerHTML = `<span>${esc(me.email)}</span><span class="chip ink">${role==='teacher'?'Lehrer':'Autor'}</span><button class="btn sm ghost" id="out">Abmelden</button>`;
+  $('#out').onclick = async () => { await sb.auth.signOut(); location.reload(); };
+  $('#nav').hidden = false;
+  for(const b of $('#nav').querySelectorAll('button')) b.onclick = () => { for(const x of $('#nav').querySelectorAll('button')) x.classList.toggle('on', x===b); route(b.dataset.v); };
+  await data();
+  route(role==='teacher' ? 'groups' : 'plans');
+  if(role!=='teacher'){ $('#nav button[data-v=groups]').hidden = true; $('#nav button[data-v=plans]').classList.add('on'); }
+}
+function loginView(msg){
+  $('#nav').hidden = true;
+  app.innerHTML = `<div class="center"><div class="card">
+    <h2 style="margin:0 0 8px">Anmelden per QR-Code</h2>
+    <p class="hint" style="font-size:14px">Öffne in der MedTerms-App <b>Lehrerbereich → Web-Dashboard</b> und scanne den QR-Code mit diesem Gerät — oder öffne den Link, den die App kopiert.</p>
+    ${msg?`<p style="color:var(--err);font-weight:600;margin-top:12px">${esc(msg)}</p>`:''}
+    <p class="hint" style="margin-top:14px">Der Link ist einmalig gültig. Keine Passwörter, keine dauerhaften Codes.</p>
+  </div></div>`;
+}
+
+// ---------------------------------------------------------------- routing
+let view = 'groups';
+function route(v, arg){ view = v; if(v==='groups') groupsView(); else if(v==='group') groupView(arg); else if(v==='plans') plansView(); else if(v==='plan') planEditor(arg); }
+
+// ---------------------------------------------------------------- groups
+async function groupsView(){
+  app.innerHTML = `<div class="hero"><h2>Meine Gruppen</h2><p>Einladungscode teilen, Fortschritt sehen, Aufgaben & Pläne schicken.</p></div>
+    <div class="row" style="margin-bottom:14px"><button class="btn primary" id="new">+ Neue Gruppe</button></div><div id="list"><span class="sp"></span></div>`;
+  $('#new').onclick = createGroupDialog;
+  const { data, error } = await sb.from('teacher_groups').select().eq('teacher_id', me.id).order('created_at');
+  if(error) return $('#list').innerHTML = `<div class="empty">${esc(error.message)}</div>`;
+  if(!data.length) return $('#list').innerHTML = `<div class="empty">Noch keine Gruppe. Lege eine an und teile den Code mit deinen Teilnehmern.</div>`;
+  $('#list').innerHTML = `<div class="grid">${data.map(g=>{
+    const exp = g.expires_at ? new Date(g.expires_at) : null; const expired = exp && exp < new Date();
+    return `<div class="card tile" data-id="${g.id}"><h3>${esc(g.name)}</h3><div class="row"><span class="code">${esc(g.invite_code)}</span>${expired?'<span class="chip warn">beendet</span>':''}</div>
+      <div class="meta" style="margin-top:6px">${exp?`bis ${fmtD(g.expires_at)}`:'unbefristet'}</div></div>`; }).join('')}</div>`;
+  for(const t of app.querySelectorAll('.tile')) t.onclick = () => route('group', t.dataset.id);
+}
+function createGroupDialog(){
+  app.insertAdjacentHTML('afterbegin', `<div class="card" id="dlg"><div class="lbl">Neue Gruppe</div>
+    <label class="f"><span>Name</span><input type="text" id="gname" placeholder="z. B. KP Mai 2027 — Gruppe A"></label>
+    <label class="f"><span>Laufzeit</span><div class="chips" id="dur">${[1,3,6,12].map(m=>`<button data-m="${m}" ${m===3?'class="on"':''}>${m} Monate</button>`).join('')}<button data-m="0">unbefristet</button></div></label>
+    <div class="row"><button class="btn primary" id="ok">Anlegen</button><button class="btn ghost" id="no">Abbrechen</button></div></div>`);
+  let months = 3;
+  for(const b of $('#dur').querySelectorAll('button')) b.onclick = () => { months = +b.dataset.m; for(const x of $('#dur').querySelectorAll('button')) x.classList.toggle('on', x===b); };
+  $('#no').onclick = () => $('#dlg').remove();
+  $('#ok').onclick = async () => {
+    const name = $('#gname').value.trim(); if(!name) return;
+    let expires_at = null; if(months){ const d=new Date(); d.setMonth(d.getMonth()+months); expires_at = d.toISOString(); }
+    const { data, error } = await sb.from('teacher_groups').insert({ teacher_id: me.id, name, expires_at }).select().single();
+    if(error) return toast(error.message);
+    toast('Gruppe angelegt'); route('group', data.id);
+  };
+}
+async function groupView(id){
+  app.innerHTML = `<span class="sp"></span>`;
+  const [{ data:g, error:e1 }, { data:prog }, { data:asg }, { data:plans }] = await Promise.all([
+    sb.from('teacher_groups').select().eq('id', id).single(),
+    sb.rpc('teacher_group_progress', { p_group: id }),
+    sb.from('teacher_assignments').select().eq('group_id', id).order('created_at', { ascending:false }),
+    sb.from('author_plans').select('id,title,exam,published,visibility').eq('author_id', me.id).eq('published', true).order('updated_at', { ascending:false }),
+  ]);
+  if(e1||!g) return app.innerHTML = `<div class="empty">${esc(e1?.message||'Nicht gefunden')}</div>`;
+  const exp = g.expires_at ? new Date(g.expires_at) : null; const expired = exp && exp < new Date();
+  const link = `https://medterms.app/join?code=${g.invite_code}`;
+  const rows = (prog||[]);
+  app.innerHTML = `
+    <div class="row" style="margin-bottom:10px"><button class="btn ghost" id="back">← Gruppen</button></div>
+    <div class="hero"><h2>${esc(g.name)}</h2><p>${rows.length} Teilnehmer · ${exp?`läuft bis ${fmtD(g.expires_at)}`:'unbefristet'} ${expired?'· <b>beendet</b>':''}</p></div>
+    <div class="two">
+      <div class="card"><div class="lbl">Einladung</div>
+        <div class="row"><span class="code">${esc(g.invite_code)}</span><button class="btn sm" id="cpc">Code kopieren</button><button class="btn sm" id="cpl">Link kopieren</button></div>
+        <p class="hint">${esc(link)}</p>
+        <div class="row" style="margin-top:12px"><button class="btn sm" id="ext">+3 Monate</button><button class="btn sm danger" id="del">Gruppe löschen</button></div>
+      </div>
+      <div class="card"><div class="lbl">Überblick</div>
+        <div class="kv"><b>Teilnehmer</b><span class="num">${rows.length}</span>
+          <b>Ø KP-Fortschritt</b><span class="num">${rows.length? Math.round(rows.reduce((a,r)=>a+(r.kp_total? r.kp_done/r.kp_total*100:0),0)/rows.length):0} %</span>
+          <b>Ø gelernte Begriffe</b><span class="num">${rows.length? Math.round(rows.reduce((a,r)=>a+r.terms_learned,0)/rows.length):0}</span>
+          <b>Aufgaben</b><span class="num">${(asg||[]).length}</span></div>
+      </div>
+    </div>
+    <div class="card"><div class="lbl">Teilnehmer <span class="tr">${rows.length}</span></div>
+      ${rows.length? `<div style="overflow-x:auto"><table><thead><tr><th>Name</th><th>KP-Plan</th><th>Begriffe</th><th>Aufgaben</th><th>Zuletzt aktiv</th><th></th></tr></thead><tbody>
+        ${rows.map(r=>{ const pct = r.kp_total? Math.round(r.kp_done/r.kp_total*100):0; return `<tr>
+          <td><b>${esc(r.display_name||'Teilnehmer')}</b><div class="meta">seit ${fmtD(r.joined_at)}</div></td>
+          <td><div class="row" style="gap:8px;flex-wrap:nowrap"><div class="bar"><i style="width:${pct}%"></i></div><span class="num" style="font-weight:800">${pct} %</span><span class="meta num">${r.kp_done}/${r.kp_total}</span></div></td>
+          <td class="num">${r.terms_learned}</td><td class="num">${r.assignments_done}/${(asg||[]).filter(a=>a.kind==='task').length}</td>
+          <td class="meta">${r.last_active? fmtD(r.last_active):'—'}</td>
+          <td><button class="btn sm ghost rm" data-s="${r.student_id}" title="Entfernen">✕</button></td></tr>`; }).join('')}
+      </tbody></table></div>` : `<div class="empty">Noch niemand beigetreten. Code: <b class="code" style="font-size:16px">${esc(g.invite_code)}</b></div>`}
+    </div>
+    <div class="card"><div class="lbl">Aufgaben <span class="tr">${(asg||[]).length}</span></div>
+      <div id="asgform">
+        <div class="chips" id="kind"><button data-k="task" class="on">Aufgabe</button><button data-k="announcement">Mitteilung</button><button data-k="reminder">Erinnerung</button></div>
+        <div class="two" style="margin-top:10px">
+          <label class="f"><span>Titel</span><input type="text" id="at"></label>
+          <label class="f"><span id="dl">Fällig am</span><input type="date" id="ad"></label>
+        </div>
+        <label class="f"><span>Text</span><textarea id="ab" rows="3"></textarea></label>
+        <div class="two">
+          <label class="f" id="planrow"><span>Plan anhängen</span><select id="ap"><option value="">— kein Plan —</option>${(plans||[]).map(p=>`<option value="${p.id}">${esc(p.title)}${p.exam==='FSP'?' (FSP)':''}${p.visibility==='groups'?' · nur Gruppen':''}</option>`).join('')}</select></label>
+          <label class="f" id="startrow" hidden><span>Lernstart</span><input type="date" id="as"></label>
+        </div>
+        <p class="hint" id="planhint" hidden>Lernstart + Fälligkeit werden als Zeitraum in den Plan des Teilnehmers übernommen — er startet mit fertigem Tagesplan.</p>
+        <div class="row" style="margin-top:8px"><button class="btn primary" id="send">Senden</button></div>
+      </div>
+      <div style="margin-top:16px">${(asg||[]).length? (asg||[]).map(a=>`<div class="row" style="padding:9px 0;border-top:1px solid var(--sep)">
+        <span class="chip">${{task:'Aufgabe',announcement:'Mitteilung',reminder:'Erinnerung'}[a.kind]||a.kind}</span>
+        <b>${esc(a.title)}</b>
+        <span class="meta">${a.start_date?`ab ${fmtD(a.start_date)} · `:''}${a.due_date?`fällig ${fmtD(a.due_date)}`:''}${a.remind_at?`am ${fmtD(a.remind_at)}`:''}${a.author_plan_id?' · mit Plan':''}</span>
+        <button class="btn sm ghost da" data-id="${a.id}" style="margin-left:auto;color:var(--err)">löschen</button></div>`).join('') : '<div class="empty">Noch keine Aufgabe.</div>'}</div>
+    </div>`;
+  $('#back').onclick = () => route('groups');
+  $('#cpc').onclick = () => navigator.clipboard.writeText(g.invite_code).then(()=>toast('Code kopiert'));
+  $('#cpl').onclick = () => navigator.clipboard.writeText(link).then(()=>toast('Link kopiert'));
+  $('#ext').onclick = async () => { const base = exp && exp > new Date() ? exp : new Date(); const d = new Date(base); d.setMonth(d.getMonth()+3); const { error } = await sb.from('teacher_groups').update({ expires_at:d.toISOString() }).eq('id', id); if(error) return toast(error.message); toast('Verlängert'); groupView(id); };
+  $('#del').onclick = async () => { if(!confirm(`Gruppe „${g.name}“ wirklich löschen? Alle Aufgaben und Mitgliedschaften gehen verloren.`)) return; const { error } = await sb.from('teacher_groups').delete().eq('id', id); if(error) return toast(error.message); toast('Gelöscht'); route('groups'); };
+  for(const b of app.querySelectorAll('.rm')) b.onclick = async () => { if(!confirm('Teilnehmer aus der Gruppe entfernen?')) return; const { error } = await sb.from('teacher_group_members').delete().eq('group_id', id).eq('student_id', b.dataset.s); if(error) return toast(error.message); groupView(id); };
+  for(const b of app.querySelectorAll('.da')) b.onclick = async () => { if(!confirm('Aufgabe löschen?')) return; const { error } = await sb.from('teacher_assignments').delete().eq('id', b.dataset.id); if(error) return toast(error.message); groupView(id); };
+  let kind = 'task';
+  const syncForm = () => { $('#dl').textContent = kind==='reminder' ? 'Erinnern am' : 'Fällig am'; $('#planrow').hidden = kind==='reminder'; const withPlan = kind!=='reminder' && !!$('#ap').value; $('#startrow').hidden = !withPlan; $('#planhint').hidden = !withPlan; };
+  for(const b of $('#kind').querySelectorAll('button')) b.onclick = () => { kind = b.dataset.k; for(const x of $('#kind').querySelectorAll('button')) x.classList.toggle('on', x===b); syncForm(); };
+  $('#ap').onchange = syncForm;
+  $('#send').onclick = async () => {
+    const title = $('#at').value.trim(); if(!title) return toast('Titel fehlt');
+    const d = $('#ad').value || null; const planId = kind==='reminder' ? null : ($('#ap').value || null);
+    let topic_keys = [];
+    if(planId){ const { data:p } = await sb.from('author_plans').select('topic_keys').eq('id', planId).single(); topic_keys = p?.topic_keys || []; }
+    const row = { group_id:id, teacher_id:me.id, title, body:$('#ab').value.trim(), kind, due_date: kind==='reminder'? null : d, remind_at: kind==='reminder'? d : null, author_plan_id: planId, topic_keys, start_date: planId ? ($('#as').value || null) : null };
+    const { error } = await sb.from('teacher_assignments').insert(row);
+    if(error) return toast(error.message);
+    toast('Gesendet'); groupView(id);
+  };
+}
+
+// ---------------------------------------------------------------- plans
+async function plansView(){
+  app.innerHTML = `<div class="hero"><h2>Meine Pläne</h2><p>Lernpläne aus dem KP-Katalog oder der FSP-Diagnosenliste — für alle oder nur für deine Gruppen.</p></div>
+    <div class="row" style="margin-bottom:14px"><button class="btn primary" id="new">+ Neuer Plan</button></div><div id="list"><span class="sp"></span></div>`;
+  $('#new').onclick = () => route('plan', null);
+  const { data, error } = await sb.from('author_plans').select().eq('author_id', me.id).order('updated_at', { ascending:false });
+  if(error) return $('#list').innerHTML = `<div class="empty">${esc(error.message)}</div>`;
+  if(!data.length) return $('#list').innerHTML = `<div class="empty">Noch kein Plan.</div>`;
+  $('#list').innerHTML = `<div class="grid">${data.map(p=>`<div class="card tile" data-id="${p.id}"><h3>${esc(p.title)}</h3>
+    <div class="row"><span class="chip ${p.published?(p.visibility==='groups'?'':'ok'):'warn'}">${p.published?(p.visibility==='groups'?'nur Gruppen':'für alle'):'Entwurf'}</span><span class="chip">${p.exam}</span>${p.region?`<span class="meta">${esc(p.region)}</span>`:''}</div>
+    <div class="meta" style="margin-top:6px">${p.topic_keys.length} Themen · ${fmtD(p.updated_at)}</div></div>`).join('')}</div>`;
+  for(const t of app.querySelectorAll('.tile')) t.onclick = () => route('plan', t.dataset.id);
+}
+
+async function planEditor(id){
+  app.innerHTML = `<span class="sp"></span>`;
+  let p = { title:'', description:'', author_name: me.user_metadata?.full_name || me.user_metadata?.name || '', author_title:'', exam:'KP', region:null, topic_keys:[], published:false, visibility:'public' };
+  if(id){ const { data, error } = await sb.from('author_plans').select().eq('id', id).single(); if(error) return app.innerHTML = `<div class="empty">${esc(error.message)}</div>`; p = data; }
+  // state
+  let exam = p.exam, region = p.region || '', published = p.published, visibility = p.visibility || 'public';
+  let order = p.topic_keys.filter(k => !k.startsWith(CUSTOM));   // ordered selected keys
+  let custom = p.topic_keys.filter(k => k.startsWith(CUSTOM)).map(k => k.slice(CUSTOM.length));
+  const selected = () => new Set(order);
+
+  app.innerHTML = `
+    <div class="row" style="margin-bottom:10px"><button class="btn ghost" id="back">← Pläne</button>${id?'<button class="btn sm danger" id="del" style="margin-left:auto">Plan löschen</button>':''}</div>
+    <div class="two">
+      <div>
+        <div class="card">
+          <div class="lbl">1 · Prüfung</div>
+          <div class="chips" id="exam"><button data-e="KP">KP</button><button data-e="FSP">FSP</button></div>
+          <p class="hint" id="examhint"></p>
+          <div class="lbl">2 · Angaben</div>
+          <label class="f"><span>Titel</span><input type="text" id="title" value="${esc(p.title)}"></label>
+          <label class="f"><span>Beschreibung</span><textarea id="desc" rows="3">${esc(p.description)}</textarea></label>
+          <div class="two"><label class="f"><span>Autor</span><input type="text" id="an" value="${esc(p.author_name)}"></label><label class="f"><span>Titel/Position</span><input type="text" id="atitle" value="${esc(p.author_title)}" placeholder="z. B. Dr. med., Dozentin"></label></div>
+          <label class="f"><span>Bundesland</span><select id="region"><option value="">alle</option>${REGIONS.map(r=>`<option value="${r}" ${region===r||(exam==='FSP'&&fspKeyFor(r)===region&&region)?'selected':''}>${r}</option>`).join('')}</select></label>
+          <div class="lbl">3 · Sichtbarkeit</div>
+          <div class="chips" id="vis"><button data-v="draft">Entwurf</button>${role==='teacher'?'<button data-v="groups">Nur meine Gruppen</button>':''}<button data-v="public">Für alle</button></div>
+          <p class="hint" id="vishint"></p>
+        </div>
+        <div class="card">
+          <div class="lbl">5 · Eigene Themen <span class="tr" id="cn">${custom.length}</span></div>
+          <p class="hint">Themen, die nicht im Katalog stehen (z. B. Arztbrief, Aufklärungsgespräch). Sie landen ans Ende des Plans.</p>
+          <div class="row" style="margin-top:8px"><input type="text" id="ci" placeholder="z. B. Arztbrief schreiben" style="flex:1"><button class="btn" id="cadd">Hinzufügen</button></div>
+          <ul class="ord" id="clist" style="margin-top:8px"></ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="lbl">4 · Themen <span class="tr" id="sn"></span></div>
+          <div class="row" id="topicactions"></div>
+          <div id="picker" style="margin-top:10px"></div>
+        </div>
+        <div class="card">
+          <div class="lbl">Reihenfolge im Plan <span class="tr">ziehen oder ↑↓</span></div>
+          <ul class="ord" id="order"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:6px"><button class="btn primary" id="save">Speichern</button><span class="hint" id="savehint"></span></div>`;
+
+  $('#back').onclick = () => route('plans');
+  if(id) $('#del').onclick = async () => { if(!confirm('Plan wirklich löschen?')) return; const { error } = await sb.from('author_plans').delete().eq('id', id); if(error) return toast(error.message); toast('Gelöscht'); route('plans'); };
+
+  const setExam = e => { if(exam!==e){ exam=e; order=[]; } for(const b of $('#exam').querySelectorAll('button')) b.classList.toggle('on', b.dataset.e===exam); $('#examhint').textContent = exam==='FSP' ? 'Diagnosen der FSP-Liste des gewählten Bundeslands. Bundesland unten wählen.' : 'Themen aus dem KP-Katalog (Fächer → Themen).'; renderPicker(); };
+  for(const b of $('#exam').querySelectorAll('button')) b.onclick = () => setExam(b.dataset.e);
+  const setVis = v => { published = v!=='draft'; if(v!=='draft') visibility = v; for(const b of $('#vis').querySelectorAll('button')) b.classList.toggle('on', b.dataset.v===(published?visibility:'draft')); $('#vishint').textContent = !published ? 'Nur du siehst diesen Plan.' : visibility==='groups' ? 'Nicht in der öffentlichen Liste. Sichtbar nur für Teilnehmer, denen du den Plan als Aufgabe schickst.' : 'Erscheint unter „Pläne von Autoren“ für alle Nutzer.'; };
+  for(const b of $('#vis').querySelectorAll('button')) b.onclick = () => setVis(b.dataset.v);
+  $('#region').onchange = () => { region = $('#region').value; if(exam==='FSP'){ order=[]; } renderPicker(); };
+
+  function renderCustom(){ $('#cn').textContent = custom.length; $('#clist').innerHTML = custom.map((c,i)=>`<li><span class="i">${i+1}</span><span class="t">${esc(c)}</span><button data-i="${i}">✕</button></li>`).join(''); for(const b of $('#clist').querySelectorAll('button')) b.onclick = () => { custom.splice(+b.dataset.i,1); renderCustom(); }; }
+  $('#cadd').onclick = () => { const v=$('#ci').value.trim(); if(!v||custom.includes(v)) return; custom.push(v); $('#ci').value=''; renderCustom(); };
+  $('#ci').onkeydown = e => { if(e.key==='Enter'){ e.preventDefault(); $('#cadd').click(); } };
+  renderCustom();
+
+  function toggle(k){ const i=order.indexOf(k); if(i>=0) order.splice(i,1); else order.push(k); renderPicker(); }
+  function allKeys(){ if(exam==='FSP'){ const key=fspKeyFor(region); return key? diagnosesFor(key):[]; } return manifest.categories.flatMap(c=>c.topics.map(t=>`${c.id}::${t.path}`)); }
+  function label(k){ if(exam==='FSP') return k; const i=k.indexOf('::'); return human(i<0?k:k.slice(i+2)); }
+  function renderOrder(){
+    $('#sn').textContent = `${order.length} ausgewählt`;
+    const ul = $('#order');
+    ul.innerHTML = order.length ? order.map((k,i)=>`<li draggable="true" data-i="${i}"><span class="i">${i+1}</span><span class="t">${esc(label(k))}</span><button data-up="${i}" title="nach oben">↑</button><button data-dn="${i}" title="nach unten">↓</button></li>`).join('') : '<li class="empty">Noch keine Themen gewählt.</li>';
+    for(const b of ul.querySelectorAll('[data-up]')) b.onclick = () => { const i=+b.dataset.up; if(i>0){ [order[i-1],order[i]]=[order[i],order[i-1]]; renderOrder(); } };
+    for(const b of ul.querySelectorAll('[data-dn]')) b.onclick = () => { const i=+b.dataset.dn; if(i<order.length-1){ [order[i+1],order[i]]=[order[i],order[i+1]]; renderOrder(); } };
+    let from=null; for(const li of ul.querySelectorAll('li[draggable]')){ li.ondragstart = () => { from=+li.dataset.i; }; li.ondragover = e => e.preventDefault(); li.ondrop = e => { e.preventDefault(); const to=+li.dataset.i; if(from===null||from===to) return; const [m]=order.splice(from,1); order.splice(to,0,m); from=null; renderOrder(); }; }
+  }
+  function renderPicker(){
+    const sel = selected(); const ta = $('#topicactions');
+    ta.innerHTML = `<button class="btn sm" id="all">Alle Themen</button>${order.length?'<button class="btn sm ghost" id="none">Auswahl leeren</button>':''}`;
+    $('#all').onclick = () => { order = allKeys(); renderPicker(); };
+    if($('#none')) $('#none').onclick = () => { order=[]; renderPicker(); };
+    const pk = $('#picker');
+    if(exam==='FSP'){
+      const key = fspKeyFor(region);
+      if(!key){ pk.innerHTML = '<p class="hint">Bitte zuerst ein Bundesland wählen — die FSP-Themen hängen davon ab.</p>'; }
+      else pk.innerHTML = `<div class="cat open"><div class="b">${diagnosesFor(key).map(d=>`<label><input type="checkbox" data-k="${esc(d)}" ${sel.has(d)?'checked':''}>${esc(d)}</label>`).join('')}</div></div>`;
+    } else {
+      pk.innerHTML = manifest.categories.map(c=>{ const keys=c.topics.map(t=>`${c.id}::${t.path}`); const n=keys.filter(k=>sel.has(k)).length; const all=n===keys.length;
+        return `<div class="cat" data-c="${c.id}"><div class="h"><span>${esc(c.titleDe)}</span><span class="n num">${n}/${keys.length}</span><input type="checkbox" class="ca" data-c="${c.id}" data-all="${all?0:1}" ${all?'checked':''} data-part="${(!all&&n>0)?1:0}" title="${all?'Alle abwählen':'Alle auswählen'}"></div>
+          <div class="b">${c.topics.map(t=>{ const k=`${c.id}::${t.path}`; return `<label><input type="checkbox" data-k="${k}" ${sel.has(k)?'checked':''}>${esc(human(t.path))}</label>`; }).join('')}</div></div>`; }).join('');
+      for(const h of pk.querySelectorAll('.cat>.h')) h.onclick = e => { if(e.target.closest('.ca')) return; h.parentElement.classList.toggle('open'); };
+      for(const b of pk.querySelectorAll('.ca')) b.indeterminate = b.dataset.part==='1';
+      for(const b of pk.querySelectorAll('.ca')) b.onclick = e => { e.stopPropagation(); const c = manifest.categories.find(x=>x.id===b.dataset.c); const keys=c.topics.map(t=>`${c.id}::${t.path}`); if(b.dataset.all==='1'){ for(const k of keys) if(!order.includes(k)) order.push(k); } else { order = order.filter(k=>!keys.includes(k)); } const open=[...pk.querySelectorAll('.cat.open')].map(x=>x.dataset.c); renderPicker(); for(const id of open){ const el=pk.querySelector(`.cat[data-c="${id}"]`); if(el) el.classList.add('open'); } };
+    }
+    for(const cb of pk.querySelectorAll('input[type=checkbox]')) cb.onchange = () => { const open=[...pk.querySelectorAll('.cat.open')].map(x=>x.dataset.c); toggle(cb.dataset.k); for(const id of open){ const el=pk.querySelector(`.cat[data-c="${id}"]`); if(el) el.classList.add('open'); } };
+    renderOrder();
+  }
+  setExam(exam); setVis(published ? visibility : 'draft');
+
+  $('#save').onclick = async () => {
+    const title = $('#title').value.trim(); if(!title) return toast('Titel fehlt');
+    if(exam==='FSP' && !fspKeyFor(region)) return toast('FSP: Bundesland wählen');
+    if(!order.length && !custom.length) return toast('Mindestens ein Thema wählen');
+    const row = { author_id: me.id, title, description: $('#desc').value.trim(), author_name: $('#an').value.trim(), author_title: $('#atitle').value.trim(), exam,
+      region: exam==='FSP' ? fspKeyFor(region) : (region || null), topic_keys: [...order, ...custom.map(c=>CUSTOM+c)], published, visibility };
+    $('#save').disabled = true; $('#savehint').textContent = 'Speichern…';
+    const q = id ? sb.from('author_plans').update(row).eq('id', id).select().single() : sb.from('author_plans').insert(row).select().single();
+    const { data, error } = await q;
+    $('#save').disabled = false; $('#savehint').textContent = '';
+    if(error) return toast(`Fehler: ${error.message}`);
+    toast('Gespeichert'); if(!id) route('plan', data.id);
+  };
+}
+
+sb.auth.onAuthStateChange((ev) => { if(ev==='SIGNED_OUT') loginView(); });
+boot();
+</script>
+</body>
+</html>
