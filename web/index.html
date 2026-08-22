@@ -111,6 +111,7 @@
 
 <script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import QRCode from 'https://esm.sh/qrcode@1.5.4';
 
 const SUPABASE_URL = 'https://dnngjjfipppdjrgmmjxo.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRubmdqamZpcHBwZGpyZ21tanhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNTczNzgsImV4cCI6MjA5MTczMzM3OH0.OMdU8wrV6evjoYEd9i1CYIXcPbSx0D4f4XgW-j0MiCM';
@@ -155,14 +156,48 @@ async function boot(){
   route(role==='teacher' ? 'groups' : 'plans');
   if(role!=='teacher'){ $('#nav button[data-v=groups]').hidden = true; $('#nav button[data-v=plans]').classList.add('on'); }
 }
+let qrTimer = null, pollTimer = null;
+async function fn(action, payload={}){
+  const r = await fetch(`${SUPABASE_URL}/functions/v1/web-login`, { method:'POST', headers:{ 'apikey':SUPABASE_ANON, 'Authorization':`Bearer ${SUPABASE_ANON}`, 'Content-Type':'application/json' }, body: JSON.stringify({ action, ...payload }) });
+  return r.json();
+}
 function loginView(msg){
-  $('#nav').hidden = true;
-  app.innerHTML = `<div class="center"><div class="card">
-    <h2 style="margin:0 0 8px">Anmelden per QR-Code</h2>
-    <p class="hint" style="font-size:14px">Öffne in der MedTerms-App <b>Lehrerbereich → Web-Dashboard</b> und scanne den QR-Code mit diesem Gerät — oder öffne den Link, den die App kopiert.</p>
+  $('#nav').hidden = true; clearTimeout(qrTimer); clearTimeout(pollTimer);
+  app.innerHTML = `<div class="center"><div class="card" style="max-width:460px">
+    <h2 style="margin:0 0 6px">Mit der App anmelden</h2>
+    <p class="hint" style="font-size:14px;margin-bottom:14px">In der MedTerms-App: <b>Einstellungen → Web-Dashboard → QR-Code scannen</b> (oder im Lehrerbereich das Laptop-Symbol).</p>
+    <div id="qrbox" style="display:flex;justify-content:center;align-items:center;min-height:260px"><span class="sp"></span></div>
+    <p class="hint" id="qrstate" style="margin-top:10px"></p>
     ${msg?`<p style="color:var(--err);font-weight:600;margin-top:12px">${esc(msg)}</p>`:''}
-    <p class="hint" style="margin-top:14px">Der Link ist einmalig gültig. Keine Passwörter, keine dauerhaften Codes.</p>
+    <p class="hint" style="margin-top:14px">Der Code ist 5 Minuten gültig und meldet genau das Konto an, mit dem du scannst. Keine Passwörter, keine dauerhaften Codes.</p>
   </div></div>`;
+  startQr();
+}
+async function startQr(){
+  const box = $('#qrbox'), st = $('#qrstate'); if(!box) return;
+  let s; try { s = await fn('create'); } catch(e){ st.textContent = 'Verbindung fehlgeschlagen.'; return; }
+  if(!s?.sid){ st.textContent = 'Konnte keinen Code erzeugen.'; return; }
+  const payload = `https://medterms.app/web-login?sid=${s.sid}`;
+  const url = await QRCode.toDataURL(payload, { width: 260, margin: 1, errorCorrectionLevel: 'M', color: { dark: '#14171C', light: '#FFFFFF' } });
+  box.innerHTML = `<img src="${url}" width="260" height="260" alt="QR" style="border-radius:12px;background:#fff">`;
+  const until = Date.now() + (s.expires_in||300)*1000;
+  const tick = async () => {
+    if(!document.body.contains(box)) return;
+    if(Date.now() > until){ st.innerHTML = 'Abgelaufen. <a href="#" id="renew">Neuen Code erzeugen</a>'; box.style.opacity = .25; $('#renew').onclick = e => { e.preventDefault(); box.style.opacity = 1; box.innerHTML = '<span class="sp"></span>'; st.textContent=''; startQr(); }; return; }
+    st.textContent = `Warte auf Bestätigung in der App… (${Math.max(0,Math.round((until-Date.now())/1000))} s)`;
+    try {
+      const r = await fn('poll', { sid: s.sid, poll_secret: s.poll_secret });
+      if(r.status === 'approved' && r.token_hash){
+        st.textContent = 'Bestätigt — melde an…';
+        const { error } = await sb.auth.verifyOtp({ type:'magiclink', token_hash: r.token_hash });
+        if(error){ st.textContent = 'Anmeldung fehlgeschlagen: ' + error.message; return; }
+        location.reload(); return;
+      }
+      if(r.status === 'gone' || r.status === 'expired'){ st.innerHTML = 'Abgelaufen. <a href="#" id="renew">Neuen Code erzeugen</a>'; $('#renew').onclick = e => { e.preventDefault(); box.innerHTML = '<span class="sp"></span>'; st.textContent=''; startQr(); }; return; }
+    } catch(_) {}
+    pollTimer = setTimeout(tick, 2000);
+  };
+  tick();
 }
 
 // ---------------------------------------------------------------- routing

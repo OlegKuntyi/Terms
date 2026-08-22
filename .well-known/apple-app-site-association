@@ -2,10 +2,20 @@
   "applinks": {
     "apps": [],
     "details": [
-      { "appID": "TV4QD24BQ8.de.medterms.app", "paths": ["/join", "/join?*"] }
+      {
+        "appID": "TV4QD24BQ8.de.medterms.app",
+        "paths": [
+          "/join",
+          "/join?*",
+          "/web-login",
+          "/web-login?*"
+        ]
+      }
     ]
   },
   "webcredentials": {
-    "apps": ["TV4QD24BQ8.de.medterms.app"]
+    "apps": [
+      "TV4QD24BQ8.de.medterms.app"
+    ]
   }
 }
