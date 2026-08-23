@@ -89,6 +89,33 @@
   @keyframes r{to{transform:rotate(360deg)}}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   @media (max-width:720px){.two{grid-template-columns:1fr}header{padding:12px 14px}main{padding:16px 12px 60px}}
+
+  /* ---- full-screen plan editor ---- */
+  body.wide main{max-width:none;padding:0 0 40px}
+  .edbar{display:flex;align-items:center;gap:12px;padding:10px 20px;border-bottom:1px solid var(--sep);background:var(--card);position:sticky;top:57px;z-index:4}
+  .edtitle{font-weight:800;font-size:16px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ed{display:grid;grid-template-columns:400px 1fr;gap:0;min-height:calc(100vh - 120px)}
+  .edleft{padding:16px;border-right:1px solid var(--sep);background:var(--bg);position:sticky;top:106px;max-height:calc(100vh - 106px);overflow:auto;align-self:start}
+  .edleft .card{padding:14px 16px;margin-bottom:10px}
+  .edleft .catalog{max-height:none}
+  .edright{padding:16px 20px}
+  .planhead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+  .tile2{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--sep);border-radius:var(--rb);padding:10px 10px 10px 12px;cursor:grab;user-select:none;min-height:58px}
+  .tile2:active{cursor:grabbing}
+  .tile2.drag{opacity:.35}
+  .tile2.over{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+  .tile2.custom{border-style:dashed}
+  .tile2 .n{width:26px;height:26px;border-radius:8px;background:var(--sel);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--t2);flex:none}
+  .tile2 .tt{flex:1;min-width:0}
+  .tile2 .t{font-weight:600;font-size:13.5px;line-height:1.25;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .tile2 .s{font-size:11px;color:var(--t3);font-weight:600;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tile2 .x{border:0;background:none;color:var(--t3);cursor:pointer;font-size:14px;padding:4px 6px;border-radius:6px;flex:none}
+  .tile2 .x:hover{background:var(--sel);color:var(--err)}
+  .cat .b label.on{color:var(--t1);font-weight:600}
+  .cat .b label{padding:4px 6px;font-size:13.5px}
+  .cat>.h{padding:8px 12px;font-size:14px}
+  @media (max-width:900px){.ed{grid-template-columns:1fr}.edleft{border-right:0;border-bottom:1px solid var(--sep);position:static;max-height:none}.edbar{top:49px;flex-wrap:wrap}.tiles{grid-template-columns:1fr}}
   .hero{background:linear-gradient(135deg,#14171C,#2A2F3A);color:#fff;border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
   .hero h2{margin:0 0 4px;font-size:20px}
   .hero p{margin:0;color:rgba(255,255,255,.72);font-size:13.5px}
@@ -202,7 +229,7 @@ async function startQr(){
 
 // ---------------------------------------------------------------- routing
 let view = 'groups';
-function route(v, arg){ view = v; if(v==='groups') groupsView(); else if(v==='group') groupView(arg); else if(v==='plans') plansView(); else if(v==='plan') planEditor(arg); }
+function route(v, arg){ view = v; if(v!=='plan') document.body.classList.remove('wide'); if(v==='groups') groupsView(); else if(v==='group') groupView(arg); else if(v==='plans') plansView(); else if(v==='plan') planEditor(arg); }
 
 // ---------------------------------------------------------------- groups
 async function groupsView(){
@@ -334,110 +361,158 @@ async function planEditor(id){
   app.innerHTML = `<span class="sp"></span>`;
   let p = { title:'', description:'', author_name: me.user_metadata?.full_name || me.user_metadata?.name || '', author_title:'', exam:'KP', region:null, topic_keys:[], published:false, visibility:'public' };
   if(id){ const { data, error } = await sb.from('author_plans').select().eq('id', id).single(); if(error) return app.innerHTML = `<div class="empty">${esc(error.message)}</div>`; p = data; }
-  // state
-  let exam = p.exam, region = p.region || '', published = p.published, visibility = p.visibility || 'public';
-  let order = p.topic_keys.filter(k => !k.startsWith(CUSTOM));   // ordered selected keys
-  let custom = p.topic_keys.filter(k => k.startsWith(CUSTOM)).map(k => k.slice(CUSTOM.length));
-  const selected = () => new Set(order);
 
+  // ---- editor state -------------------------------------------------
+  let exam = p.exam, region = p.region || '', published = p.published, visibility = p.visibility || 'public';
+  let order = [...p.topic_keys];           // THE plan: ordered keys (manifest, FSP diagnoses, custom::…)
+  let q = '';                              // catalogue search
+  let dirty = false;
+  const catTitle = Object.fromEntries(manifest.categories.map(c => [c.id, c.titleDe]));
+  const isCustom = k => k.startsWith(CUSTOM);
+  const kpKeys = () => manifest.categories.flatMap(c=>c.topics.map(t=>`${c.id}::${t.path}`));
+  const fspKey = () => exam==='FSP' ? fspKeyFor(region) : null;
+  const label = k => isCustom(k) ? k.slice(CUSTOM.length) : (k.includes('::') ? human(k.slice(k.indexOf('::')+2)) : k);
+  const sub = k => isCustom(k) ? 'Eigenes Thema' : (k.includes('::') ? (catTitle[k.slice(0,k.indexOf('::'))] || 'KP') : `FSP · ${fspKey()||''}`);
+  const has = k => order.includes(k);
+  const add = k => { if(!has(k)){ order.push(k); dirty = true; } };
+  const remove = k => { const i = order.indexOf(k); if(i>=0){ order.splice(i,1); dirty = true; } };
+  const toggle = k => { has(k) ? remove(k) : add(k); render(); };
+
+  document.body.classList.add('wide');
   app.innerHTML = `
-    <div class="row" style="margin-bottom:10px"><button class="btn ghost" id="back">← Pläne</button>${id?'<button class="btn sm danger" id="del" style="margin-left:auto">Plan löschen</button>':''}</div>
-    <div class="two">
-      <div>
+    <div class="edbar">
+      <button class="btn ghost" id="back">← Pläne</button>
+      <div class="edtitle" id="edtitle">${esc(p.title || 'Neuer Plan')}</div>
+      <span class="hint" id="savehint"></span>
+      ${id?'<button class="btn sm danger" id="del">Löschen</button>':''}
+      <button class="btn primary" id="save">Speichern</button>
+    </div>
+    <div class="ed">
+      <aside class="edleft">
         <div class="card">
-          <div class="lbl">1 · Prüfung</div>
+          <div class="lbl">Prüfung</div>
           <div class="chips" id="exam"><button data-e="KP">KP</button><button data-e="FSP">FSP</button></div>
           <p class="hint" id="examhint"></p>
-          <div class="lbl">2 · Angaben</div>
-          <label class="f"><span>Titel</span><input type="text" id="title" value="${esc(p.title)}"></label>
-          <label class="f"><span>Beschreibung</span><textarea id="desc" rows="3">${esc(p.description)}</textarea></label>
-          <div class="two"><label class="f"><span>Autor</span><input type="text" id="an" value="${esc(p.author_name)}"></label><label class="f"><span>Titel/Position</span><input type="text" id="atitle" value="${esc(p.author_title)}" placeholder="z. B. Dr. med., Dozentin"></label></div>
-          <label class="f"><span>Bundesland</span><select id="region"><option value="">alle</option>${REGIONS.map(r=>`<option value="${r}" ${region===r||(exam==='FSP'&&fspKeyFor(r)===region&&region)?'selected':''}>${r}</option>`).join('')}</select></label>
-          <div class="lbl">3 · Sichtbarkeit</div>
+          <label class="f" style="margin-top:12px"><span>Titel</span><input type="text" id="title" value="${esc(p.title)}" placeholder="z. B. KP in 8 Wochen — Innere & Chirurgie"></label>
+          <label class="f"><span>Beschreibung</span><textarea id="desc" rows="2">${esc(p.description)}</textarea></label>
+          <div class="two" style="gap:8px"><label class="f"><span>Autor</span><input type="text" id="an" value="${esc(p.author_name)}"></label><label class="f"><span>Titel/Position</span><input type="text" id="atitle" value="${esc(p.author_title)}" placeholder="Dr. med., Dozentin…"></label></div>
+          <label class="f"><span>Bundesland</span><select id="region"><option value="">alle</option>${REGIONS.map(r=>`<option value="${r}" ${region===r||(exam==='FSP'&&region&&fspKeyFor(r)===region)?'selected':''}>${r}</option>`).join('')}</select></label>
+          <div class="lbl">Sichtbarkeit</div>
           <div class="chips" id="vis"><button data-v="draft">Entwurf</button>${role==='teacher'?'<button data-v="groups">Nur meine Gruppen</button>':''}<button data-v="public">Für alle</button></div>
           <p class="hint" id="vishint"></p>
         </div>
         <div class="card">
-          <div class="lbl">5 · Eigene Themen <span class="tr" id="cn">${custom.length}</span></div>
-          <p class="hint">Themen, die nicht im Katalog stehen (z. B. Arztbrief, Aufklärungsgespräch). Sie landen ans Ende des Plans.</p>
-          <div class="row" style="margin-top:8px"><input type="text" id="ci" placeholder="z. B. Arztbrief schreiben" style="flex:1"><button class="btn" id="cadd">Hinzufügen</button></div>
-          <ul class="ord" id="clist" style="margin-top:8px"></ul>
+          <div class="lbl">Eigenes Thema</div>
+          <div class="row" style="flex-wrap:nowrap"><input type="text" id="ci" placeholder="z. B. Arztbrief schreiben" style="flex:1"><button class="btn" id="cadd">+ In den Plan</button></div>
+          <p class="hint">Kommt als Kachel ans Ende des Plans — danach frei verschiebbar.</p>
         </div>
-      </div>
-      <div>
-        <div class="card">
-          <div class="lbl">4 · Themen <span class="tr" id="sn"></span></div>
-          <div class="row" id="topicactions"></div>
-          <div id="picker" style="margin-top:10px"></div>
+        <div class="card catalog">
+          <div class="lbl">Katalog <span class="tr" id="catn"></span></div>
+          <input type="text" id="q" placeholder="Thema suchen…" style="margin-bottom:8px">
+          <div class="row" style="margin-bottom:8px;gap:6px"><button class="btn sm" id="all">Alles in den Plan</button><button class="btn sm ghost" id="collapse">Alle zuklappen</button></div>
+          <div id="picker"></div>
         </div>
-        <div class="card">
-          <div class="lbl">Reihenfolge im Plan <span class="tr">ziehen oder ↑↓</span></div>
-          <ul class="ord" id="order"></ul>
+      </aside>
+      <section class="edright">
+        <div class="planhead">
+          <div><div class="lbl" style="margin:0">Dein Plan <span class="tr" id="sn"></span></div><p class="hint">Kacheln ziehen = Reihenfolge. ✕ entfernt. Die Nummer ist der Lerntag-Platz.</p></div>
+          <div class="row" style="gap:6px">
+            <select id="sort" class="btn sm" style="padding:6px 10px"><option value="">Sortieren…</option><option value="catalog">Katalogreihenfolge</option><option value="alpha">A → Z</option><option value="shuffle">Mischen</option></select>
+            <button class="btn sm ghost" id="clear">Leeren</button>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="row" style="margin-top:6px"><button class="btn primary" id="save">Speichern</button><span class="hint" id="savehint"></span></div>`;
+        <div id="plan" class="tiles"></div>
+      </section>
+    </div>`;
 
-  $('#back').onclick = () => route('plans');
-  if(id) $('#del').onclick = async () => { if(!confirm('Plan wirklich löschen?')) return; const { error } = await sb.from('author_plans').delete().eq('id', id); if(error) return toast(error.message); toast('Gelöscht'); route('plans'); };
+  const leave = () => { document.body.classList.remove('wide'); route('plans'); };
+  $('#back').onclick = () => { if(dirty && !confirm('Ungespeicherte Änderungen verwerfen?')) return; leave(); };
+  if(id) $('#del').onclick = async () => { if(!confirm('Plan wirklich löschen?')) return; const { error } = await sb.from('author_plans').delete().eq('id', id); if(error) return toast(error.message); toast('Gelöscht'); leave(); };
+  $('#title').oninput = () => { $('#edtitle').textContent = $('#title').value || 'Neuer Plan'; dirty = true; };
+  for(const sel of ['#desc','#an','#atitle']) $(sel).oninput = () => dirty = true;
 
-  const setExam = e => { if(exam!==e){ exam=e; order=[]; } for(const b of $('#exam').querySelectorAll('button')) b.classList.toggle('on', b.dataset.e===exam); $('#examhint').textContent = exam==='FSP' ? 'Diagnosen der FSP-Liste des gewählten Bundeslands + optional Themen aus dem KP-Katalog. Bundesland unten wählen.' : 'Themen aus dem KP-Katalog (Fächer → Themen).'; renderPicker(); };
+  const setExam = e => { if(exam!==e){ exam=e; order = order.filter(k => isCustom(k) || k.includes('::')); dirty = true; } for(const b of $('#exam').querySelectorAll('button')) b.classList.toggle('on', b.dataset.e===exam); $('#examhint').textContent = exam==='FSP' ? 'FSP-Diagnosen des Bundeslands + KP-Katalog. Bundesland unten wählen.' : 'Themen aus dem KP-Katalog (Fächer → Themen).'; render(); };
   for(const b of $('#exam').querySelectorAll('button')) b.onclick = () => setExam(b.dataset.e);
-  const setVis = v => { published = v!=='draft'; if(v!=='draft') visibility = v; for(const b of $('#vis').querySelectorAll('button')) b.classList.toggle('on', b.dataset.v===(published?visibility:'draft')); $('#vishint').textContent = !published ? 'Nur du siehst diesen Plan.' : visibility==='groups' ? 'Nicht in der öffentlichen Liste. Sichtbar nur für Teilnehmer, denen du den Plan als Aufgabe schickst.' : 'Erscheint unter „Pläne von Autoren“ für alle Nutzer.'; };
+  const setVis = v => { published = v!=='draft'; if(v!=='draft') visibility = v; dirty = true; for(const b of $('#vis').querySelectorAll('button')) b.classList.toggle('on', b.dataset.v===(published?visibility:'draft')); $('#vishint').textContent = !published ? 'Nur du siehst diesen Plan.' : visibility==='groups' ? 'Nicht in der öffentlichen Liste. Nur für Teilnehmer, denen du den Plan als Aufgabe schickst.' : 'Erscheint unter „Pläne von Autoren“ für alle Nutzer.'; };
   for(const b of $('#vis').querySelectorAll('button')) b.onclick = () => setVis(b.dataset.v);
-  $('#region').onchange = () => { region = $('#region').value; if(exam==='FSP'){ order=[]; } renderPicker(); };
-
-  function renderCustom(){ $('#cn').textContent = custom.length; $('#clist').innerHTML = custom.map((c,i)=>`<li><span class="i">${i+1}</span><span class="t">${esc(c)}</span><button data-i="${i}">✕</button></li>`).join(''); for(const b of $('#clist').querySelectorAll('button')) b.onclick = () => { custom.splice(+b.dataset.i,1); renderCustom(); }; }
-  $('#cadd').onclick = () => { const v=$('#ci').value.trim(); if(!v||custom.includes(v)) return; custom.push(v); $('#ci').value=''; renderCustom(); };
+  $('#region').onchange = () => { region = $('#region').value; if(exam==='FSP'){ order = order.filter(k => isCustom(k) || k.includes('::')); } dirty = true; render(); };
+  $('#cadd').onclick = () => { const v=$('#ci').value.trim(); if(!v) return; add(CUSTOM+v); $('#ci').value=''; render(); $('#plan').lastElementChild?.scrollIntoView({behavior:'smooth',block:'nearest'}); };
   $('#ci').onkeydown = e => { if(e.key==='Enter'){ e.preventDefault(); $('#cadd').click(); } };
-  renderCustom();
+  $('#q').oninput = () => { q = $('#q').value.trim().toLowerCase(); renderPicker(); };
+  $('#all').onclick = () => { for(const k of allKeys()) add(k); render(); };
+  $('#clear').onclick = () => { if(!order.length || confirm('Plan leeren?')){ order=[]; dirty=true; render(); } };
+  $('#collapse').onclick = () => { for(const c of app.querySelectorAll('.cat.open')) c.classList.remove('open'); };
+  $('#sort').onchange = () => {
+    const v = $('#sort').value; $('#sort').value='';
+    if(v==='catalog'){ const idx = new Map(allKeys().map((k,i)=>[k,i])); order.sort((a,b)=>(idx.has(a)?idx.get(a):1e9)-(idx.has(b)?idx.get(b):1e9)); }
+    else if(v==='alpha'){ order.sort((a,b)=>label(a).localeCompare(label(b),'de')); }
+    else if(v==='shuffle'){ for(let i=order.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [order[i],order[j]]=[order[j],order[i]]; } }
+    else return;
+    dirty = true; render();
+  };
+  function allKeys(){ const key=fspKey(); return exam==='FSP' ? (key? [...diagnosesFor(key), ...kpKeys()] : kpKeys()) : kpKeys(); }
 
-  function toggle(k){ const i=order.indexOf(k); if(i>=0) order.splice(i,1); else order.push(k); renderPicker(); }
-  const kpKeys = () => manifest.categories.flatMap(c=>c.topics.map(t=>`${c.id}::${t.path}`));
-  function allKeys(){ if(exam==='FSP'){ const key=fspKeyFor(region); return key? [...diagnosesFor(key), ...kpKeys()] : []; } return kpKeys(); }
-  function label(k){ const i=k.indexOf('::'); return i<0 ? k : human(k.slice(i+2)); }
-  function renderOrder(){
-    $('#sn').textContent = `${order.length} ausgewählt`;
-    const ul = $('#order');
-    ul.innerHTML = order.length ? order.map((k,i)=>`<li draggable="true" data-i="${i}"><span class="i">${i+1}</span><span class="t">${esc(label(k))}</span><button data-up="${i}" title="nach oben">↑</button><button data-dn="${i}" title="nach unten">↓</button></li>`).join('') : '<li class="empty">Noch keine Themen gewählt.</li>';
-    for(const b of ul.querySelectorAll('[data-up]')) b.onclick = () => { const i=+b.dataset.up; if(i>0){ [order[i-1],order[i]]=[order[i],order[i-1]]; renderOrder(); } };
-    for(const b of ul.querySelectorAll('[data-dn]')) b.onclick = () => { const i=+b.dataset.dn; if(i<order.length-1){ [order[i+1],order[i]]=[order[i],order[i+1]]; renderOrder(); } };
-    let from=null; for(const li of ul.querySelectorAll('li[draggable]')){ li.ondragstart = () => { from=+li.dataset.i; }; li.ondragover = e => e.preventDefault(); li.ondrop = e => { e.preventDefault(); const to=+li.dataset.i; if(from===null||from===to) return; const [m]=order.splice(from,1); order.splice(to,0,m); from=null; renderOrder(); }; }
-  }
-  function renderPicker(){
-    const sel = selected(); const ta = $('#topicactions');
-    ta.innerHTML = `<button class="btn sm" id="all">Alle Themen</button>${order.length?'<button class="btn sm ghost" id="none">Auswahl leeren</button>':''}`;
-    $('#all').onclick = () => { order = allKeys(); renderPicker(); };
-    if($('#none')) $('#none').onclick = () => { order=[]; renderPicker(); };
-    const pk = $('#picker');
-    const key = exam==='FSP' ? fspKeyFor(region) : null;
-    if(exam==='FSP' && !key){ pk.innerHTML = '<p class="hint">Bitte zuerst ein Bundesland wählen — die FSP-Themen hängen davon ab.</p>'; }
-    else {
-      const fspBlock = exam==='FSP' ? `<div class="lbl" style="margin-top:4px">FSP-Diagnosen · ${esc(key)}</div><div class="cat open"><div class="b">${diagnosesFor(key).map(d=>`<label><input type="checkbox" data-k="${esc(d)}" ${sel.has(d)?'checked':''}>${esc(d)}</label>`).join('')}</div></div><div class="lbl">Zusätzlich aus dem KP-Katalog</div>` : '';
-      pk.innerHTML = fspBlock + manifest.categories.map(c=>{ const keys=c.topics.map(t=>`${c.id}::${t.path}`); const n=keys.filter(k=>sel.has(k)).length; const all=n===keys.length;
-        return `<div class="cat" data-c="${c.id}"><div class="h"><span>${esc(c.titleDe)}</span><span class="n num">${n}/${keys.length}</span><input type="checkbox" class="ca" data-c="${c.id}" data-all="${all?0:1}" ${all?'checked':''} data-part="${(!all&&n>0)?1:0}" title="${all?'Alle abwählen':'Alle auswählen'}"></div>
-          <div class="b">${c.topics.map(t=>{ const k=`${c.id}::${t.path}`; return `<label><input type="checkbox" data-k="${k}" ${sel.has(k)?'checked':''}>${esc(human(t.path))}</label>`; }).join('')}</div></div>`; }).join('');
-      for(const h of pk.querySelectorAll('.cat>.h')) h.onclick = e => { if(e.target.closest('.ca')) return; h.parentElement.classList.toggle('open'); };
-      for(const b of pk.querySelectorAll('.ca')) b.indeterminate = b.dataset.part==='1';
-      for(const b of pk.querySelectorAll('.ca')) b.onclick = e => { e.stopPropagation(); const c = manifest.categories.find(x=>x.id===b.dataset.c); const keys=c.topics.map(t=>`${c.id}::${t.path}`); if(b.dataset.all==='1'){ for(const k of keys) if(!order.includes(k)) order.push(k); } else { order = order.filter(k=>!keys.includes(k)); } const open=[...pk.querySelectorAll('.cat.open')].map(x=>x.dataset.c); renderPicker(); for(const id of open){ const el=pk.querySelector(`.cat[data-c="${id}"]`); if(el) el.classList.add('open'); } };
+  // ---- right: the plan as draggable tiles ----------------------------
+  let openCats = new Set();
+  function renderPlan(){
+    $('#sn').textContent = `${order.length} Themen`;
+    const el = $('#plan');
+    if(!order.length){ el.innerHTML = '<div class="empty" style="grid-column:1/-1">Noch leer. Links im Katalog anklicken oder ein eigenes Thema eintippen.</div>'; return; }
+    el.innerHTML = order.map((k,i)=>`<div class="tile2 ${isCustom(k)?'custom':''}" draggable="true" data-i="${i}" title="${esc(label(k))}">
+        <span class="n num">${i+1}</span>
+        <div class="tt"><div class="t">${esc(label(k))}</div><div class="s">${isCustom(k)?'✎ ':''}${esc(sub(k))}</div></div>
+        <button class="x" data-k="${esc(k)}" title="Entfernen">✕</button></div>`).join('');
+    for(const b of el.querySelectorAll('.x')) b.onclick = e => { e.stopPropagation(); remove(b.dataset.k); render(); };
+    let from=null;
+    for(const t of el.querySelectorAll('.tile2')){
+      t.ondragstart = e => { from=+t.dataset.i; t.classList.add('drag'); e.dataTransfer.effectAllowed='move'; };
+      t.ondragend = () => { t.classList.remove('drag'); for(const x of el.querySelectorAll('.over')) x.classList.remove('over'); };
+      t.ondragover = e => { e.preventDefault(); t.classList.add('over'); };
+      t.ondragleave = () => t.classList.remove('over');
+      t.ondrop = e => { e.preventDefault(); const to=+t.dataset.i; if(from===null||from===to) return; const [m]=order.splice(from,1); order.splice(to,0,m); from=null; dirty=true; render(); };
     }
-    for(const cb of pk.querySelectorAll('input[type=checkbox]')) cb.onchange = () => { const open=[...pk.querySelectorAll('.cat.open')].map(x=>x.dataset.c); toggle(cb.dataset.k); for(const id of open){ const el=pk.querySelector(`.cat[data-c="${id}"]`); if(el) el.classList.add('open'); } };
-    renderOrder();
   }
-  setExam(exam); setVis(published ? visibility : 'draft');
+  // ---- left: catalogue -------------------------------------------------
+  function renderPicker(){
+    const pk = $('#picker'); const key = fspKey(); const sel = new Set(order);
+    const match = (txt) => !q || txt.toLowerCase().includes(q);
+    let total = 0, html = '';
+    if(exam==='FSP'){
+      if(!key) html += '<p class="hint">Bitte zuerst ein Bundesland wählen — die FSP-Diagnosen hängen davon ab.</p>';
+      else { const ds = diagnosesFor(key).filter(match); total += ds.length; const n = ds.filter(d=>sel.has(d)).length;
+        html += `<div class="cat ${q||openCats.has('__fsp')?'open':''}" data-c="__fsp"><div class="h"><span>FSP · ${esc(key)}</span><span class="n num">${n}/${ds.length}</span><input type="checkbox" class="ca" data-c="__fsp" ${ds.length&&n===ds.length?'checked':''} data-part="${(n>0&&n<ds.length)?1:0}"></div>
+          <div class="b">${ds.map(d=>`<label class="${sel.has(d)?'on':''}"><input type="checkbox" data-k="${esc(d)}" ${sel.has(d)?'checked':''}>${esc(d)}</label>`).join('')}</div></div>`; }
+    }
+    for(const c of manifest.categories){
+      const topics = c.topics.filter(t=>match(human(t.path))||match(c.titleDe)); if(!topics.length) continue;
+      const keys = topics.map(t=>`${c.id}::${t.path}`); const n = keys.filter(k=>sel.has(k)).length; total += keys.length;
+      html += `<div class="cat ${q||openCats.has(c.id)?'open':''}" data-c="${c.id}"><div class="h"><span>${esc(c.titleDe)}</span><span class="n num">${n}/${keys.length}</span><input type="checkbox" class="ca" data-c="${c.id}" ${n===keys.length?'checked':''} data-part="${(n>0&&n<keys.length)?1:0}" title="Ganze Kategorie"></div>
+        <div class="b">${topics.map(t=>{ const k=`${c.id}::${t.path}`; return `<label class="${sel.has(k)?'on':''}"><input type="checkbox" data-k="${k}" ${sel.has(k)?'checked':''}>${esc(human(t.path))}</label>`; }).join('')}</div></div>`;
+    }
+    pk.innerHTML = html || '<p class="hint">Nichts gefunden.</p>';
+    $('#catn').textContent = `${total}`;
+    for(const h of pk.querySelectorAll('.cat>.h')) h.onclick = e => { if(e.target.closest('.ca')) return; const c=h.parentElement; c.classList.toggle('open'); c.classList.contains('open') ? openCats.add(c.dataset.c) : openCats.delete(c.dataset.c); };
+    for(const b of pk.querySelectorAll('.ca')){ b.indeterminate = b.dataset.part==='1'; b.onclick = e => { e.stopPropagation();
+      const keys = b.dataset.c==='__fsp' ? diagnosesFor(key) : manifest.categories.find(x=>x.id===b.dataset.c).topics.map(t=>`${b.dataset.c}::${t.path}`);
+      const allIn = keys.every(k=>sel.has(k)); if(allIn){ for(const k of keys) remove(k); } else { for(const k of keys) add(k); } render(); }; }
+    for(const cb of pk.querySelectorAll('input[data-k]')) cb.onchange = () => toggle(cb.dataset.k);
+  }
+  function render(){ renderPicker(); renderPlan(); }
+  setExam(exam); setVis(published ? visibility : 'draft'); dirty = false;
 
   $('#save').onclick = async () => {
     const title = $('#title').value.trim(); if(!title) return toast('Titel fehlt');
-    if(exam==='FSP' && !fspKeyFor(region)) return toast('FSP: Bundesland wählen');
-    if(!order.length && !custom.length) return toast('Mindestens ein Thema wählen');
+    if(exam==='FSP' && !fspKey()) return toast('FSP: Bundesland wählen');
+    if(!order.length) return toast('Der Plan ist leer');
     const row = { author_id: me.id, title, description: $('#desc').value.trim(), author_name: $('#an').value.trim(), author_title: $('#atitle').value.trim(), exam,
-      region: exam==='FSP' ? fspKeyFor(region) : (region || null), topic_keys: [...order, ...custom.map(c=>CUSTOM+c)], published, visibility };
+      region: exam==='FSP' ? fspKey() : (region || null), topic_keys: order, published, visibility };
     $('#save').disabled = true; $('#savehint').textContent = 'Speichern…';
-    const q = id ? sb.from('author_plans').update(row).eq('id', id).select().single() : sb.from('author_plans').insert(row).select().single();
-    const { data, error } = await q;
+    const qq = id ? sb.from('author_plans').update(row).eq('id', id).select().single() : sb.from('author_plans').insert(row).select().single();
+    const { data, error } = await qq;
     $('#save').disabled = false; $('#savehint').textContent = '';
     if(error) return toast(`Fehler: ${error.message}`);
-    toast('Gespeichert'); if(!id) route('plan', data.id);
+    dirty = false; toast('Gespeichert');
+    if(!id){ id = data.id; history.replaceState(null,'',location.pathname); $('#edbar') ; }
   };
 }
 
