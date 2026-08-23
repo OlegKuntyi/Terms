@@ -11,11 +11,13 @@
     --bg:#F7F9FC;--card:#FFFFFF;--sel:#EEF2F7;--prog:#E5E8EE;
     --t1:#242833;--t2:#7E8494;--t3:#959FBA;--sep:#D3D7E0;
     --ink:#14171C;--on-ink:#FFFFFF;--ok:#1E9E63;--err:#D64545;--warn:#C98A12;
+    --own:#B8651B;--own-bg:#FFF6EC;--own-bd:#F0C9A2;
     --r:16px;--rb:12px;--rs:8px;
   }
   @media (prefers-color-scheme: dark){
     :root{--bg:#0E1116;--card:#171A21;--sel:#1F2937;--prog:#2A2F3A;
-      --t1:#E6E8EE;--t2:#A1A7B5;--t3:#737A8A;--sep:#2E3341;--ink:#E9ECF2;--on-ink:#0E1116;}
+      --t1:#E6E8EE;--t2:#A1A7B5;--t3:#737A8A;--sep:#2E3341;--ink:#E9ECF2;--on-ink:#0E1116;
+      --own:#E6A15A;--own-bg:#2A2118;--own-bd:#5A4028;}
   }
   *{box-sizing:border-box}
   [hidden]{display:none!important}
@@ -106,7 +108,13 @@
   .tile2.drag{opacity:.4;border-style:dashed;border-color:var(--ink);background:var(--sel);transform:scale(.98)}
   .tiles.dragging .tile2{transition:transform .12s ease}
   .tile2 .n.changed{background:var(--ink);color:var(--on-ink)}
-  .tile2.custom{border-style:dashed}
+  .tile2.custom{background:var(--own-bg);border-color:var(--own-bd)}
+  .tile2.custom .n{background:var(--own);color:#fff}
+  .tile2.custom .s{color:var(--own)}
+  .tile2.new{animation:flash 1.6s ease-out}
+  @keyframes flash{0%{box-shadow:0 0 0 3px var(--ink);background:var(--sel)}60%{box-shadow:0 0 0 3px var(--ink)}100%{box-shadow:0 0 0 0 transparent}}
+  .tile2.custom.new{animation:flashown 1.6s ease-out}
+  @keyframes flashown{0%{box-shadow:0 0 0 3px var(--own)}60%{box-shadow:0 0 0 3px var(--own)}100%{box-shadow:0 0 0 0 transparent}}
   .tile2 .n{width:26px;height:26px;border-radius:8px;background:var(--sel);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--t2);flex:none}
   .tile2 .tt{flex:1;min-width:0}
   .tile2 .t{font-weight:600;font-size:14px;line-height:1.25;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
@@ -375,7 +383,8 @@ async function planEditor(id){
   const label = k => isCustom(k) ? k.slice(CUSTOM.length) : (k.includes('::') ? human(k.slice(k.indexOf('::')+2)) : k);
   const sub = k => isCustom(k) ? 'Eigenes Thema' : (k.includes('::') ? (catTitle[k.slice(0,k.indexOf('::'))] || 'KP') : `FSP · ${fspKey()||''}`);
   const has = k => order.includes(k);
-  const add = k => { if(!has(k)){ order.push(k); dirty = true; } };
+  let justAdded = new Set();
+  const add = k => { if(!has(k)){ order.push(k); justAdded.add(k); dirty = true; } };
   const remove = k => { const i = order.indexOf(k); if(i>=0){ order.splice(i,1); dirty = true; } };
   const toggle = k => { has(k) ? remove(k) : add(k); render(); };
 
@@ -437,7 +446,7 @@ async function planEditor(id){
   const setVis = v => { published = v!=='draft'; if(v!=='draft') visibility = v; dirty = true; for(const b of $('#vis').querySelectorAll('button')) b.classList.toggle('on', b.dataset.v===(published?visibility:'draft')); $('#vishint').textContent = !published ? 'Nur du siehst diesen Plan.' : visibility==='groups' ? 'Nicht in der öffentlichen Liste. Nur für Teilnehmer, denen du den Plan als Aufgabe schickst.' : 'Erscheint unter „Pläne von Autoren“ für alle Nutzer.'; };
   for(const b of $('#vis').querySelectorAll('button')) b.onclick = () => setVis(b.dataset.v);
   $('#region').onchange = () => { region = $('#region').value; if(exam==='FSP'){ order = order.filter(k => isCustom(k) || k.includes('::')); } dirty = true; render(); };
-  $('#cadd').onclick = () => { const v=$('#ci').value.trim(); if(!v) return; add(CUSTOM+v); $('#ci').value=''; render(); $('#plan').lastElementChild?.scrollIntoView({behavior:'smooth',block:'nearest'}); };
+  $('#cadd').onclick = () => { const v=$('#ci').value.trim(); if(!v) return; add(CUSTOM+v); $('#ci').value=''; render(); };
   $('#ci').onkeydown = e => { if(e.key==='Enter'){ e.preventDefault(); $('#cadd').click(); } };
   $('#q').oninput = () => { q = $('#q').value.trim().toLowerCase(); renderPicker(); };
   $('#all').onclick = () => { for(const k of allKeys()) add(k); render(); };
@@ -459,11 +468,18 @@ async function planEditor(id){
     $('#sn').textContent = `${order.length} Themen`;
     const el = $('#plan');
     if(!order.length){ el.innerHTML = '<div class="empty" style="grid-column:1/-1">Noch leer. Links im Katalog anklicken oder ein eigenes Thema eintippen.</div>'; return; }
-    el.innerHTML = order.map((k,i)=>`<div class="tile2 ${isCustom(k)?'custom':''}" draggable="true" data-i="${i}" title="${esc(label(k))}">
+    el.innerHTML = order.map((k,i)=>`<div class="tile2 ${isCustom(k)?'custom':''} ${justAdded.has(k)?'new':''}" draggable="true" data-i="${i}" title="${esc(label(k))}">
         <span class="n num">${i+1}</span>
         <div class="tt"><div class="t">${esc(label(k))}</div><div class="s">${isCustom(k)?'✎ ':''}${esc(sub(k))}</div></div>
         <button class="x" data-k="${esc(k)}" title="Entfernen">✕</button></div>`).join('');
     for(const b of el.querySelectorAll('.x')) b.onclick = e => { e.stopPropagation(); remove(b.dataset.k); render(); };
+    if(justAdded.size){
+      const first = el.querySelector('.tile2.new');
+      if(first) requestAnimationFrame(() => first.scrollIntoView({ behavior:'smooth', block:'center' }));
+      const added = justAdded; justAdded = new Set();
+      setTimeout(() => { for(const t of el.querySelectorAll('.tile2.new')) t.classList.remove('new'); }, 1700);
+      void added;
+    }
     // Live reorder: while dragging, the dashed ghost moves through the
     // grid so the final position (and new numbers) is visible before drop.
     let dragEl=null, startOrder=null;
