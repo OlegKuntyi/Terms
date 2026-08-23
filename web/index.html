@@ -98,13 +98,14 @@
   .edleft{padding:16px;border-right:1px solid var(--sep);background:var(--bg);position:sticky;top:106px;max-height:calc(100vh - 106px);overflow:auto;align-self:start}
   .edleft .card{padding:14px 16px;margin-bottom:10px}
   .edleft .catalog{max-height:none}
-  .edright{padding:16px 20px}
+  .edright{padding:16px 20px;max-width:760px}
   .planhead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
-  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
   .tile2{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--sep);border-radius:var(--rb);padding:10px 10px 10px 12px;cursor:grab;user-select:none;min-height:58px}
   .tile2:active{cursor:grabbing}
-  .tile2.drag{opacity:.35}
-  .tile2.over{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+  .tile2.drag{opacity:.4;border-style:dashed;border-color:var(--ink);background:var(--sel);transform:scale(.98)}
+  .tiles.dragging .tile2{transition:transform .12s ease}
+  .tile2 .n.changed{background:var(--ink);color:var(--on-ink)}
   .tile2.custom{border-style:dashed}
   .tile2 .n{width:26px;height:26px;border-radius:8px;background:var(--sel);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--t2);flex:none}
   .tile2 .tt{flex:1;min-width:0}
@@ -463,14 +464,28 @@ async function planEditor(id){
         <div class="tt"><div class="t">${esc(label(k))}</div><div class="s">${isCustom(k)?'✎ ':''}${esc(sub(k))}</div></div>
         <button class="x" data-k="${esc(k)}" title="Entfernen">✕</button></div>`).join('');
     for(const b of el.querySelectorAll('.x')) b.onclick = e => { e.stopPropagation(); remove(b.dataset.k); render(); };
-    let from=null;
+    // Live reorder: while dragging, the dashed ghost moves through the
+    // grid so the final position (and new numbers) is visible before drop.
+    let dragEl=null, startOrder=null;
+    const renumber = () => { [...el.querySelectorAll('.tile2')].forEach((t,i)=>{ const n=t.querySelector('.n'); n.textContent=i+1; n.classList.toggle('changed', startOrder && startOrder[i]!==t.dataset.k); }); };
     for(const t of el.querySelectorAll('.tile2')){
-      t.ondragstart = e => { from=+t.dataset.i; t.classList.add('drag'); e.dataTransfer.effectAllowed='move'; };
-      t.ondragend = () => { t.classList.remove('drag'); for(const x of el.querySelectorAll('.over')) x.classList.remove('over'); };
-      t.ondragover = e => { e.preventDefault(); t.classList.add('over'); };
-      t.ondragleave = () => t.classList.remove('over');
-      t.ondrop = e => { e.preventDefault(); const to=+t.dataset.i; if(from===null||from===to) return; const [m]=order.splice(from,1); order.splice(to,0,m); from=null; dirty=true; render(); };
+      t.dataset.k = order[+t.dataset.i];
+      t.ondragstart = e => { dragEl=t; startOrder=[...order]; t.classList.add('drag'); el.classList.add('dragging'); e.dataTransfer.effectAllowed='move'; try{ e.dataTransfer.setData('text/plain', t.dataset.k); }catch(_){} };
+      t.ondragover = e => { e.preventDefault(); if(!dragEl || t===dragEl) return;
+        const r=t.getBoundingClientRect(); const sameRow = Math.abs(r.top - dragEl.getBoundingClientRect().top) < r.height/2;
+        const after = sameRow ? (e.clientX > r.left + r.width/2) : (e.clientY > r.top + r.height/2);
+        const next = after ? t.nextSibling : t;
+        if(next !== dragEl && !(after && t.nextSibling===dragEl) ) el.insertBefore(dragEl, next);
+        renumber(); };
+      t.ondrop = e => e.preventDefault();
+      t.ondragend = () => { if(!dragEl) return; dragEl.classList.remove('drag'); el.classList.remove('dragging');
+        const next = [...el.querySelectorAll('.tile2')].map(x=>x.dataset.k);
+        const changed = next.some((k,i)=>k!==order[i]);
+        dragEl=null; startOrder=null;
+        if(changed){ order = next; dirty = true; }
+        render(); };
     }
+    el.ondragover = e => e.preventDefault();
   }
   // ---- left: catalogue -------------------------------------------------
   function renderPicker(){
