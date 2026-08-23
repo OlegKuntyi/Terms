@@ -106,7 +106,6 @@
   .tile2{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--sep);border-radius:var(--rb);padding:12px 10px 12px 14px;cursor:grab;user-select:none;min-height:64px}
   .tile2:active{cursor:grabbing}
   .tile2.drag{opacity:.4;border-style:dashed;border-color:var(--ink);background:var(--sel);transform:scale(.98)}
-  .tiles.dragging .tile2{transition:transform .12s ease}
   .tile2 .n.changed{background:var(--ink);color:var(--on-ink)}
   .tile2.custom{background:var(--own-bg);border-color:var(--own-bd)}
   .tile2.custom .n{background:var(--own);color:#fff}
@@ -122,6 +121,11 @@
   .tile2 .x{border:0;background:none;color:var(--t3);cursor:pointer;font-size:14px;padding:4px 6px;border-radius:6px;flex:none}
   .tile2 .x:hover{background:var(--sel);color:var(--err)}
   .cat .b label.on{color:var(--t1);font-weight:600}
+  .cat.own{border-color:var(--own-bd);background:var(--own-bg)}
+  .cat.own>.h span:first-child{color:var(--own)}
+  .libdel{border:0;background:none;color:var(--t3);cursor:pointer;padding:0 4px;font-size:12px;opacity:0;transition:opacity .15s}
+  .cat .b label:hover .libdel{opacity:1}
+  .libdel:hover{color:var(--err)}
   .cat .b label{padding:4px 6px;font-size:13.5px}
   .cat>.h{padding:8px 12px;font-size:14px}
   @media (max-width:900px){.ed{grid-template-columns:1fr}.edleft{border-right:0;border-bottom:1px solid var(--sep);position:static;max-height:none}.edbar{top:49px;flex-wrap:wrap}.tiles{grid-template-columns:1fr}}
@@ -161,6 +165,15 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt
 const fmtD = s => { if(!s) return ''; const d = new Date(s); return isNaN(d) ? s : d.toLocaleDateString('de-DE'); };
 const iso = d => d.toISOString().slice(0,10);
 const human = p => p.replace(/[_-]/g,' ').split(' ').map(w => w ? w[0].toLocaleUpperCase('de') + w.slice(1) : w).join(' ');
+// FLIP: remember tile positions, mutate DOM, then animate each tile from
+// its old spot to the new one — tiles glide instead of jumping.
+function flip(container, mutate){
+  const before = new Map(); for(const el of container.children) before.set(el, el.getBoundingClientRect());
+  mutate();
+  for(const el of container.children){ const a = before.get(el); if(!a) continue; const b = el.getBoundingClientRect(); const dx = a.left - b.left, dy = a.top - b.top; if(!dx && !dy) continue;
+    el.style.transition = 'none'; el.style.transform = `translate(${dx}px,${dy}px)`;
+    requestAnimationFrame(() => { el.style.transition = 'transform .18s ease'; el.style.transform = ''; el.addEventListener('transitionend', () => { el.style.transition = ''; }, { once:true }); }); }
+}
 let toastT; const toast = m => { const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2600); };
 
 let manifest = null, regionCases = null;
@@ -368,8 +381,17 @@ async function plansView(){
 
 async function planEditor(id){
   app.innerHTML = `<span class="sp"></span>`;
-  let p = { title:'', description:'', author_name: me.user_metadata?.full_name || me.user_metadata?.name || '', author_title:'', exam:'KP', region:null, topic_keys:[], published:false, visibility:'public' };
+  // New plans start restricted: teachers → "nur meine Gruppen" (usable in
+  // assignments right away), plain authors → draft. Public is opt-in.
+  let p = { title:'', description:'', author_name: me.user_metadata?.full_name || me.user_metadata?.name || '', author_title:'', exam:'KP', region:null, topic_keys:[], published: role==='teacher', visibility: role==='teacher' ? 'groups' : 'public' };
   if(id){ const { data, error } = await sb.from('author_plans').select().eq('id', id).single(); if(error) return app.innerHTML = `<div class="empty">${esc(error.message)}</div>`; p = data; }
+
+  // ---- personal topic library ("Meine Themen") ----------------------
+  let myTopics = [];
+  const loadMyTopics = async () => { const { data } = await sb.from('author_custom_topics').select('id,title').eq('author_id', me.id).order('created_at'); myTopics = data || []; };
+  await loadMyTopics();
+  const libAdd = async (title) => { if(myTopics.some(t=>t.title===title)) return; const { data, error } = await sb.from('author_custom_topics').insert({ author_id: me.id, title }).select('id,title').single(); if(error){ if(!/duplicate/i.test(error.message)) toast(error.message); return; } myTopics.push(data); };
+  const libDel = async (t) => { const { error } = await sb.from('author_custom_topics').delete().eq('id', t.id); if(error) return toast(error.message); myTopics = myTopics.filter(x=>x.id!==t.id); };
 
   // ---- editor state -------------------------------------------------
   let exam = p.exam, region = p.region || '', published = p.published, visibility = p.visibility || 'public';
@@ -414,7 +436,7 @@ async function planEditor(id){
         <div class="card">
           <div class="lbl">Eigenes Thema</div>
           <div class="row" style="flex-wrap:nowrap"><input type="text" id="ci" placeholder="z. B. Arztbrief schreiben" style="flex:1"><button class="btn" id="cadd">+ In den Plan</button></div>
-          <p class="hint">Kommt als Kachel ans Ende des Plans — danach frei verschiebbar.</p>
+          <p class="hint">Kommt in den Plan <b>und</b> in deine Themenbibliothek („Meine Themen“ im Katalog) — beim nächsten Plan nur noch ankreuzen.</p>
         </div>
         <div class="card catalog">
           <div class="lbl">Katalog <span class="tr" id="catn"></span></div>
@@ -446,7 +468,7 @@ async function planEditor(id){
   const setVis = v => { published = v!=='draft'; if(v!=='draft') visibility = v; dirty = true; for(const b of $('#vis').querySelectorAll('button')) b.classList.toggle('on', b.dataset.v===(published?visibility:'draft')); $('#vishint').textContent = !published ? 'Nur du siehst diesen Plan.' : visibility==='groups' ? 'Nicht in der öffentlichen Liste. Nur für Teilnehmer, denen du den Plan als Aufgabe schickst.' : 'Erscheint unter „Pläne von Autoren“ für alle Nutzer.'; };
   for(const b of $('#vis').querySelectorAll('button')) b.onclick = () => setVis(b.dataset.v);
   $('#region').onchange = () => { region = $('#region').value; if(exam==='FSP'){ order = order.filter(k => isCustom(k) || k.includes('::')); } dirty = true; render(); };
-  $('#cadd').onclick = () => { const v=$('#ci').value.trim(); if(!v) return; add(CUSTOM+v); $('#ci').value=''; render(); };
+  $('#cadd').onclick = async () => { const v=$('#ci').value.trim(); if(!v) return; $('#ci').value=''; add(CUSTOM+v); render(); await libAdd(v); renderPicker(); };
   $('#ci').onkeydown = e => { if(e.key==='Enter'){ e.preventDefault(); $('#cadd').click(); } };
   $('#q').oninput = () => { q = $('#q').value.trim().toLowerCase(); renderPicker(); };
   $('#all').onclick = () => { for(const k of allKeys()) add(k); render(); };
@@ -491,7 +513,9 @@ async function planEditor(id){
         const r=t.getBoundingClientRect(); const sameRow = Math.abs(r.top - dragEl.getBoundingClientRect().top) < r.height/2;
         const after = sameRow ? (e.clientX > r.left + r.width/2) : (e.clientY > r.top + r.height/2);
         const next = after ? t.nextSibling : t;
-        if(next !== dragEl && !(after && t.nextSibling===dragEl) ) el.insertBefore(dragEl, next);
+        if(next === dragEl || (after && t.nextSibling===dragEl)) return;
+        if(el._busy) return; el._busy = true; setTimeout(()=>el._busy=false, 140);   // throttle while tiles glide
+        flip(el, () => el.insertBefore(dragEl, next));
         renumber(); };
       t.ondrop = e => e.preventDefault();
       t.ondragend = () => { if(!dragEl) return; dragEl.classList.remove('drag'); el.classList.remove('dragging');
@@ -508,6 +532,12 @@ async function planEditor(id){
     const pk = $('#picker'); const key = fspKey(); const sel = new Set(order);
     const match = (txt) => !q || txt.toLowerCase().includes(q);
     let total = 0, html = '';
+    const mine = myTopics.filter(t=>match(t.title));
+    if(myTopics.length){
+      const keys = mine.map(t=>CUSTOM+t.title); const n = keys.filter(k=>sel.has(k)).length; total += mine.length;
+      html += `<div class="cat own ${q||openCats.has('__own')?'open':''}" data-c="__own"><div class="h"><span>✎ Meine Themen</span><span class="n num">${n}/${mine.length}</span><input type="checkbox" class="ca" data-c="__own" ${mine.length&&n===mine.length?'checked':''} data-part="${(n>0&&n<mine.length)?1:0}" title="Alle eigenen Themen"></div>
+        <div class="b">${mine.map(t=>{ const k=CUSTOM+t.title; return `<label class="${sel.has(k)?'on':''}"><input type="checkbox" data-k="${esc(k)}" ${sel.has(k)?'checked':''}><span style="flex:1">${esc(t.title)}</span><button class="libdel" data-id="${t.id}" title="Aus Bibliothek löschen">✕</button></label>`; }).join('')}</div></div>`;
+    }
     if(exam==='FSP'){
       if(!key) html += '<p class="hint">Bitte zuerst ein Bundesland wählen — die FSP-Diagnosen hängen davon ab.</p>';
       else { const ds = diagnosesFor(key).filter(match); total += ds.length; const n = ds.filter(d=>sel.has(d)).length;
@@ -524,9 +554,10 @@ async function planEditor(id){
     $('#catn').textContent = `${total}`;
     for(const h of pk.querySelectorAll('.cat>.h')) h.onclick = e => { if(e.target.closest('.ca')) return; const c=h.parentElement; c.classList.toggle('open'); c.classList.contains('open') ? openCats.add(c.dataset.c) : openCats.delete(c.dataset.c); };
     for(const b of pk.querySelectorAll('.ca')){ b.indeterminate = b.dataset.part==='1'; b.onclick = e => { e.stopPropagation();
-      const keys = b.dataset.c==='__fsp' ? diagnosesFor(key) : manifest.categories.find(x=>x.id===b.dataset.c).topics.map(t=>`${b.dataset.c}::${t.path}`);
+      const keys = b.dataset.c==='__own' ? myTopics.map(t=>CUSTOM+t.title) : b.dataset.c==='__fsp' ? diagnosesFor(key) : manifest.categories.find(x=>x.id===b.dataset.c).topics.map(t=>`${b.dataset.c}::${t.path}`);
       const allIn = keys.every(k=>sel.has(k)); if(allIn){ for(const k of keys) remove(k); } else { for(const k of keys) add(k); } render(); }; }
     for(const cb of pk.querySelectorAll('input[data-k]')) cb.onchange = () => toggle(cb.dataset.k);
+    for(const b of pk.querySelectorAll('.libdel')) b.onclick = async e => { e.preventDefault(); e.stopPropagation(); const t = myTopics.find(x=>x.id===b.dataset.id); if(!t || !confirm(`„${t.title}“ aus deiner Bibliothek löschen? (Bestehende Pläne bleiben unverändert.)`)) return; await libDel(t); renderPicker(); };
   }
   function render(){ renderPicker(); renderPlan(); }
   setExam(exam); setVis(published ? visibility : 'draft'); dirty = false;
