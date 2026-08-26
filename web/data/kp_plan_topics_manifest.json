@@ -72,13 +72,7 @@
      "path": "ösophaguskarzinom"
     },
     {
-     "path": "bakterielle_hautinfektionen"
-    },
-    {
      "path": "zwerchfellhernie"
-    },
-    {
-     "path": "mesenterialinfarkt"
     },
     {
      "path": "paronychie"
@@ -174,12 +168,6 @@
      "path": "typhus,_paratyphus"
     },
     {
-     "path": "neu_auftretende_infektionskrankheiten"
-    },
-    {
-     "path": "herpesvirusinfektionen"
-    },
-    {
      "path": "gastroenteritis"
     }
    ]
@@ -238,9 +226,6 @@
     },
     {
      "path": "zystische_fibrose"
-    },
-    {
-     "path": "obstruktives_schlafapnoe-syndrom_(osas)"
     }
    ]
   },
@@ -316,9 +301,6 @@
     },
     {
      "path": "ökonomische_aspekte_von_gesundheit_und_krankheit"
-    },
-    {
-     "path": "ökonomische_aspekte_der_gesundheit"
     }
    ]
   },
@@ -385,9 +367,6 @@
     },
     {
      "path": "zöliakie"
-    },
-    {
-     "path": "gastroduodenales_ulkus"
     },
     {
      "path": "choledocholithiasis"
@@ -471,9 +450,6 @@
      "path": "vitamin-b12-mangel"
     },
     {
-     "path": "myelodysplastisches_syndrom"
-    },
-    {
      "path": "thrombozytopenie"
     },
     {
@@ -546,9 +522,6 @@
      "path": "vigilanzminderung"
     },
     {
-     "path": "akutes_atemnotsyndrom"
-    },
-    {
      "path": "schnittbildserien_in_der_notfallmedizin"
     }
    ]
@@ -586,9 +559,6 @@
     },
     {
      "path": "schulterluxation"
-    },
-    {
-     "path": "hws-syndrom"
     }
    ]
   },
@@ -903,9 +873,6 @@
      "path": "insomnie"
     },
     {
-     "path": "hirntumor"
-    },
-    {
      "path": "transitorische_ischämische_attacke_(tia)"
     }
    ]
@@ -1129,9 +1096,6 @@
    "topics": [
     {
      "path": "körperliche_untersuchung"
-    },
-    {
-     "path": "arztbrief"
     },
     {
      "path": "befunde_und_techniken_der_internistischen_und_chirurgischen_untersuchung"
