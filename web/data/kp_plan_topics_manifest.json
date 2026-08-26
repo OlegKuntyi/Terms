@@ -1,237 +1,64 @@
 {
- "version": 2,
+ "version": 3,
+ "source": "medterms-kb/topics-index.json",
  "categories": [
   {
-   "id": "viszeralchirurgie",
-   "titleDe": "Allgemein- und Viszeralchirurgie",
+   "id": "leitsymptome",
+   "titleDe": "Leitsymptome",
    "topics": [
     {
-     "path": "akute_wunden_und_wundverschluss"
+     "path": "gastrointestinale_blutung"
     },
     {
-     "path": "appendizitis"
+     "path": "schock"
     },
     {
-     "path": "bakterielle_infektionen_von_haut_und_weichgewebe"
+     "path": "akutes_abdomen"
     },
     {
-     "path": "biliäre_karzinome"
+     "path": "durchfall"
     },
     {
-     "path": "bissverletzungen"
+     "path": "dyspnoe"
     },
     {
-     "path": "cholelithiasis,_cholezystitis,_cholangitis"
+     "path": "husten"
     },
     {
-     "path": "chronische_wunden_und_wundbehandlung"
+     "path": "ikterus_und_cholestase"
     },
     {
-     "path": "darmchirurgie"
+     "path": "kopfschmerzen"
     },
     {
-     "path": "divertikulose,_divertikulitis"
+     "path": "rückenschmerzen"
     },
     {
-     "path": "hepatozelluläres_karzinom"
+     "path": "lymphknotenschwellung"
     },
     {
-     "path": "hernien"
+     "path": "obstipation"
     },
     {
-     "path": "hämorrhoiden_und_hämorrhoidalleiden"
+     "path": "ödeme"
     },
     {
-     "path": "ileus"
+     "path": "schwindel"
     },
     {
-     "path": "kolonpolypen"
+     "path": "synkope"
     },
     {
-     "path": "kolorektales_karzinom"
+     "path": "thoraxschmerz"
     },
     {
-     "path": "leistenhernie"
-    },
-    {
-     "path": "mesenterialischämie"
-    },
-    {
-     "path": "milzruptur"
-    },
-    {
-     "path": "perioperatives_management"
-    },
-    {
-     "path": "peritonitis"
-    },
-    {
-     "path": "schilddrüsenchirurgie"
-    },
-    {
-     "path": "ösophaguskarzinom"
-    },
-    {
-     "path": "zwerchfellhernie"
-    },
-    {
-     "path": "paronychie"
+     "path": "dysphagie"
     }
    ]
   },
   {
-   "id": "infektiologie",
-   "titleDe": "Infektiologie",
-   "topics": [
-    {
-     "path": "allgemeine_infektiologie"
-    },
-    {
-     "path": "antibiotika"
-    },
-    {
-     "path": "bakterielle_durchfallerkrankungen"
-    },
-    {
-     "path": "blutkulturen"
-    },
-    {
-     "path": "covid-19"
-    },
-    {
-     "path": "denguefieber"
-    },
-    {
-     "path": "emerging_infectious_diseases"
-    },
-    {
-     "path": "fieber_und_entzündungsreaktionen"
-    },
-    {
-     "path": "frühsommer-meningoenzephalitis"
-    },
-    {
-     "path": "giardiasis"
-    },
-    {
-     "path": "hepatitis_a"
-    },
-    {
-     "path": "hepatitis_b_hbv-infektion"
-    },
-    {
-     "path": "hepatitis_c"
-    },
-    {
-     "path": "herpesvirus-infektionen"
-    },
-    {
-     "path": "hiv-infektion"
-    },
-    {
-     "path": "impfempfehlungen_der_stiko"
-    },
-    {
-     "path": "impfungen_allgemein"
-    },
-    {
-     "path": "infektiöse_mononukleose"
-    },
-    {
-     "path": "influenza"
-    },
-    {
-     "path": "leishmaniose"
-    },
-    {
-     "path": "lyme-borreliose"
-    },
-    {
-     "path": "malaria"
-    },
-    {
-     "path": "meningitis"
-    },
-    {
-     "path": "norovirus-infektion"
-    },
-    {
-     "path": "nosokomiale_infektionen"
-    },
-    {
-     "path": "schistosomiasis"
-    },
-    {
-     "path": "sepsis"
-    },
-    {
-     "path": "typhus,_paratyphus"
-    },
-    {
-     "path": "gastroenteritis"
-    }
-   ]
-  },
-  {
-   "id": "pneumologie",
-   "titleDe": "Pneumologie",
-   "topics": [
-    {
-     "path": "asbestose_und_mesotheliom"
-    },
-    {
-     "path": "asthma_bronchiale"
-    },
-    {
-     "path": "chronisch-obstruktive_lungenerkrankung"
-    },
-    {
-     "path": "covid-19"
-    },
-    {
-     "path": "exogen-allergische_alveolitis"
-    },
-    {
-     "path": "interstitielle_lungenerkrankungen"
-    },
-    {
-     "path": "lungenembolie"
-    },
-    {
-     "path": "lungenfunktionsuntersuchung"
-    },
-    {
-     "path": "obstruktive_schlafapnoe_syndrom"
-    },
-    {
-     "path": "pleuraerguss"
-    },
-    {
-     "path": "pneumonie"
-    },
-    {
-     "path": "pneumothorax"
-    },
-    {
-     "path": "pulmonale_hypertonie"
-    },
-    {
-     "path": "pulsoxymetrie_und_blutgasanalyse"
-    },
-    {
-     "path": "sarkoidose"
-    },
-    {
-     "path": "tuberkulose"
-    },
-    {
-     "path": "zystische_fibrose"
-    }
-   ]
-  },
-  {
-   "id": "praktische_skills",
-   "titleDe": "Praktische Skills",
+   "id": "anamnese_körperliche_untersuchung",
+   "titleDe": "Anamnese & körperliche Untersuchung",
    "topics": [
     {
      "path": "ablauf_einer_allgemeinen_körperlichen_aufnahmeuntersuchung"
@@ -243,859 +70,19 @@
      "path": "antisepsis"
     },
     {
-     "path": "impfen_-_praktische_aspekte_impfungen_allgemein"
-    },
-    {
-     "path": "nuklearmedizin_und_strahlenschutz"
-    },
-    {
-     "path": "patientenvorstellung"
-    },
-    {
-     "path": "verfassen_eines_arztbriefes"
-    }
-   ]
-  },
-  {
-   "id": "faecheruebergreifend",
-   "titleDe": "Fächerübergreifende Themen",
-   "topics": [
-    {
-     "path": "allgemeine_pharmakologie"
-    },
-    {
-     "path": "arzneimittelrezept"
-    },
-    {
-     "path": "arzneimittelwechselwirkungen"
-    },
-    {
-     "path": "behinderung_und_einschränkung_der_arbeitsfähigkeit"
-    },
-    {
-     "path": "dosierung_und_applikation"
-    },
-    {
-     "path": "nebenwirkungen_und_toxikologie"
-    },
-    {
-     "path": "nikotinabhängigkeit"
-    },
-    {
-     "path": "prävention"
-    },
-    {
-     "path": "rehabilitation"
-    },
-    {
-     "path": "soziale_sicherung"
-    },
-    {
-     "path": "thanatologie"
-    },
-    {
-     "path": "transfusionen"
-    },
-    {
-     "path": "ärztliche_rechtskunde"
-    },
-    {
-     "path": "ökonomische_aspekte_von_gesundheit_und_krankheit"
-    }
-   ]
-  },
-  {
-   "id": "gastroenterologie",
-   "titleDe": "Gastroenterologie",
-   "topics": [
-    {
-     "path": "akute-pankreatitis"
-    },
-    {
-     "path": "aszites"
-    },
-    {
-     "path": "cholelithiasis,_cholezystitis,_cholangitis"
-    },
-    {
-     "path": "chronische_gastritis"
-    },
-    {
-     "path": "chronische_pankreatitis"
-    },
-    {
-     "path": "colitis_ulcerosa"
-    },
-    {
-     "path": "gastroduodenale_ulkuskrankheit"
-    },
-    {
-     "path": "gastrointestinale_blutung"
-    },
-    {
-     "path": "gastroösophageale_refluxkrankheit"
-    },
-    {
-     "path": "ikterus"
-    },
-    {
-     "path": "kolorektales_karzinom"
-    },
-    {
-     "path": "leberzirrhose"
-    },
-    {
-     "path": "magenkarzinom"
-    },
-    {
-     "path": "morbus_crohn"
-    },
-    {
-     "path": "pankreaskarzinom"
-    },
-    {
-     "path": "portale_hypertension"
-    },
-    {
-     "path": "reizdarmsyndrom"
-    },
-    {
-     "path": "ulcus_duodeni"
-    },
-    {
-     "path": "ulcus_ventriculi"
-    },
-    {
-     "path": "zöliakie"
-    },
-    {
-     "path": "choledocholithiasis"
-    },
-    {
-     "path": "achalasie"
-    },
-    {
-     "path": "laktoseintoleranz"
-    }
-   ]
-  },
-  {
-   "id": "haematologie_onkologie",
-   "titleDe": "Hämatologie & Onkologie",
-   "topics": [
-    {
-     "path": "akute_leukämien"
-    },
-    {
-     "path": "anämie"
-    },
-    {
-     "path": "chronische_lymphatische_leukämie"
-    },
-    {
-     "path": "chronische_myeloische_leukämie"
-    },
-    {
-     "path": "eisenmangel"
-    },
-    {
-     "path": "hirntumoren"
-    },
-    {
-     "path": "hodgkin-lymphom"
-    },
-    {
-     "path": "hämolytische_anämie"
-    },
-    {
-     "path": "knochenmetastasen"
-    },
-    {
-     "path": "kolorektales_karzinom_hämatologie"
-    },
-    {
-     "path": "lungenkarzinom"
-    },
-    {
-     "path": "maligne_hodentumoren"
-    },
-    {
-     "path": "malignes_melanom"
-    },
-    {
-     "path": "mammakarzinom"
-    },
-    {
-     "path": "multiples_myelom"
-    },
-    {
-     "path": "myelodysplastische_syndrome"
-    },
-    {
-     "path": "non-hodgkin-lymphome"
-    },
-    {
-     "path": "pankreaskarzinom"
-    },
-    {
-     "path": "prostatakarzinom"
-    },
-    {
-     "path": "sichelzellkrankheit"
-    },
-    {
-     "path": "thalassämie"
-    },
-    {
-     "path": "vitamin-b12-mangel"
-    },
-    {
-     "path": "thrombozytopenie"
-    },
-    {
-     "path": "panzytopenie"
-    },
-    {
-     "path": "weichteilsarkom"
-    }
-   ]
-  },
-  {
-   "id": "notfall_intensivmedizin",
-   "titleDe": "Notfall- und Intensivmedizin",
-   "topics": [
-    {
-     "path": "akute-pankreatitis"
-    },
-    {
-     "path": "akute_nierenfunktionseinschränkung"
-    },
-    {
-     "path": "akuttoxikologie"
-    },
-    {
-     "path": "ards"
-    },
-    {
-     "path": "covid-19"
-    },
-    {
-     "path": "elektrolytstörungen_kalium"
-    },
-    {
-     "path": "elektrolytstörungen_natrium"
-    },
-    {
-     "path": "fremdkörperaspiration"
-    },
-    {
-     "path": "hyperglykämisches_koma"
-    },
-    {
-     "path": "hypoglykämie"
-    },
-    {
-     "path": "pneumonie"
-    },
-    {
-     "path": "pneumothorax"
-    },
-    {
-     "path": "polytrauma"
-    },
-    {
-     "path": "präklinische_traumaversorgung"
-    },
-    {
-     "path": "schädel-hirn-trauma"
-    },
-    {
-     "path": "schock"
-    },
-    {
-     "path": "sepsis"
-    },
-    {
-     "path": "verbrennungen"
-    },
-    {
-     "path": "vigilanzminderung"
-    },
-    {
-     "path": "schnittbildserien_in_der_notfallmedizin"
-    }
-   ]
-  },
-  {
-   "id": "orthopaedie",
-   "titleDe": "Orthopädie",
-   "topics": [
-    {
-     "path": "arthrose"
-    },
-    {
-     "path": "bakterielle_arthritis"
-    },
-    {
-     "path": "bandscheibenprolaps"
-    },
-    {
-     "path": "bandverletzungen"
-    },
-    {
-     "path": "distale_radiusfraktur"
-    },
-    {
-     "path": "gonarthrose"
-    },
-    {
-     "path": "halswirbelsäulensyndrom"
-    },
-    {
-     "path": "koxarthrose"
-    },
-    {
-     "path": "schulter-tendinitis"
-    },
-    {
-     "path": "schulterluxation"
-    }
-   ]
-  },
-  {
-   "id": "thorax_gefaesschirurgie",
-   "titleDe": "Thorax- und Gefäßchirurgie",
-   "topics": [
-    {
-     "path": "akuter_arterieller_verschluss"
-    },
-    {
-     "path": "aneurysma"
-    },
-    {
-     "path": "aortenaneurysma"
-    },
-    {
-     "path": "aortendissektion"
-    },
-    {
-     "path": "pneumothorax"
-    },
-    {
-     "path": "thoraxtrauma"
-    },
-    {
-     "path": "ulcus_cruris"
-    }
-   ]
-  },
-  {
-   "id": "endokrinologie",
-   "titleDe": "Endokrinologie",
-   "topics": [
-    {
-     "path": "adrenogenitales_syndrom"
-    },
-    {
-     "path": "allgemeine_endokrinologie"
-    },
-    {
-     "path": "cushing-syndrom"
-    },
-    {
-     "path": "diabetes_insipidus"
-    },
-    {
-     "path": "diabetes_mellitus"
-    },
-    {
-     "path": "endokrine_tumoren"
-    },
-    {
-     "path": "hashimoto"
-    },
-    {
-     "path": "hyperparathyreoidismus"
-    },
-    {
-     "path": "hyperthyreose"
-    },
-    {
-     "path": "hypophyseninsuffizienz"
-    },
-    {
-     "path": "hypophysenvorderlappeninsuffizienz"
-    },
-    {
-     "path": "hypothyreose"
-    },
-    {
-     "path": "karzinoid-syndrom_neuroendokrine_neoplasien"
-    },
-    {
-     "path": "metabolisches_syndrom"
-    },
-    {
-     "path": "nebenniereninsuffizienz"
-    },
-    {
-     "path": "osteoporose"
-    },
-    {
-     "path": "phäochromozytom"
-    },
-    {
-     "path": "primärer_hyperaldosteronismus"
-    },
-    {
-     "path": "prolaktinom"
-    },
-    {
-     "path": "schilddrüsenkarzinom"
-    },
-    {
-     "path": "struma"
-    },
-    {
-     "path": "diabetisches_fußsyndrom"
-    },
-    {
-     "path": "adipositas"
-    },
-    {
-     "path": "thyreotoxische_krise"
-    }
-   ]
-  },
-  {
-   "id": "kardiologie",
-   "titleDe": "Kardiologie & Angiologie",
-   "topics": [
-    {
-     "path": "akutes_koronarsyndrom"
-    },
-    {
-     "path": "arterielle_hypertonie"
-    },
-    {
-     "path": "atherosklerose_und_kardiovaskuläre_prävention"
-    },
-    {
      "path": "auskultationskurs_herz"
-    },
-    {
-     "path": "av-block"
-    },
-    {
-     "path": "dyslipidämien"
-    },
-    {
-     "path": "ekg"
-    },
-    {
-     "path": "herzinsuffizienz"
-    },
-    {
-     "path": "herzklappenerkrankungen"
-    },
-    {
-     "path": "herzschrittmacher"
-    },
-    {
-     "path": "infektiöse_endokarditis"
-    },
-    {
-     "path": "kammerflattern_und_-flimmern"
-    },
-    {
-     "path": "koronare_herzkrankheit"
-    },
-    {
-     "path": "lungenembolie"
-    },
-    {
-     "path": "myokardinfarkt"
-    },
-    {
-     "path": "myokarditis"
-    },
-    {
-     "path": "orale_antikoagulanzien"
-    },
-    {
-     "path": "perikarditis"
-    },
-    {
-     "path": "periphere_arterielle_verschlusskrankheit"
-    },
-    {
-     "path": "phlebothrombose"
-    },
-    {
-     "path": "rheumatisches_fieber"
-    },
-    {
-     "path": "sick-sinus-syndrom"
-    },
-    {
-     "path": "untersuchungsmethoden_in_der_kardiologie"
-    },
-    {
-     "path": "ventrikuläre_tachykardie"
-    },
-    {
-     "path": "vorhofflimmern"
-    },
-    {
-     "path": "herzkatheteruntersuchung"
-    }
-   ]
-  },
-  {
-   "id": "nephrologie",
-   "titleDe": "Nephrologie",
-   "topics": [
-    {
-     "path": "akutes_nierenversagen"
-    },
-    {
-     "path": "chronische_nierenkrankheit"
-    },
-    {
-     "path": "diagnostik_von_erkrankungen_der_niere_und_ableitenden_harnwege"
-    },
-    {
-     "path": "dialyse"
-    },
-    {
-     "path": "elektrolytstörungen_(na,_k,_ca)"
-    },
-    {
-     "path": "grundlagen_nephrologischer_krankheitsbilder"
-    },
-    {
-     "path": "hereditäre_typ-iv-kollagen-erkrankungen_(alport-syndrom)"
-    },
-    {
-     "path": "hyperparathyreoidismus"
-    },
-    {
-     "path": "iga-nephropathie"
-    },
-    {
-     "path": "nierenersatzverfahren"
-    },
-    {
-     "path": "nierenfunktion"
-    },
-    {
-     "path": "nierentransplantation"
-    },
-    {
-     "path": "nierenwerte_laboratoriumsmedizin"
-    },
-    {
-     "path": "polyzystische_nierenerkrankung"
-    },
-    {
-     "path": "pyelonephritis"
-    },
-    {
-     "path": "säure-basen-haushalt"
-    },
-    {
-     "path": "urindiagnostik"
-    },
-    {
-     "path": "urolithiasis"
-    },
-    {
-     "path": "nierenerkrankungen_und_harnwege"
-    },
-    {
-     "path": "nephrologische_krankheitsbilder"
-    },
-    {
-     "path": "transplantation"
-    }
-   ]
-  },
-  {
-   "id": "neurologie",
-   "titleDe": "Neurologie",
-   "topics": [
-    {
-     "path": "amyotrophe_lateralsklerose_(als)"
-    },
-    {
-     "path": "demenzen_(z._b._alzheimer-krankheit)"
-    },
-    {
-     "path": "epilepsie"
-    },
-    {
-     "path": "fazialisparese"
-    },
-    {
-     "path": "intrazerebrale_blutung"
-    },
-    {
-     "path": "ischämischer_schlaganfall"
-    },
-    {
-     "path": "karpaltunnelsyndrom"
-    },
-    {
-     "path": "migräne"
     },
     {
      "path": "multiple_sklerose"
     },
     {
-     "path": "optikusneuritis"
+     "path": "patientenvorstellung"
     },
     {
-     "path": "parkinson-syndrom"
+     "path": "untersuchungsmethoden_in_der_kardiologie"
     },
     {
-     "path": "polyneuropathie"
-    },
-    {
-     "path": "restless-legs-syndrom"
-    },
-    {
-     "path": "subarachnoidalblutung"
-    },
-    {
-     "path": "unipolare_depression"
-    },
-    {
-     "path": "insomnie"
-    },
-    {
-     "path": "transitorische_ischämische_attacke_(tia)"
-    }
-   ]
-  },
-  {
-   "id": "rheumatologie",
-   "titleDe": "Rheumatologie",
-   "topics": [
-    {
-     "path": "arthrose"
-    },
-    {
-     "path": "axiale_spondylarthritis"
-    },
-    {
-     "path": "fibromyalgie"
-    },
-    {
-     "path": "gicht"
-    },
-    {
-     "path": "granulomatose_mit_polyangiitis"
-    },
-    {
-     "path": "lupus"
-    },
-    {
-     "path": "polymyalgia_rheumatica"
-    },
-    {
-     "path": "reaktive_arthritis"
-    },
-    {
-     "path": "rheumatoide_arthritis"
-    },
-    {
-     "path": "riesenzellarteriitis"
-    },
-    {
-     "path": "spondylarthritis"
-    },
-    {
-     "path": "vaskulitiden"
-    }
-   ]
-  },
-  {
-   "id": "unfallchirurgie",
-   "titleDe": "Unfallchirurgie",
-   "topics": [
-    {
-     "path": "allgemeine_frakturlehre"
-    },
-    {
-     "path": "beckenfraktur"
-    },
-    {
-     "path": "claviculafraktur"
-    },
-    {
-     "path": "epicondylitis_humeri_radialis"
-    },
-    {
-     "path": "femurfraktur"
-    },
-    {
-     "path": "femurschaft-_und_distale_femurfrakturen"
-    },
-    {
-     "path": "frakturen_im_kindesalter"
-    },
-    {
-     "path": "humerusfraktur"
-    },
-    {
-     "path": "kompartmentsyndrom"
-    },
-    {
-     "path": "luxationen"
-    },
-    {
-     "path": "operative_und_konservative_versorgung"
-    },
-    {
-     "path": "patellafraktur"
-    },
-    {
-     "path": "proximale_femurfrakturen"
-    },
-    {
-     "path": "radiusfraktur"
-    },
-    {
-     "path": "sprunggelenksfraktur"
-    },
-    {
-     "path": "tibia-_und_fibulafrakturen"
-    },
-    {
-     "path": "wirbelsäulenfraktur"
-    },
-    {
-     "path": "schaftfrakturen_des_unterarmes"
-    },
-    {
-     "path": "olecranonfraktur"
-    },
-    {
-     "path": "rippenserienfraktur"
-    },
-    {
-     "path": "densfraktur"
-    }
-   ]
-  },
-  {
-   "id": "hno",
-   "titleDe": "HNO (Hals-Nasen-Ohren-Heilkunde)",
-   "topics": [
-    {
-     "path": "epistaxis_(nasenbluten)"
-    },
-    {
-     "path": "lymphadenopathie"
-    },
-    {
-     "path": "lymphangitis"
-    },
-    {
-     "path": "sinusitis"
-    },
-    {
-     "path": "tonsillitis"
-    },
-    {
-     "path": "tinnitus"
-    }
-   ]
-  },
-  {
-   "id": "dermatologie",
-   "titleDe": "Dermatologie",
-   "topics": [
-    {
-     "path": "angioödem"
-    },
-    {
-     "path": "dyshidrosis"
-    },
-    {
-     "path": "erysipel"
-    },
-    {
-     "path": "impetigo_contagiosa"
-    },
-    {
-     "path": "urtikaria"
-    },
-    {
-     "path": "basalzellkarzinom"
-    }
-   ]
-  },
-  {
-   "id": "psychiatrie_psychosomatik",
-   "titleDe": "Psychiatrie und Psychosomatik",
-   "topics": [
-    {
-     "path": "anorexia_nervosa"
-    },
-    {
-     "path": "burnout_syndrom"
-    },
-    {
-     "path": "paarprobleme_und_beziehungskonflikte"
-    },
-    {
-     "path": "panikstörung"
-    },
-    {
-     "path": "somatoforme_störungen"
-    }
-   ]
-  },
-  {
-   "id": "gynaekologie",
-   "titleDe": "Gynäkologie und Geburtshilfe",
-   "topics": [
-    {
-     "path": "extrauteringravidität"
-    },
-    {
-     "path": "endometriose"
-    },
-    {
-     "path": "menopause"
-    }
-   ]
-  },
-  {
-   "id": "urologie",
-   "titleDe": "Urologie",
-   "topics": [
-    {
-     "path": "benigne_prostatahyperplasie"
-    },
-    {
-     "path": "harnblasenkarzinom"
-    },
-    {
-     "path": "hodentorsion"
-    },
-    {
-     "path": "hypospadie"
-    }
-   ]
-  },
-  {
-   "id": "anamnese_untersuchung",
-   "titleDe": "Anamnese & körperliche Untersuchung",
-   "topics": [
-    {
-     "path": "körperliche_untersuchung"
+     "path": "verfassen_eines_arztbriefes"
     },
     {
      "path": "befunde_und_techniken_der_internistischen_und_chirurgischen_untersuchung"
@@ -1131,7 +118,28 @@
    "titleDe": "Apparative Diagnostik",
    "topics": [
     {
-     "path": "befundung_eines_röntgen-thorax"
+     "path": "ekg"
+    },
+    {
+     "path": "impfen_-_praktische_aspekte_impfungen_allgemein"
+    },
+    {
+     "path": "impfungen_allgemein"
+    },
+    {
+     "path": "lungenfunktionsuntersuchung"
+    },
+    {
+     "path": "nierenwerte_laboratoriumsmedizin"
+    },
+    {
+     "path": "nuklearmedizin_und_strahlenschutz"
+    },
+    {
+     "path": "pulsoxymetrie_und_blutgasanalyse"
+    },
+    {
+     "path": "befundung_eines_röntgen_thorax"
     },
     {
      "path": "befundatlas_sonografie"
@@ -1145,47 +153,944 @@
    ]
   },
   {
-   "id": "leitsymptome",
-   "titleDe": "Leitsymptome",
+   "id": "allgemein_viszeralchirurgie",
+   "titleDe": "Allgemein- & Viszeralchirurgie",
    "topics": [
     {
-     "path": "akutes_abdomen"
+     "path": "akute_wunden_und_wundverschluss"
     },
     {
-     "path": "durchfall"
+     "path": "appendizitis"
     },
     {
-     "path": "dyspnoe"
+     "path": "bakterielle_infektionen_von_haut_und_weichgewebe"
     },
     {
-     "path": "husten"
+     "path": "biliäre_karzinome"
     },
     {
-     "path": "kopfschmerzen"
+     "path": "chronische_wunden_und_wundbehandlung"
     },
     {
-     "path": "rückenschmerzen"
+     "path": "darmchirurgie"
     },
     {
-     "path": "lymphknotenschwellung"
+     "path": "hämorrhoiden_und_hämorrhoidalleiden"
     },
     {
-     "path": "obstipation"
+     "path": "hepatozelluläres_karzinom"
     },
     {
-     "path": "ödeme"
+     "path": "hernien"
     },
     {
-     "path": "schwindel"
+     "path": "ileus"
     },
     {
-     "path": "synkope"
+     "path": "kolonpolypen"
     },
     {
-     "path": "thoraxschmerz"
+     "path": "leistenhernie"
     },
     {
-     "path": "dysphagie"
+     "path": "mesenterialischämie"
+    },
+    {
+     "path": "milzruptur"
+    },
+    {
+     "path": "ösophaguskarzinom"
+    },
+    {
+     "path": "perioperatives_management"
+    },
+    {
+     "path": "peritonitis"
+    },
+    {
+     "path": "schilddrüsenchirurgie"
+    },
+    {
+     "path": "zwerchfellhernie"
+    },
+    {
+     "path": "mesenterialinfarkt"
+    },
+    {
+     "path": "paronychie"
+    },
+    {
+     "path": "bissverletzungen"
+    }
+   ]
+  },
+  {
+   "id": "unfallchirurgie",
+   "titleDe": "Unfallchirurgie",
+   "topics": [
+    {
+     "path": "allgemeine_frakturlehre"
+    },
+    {
+     "path": "beckenfraktur"
+    },
+    {
+     "path": "claviculafraktur"
+    },
+    {
+     "path": "distale_radiusfraktur"
+    },
+    {
+     "path": "femurfraktur"
+    },
+    {
+     "path": "femurschaft-_und_distale_femurfrakturen"
+    },
+    {
+     "path": "frakturen_im_kindesalter"
+    },
+    {
+     "path": "humerusfraktur"
+    },
+    {
+     "path": "kompartmentsyndrom"
+    },
+    {
+     "path": "luxationen"
+    },
+    {
+     "path": "operative_und_konservative_versorgung"
+    },
+    {
+     "path": "proximale_femurfrakturen"
+    },
+    {
+     "path": "radiusfraktur"
+    },
+    {
+     "path": "sprunggelenksfraktur"
+    },
+    {
+     "path": "tibia-_und_fibulafrakturen"
+    },
+    {
+     "path": "wirbelsäulenfraktur"
+    },
+    {
+     "path": "schaftfrakturen_des_unterarmes"
+    },
+    {
+     "path": "olecranonfraktur"
+    },
+    {
+     "path": "rippenserienfraktur"
+    },
+    {
+     "path": "densfraktur"
+    },
+    {
+     "path": "patellafraktur"
+    }
+   ]
+  },
+  {
+   "id": "thorax_gefäßchirurgie",
+   "titleDe": "Thorax- & Gefäßchirurgie",
+   "topics": [
+    {
+     "path": "akuter_arterieller_verschluss"
+    },
+    {
+     "path": "aneurysma"
+    },
+    {
+     "path": "aortenaneurysma"
+    },
+    {
+     "path": "aortendissektion"
+    },
+    {
+     "path": "thoraxtrauma"
+    },
+    {
+     "path": "ulcus_cruris"
+    }
+   ]
+  },
+  {
+   "id": "orthopädie",
+   "titleDe": "Orthopädie",
+   "topics": [
+    {
+     "path": "bakterielle_arthritis"
+    },
+    {
+     "path": "bandscheibenprolaps"
+    },
+    {
+     "path": "bandverletzungen"
+    },
+    {
+     "path": "gonarthrose"
+    },
+    {
+     "path": "koxarthrose"
+    },
+    {
+     "path": "schulterluxation"
+    },
+    {
+     "path": "karpaltunnelsyndrom"
+    },
+    {
+     "path": "hws-syndrom"
+    },
+    {
+     "path": "schulter-tendinitis"
+    },
+    {
+     "path": "epicondylitis_humeri_radialis"
+    }
+   ]
+  },
+  {
+   "id": "notfall_intensivmedizin",
+   "titleDe": "Notfall- & Intensivmedizin",
+   "topics": [
+    {
+     "path": "akuttoxikologie"
+    },
+    {
+     "path": "ards"
+    },
+    {
+     "path": "fremdkörperaspiration"
+    },
+    {
+     "path": "hyperglykämisches_koma"
+    },
+    {
+     "path": "hypoglykämie"
+    },
+    {
+     "path": "polytrauma"
+    },
+    {
+     "path": "präklinische_traumaversorgung"
+    },
+    {
+     "path": "schädel-hirn-trauma"
+    },
+    {
+     "path": "verbrennungen"
+    },
+    {
+     "path": "vigilanzminderung"
+    },
+    {
+     "path": "schnittbildserien_in_der_notfallmedizin"
+    }
+   ]
+  },
+  {
+   "id": "innere_kardiologie_angiologie",
+   "titleDe": "Innere – Kardiologie & Angiologie",
+   "topics": [
+    {
+     "path": "akutes_koronarsyndrom"
+    },
+    {
+     "path": "arterielle_hypertonie"
+    },
+    {
+     "path": "av-block"
+    },
+    {
+     "path": "dyslipidämien"
+    },
+    {
+     "path": "fieber_und_entzündungsreaktionen"
+    },
+    {
+     "path": "herzinsuffizienz"
+    },
+    {
+     "path": "herzklappenerkrankungen"
+    },
+    {
+     "path": "herzschrittmacher"
+    },
+    {
+     "path": "infektiöse_endokarditis"
+    },
+    {
+     "path": "kammerflattern_und_-flimmern"
+    },
+    {
+     "path": "koronare_herzkrankheit"
+    },
+    {
+     "path": "lungenembolie"
+    },
+    {
+     "path": "metabolisches_syndrom"
+    },
+    {
+     "path": "myokardinfarkt"
+    },
+    {
+     "path": "myokarditis"
+    },
+    {
+     "path": "orale_antikoagulanzien"
+    },
+    {
+     "path": "perikarditis"
+    },
+    {
+     "path": "periphere_arterielle_verschlusskrankheit"
+    },
+    {
+     "path": "phlebothrombose"
+    },
+    {
+     "path": "pulmonale_hypertonie"
+    },
+    {
+     "path": "rheumatisches_fieber"
+    },
+    {
+     "path": "sick-sinus-syndrom"
+    },
+    {
+     "path": "ventrikuläre_tachykardie"
+    },
+    {
+     "path": "vorhofflimmern"
+    },
+    {
+     "path": "kammerflattern_und_flimmern"
+    },
+    {
+     "path": "herzkatheteruntersuchung"
+    }
+   ]
+  },
+  {
+   "id": "innere_pneumologie",
+   "titleDe": "Innere – Pneumologie",
+   "topics": [
+    {
+     "path": "asbestose_und_mesotheliom"
+    },
+    {
+     "path": "asthma_bronchiale"
+    },
+    {
+     "path": "chronisch-obstruktive_lungenerkrankung"
+    },
+    {
+     "path": "exogen-allergische_alveolitis"
+    },
+    {
+     "path": "interstitielle_lungenerkrankungen"
+    },
+    {
+     "path": "pleuraerguss"
+    },
+    {
+     "path": "pneumothorax"
+    },
+    {
+     "path": "sarkoidose"
+    },
+    {
+     "path": "tuberkulose"
+    },
+    {
+     "path": "zystische_fibrose"
+    },
+    {
+     "path": "ambulant_erworbene_pneumonie"
+    },
+    {
+     "path": "osas"
+    }
+   ]
+  },
+  {
+   "id": "innere_gastroenterologie",
+   "titleDe": "Innere – Gastroenterologie",
+   "topics": [
+    {
+     "path": "akute-pankreatitis"
+    },
+    {
+     "path": "aszites"
+    },
+    {
+     "path": "cholelithiasis,_cholezystitis,_cholangitis"
+    },
+    {
+     "path": "chronische_gastritis"
+    },
+    {
+     "path": "chronische_pankreatitis"
+    },
+    {
+     "path": "colitis_ulcerosa"
+    },
+    {
+     "path": "divertikulose,_divertikulitis"
+    },
+    {
+     "path": "gastroduodenale_ulkuskrankheit"
+    },
+    {
+     "path": "gastroösophageale_refluxkrankheit"
+    },
+    {
+     "path": "leberzirrhose"
+    },
+    {
+     "path": "magenkarzinom"
+    },
+    {
+     "path": "morbus_crohn"
+    },
+    {
+     "path": "pankreaskarzinom"
+    },
+    {
+     "path": "portale_hypertension"
+    },
+    {
+     "path": "reizdarmsyndrom"
+    },
+    {
+     "path": "zöliakie"
+    },
+    {
+     "path": "choledocholithiasis"
+    },
+    {
+     "path": "achalasie"
+    },
+    {
+     "path": "laktoseintoleranz"
+    }
+   ]
+  },
+  {
+   "id": "innere_endokrinologie",
+   "titleDe": "Innere – Endokrinologie",
+   "topics": [
+    {
+     "path": "adrenogenitales_syndrom"
+    },
+    {
+     "path": "allgemeine_endokrinologie"
+    },
+    {
+     "path": "cushing-syndrom"
+    },
+    {
+     "path": "diabetes_insipidus"
+    },
+    {
+     "path": "diabetes_mellitus"
+    },
+    {
+     "path": "endokrine_tumoren"
+    },
+    {
+     "path": "hashimoto"
+    },
+    {
+     "path": "hyperthyreose"
+    },
+    {
+     "path": "hypophyseninsuffizienz"
+    },
+    {
+     "path": "hypophysenvorderlappeninsuffizienz"
+    },
+    {
+     "path": "hypothyreose"
+    },
+    {
+     "path": "karzinoid-syndrom_neuroendokrine_neoplasien"
+    },
+    {
+     "path": "nebenniereninsuffizienz"
+    },
+    {
+     "path": "osteoporose"
+    },
+    {
+     "path": "phäochromozytom"
+    },
+    {
+     "path": "primärer_hyperaldosteronismus"
+    },
+    {
+     "path": "prolaktinom"
+    },
+    {
+     "path": "schilddrüsenkarzinom"
+    },
+    {
+     "path": "struma"
+    },
+    {
+     "path": "diabetisches_fußsyndrom"
+    },
+    {
+     "path": "adipositas"
+    },
+    {
+     "path": "thyreotoxische_krise"
+    }
+   ]
+  },
+  {
+   "id": "innere_nephrologie",
+   "titleDe": "Innere – Nephrologie",
+   "topics": [
+    {
+     "path": "akute_nierenfunktionseinschränkung"
+    },
+    {
+     "path": "akutes_nierenversagen"
+    },
+    {
+     "path": "chronische_nierenkrankheit"
+    },
+    {
+     "path": "diagnostik_von_erkrankungen_der_niere_und_ableitenden_harnwege"
+    },
+    {
+     "path": "dialyse"
+    },
+    {
+     "path": "elektrolytstörungen_kalium"
+    },
+    {
+     "path": "elektrolytstörungen_(na,_k,_ca)"
+    },
+    {
+     "path": "elektrolytstörungen_natrium"
+    },
+    {
+     "path": "grundlagen_nephrologischer_krankheitsbilder"
+    },
+    {
+     "path": "hereditäre_typ-iv-kollagen-erkrankungen_(alport-syndrom)"
+    },
+    {
+     "path": "hyperparathyreoidismus"
+    },
+    {
+     "path": "iga-nephropathie"
+    },
+    {
+     "path": "nierenersatzverfahren"
+    },
+    {
+     "path": "nierenfunktion"
+    },
+    {
+     "path": "nierentransplantation"
+    },
+    {
+     "path": "polyzystische_nierenerkrankung"
+    },
+    {
+     "path": "pyelonephritis"
+    },
+    {
+     "path": "säure-basen-haushalt"
+    },
+    {
+     "path": "urindiagnostik"
+    },
+    {
+     "path": "urolithiasis"
+    },
+    {
+     "path": "transplantation"
+    },
+    {
+     "path": "diagnostik_niere_harnwege"
+    }
+   ]
+  },
+  {
+   "id": "innere_hämatologie_onkologie",
+   "titleDe": "Innere – Hämatologie & Onkologie",
+   "topics": [
+    {
+     "path": "akute_leukämien"
+    },
+    {
+     "path": "anämie"
+    },
+    {
+     "path": "chronische_lymphatische_leukämie"
+    },
+    {
+     "path": "chronische_myeloische_leukämie"
+    },
+    {
+     "path": "eisenmangel"
+    },
+    {
+     "path": "hämolytische_anämie"
+    },
+    {
+     "path": "hodgkin-lymphom"
+    },
+    {
+     "path": "kolorektales_karzinom"
+    },
+    {
+     "path": "kolorektales_karzinom_hämatologie"
+    },
+    {
+     "path": "lungenkarzinom"
+    },
+    {
+     "path": "maligne_hodentumoren"
+    },
+    {
+     "path": "malignes_melanom"
+    },
+    {
+     "path": "mammakarzinom"
+    },
+    {
+     "path": "multiples_myelom"
+    },
+    {
+     "path": "myelodysplastische_syndrome"
+    },
+    {
+     "path": "non-hodgkin-lymphome"
+    },
+    {
+     "path": "prostatakarzinom"
+    },
+    {
+     "path": "sichelzellkrankheit"
+    },
+    {
+     "path": "thalassämie"
+    },
+    {
+     "path": "vitamin-b12-mangel"
+    },
+    {
+     "path": "thrombozytopenie"
+    },
+    {
+     "path": "panzytopenie"
+    },
+    {
+     "path": "weichteilsarkom"
+    },
+    {
+     "path": "knochenmetastasen"
+    }
+   ]
+  },
+  {
+   "id": "innere_infektiologie",
+   "titleDe": "Innere – Infektiologie",
+   "topics": [
+    {
+     "path": "allgemeine_infektiologie"
+    },
+    {
+     "path": "antibiotika"
+    },
+    {
+     "path": "bakterielle_durchfallerkrankungen"
+    },
+    {
+     "path": "blutkulturen"
+    },
+    {
+     "path": "covid-19"
+    },
+    {
+     "path": "covid19"
+    },
+    {
+     "path": "denguefieber"
+    },
+    {
+     "path": "emerging_infectious_diseases"
+    },
+    {
+     "path": "frühsommer-meningoenzephalitis"
+    },
+    {
+     "path": "giardiasis"
+    },
+    {
+     "path": "hepatitis_a"
+    },
+    {
+     "path": "hepatitis_b_hbv-infektion"
+    },
+    {
+     "path": "hepatitis_c"
+    },
+    {
+     "path": "herpesvirus-infektionen"
+    },
+    {
+     "path": "hiv-infektion"
+    },
+    {
+     "path": "impfempfehlungen_der_stiko"
+    },
+    {
+     "path": "infektiöse_mononukleose"
+    },
+    {
+     "path": "influenza"
+    },
+    {
+     "path": "leishmaniose"
+    },
+    {
+     "path": "lyme-borreliose"
+    },
+    {
+     "path": "malaria"
+    },
+    {
+     "path": "meningitis"
+    },
+    {
+     "path": "norovirus-infektion"
+    },
+    {
+     "path": "nosokomiale_infektionen"
+    },
+    {
+     "path": "pneumonie"
+    },
+    {
+     "path": "schistosomiasis"
+    },
+    {
+     "path": "sepsis"
+    },
+    {
+     "path": "typhus,_paratyphus"
+    },
+    {
+     "path": "erysipel"
+    },
+    {
+     "path": "gastroenteritis"
+    },
+    {
+     "path": "angioödem"
+    }
+   ]
+  },
+  {
+   "id": "innere_rheumatologie",
+   "titleDe": "Innere – Rheumatologie",
+   "topics": [
+    {
+     "path": "arthrose"
+    },
+    {
+     "path": "axiale_spondylarthritis"
+    },
+    {
+     "path": "gicht"
+    },
+    {
+     "path": "granulomatose_mit_polyangiitis"
+    },
+    {
+     "path": "lupus"
+    },
+    {
+     "path": "polymyalgia_rheumatica"
+    },
+    {
+     "path": "reaktive_arthritis"
+    },
+    {
+     "path": "rheumatoide_arthritis"
+    },
+    {
+     "path": "riesenzellarteriitis"
+    },
+    {
+     "path": "spondylarthritis"
+    },
+    {
+     "path": "vaskulitiden"
+    },
+    {
+     "path": "fibromyalgie"
+    }
+   ]
+  },
+  {
+   "id": "neurologie",
+   "titleDe": "Neurologie",
+   "topics": [
+    {
+     "path": "amyotrophe_lateralsklerose_(als)"
+    },
+    {
+     "path": "demenzen_(z._b._alzheimer-krankheit)"
+    },
+    {
+     "path": "epilepsie"
+    },
+    {
+     "path": "intrazerebrale_blutung"
+    },
+    {
+     "path": "ischämischer_schlaganfall"
+    },
+    {
+     "path": "parkinson-syndrom"
+    },
+    {
+     "path": "polyneuropathie"
+    },
+    {
+     "path": "subarachnoidalblutung"
+    },
+    {
+     "path": "unipolare_depression"
+    },
+    {
+     "path": "insomnie"
+    },
+    {
+     "path": "hirntumor"
+    },
+    {
+     "path": "transitorische_ischämische_attacke"
+    },
+    {
+     "path": "fazialisparese"
+    },
+    {
+     "path": "panikstörung"
+    },
+    {
+     "path": "migräne"
+    },
+    {
+     "path": "optikusneuritis"
+    },
+    {
+     "path": "restless-legs-syndrom"
+    }
+   ]
+  },
+  {
+   "id": "psychiatrie_psychosomatik",
+   "titleDe": "Psychiatrie & Psychosomatik",
+   "topics": [
+    {
+     "path": "nikotinabhängigkeit"
+    },
+    {
+     "path": "anorexia_nervosa"
+    },
+    {
+     "path": "burnout_syndrom"
+    },
+    {
+     "path": "paarprobleme_und_beziehungskonflikte"
+    },
+    {
+     "path": "somatoforme_störungen"
+    }
+   ]
+  },
+  {
+   "id": "dermatologie",
+   "titleDe": "Dermatologie",
+   "topics": [
+    {
+     "path": "basalzellkarzinom"
+    },
+    {
+     "path": "impetigo_contagiosa"
+    },
+    {
+     "path": "dyshidrosis"
+    },
+    {
+     "path": "urtikaria"
+    }
+   ]
+  },
+  {
+   "id": "gynäkologie",
+   "titleDe": "Gynäkologie",
+   "topics": [
+    {
+     "path": "endometriose"
+    },
+    {
+     "path": "menopause"
+    },
+    {
+     "path": "extrauteringravidität"
+    }
+   ]
+  },
+  {
+   "id": "urologie",
+   "titleDe": "Urologie",
+   "topics": [
+    {
+     "path": "hodentorsion"
+    },
+    {
+     "path": "hypospadie"
+    },
+    {
+     "path": "harnblasenkarzinom"
+    },
+    {
+     "path": "benigne_prostatahyperplasie"
+    }
+   ]
+  },
+  {
+   "id": "hno",
+   "titleDe": "HNO",
+   "topics": [
+    {
+     "path": "tinnitus"
+    },
+    {
+     "path": "tonsillitis"
+    },
+    {
+     "path": "epistaxis"
+    },
+    {
+     "path": "lymphangitis"
+    },
+    {
+     "path": "sinusitis"
     }
    ]
   },
@@ -1195,6 +1100,54 @@
    "topics": [
     {
      "path": "katarakt"
+    }
+   ]
+  },
+  {
+   "id": "grundlagen_des_ärztlichen_handelns",
+   "titleDe": "Grundlagen des ärztlichen Handelns",
+   "topics": [
+    {
+     "path": "ärztliche_rechtskunde"
+    },
+    {
+     "path": "allgemeine_pharmakologie"
+    },
+    {
+     "path": "arzneimittelrezept"
+    },
+    {
+     "path": "arzneimittelwechselwirkungen"
+    },
+    {
+     "path": "atherosklerose_und_kardiovaskuläre_prävention"
+    },
+    {
+     "path": "behinderung_und_einschränkung_der_arbeitsfähigkeit"
+    },
+    {
+     "path": "dosierung_und_applikation"
+    },
+    {
+     "path": "nebenwirkungen_und_toxikologie"
+    },
+    {
+     "path": "ökonomische_aspekte_von_gesundheit_und_krankheit"
+    },
+    {
+     "path": "prävention"
+    },
+    {
+     "path": "rehabilitation"
+    },
+    {
+     "path": "soziale_sicherung"
+    },
+    {
+     "path": "thanatologie"
+    },
+    {
+     "path": "transfusionen"
     }
    ]
   }
