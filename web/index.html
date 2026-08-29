@@ -312,11 +312,14 @@ async function groupView(id){
       </div>
     </div>
     <div class="card"><div class="lbl">Teilnehmer <span class="tr">${rows.length}</span></div>
-      ${rows.length? `<div style="overflow-x:auto"><table><thead><tr><th>Name</th><th>KP-Plan</th><th>Begriffe</th><th>Aufgaben</th><th>Zuletzt aktiv</th><th></th></tr></thead><tbody>
+      ${rows.length? `<div style="overflow-x:auto"><table><thead><tr><th>Name</th><th>KP-Plan</th><th>Begriffe</th><th>Dokumente</th><th>FSP</th><th>Aufgaben</th><th>Zuletzt aktiv</th><th></th></tr></thead><tbody>
         ${rows.map(r=>{ const pct = r.kp_total? Math.round(r.kp_done/r.kp_total*100):0; return `<tr>
           <td><b>${esc(r.display_name||'Teilnehmer')}</b><div class="meta">seit ${fmtD(r.joined_at)}</div></td>
           <td><div class="row" style="gap:8px;flex-wrap:nowrap"><div class="bar"><i style="width:${pct}%"></i></div><span class="num" style="font-weight:800">${pct} %</span><span class="meta num">${r.kp_done}/${r.kp_total}</span></div></td>
-          <td class="num">${r.terms_learned}</td><td class="num">${r.assignments_done}/${(asg||[]).filter(a=>a.kind==='task').length}</td>
+          <td class="num">${r.terms_learned}</td>
+          <td class="num">${r.docs_checked ?? 0} ✓</td>
+          <td class="num">${r.fsp_done ?? 0}</td>
+          <td class="num">${r.assignments_done}/${(asg||[]).filter(a=>a.kind==='task').length}</td>
           <td class="meta">${r.last_active? fmtD(r.last_active):'—'}</td>
           <td><button class="btn sm ghost rm" data-s="${r.student_id}" title="Entfernen">✕</button></td></tr>`; }).join('')}
       </tbody></table></div>` : `<div class="empty">Noch niemand beigetreten. Code: <b class="code" style="font-size:16px">${esc(g.invite_code)}</b></div>`}
