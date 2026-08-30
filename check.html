@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Це сторінка для запрошених тестувальників, а не для пошуку. -->
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Коротка перевірка MedTerms очима звичайного користувача — для друзів і колег, яких ми попросили спробувати застосунок.">
+<link rel="icon" href="/favicon-32.png" sizes="32x32">
+<link rel="icon" href="/favicon-16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://medterms.app/check.html">
+<meta property="og:title" content="MedTerms — спробуй і скажи, що вийшло">
+<meta property="og:description" content="Година твого часу економить нам місяці здогадок.">
+<meta property="og:locale" content="uk_UA">
+<title>MedTerms очима новачка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --paper:#FBFAF7; --card:#FFFFFF; --ink:#1A1D1C; --ink-2:#464E4A;
+  --ink-3:#6E7873; --rule:#E2E0D8; --rule-2:#EFEDE6;
+  --accent:#2F6B5A; --accent-soft:#E5EFEA; --gold:#8A6A24;
+  --shadow:0 1px 2px rgba(26,29,28,.05), 0 2px 12px rgba(26,29,28,.05);
+  --measure:64ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#12140F; --card:#1A1D18; --ink:#EDEDE6; --ink-2:#B9BFB8;
+    --ink-3:#848C85; --rule:#2A2E28; --rule-2:#1F231D;
+    --accent:#7FC4A8; --accent-soft:#1B2C25; --gold:#D9B65F;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 2px 14px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12140F; --card:#1A1D18; --ink:#EDEDE6; --ink-2:#B9BFB8;
+  --ink-3:#848C85; --rule:#2A2E28; --rule-2:#1F231D;
+  --accent:#7FC4A8; --accent-soft:#1B2C25; --gold:#D9B65F;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 2px 14px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16.5px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+h1,h2{font-family:"Source Serif 4",Georgia,serif; text-wrap:balance; margin:0}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px 90px}
+
+.mast{padding:44px 0 22px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.mast .kicker{font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); font-weight:700}
+.mast h1{font-size:36px; font-weight:600; letter-spacing:-.015em; margin:10px 0 14px}
+.mast p{margin:0 0 12px; color:var(--ink-2); max-width:var(--measure)}
+.mast p:last-child{margin-bottom:0}
+.mast b{color:var(--ink)}
+
+.bar{position:sticky; top:0; z-index:5; background:var(--paper);
+  padding:12px 0; margin-bottom:26px; border-bottom:1px solid var(--rule);
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.prog{flex:1; min-width:120px; height:8px; background:var(--rule);
+  border-radius:99px; overflow:hidden}
+.prog i{display:block; height:100%; width:0; background:var(--accent);
+  transition:width .3s ease}
+.count{font-size:14px; font-weight:600; color:var(--ink-2); white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+button.ctl{font:inherit; font-size:14px; font-weight:600; padding:8px 15px;
+  border-radius:8px; border:1px solid var(--accent); background:var(--accent);
+  color:var(--paper); cursor:pointer}
+button.ctl.ghost{background:var(--card); color:var(--accent)}
+button.ctl:hover{opacity:.88}
+button.ctl:focus-visible, .step:focus-within{outline:2px solid var(--accent); outline-offset:2px}
+
+section{margin:0 0 32px; scroll-margin-top:70px}
+.sec-h{display:flex; align-items:baseline; gap:12px; margin:0 0 6px}
+.sec-h .n{font-size:13px; font-weight:700; color:var(--accent);
+  border:1.5px solid var(--accent); border-radius:99px;
+  width:26px; height:26px; display:grid; place-items:center; flex:none}
+.sec-h h2{font-size:23px; font-weight:600; letter-spacing:-.01em}
+.lead{margin:0 0 14px 38px; color:var(--ink-2); font-size:15px;
+  max-width:var(--measure)}
+
+ol.steps{list-style:none; margin:0; padding:0; background:var(--card);
+  border:1px solid var(--rule); border-radius:12px; box-shadow:var(--shadow);
+  overflow:hidden}
+.step{display:grid; grid-template-columns:auto minmax(0,1fr); gap:13px;
+  padding:14px 17px; border-top:1px solid var(--rule-2)}
+.step:first-child{border-top:none}
+.step input{appearance:none; width:22px; height:22px; margin:1px 0 0; flex:none;
+  border:2px solid var(--ink-3); border-radius:6px; background:transparent;
+  cursor:pointer; position:relative}
+.step input:checked{background:var(--accent); border-color:var(--accent)}
+.step input:checked::after{content:"✓"; position:absolute; inset:0;
+  color:var(--paper); font-size:14px; line-height:19px; text-align:center;
+  font-weight:700}
+.step label{cursor:pointer}
+.act{display:block; font-weight:600}
+.ask{display:block; color:var(--ink-2); font-size:14.5px; margin-top:3px}
+.ask::before{content:"→ "; color:var(--accent); font-weight:700}
+.skip{display:block; color:var(--ink-3); font-size:13.5px; margin-top:3px;
+  font-style:italic}
+.step.done label{opacity:.5}
+.step.done .act{text-decoration:line-through; text-decoration-thickness:1.5px}
+
+.note{border-left:3px solid var(--gold); background:var(--card);
+  padding:13px 16px; border-radius:0 10px 10px 0; margin:14px 0 0;
+  font-size:14.5px; color:var(--ink-2); box-shadow:var(--shadow)}
+.note b{color:var(--ink)}
+
+.ask-box{background:var(--card); border:1px solid var(--rule);
+  border-radius:12px; box-shadow:var(--shadow); padding:16px 17px; margin-top:12px}
+.ask-box h3{font-family:"Source Serif 4",Georgia,serif; font-size:17px;
+  font-weight:600; margin:0 0 8px; color:var(--ink)}
+textarea{width:100%; min-height:78px; resize:vertical; font:inherit;
+  font-size:15px; color:var(--ink); background:var(--paper);
+  border:1px solid var(--rule); border-radius:9px; padding:11px 12px}
+textarea:focus{outline:2px solid var(--accent); outline-offset:1px}
+
+.finish{background:var(--accent-soft); border:1px solid var(--accent);
+  border-radius:14px; padding:22px; margin-top:36px}
+.finish h2{font-size:22px; margin-bottom:8px}
+.finish p{margin:0 0 16px; color:var(--ink-2); font-size:15px}
+.send{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+a.send-btn{display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+  font-size:15px; font-weight:700; padding:12px 18px; border-radius:10px;
+  background:var(--accent); color:var(--paper); border:1px solid var(--accent)}
+a.send-btn.alt{background:var(--card); color:var(--accent)}
+a.send-btn:hover{opacity:.88}
+.sent-msg{font-size:14px; font-weight:600; color:var(--accent)}
+.preview{margin-top:16px}
+.preview summary{cursor:pointer; font-size:14px; font-weight:600;
+  color:var(--ink-2)}
+.preview pre{white-space:pre-wrap; word-break:break-word; font-size:13px;
+  background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:13px; margin-top:10px; max-height:280px; overflow:auto;
+  color:var(--ink-2); font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--rule);
+  color:var(--ink-3); font-size:14px}
+@media print{ .bar,.finish{display:none} body{background:#fff; color:#000} }
+@media (prefers-reduced-motion:reduce){ *{transition:none !important} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="mast">
+  <div class="kicker">MedTerms · погляд збоку</div>
+  <h1>Просто спробуй — і скажи, що вийшло</h1>
+  <p>Це <b>не тестування</b>. Тут нема правильних відповідей і нема нічого,
+     що можна зламати. Просто користуйся застосунком так, як користувався б
+     сам, і відзначай, що зробив.</p>
+  <p>Найцінніше для нас — <b>не помилки, а розгубленість</b>. Якщо ти десь
+     зупинився й подумав «а що тут робити?» — це найважливіше, що ти можеш
+     розповісти. Ми цей застосунок робили й уже не бачимо його свіжим оком.
+     Ти бачиш.</p>
+  <p>Розділів десять, і <b>не всі обов'язкові</b> — де написано «можна
+     пропустити», спокійно пропускай. Повний прохід — десь година, можна
+     за кілька заходів. Галочки й відповіді зберігаються самі.</p>
+  <p>Наприкінці — кнопка, яка збирає все написане й надсилає Олегу.</p>
+</div>
+
+<div class="bar">
+  <div class="prog"><i id="pbar"></i></div>
+  <span class="count" id="pcount">0 / 0</span>
+  <button class="ctl" id="btnJump">До відправки</button>
+  <button class="ctl ghost" id="btnReset">Почати спочатку</button>
+</div>
+
+<section>
+  <div class="sec-h"><span class="n">1</span><h2>Перші п'ять хвилин</h2></div>
+  <p class="lead">Найважливіша частина. Саме тут люди найчастіше кидають
+     застосунки назавжди — і саме цього ми не бачимо самі.</p>
+  <ol class="steps">
+    <li class="step"><input type="checkbox" id="u01"><label for="u01">
+      <span class="act">Встанови застосунок і відкрий його</span>
+      <span class="ask">Чи зрозуміло з першого екрана, для чого він узагалі?</span></label></li>
+    <li class="step"><input type="checkbox" id="u02"><label for="u02">
+      <span class="act">Зареєструйся</span>
+      <span class="ask">Чи не здалося, що питають забагато? Було щось, чого ти не зрозумів?</span></label></li>
+    <li class="step"><input type="checkbox" id="u03"><label for="u03">
+      <span class="act">Підтверди пошту з листа</span>
+      <span class="ask">Лист прийшов швидко? Не в спам? Кнопка спрацювала з першого разу?</span></label></li>
+    <li class="step"><input type="checkbox" id="u04"><label for="u04">
+      <span class="act">Роздивись головний екран, нікуди не поспішаючи</span>
+      <span class="ask">Що тут головне? Куди хочеться натиснути першим?</span></label></li>
+    <li class="step"><input type="checkbox" id="u05"><label for="u05">
+      <span class="act">Пройди підказки, які показуються на початку</span>
+      <span class="ask">Вони допомогли чи заважали? Ти дочитав до кінця чи закрив?</span></label></li>
+    <li class="step"><input type="checkbox" id="u06"><label for="u06">
+      <span class="act">Погортай нижнє меню — усі вкладки по черзі</span>
+      <span class="ask">Назви вкладок зрозумілі? Здогадуєшся, що всередині, не заходячи?</span></label></li>
+  </ol>
+  <div class="ask-box">
+    <h3>Перше враження — одним реченням</h3>
+    <textarea id="t1" placeholder="Наприклад: «зрозуміло, але забагато всього одразу» або «одразу видно, що для лікарів»"></textarea>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h"><span class="n">2</span><h2>Зроби його своїм</h2></div>
+  <p class="lead">Застосунок підлаштовується під землю, етап і мову.
+     Перевір, чи легко це знайти без підказок.</p>
+  <ol class="steps">
+    <li class="step"><input type="checkbox" id="u07"><label for="u07">
+      <span class="act">Знайди, де міняється мова, і постав свою</span>
+      <span class="ask">Довго шукав? Чи все переклалося, чи десь лишилась німецька?</span></label></li>
+    <li class="step"><input type="checkbox" id="u08"><label for="u08">
+      <span class="act">Постав свою федеральну землю</span>
+      <span class="ask">Знайшов її в списку? Після цього щось змінилося на екранах?</span></label></li>
+    <li class="step"><input type="checkbox" id="u09"><label for="u09">
+      <span class="act">Признач свій етап на шляху до апробації</span>
+      <span class="ask">Чи впізнав себе в описі? Він відповідає тому, де ти є насправді?</span></label></li>
+    <li class="step"><input type="checkbox" id="u10"><label for="u10">
+      <span class="act">Увімкни темну тему й погортай кілька екранів</span>
+      <span class="ask">Усе читається? Ніде текст не зливається з тлом?</span></label></li>
+    <li class="step"><input type="checkbox" id="u11"><label for="u11">
+      <span class="act">Збільш розмір тексту в налаштуваннях до найбільшого</span>
+      <span class="ask">Нічого не наїхало одне на одне? Кнопки не обрізало?</span></label></li>
+    <li class="step"><input type="checkbox" id="u12"><label for="u12">
+      <span class="act">Додай своє фото й дату народження в профілі</span>
+      <span class="ask">Фото завантажилось? Дата вибирається зручно?</span></label></li>
+    <li class="step"><input type="checkbox" id="u13"><label for="u13">
+      <span class="act">Заховай або поверни смужки на головній (іконка з повзунками вгорі)</span>
+      <span class="ask">Ти б сам здогадався, що цією іконкою налаштовується головний екран?</span></label></li>
+  </ol>
+</section>
+
+<section>
+  <div class="sec-h"><span class="n">3</span><h2>Повчись десять хвилин</h2></div>
+  <p class="lead">Так, як робив би це справді — у черзі, в транспорті, перед сном.</p>
+  <ol class="steps">
+    <li class="step"><input type="checkbox" id="u14"><label for="u14">
+      <span class="act">Пройди щоденне завдання до кінця</span>
+      <span class="ask">Було цікаво чи нудно? Питання по силі, чи занадто легкі або складні?</span></label></li>
+    <li class="step"><input type="checkbox" id="u15"><label for="u15">
+      <span class="act">Подивись таблицю результатів після завдання</span>
+      <span class="ask">Зрозуміло, звідки взялись бали? Хочеться зіграти ще раз?</span></label></li>
+    <li class="step"><input type="checkbox" id="u16"><label for="u16">
+      <span class="act">Спробуй три різні гри з термінами</span>
+      <span class="ask">Яка сподобалась найбільше і чому? Яку більше не відкрив би?</span></label></li>
+    <li class="step"><input type="checkbox" id="u17"><label for="u17">
+      <span class="act">Зайди в налаштування будь-якої гри й зміни щось — регіон, кількість, режим</span>
+      <span class="ask">Зрозуміло, на що впливає кожен перемикач?</span></label></li>
+    <li class="step"><input type="checkbox" id="u18"><label for="u18">
+      <span class="act">Увімкни звук у грі, де термін озвучують</span>
+      <span class="ask">Вимова нормальна? Звучить так, як казав би колега?</span></label></li>
+    <li class="step"><input type="checkbox" id="u19"><label for="u19">
+      <span class="act">Спробуй гру, де слово треба надрукувати з голосу</span>
+      <span class="ask">Реально почути з першого разу? Підказка після помилки допомагає?</span></label></li>
+    <li class="step"><input type="checkbox" id="u20"><label for="u20">
+      <span class="act">Відкрий словник термінів і почитай 5–10 визначень</span>
+      <span class="ask">Написано по-людськи? Чи є щось, що звучить як поганий переклад?</span></label></li>
+    <li class="step"><input type="checkbox" id="u21"><label for="u21">
+      <span class="act">Натисни на визначення — воно перевернеться на переклад</span>
+      <span class="ask">Ти б сам здогадався, що по ньому можна натиснути?</span></label></li>
+    <li class="step"><input type="checkbox" id="u22"><label for="u22">
+      <span class="act">Познач кілька термінів як вивчені й знайди їх потім у списку</span>
+      <span class="ask">Зрозуміло, як це робиться? Прогрес десь видно?</span></label></li>
+  </ol>
+  <div class="note">
+    <b>Тут потрібне саме твоє око лікаря.</b> Якщо визначення виглядає
+    неточним, застарілим або просто дивним — випиши сам термін. Це
+    важливіше за все інше в цьому списку.
+  </div>
+  <div class="ask-box">
+    <h3>Терміни чи визначення, які тебе зачепили</h3>
+    <textarea id="t2" placeholder="Напиши сам термін і що з ним не так"></textarea>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h"><span class="n">4</span><h2>Готуйся до іспиту</h2></div>
+  <p class="lead">Головне, для чого застосунок узагалі існує.</p>
+  <ol class="steps">
+    <li class="step"><input type="checkbox" id="u23"><label for="u23">
+      <span class="act">Склади собі план підготовки</span>
+      <span class="ask">Скільки кроків? Не заплутався? Вийшов план, за яким ти справді вчився б?</span></label></li>
+    <li class="step"><input type="checkbox" id="u24"><label for="u24">
+      <span class="act">Постав дату іспиту й подивись, що порахував застосунок</span>
+      <span class="ask">Навантаження на день виглядає реальним? Ти б витримав такий темп?</span></label></li>
+    <li class="step"><input type="checkbox" id="u25"><label for="u25">
+      <span class="act">Відкрий тему з плану й познач її виконаною</span>
+      <span class="ask">Зрозуміло було, як це зробити?</span></label></li>
+    <li class="step"><input type="checkbox" id="u26"><label for="u26">
+      <span class="act">Перенеси якусь тему на інший день або пропусти день</span>
+      <span class="ask">Знайшов, як це зробити? Чи здалося, що план негнучкий?</span></label></li>
+    <li class="step"><input type="checkbox" id="u27"><label for="u27">
+      <span class="act">Відкрий випадок пацієнта й прочитай його повністю</span>
+      <span class="ask">Схоже на справжній випадок? Логіка тримається? Ліки й дози осмислені?</span></label></li>
+    <li class="step"><input type="checkbox" id="u28"><label for="u28">
+      <span class="act">Переключи рівень складності випадку</span>
+      <span class="ask">Помітна різниця між «легким» і «дуже складним»? Пацієнт справді інший?</span></label></li>
+    <li class="step"><input type="checkbox" id="u29"><label for="u29">
+      <span class="act">Натисни на кілька розділів усередині випадку</span>
+      <span class="ask">Підказки стосуються саме цього діагнозу чи виглядають загальними?</span></label></li>
+    <li class="step"><input type="checkbox" id="u30"><label for="u30">
+      <span class="act">Пройди КП-питання зі своїх тем</span>
+      <span class="ask">Питання схожі на іспитові? Пояснення після відповіді допомагають?</span></label></li>
+    <li class="step"><input type="checkbox" id="u31"><label for="u31">
+      <span class="act">Загляни в протоколи іспитів</span>
+      <span class="ask">Схоже на те, що справді питають? Чи корисно це тобі?</span></label></li>
+  </ol>
+  <div class="ask-box">
+    <h3>Що тут не збігається з твоїм реальним досвідом</h3>
+    <textarea id="t3" placeholder="Якщо ти вже проходив цей шлях — де застосунок каже не те, що було насправді?"></textarea>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h"><span class="n">5</span><h2>Документи й папери</h2></div>
+  <p class="lead">Та частина, через яку всі проходять і всі страждають.</p>
+  <ol class="steps">
+    <li class="step"><input type="checkbox" id="u32"><label for="u32">
+      <span class="act">Відкрий трекер документів і познач те, що в тебе вже є</span>
+      <span class="ask">Список повний? Не бракує чогось, що в тебе просили насправді?</span></label></li>
+    <li class="step"><input type="checkbox" id="u33"><label for="u33">
+      <span class="act">Подивись на колонки — апостиль, нотаріус, переклад, копії</span>
+      <span class="ask">Зрозуміло, що означає кожна? Чи всі вони потрібні у твоєму випадку?</span></label></li>
+    <li class="step"><input type="checkbox" id="u34"><label for="u34">
+      <span class="act">Додай один з додаткових документів зі списку внизу</span>
+      <span class="ask">Ти помітив, що там унизу ще є документи? Чи вони добре заховані?</span></label></li>
+    <li class="step"><input type="checkbox" id="u35"><label for="u35">
+      <span class="act">Вивантаж список документів у PDF</span>
+      <span class="ask">Файл виглядає так, що його не соромно комусь показати?</span></label></li>
+    <li class="step"><input type="checkbox" id="u36"><label for="u36">
+      <span class="act">Пройди «Шлях до апробації» і подивись задачі свого етапу</span>
+      <span class="ask">Задачі відповідають реальності? Порядок логічний?</span></label></li>
+    <li class="step"><input type="checkbox" id="u37"><label for="u37">
+      <span class="act">Натисни на 2–3 посилання із задач</span>
+      <span class="ask">Вони ведуть туди, куди обіцяють?</span></label></li>
+  </ol>
+</section>
+
+<section>
+  <div class="sec-h"><span class="n">6</span><h2>Резюме і лист до відомства</h2></div>
+  <p class="lead">Можна пропустити, якщо тобі це зараз не потрібно — але
+     якщо потрібно, це найкорисніша перевірка з усіх.</p>
+  <ol class="steps">
+    <li class="step"><input type="checkbox" id="u38"><label for="u38">
+      <span class="act">Заповни резюме хоча б наполовину</span>
+      <span class="ask">Полів досить? Чи бракує чогось, що в німецькому Lebenslauf обов'язкове?</span></label></li>
+    <li class="step"><input type="checkbox" id="u39"><label for="u39">
+      <span class="act">Вивантаж резюме в PDF і подивись на нього очима відділу кадрів</span>
+      <span class="ask">Ти подав би це на роботу? Що б виправив?</span></label></li>
+    <li class="step"><input type="checkbox" id="u40"><label for="u40">
+      <span class="act">Склади лист до відомства й прочитай німецький текст</span>
+      <span class="ask">Мова нормальна? Ти б відправив цей лист як є?</span>
+      <span class="skip">Можна пропустити, якщо ти вже все подав.</span></label></li>
+    <li class="step"><input type="checkbox" id="u41"><label for="u41">
+      <span class="act">Закрий застосунок повністю й відкрий знову</span>
+      <span class="ask">Усе, що ти ввів, на місці?</span></label></li>
+  </ol>
+  <div class="note">
+    Резюме зберігається <b>лише на твоєму телефоні</b> — так задумано.
+    Скажи, чи це для тебе проблема: ти б хотів, щоб воно було й на іншому
+    пристрої?
+  </div>
+</section>
+
+<section>
+  <div class="sec-h"><span class="n">7</span><h2>Люди навколо</h2></div>
+  <p class="lead">Можна пропустити цілком — але якщо є з ким спробувати вдвох,
+     це дуже допоможе.</p>
+  <ol class="steps">
+    <li class="step"><input type="checkbox" id="u42"><label for="u42">
+      <span class="act">Подивись розділ пошуку партнера для симуляції FSP</span>
+      <span class="ask">Ти б залишив тут своє оголошення? Що зупиняє?</span></label></li>
+    <li class="step"><input type="checkbox" id="u43"><label for="u43">
+      <span class="act">Подивись, які контакти показуються іншим</span>
+      <span class="ask">Комфортно? Чи хотілося б показувати менше?</span></label></li>
+    <li class="step"><input type="checkbox" id="u44"><label for="u44">
+      <span class="act">Загляни в спільні випадки від інших користувачів</span>
+      <span class="ask">Цікаво читати чужі? Ти б поділився своїм?</span></label></li>
+    <li class="step"><input type="checkbox" id="u45"><label for="u45">
+      <span class="act">Якщо Олег дав тобі код групи — приєднайся й подивись завдання</span>
+      <span class="ask">Зрозуміло, що від тебе хочуть?</span>
+      <span class="skip">Без коду просто пропусти.</span></label></li>
+  </ol>
+</section>
+
+<section>
+  <div class="sec-h"><span class="n">8</span><h2>Дрібниці, які вирішують</h2></div>
+  <p class="lead">Те, через що застосунком або користуються щодня, або
+     видаляють на третій день.</p>
+  <ol class="steps">
+    <li class="step"><input type="checkbox" id="u46"><label for="u46">
+      <span class="act">Увімкни нагадування й постав зручний час</span>
+      <span class="ask">Наступного дня воно прийшло? Текст доречний чи дратує?</span></label></li>
+    <li class="step"><input type="checkbox" id="u47"><label for="u47">
+      <span class="act">Увімкни режим «у літаку» і спробуй повчитися</span>
+      <span class="ask">Що працює без інтернету, а що ні? Чи зрозуміло було, чому щось не працює?</span></label></li>
+    <li class="step"><input type="checkbox" id="u48"><label for="u48">
+      <span class="act">Додай віджет MedTerms на головний екран телефона</span>
+      <span class="ask">Цифри там збігаються з застосунком? Ти б лишив цей віджет собі?</span></label></li>
+    <li class="step"><input type="checkbox" id="u49"><label for="u49">
+      <span class="act">Поверни телефон боком на кількох екранах</span>
+      <span class="ask">Нічого не поламалось?</span></label></li>
+    <li class="step"><input type="checkbox" id="u50"><label for="u50">
+      <span class="act">Зайди в новини всередині застосунку</span>
+      <span class="ask">Це щось, що ти читав би? Чи одразу гортаєш повз?</span></label></li>
+    <li class="step"><input type="checkbox" id="u51"><label for="u51">
+      <span class="act">Через день-два відкрий застосунок ще раз</span>
+      <span class="ask">Захотілось повернутись самому, чи згадав тільки через цей список?</span>
+      <span class="skip">Найважливіше питання всього документа. Дай собі цей день.</span></label></li>
+  </ol>
+</section>
+
+<section>
+  <div class="sec-h"><span class="n">9</span><h2>Реклама і гроші</h2></div>
+  <p class="lead">Хочемо чесно: це дратує чи нормально.</p>
+  <ol class="steps">
+    <li class="step"><input type="checkbox" id="u52"><label for="u52">
+      <span class="act">Поки просто користувався — помітив рекламу?</span>
+      <span class="ask">Вона заважала? Скільки разів трапилась?</span></label></li>
+    <li class="step"><input type="checkbox" id="u53"><label for="u53">
+      <span class="act">Подивись екран підписки</span>
+      <span class="ask">Зрозуміло, за що просять гроші? Різниця між двома тарифами ясна?</span></label></li>
+    <li class="step"><input type="checkbox" id="u54"><label for="u54">
+      <span class="act">Закрий екран підписки й повернись до навчання</span>
+      <span class="ask">Не відчув, що тебе змушують платити?</span></label></li>
+  </ol>
+  <div class="note">
+    Реклама в цій версії — <b>тестова, з написом «Test mode»</b>, це нормально.
+    І покупку завершити <b>неможливо</b>: магазин ще не підключений. Якщо
+    натиснеш «Стати Premium» і нічого не станеться — це не поломка.
+  </div>
+  <div class="ask-box">
+    <h3>Скільки ти заплатив би за таке — і заплатив би взагалі?</h3>
+    <textarea id="t4" placeholder="Кажи як є. «Нічого» — теж корисна відповідь"></textarea>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h"><span class="n">10</span><h2>Останнє, і найважливіше</h2></div>
+  <div class="ask-box">
+    <h3>Де ти зупинився й не зрозумів, що робити далі?</h3>
+    <textarea id="t5" placeholder="Хоч одне місце. Якщо таких не було — так і напиши"></textarea>
+  </div>
+  <div class="ask-box">
+    <h3>Що зламалось або повелося дивно?</h3>
+    <textarea id="t6" placeholder="Що ти робив і що сталося. Якщо є скриншот — надішли окремо"></textarea>
+  </div>
+  <div class="ask-box">
+    <h3>Чого тобі тут бракує?</h3>
+    <textarea id="t7" placeholder="Що ти очікував знайти й не знайшов"></textarea>
+  </div>
+  <div class="ask-box">
+    <h3>Що б ти прибрав або спростив?</h3>
+    <textarea id="t8" placeholder="Часто це корисніше за «додайте ще»"></textarea>
+  </div>
+  <div class="ask-box">
+    <h3>Порадив би колезі, який готується до іспиту? Чому так або чому ні?</h3>
+    <textarea id="t9" placeholder="Найчесніша відповідь — найкорисніша"></textarea>
+  </div>
+  <div class="ask-box">
+    <h3>Твоє ім'я, телефон і мова, якою користувався</h3>
+    <textarea id="t10" placeholder="Наприклад: Марія, iPhone 13, українська" style="min-height:52px"></textarea>
+  </div>
+</section>
+
+<div class="finish" id="finish">
+  <h2>Готово — надішли Олегу</h2>
+  <p>Кнопка збере всі твої відповіді в одне повідомлення. Відкриється
+     месенджер — просто обери там Олега й натисни «надіслати».
+     Нічого копіювати вручну не треба.</p>
+  <div class="send">
+    <a class="send-btn" id="sendTg" href="#" target="_blank" rel="noopener">Надіслати в Telegram</a>
+    <a class="send-btn alt" id="sendWa" href="#" target="_blank" rel="noopener">Через WhatsApp</a>
+    <button class="ctl ghost" id="btnCopy">Просто скопіювати</button>
+    <span class="sent-msg" id="copyMsg"></span>
+  </div>
+  <details class="preview">
+    <summary>Подивитись, що саме надішлеться</summary>
+    <pre id="prev"></pre>
+  </details>
+</div>
+
+<footer>Дякуємо. Серйозно — година твого часу економить нам місяці здогадок.</footer>
+</div>
+
+<script>
+(function(){
+  var KEY = 'medterms-user-check-v2';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.step input[type=checkbox]'));
+  var areas = Array.prototype.slice.call(document.querySelectorAll('textarea'));
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e) { saved = {}; }
+
+  function persist(){
+    var o = {};
+    boxes.forEach(function(b){ if (b.checked) o[b.id] = 1; });
+    areas.forEach(function(a){ if (a.value.trim()) o[a.id] = a.value; });
+    try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e) {}
+  }
+
+  function paint(){
+    var done = 0;
+    boxes.forEach(function(b){
+      var li = b.closest('.step');
+      if (li) li.classList.toggle('done', b.checked);
+      if (b.checked) done++;
+    });
+    var pct = boxes.length ? Math.round(done / boxes.length * 100) : 0;
+    var bar = document.getElementById('pbar');
+    if (bar) bar.style.width = pct + '%';
+    var c = document.getElementById('pcount');
+    if (c) c.textContent = done + ' / ' + boxes.length;
+    refreshLinks();
+  }
+
+  function report(){
+    var out = ['MedTerms — відгук'];
+    var who = document.getElementById('t10');
+    if (who && who.value.trim()) out.push('Від: ' + who.value.trim().replace(/\s+/g, ' '));
+    var done = boxes.filter(function(b){ return b.checked; }).length;
+    out.push('Пройдено: ' + done + ' з ' + boxes.length);
+    out.push('');
+
+    document.querySelectorAll('section').forEach(function(sec){
+      sec.querySelectorAll('.ask-box').forEach(function(box){
+        var h = box.querySelector('h3');
+        var a = box.querySelector('textarea');
+        if (!h || !a || a.id === 't10' || !a.value.trim()) return;
+        out.push('▸ ' + h.textContent.trim());
+        out.push(a.value.trim());
+        out.push('');
+      });
+    });
+
+    var skipped = [];
+    document.querySelectorAll('section').forEach(function(sec){
+      var h2 = sec.querySelector('.sec-h h2');
+      var miss = Array.prototype.slice
+        .call(sec.querySelectorAll('.step input[type=checkbox]'))
+        .filter(function(b){ return !b.checked; });
+      var total = sec.querySelectorAll('.step input[type=checkbox]').length;
+      if (h2 && total && miss.length === total) skipped.push(h2.textContent.trim());
+    });
+    if (skipped.length){
+      out.push('Не робив узагалі: ' + skipped.join(', '));
+      out.push('');
+    }
+    return out.join('\n').trim();
+  }
+
+  function refreshLinks(){
+    var text = report();
+    var enc = encodeURIComponent(text);
+    var tg = document.getElementById('sendTg');
+    // Telegram сам покаже вибір чату — адреса Олега тут не потрібна.
+    if (tg) tg.href = 'https://t.me/share/url?url=' +
+      encodeURIComponent('https://medterms.app') + '&text=' + enc;
+    var wa = document.getElementById('sendWa');
+    if (wa) wa.href = 'https://wa.me/?text=' + enc;
+    var prev = document.getElementById('prev');
+    if (prev) prev.textContent = text;
+  }
+
+  boxes.forEach(function(b){
+    if (saved[b.id]) b.checked = true;
+    b.addEventListener('change', function(){ persist(); paint(); });
+  });
+  areas.forEach(function(a){
+    if (saved[a.id]) a.value = saved[a.id];
+    a.addEventListener('input', function(){ persist(); refreshLinks(); });
+  });
+
+  var msg = document.getElementById('copyMsg');
+  var bc = document.getElementById('btnCopy');
+  if (bc) bc.addEventListener('click', function(){
+    var text = report();
+    var ok = function(){
+      if (msg){ msg.textContent = 'Скопійовано ✓';
+        setTimeout(function(){ msg.textContent = ''; }, 2500); }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(ok, fb);
+    } else { fb(); }
+    function fb(){
+      var ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); ok(); }
+      catch(e){ if (msg) msg.textContent = 'Не вийшло — розгорни текст нижче й скопіюй вручну'; }
+      document.body.removeChild(ta);
+    }
+  });
+
+  var bj = document.getElementById('btnJump');
+  if (bj) bj.addEventListener('click', function(){
+    var f = document.getElementById('finish');
+    if (f) f.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  var br = document.getElementById('btnReset');
+  if (br) br.addEventListener('click', function(){
+    if (!window.confirm('Стерти всі галочки й відповіді?')) return;
+    boxes.forEach(function(b){ b.checked = false; });
+    areas.forEach(function(a){ a.value = ''; });
+    persist(); paint();
+  });
+
+  paint();
+})();
+</script>
+</body>
+</html>
