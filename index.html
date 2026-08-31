@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MedTerms — In 8 Wochen FSP-bereit</title>
-<meta name="description" content="2934 medizinische Fachbegriffe für die Fachsprachprüfung. Audio von Muttersprachlern, 5 Lernmodi, Bundesland-Filter. In 8 Wochen FSP-bereit.">
+<title>MedTerms — Medizinisches Deutsch für FSP und KP</title>
+<meta name="description" content="2 694 medizinische Fachbegriffe mit Audio, 5 342 Prüfungsprotokolle, 1 192 Patientenfälle und Lernpläne für alle 16 Bundesländer — für ausländische Ärzte auf dem Weg zur Approbation.">
 
 <!-- Open Graph / Social sharing -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://medterms.app/">
-<meta property="og:title" content="MedTerms — FSP in 8 Wochen schaffen">
-<meta property="og:description" content="2934 Fachbegriffe, Audio, Spiele. Täglich 20 Minuten bis zum Ziel.">
+<meta property="og:title" content="MedTerms — Medizinisches Deutsch für FSP und KP">
+<meta property="og:description" content="2 694 Fachbegriffe mit Audio, 7 Lernmodi, Lernpläne für alle 16 Bundesländer. Kostenlos nutzbar.">
 <meta property="og:image" content="https://medterms.app/og-image.png">
 <meta property="og:locale" content="de_DE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MedTerms — FSP in 8 Wochen schaffen">
-<meta name="twitter:description" content="2934 Fachbegriffe, Audio, Spiele. Täglich 20 Minuten bis zum Ziel.">
+<meta name="twitter:title" content="MedTerms — Medizinisches Deutsch für FSP und KP">
+<meta name="twitter:description" content="2 694 Fachbegriffe mit Audio, 7 Lernmodi, Lernpläne für alle 16 Bundesländer. Kostenlos nutzbar.">
 <meta name="twitter:image" content="https://medterms.app/og-image.png">
 
 <!-- Favicons (PNG, generated from app icon at branding/source/gm-icon-light.png) -->
@@ -33,11 +33,10 @@
   "@context":"https://schema.org",
   "@type":"MobileApplication",
   "name":"MedTerms",
-  "description":"2934 medical terms for Fachsprachprüfung. Audio, flashcards, 5 game modes.",
+  "description":"2,694 medical terms with audio, 5,342 exam protocols and study plans for all 16 German federal states — for foreign doctors preparing for FSP and Kenntnisprüfung.",
   "operatingSystem":"iOS, ANDROID",
   "applicationCategory":"EducationApplication",
-  "offers":{"@type":"Offer","price":"4.99","priceCurrency":"EUR"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"142"},
+  "offers":{"@type":"Offer","price":"3.99","priceCurrency":"EUR"},
   "url":"https://medterms.app/"
 }
 </script>
@@ -65,8 +64,9 @@ body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:#F7F9FC
 .hero{padding:56px 24px 40px;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(149,134,253,.18),transparent 60%);pointer-events:none;z-index:0}
 .hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center}
-.pain-badge{display:inline-flex;align-items:center;gap:8px;background:#FEF2F2;border:1px solid #FECACA;color:#DC2626;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:18px}
-.pain-badge::before{content:"⚠";font-size:14px}
+/* Спокійний факт, а не тривога: текст більше не лякає статистикою
+   провалів, тому і колір узято з палітри застосунку. */
+.pain-badge{display:inline-flex;align-items:center;gap:8px;background:#EEF2F7;border:1px solid #D3D7E0;color:#242833;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:18px}
 .hero h1{font-size:48px;font-weight:800;color:#242833;letter-spacing:-.8px;line-height:1.1;margin-bottom:18px}
 .hero h1 .grad{background:linear-gradient(135deg,#78B5FA,#9586FD);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero .lead{font-size:18px;color:#4B5563;line-height:1.6;margin-bottom:26px;max-width:520px}
@@ -366,9 +366,9 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="pain-badge" id="pain-badge">30% fallen durch die FSP</div>
-      <h1 id="hero-h1">In <span class="grad">8 Wochen</span> FSP-bereit.</h1>
-      <p class="lead" id="hero-lead">2934 Fachbegriffe, Audio von Muttersprachlern, 5 Lernmodi — entwickelt für ausländische Ärzte in Deutschland. Täglich 20 Minuten bis zum Ziel.</p>
+      <div class="pain-badge" id="pain-badge">Von einem Arzt in Deutschland entwickelt</div>
+      <h1 id="hero-h1">Medizinisches Deutsch für <span class="grad">FSP und KP</span>.</h1>
+      <p class="lead" id="hero-lead">2 694 Fachbegriffe mit Audio, 5 342 Prüfungsprotokolle, 1 192 Patientenfälle und Lernpläne für alle 16 Bundesländer — für ausländische Ärzte auf dem Weg zur Approbation.</p>
       <div class="hero-ctas">
         <a href="medterms://login" class="btn-primary">
           <span id="hero-cta-primary">Kostenlos starten</span>
@@ -377,9 +377,7 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
         <a href="#how" class="btn-ghost" id="hero-cta-secondary">So funktioniert's</a>
       </div>
       <div class="social-proof">
-        <span class="stars">★★★★★</span>
-        <span class="rating-text">4.8/5</span>
-        <span id="rating-count">· 142 Bewertungen von Ärzten</span>
+        <span id="rating-count">Kostenlos nutzbar · 11 Sprachen · iOS und Android</span>
       </div>
     </div>
     <div class="phone">
@@ -401,19 +399,6 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
 </section>
 
 <!-- ===== TESTIMONIAL ===== -->
-<section class="section fade-in">
-  <div class="testimonial">
-    <p class="quote" id="testimonial-quote">MedTerms hat mir in 6 Wochen die FSP beschert. Das Audio macht den Unterschied — endlich höre ich wie ein Muttersprachler spricht.</p>
-    <div class="author">
-      <div class="avatar">IM</div>
-      <div class="author-info">
-        <div class="author-name" id="testimonial-name">Dr. Iryna M.</div>
-        <div class="author-role" id="testimonial-role">Anästhesistin · Berlin</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== HOW IT WORKS ===== -->
 <section class="section fade-in" id="how">
   <div class="section-title">
@@ -442,10 +427,10 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
 <!-- ===== STATS + FEATURES ===== -->
 <section class="section fade-in">
   <div class="stats">
-    <div class="stat"><div class="num">2934</div><div class="label" id="stat-terms">Begriffe</div></div>
-    <div class="stat"><div class="num">17k+</div><div class="label" id="stat-audio">Audio-Dateien</div></div>
-    <div class="stat"><div class="num">5+</div><div class="label" id="stat-modes">Lernmodi</div></div>
-    <div class="stat"><div class="num">100+</div><div class="label" id="stat-cases">Patientenfälle</div></div>
+    <div class="stat"><div class="num">2 694</div><div class="label" id="stat-terms">Begriffe</div></div>
+    <div class="stat"><div class="num">16 164</div><div class="label" id="stat-audio">Audio-Dateien</div></div>
+    <div class="stat"><div class="num">7</div><div class="label" id="stat-modes">Lernmodi</div></div>
+    <div class="stat"><div class="num">1 192</div><div class="label" id="stat-cases">Patientenfälle</div></div>
     <div class="stat"><div class="num">16</div><div class="label" id="stat-states">Bundesländer</div></div>
     <div class="stat"><div class="num">11</div><div class="label" id="stat-langs">Sprachen UI</div></div>
   </div>
@@ -457,8 +442,8 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
     </div>
     <div class="feature">
       <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
-      <h3 id="f2-title">Audio wie ein Muttersprachler</h3>
-      <p id="f2-text">17 604 Audio-Dateien mit zwei Stimmen. Endlich die richtige Aussprache.</p>
+      <h3 id="f2-title">Jeder Begriff vertont — zwei Stimmen</h3>
+      <p id="f2-text">16 164 Aufnahmen: Latein, deutscher Begriff und Definition — jeweils mit männlicher und weiblicher Stimme.</p>
     </div>
     <div class="feature">
       <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
@@ -467,8 +452,8 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
     </div>
     <div class="feature">
       <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M19 14c1.66 0 2.99-1.34 2.99-3S20.66 8 19 8c-.18 0-.35.02-.52.05.34.54.53 1.17.53 1.95S18.81 11.41 18.48 12c.17.03.34.05.52.05zM5 14c1.66 0 2.99-1.34 2.99-3S6.66 8 5 8c-.18 0-.35.02-.52.05C4.81 8.59 5 9.22 5 10s-.19 1.41-.52 2c.17.03.34.05.52.05zm7-1c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
-      <h3 id="f4-title">5 Lernmodi gegen Langeweile</h3>
-      <p id="f4-text">Flashcards, Quiz, Lückentexte, Matching, Daily Challenge mit Leaderboard.</p>
+      <h3 id="f4-title">7 Lernmodi gegen Langeweile</h3>
+      <p id="f4-text">Karteikarten, Quiz, Lückentexte, Matching, Hörauswahl, Diktat und Daily Challenge mit Bestenliste.</p>
     </div>
   </div>
 </section>
@@ -660,8 +645,8 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
 <!-- ===== COMPARISON ===== -->
 <section class="section fade-in">
   <div class="section-title">
-    <h2 id="cmp-title">Warum MedTerms?</h2>
-    <p id="cmp-sub">Anki kostet Zeit. AMBOSS kostet Geld. MedTerms spart beides.</p>
+    <h2 id="cmp-title">Kostenlos und Premium</h2>
+    <p id="cmp-sub">Der Lernteil ist vollständig kostenlos. Premium entfernt die Werbung und öffnet das Protokoll-Archiv.</p>
   </div>
   <div class="compare-scroll">
     <div class="compare">
@@ -669,47 +654,40 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
         <thead>
           <tr>
             <th id="cmp-h-feature">Funktion</th>
-            <th>Anki</th>
-            <th>AMBOSS</th>
-            <th class="highlight">MedTerms</th>
+            <th id="cmp-h-free">Kostenlos</th>
+            <th class="highlight" id="cmp-h-prem">Premium</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td id="cmp-r1">2934 FSP-Begriffe fertig</td>
-            <td class="cross">✗</td>
+            <td id="cmp-r1">2 694 Begriffe, alle 7 Lernmodi, Audio</td>
             <td class="check">✓</td>
             <td class="highlight check">✓</td>
           </tr>
           <tr>
-            <td id="cmp-r2">Audio mit Muttersprachlern</td>
-            <td class="cross">✗</td>
+            <td id="cmp-r2">Lernpläne, Patientenfälle, Approbations-Hub</td>
             <td class="check">✓</td>
-            <td class="highlight check">✓ 17k+</td>
+            <td class="highlight check">✓</td>
           </tr>
           <tr>
-            <td id="cmp-r3">Bundesland-Filter</td>
-            <td class="cross">✗</td>
+            <td id="cmp-r3">Lebenslauf, Dokumente, PDF-Export</td>
+            <td class="check">✓</td>
+            <td class="highlight check">✓</td>
+          </tr>
+          <tr>
+            <td id="cmp-r4">5 342 Prüfungsprotokolle im Volltext</td>
             <td class="cross">✗</td>
             <td class="highlight check">✓</td>
           </tr>
           <tr>
-            <td id="cmp-r4">Patientensprache</td>
-            <td class="cross">✗</td>
-            <td class="cross">✗</td>
-            <td class="highlight check">✓</td>
-          </tr>
-          <tr>
-            <td id="cmp-r5">11 Sprachen UI</td>
-            <td class="check">✓</td>
+            <td id="cmp-r5">Ohne Werbung</td>
             <td class="cross">✗</td>
             <td class="highlight check">✓</td>
           </tr>
           <tr>
             <td id="cmp-r6">Preis / Monat</td>
             <td>0 €</td>
-            <td>29 €</td>
-            <td class="highlight"><strong>4,99 €</strong></td>
+            <td class="highlight"><strong>3,99 €</strong></td>
           </tr>
         </tbody>
       </table>
@@ -724,8 +702,8 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
     <p id="faq-sub">Alles, was du vor dem Start wissen musst.</p>
   </div>
   <div class="faq">
-    <details class="faq-item"><summary id="faq1-q">Kann ich kostenlos testen?</summary><div class="answer" id="faq1-a">Ja. Die kostenlose Version enthält alle 2934 Begriffe und alle Lernmodi — mit Werbung. Premium entfernt die Werbung und schaltet Statistiken und Bestenliste frei.</div></details>
-    <details class="faq-item"><summary id="faq2-q">Wie lange brauche ich bis zur FSP?</summary><div class="answer" id="faq2-a">Bei 20 Minuten täglich sind die meisten Nutzer nach 6–10 Wochen bereit. Der Bundesland-Filter und die Spaced-Repetition sparen dir Zeit.</div></details>
+    <details class="faq-item"><summary id="faq1-q">Kann ich kostenlos testen?</summary><div class="answer" id="faq1-a">Ja. Lernteil, Pläne, Patientenfälle, Lebenslauf und Dokumente sind dauerhaft kostenlos und über Werbung finanziert. Premium (3,99 €/Monat) entfernt die Werbung und öffnet das Archiv mit 5 342 Prüfungsprotokollen.</div></details>
+    <details class="faq-item"><summary id="faq2-q">Wie lange brauche ich bis zur FSP?</summary><div class="answer" id="faq2-a">Das hängt von deinem Sprachniveau und deiner Vorbereitung ab — eine ehrliche Zahl kann dir niemand nennen. Die App verspricht kein Datum, sondern gibt dir einen Plan: du trägst deinen Prüfungstermin ein, und die Themen verteilen sich auf deine Lerntage.</div></details>
     <details class="faq-item"><summary id="faq3-q">Funktioniert die App ohne Internet?</summary><div class="answer" id="faq3-a">Lerninhalte und Karteikarten funktionieren komplett offline. Audio wird aus der Cloud gestreamt — einmal angehört, wird es lokal gespeichert.</div></details>
     <details class="faq-item"><summary id="faq4-q">iPhone oder Android?</summary><div class="answer" id="faq4-a">Beide. Demnächst im App Store und Google Play. Dein Fortschritt synchronisiert sich automatisch zwischen Geräten.</div></details>
     <details class="faq-item"><summary id="faq5-q">Wer hat MedTerms entwickelt?</summary><div class="answer" id="faq5-a">MedTerms wurde von einem Arzt in Deutschland entwickelt — für Ärzte, die den gleichen Weg gehen. Jeder Begriff, jedes Beispiel ist aus der Praxis.</div></details>
@@ -738,7 +716,7 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
 
 <!-- ===== BOTTOM CTA ===== -->
 <section class="cta-bottom fade-in">
-  <h2 id="cta-title">Bereit, die FSP beim ersten Versuch zu bestehen?</h2>
+  <h2 id="cta-title">Fang heute mit dem ersten Begriff an.</h2>
   <p id="cta-subtitle">Starte kostenlos. Keine Kreditkarte. Keine Bindung.</p>
   <a href="medterms://login" class="btn" id="cta-btn">Kostenlos starten →</a>
   <div class="badges">
@@ -769,12 +747,12 @@ footer{background:#fff;border-top:1px solid #EEF0F9;padding:36px 24px 28px;text-
 
 <script>
 const T={
-de:{title:'MedTerms — In 8 Wochen FSP-bereit',pain:'30% fallen durch die FSP',h1a:'In',h1b:'8 Wochen',h1c:'FSP-bereit.',lead:'2934 Fachbegriffe, Audio von Muttersprachlern, 5 Lernmodi — entwickelt für ausländische Ärzte in Deutschland. Täglich 20 Minuten bis zum Ziel.',ctaP:'Kostenlos starten',ctaS:"So funktioniert's",rating:'· 142 Bewertungen von Ärzten',home:'Start',privacy:'Privacy',terms:'Terms',support:'Support',
+de:{title:'MedTerms — Medizinisches Deutsch für FSP und KP',pain:'Von einem Arzt in Deutschland entwickelt',h1a:'Medizinisches Deutsch für',h1b:'FSP und KP',h1c:'.',lead:'2 694 Fachbegriffe mit Audio, 5 342 Prüfungsprotokolle, 1 192 Patientenfälle und Lernpläne für alle 16 Bundesländer — für ausländische Ärzte auf dem Weg zur Approbation.',ctaP:'Kostenlos starten',ctaS:"So funktioniert's",rating:'Kostenlos nutzbar · 11 Sprachen · iOS und Android',home:'Start',privacy:'Privacy',terms:'Terms',support:'Support',
 pDef:'Erschwerte Atmung, subjektiv vom Patienten als „Luftnot" wahrgenommen.',pAudio:'Anhören',pS1:'Gelernt',pS2:'Streak',pS3:'Fortschritt',
-tQuote:'MedTerms hat mir in 6 Wochen die FSP beschert. Das Audio macht den Unterschied — endlich höre ich wie ein Muttersprachler spricht.',tName:'Dr. Iryna M.',tRole:'Anästhesistin · Berlin',
+
 hT:"So funktioniert's",hS:'In drei Schritten auf die FSP vorbereitet.',s1t:'Registriere dich',s1p:'30 Sekunden — E-Mail oder Google-Konto. Kostenlos.',s2t:'Wähle dein Bundesland',s2p:'Inhalte filtern sich automatisch nach deinem Zielbundesland und Fachgebiet.',s3t:'Lerne täglich 20 Minuten',s3p:'Flashcards, Quiz und Audio. Dein Fortschritt synchronisiert sich überall.',
 st1:'Begriffe',st2:'Audio-Dateien',st3:'Lernmodi',stCases:'Patientenfälle',stStates:'Bundesländer',st4:'Sprachen UI',
-f1t:'Karteikarten mit Klinik-Beispielen',f1:'Latein → Deutsch → Patientensprache. So, wie du es im Krankenhaus brauchst.',f2t:'Audio wie ein Muttersprachler',f2:'17 604 Audio-Dateien mit zwei Stimmen. Endlich die richtige Aussprache.',f3t:'16 Bundesländer — dein Bundesland',f3:'Nur das, was dein FSP-Prüfer wirklich fragt. Kein unnötiger Ballast.',f4t:'5 Lernmodi gegen Langeweile',f4:'Flashcards, Quiz, Lückentexte, Matching, Daily Challenge mit Leaderboard.',
+f1t:'Karteikarten mit Klinik-Beispielen',f1:'Latein → Deutsch → Patientensprache. So, wie du es im Krankenhaus brauchst.',f2t:'Jeder Begriff vertont — zwei Stimmen',f2:'16 164 Aufnahmen: Latein, deutscher Begriff und Definition — jeweils mit männlicher und weiblicher Stimme.',f3t:'16 Bundesländer — dein Bundesland',f3:'Nur das, was dein FSP-Prüfer wirklich fragt. Kein unnötiger Ballast.',f4t:'7 Lernmodi gegen Langeweile',f4:'Karteikarten, Quiz, Lückentexte, Matching, Hörauswahl, Diktat und Daily Challenge mit Bestenliste.',
 capT:'Mehr als ein Vokabeltrainer',capS:'MedTerms begleitet dich durch den ganzen Approbations-Weg — von der ersten Vokabel bis zur Stellenbewerbung.',
 cat1t:'Lernspiele & Spaced Repetition',cat1l1:'Karteikarten mit Audio-Aussprache',cat1l2:'Multiple-Choice-Quiz',cat1l3:'Lückentexte (Cloze)',cat1l4:'Matching-Spiel',cat1l5:'Glücksrad — Solo & Multiplayer',cat1l6:'Tägliche Challenge mit Bestenliste',cat1l7:'Spaced Repetition (Score 3/2/1/0)',
 cat2t:'Persönliche Studienpläne',cat2l1:'KP-Plan: eigene Themen, Tempo, Reihenfolge',cat2l2:'FSP-Plan nach deinem Bundesland',cat2l3:'Prüfungsdatum, Wochentage, Themen pro Tag',cat2l4:'Themen verschieben, fixieren, überspringen',cat2l5:'Tägliche Erinnerung zur Wunschzeit',cat2l6:'PDF-Export für Druck oder Notizbuch',
@@ -783,10 +761,10 @@ cat4t:'FSP-Praxis (mündlich)',cat4l1:'Patientenfälle: Anamnese & Vorstellung',
 cat5t:'Wissens-Hub & Job',cat5l1:'Artikel zur FSP- & KP-Vorbereitung',cat5l2:'Tipps von erfahrenen Ärzten',cat5l3:'Job-Ressourcen für deutsche Kliniken',cat5l4:'Bewerbungs-Vorlagen',cat5l5:'Praxis-Hinweise zu jedem Schritt',
 cat6t:'Komfort & Synchronisation',cat6l1:'Komplett offline-fähig',cat6l2:'Heller & dunkler Modus',cat6l3:'Sync zwischen iPhone, iPad & Android',cat6l4:'Home-Screen-Widget',cat6l5:'Werbefrei in Premium',cat6l6:'11 UI-Sprachen inkl. Arabisch (RTL)',
 cat7t:'Community & Updates',cat7l1:'Übungspartner per Region finden (Simulation Partner)',cat7l2:'FSP-Dialoge im In-App-Chat üben',cat7l3:'Einladungen, Blockieren, sichere Verbindung',cat7l4:'News-Feed zu FSP & Approbation',cat7l5:'Updates zu Bundesland-Anforderungen',cat7l6:'Tipps von Ärzten, die schon bestanden haben',
-cT:'Warum MedTerms?',cS:'Anki kostet Zeit. AMBOSS kostet Geld. MedTerms spart beides.',cH:'Funktion',c1:'2934 FSP-Begriffe fertig',c2:'Audio mit Muttersprachlern',c3:'Bundesland-Filter',c4:'Patientensprache',c5:'11 Sprachen UI',c6:'Preis / Monat',
+cT:'Kostenlos und Premium',cS:'Der Lernteil ist vollständig kostenlos. Premium entfernt die Werbung und öffnet das Protokoll-Archiv.',cH:'Funktion',cHf:'Kostenlos',cHp:'Premium',c1:'2 694 Begriffe, alle 7 Lernmodi, Audio',c2:'Lernpläne, Patientenfälle, Approbations-Hub',c3:'Lebenslauf, Dokumente, PDF-Export',c4:'5 342 Prüfungsprotokolle im Volltext',c5:'Ohne Werbung',c6:'Preis / Monat',
 faqT:'Häufige Fragen',faqS:'Alles, was du vor dem Start wissen musst.',
-q1:'Kann ich kostenlos testen?',a1:'Ja. Die kostenlose Version enthält alle 2934 Begriffe und alle Lernmodi — mit Werbung. Premium entfernt die Werbung und schaltet Statistiken und Bestenliste frei.',
-q2:'Wie lange brauche ich bis zur FSP?',a2:'Bei 20 Minuten täglich sind die meisten Nutzer nach 6–10 Wochen bereit. Der Bundesland-Filter und die Spaced-Repetition sparen dir Zeit.',
+q1:'Kann ich kostenlos testen?',a1:'Ja. Lernteil, Pläne, Patientenfälle, Lebenslauf und Dokumente sind dauerhaft kostenlos und über Werbung finanziert. Premium (3,99 €/Monat) entfernt die Werbung und öffnet das Archiv mit 5 342 Prüfungsprotokollen.',
+q2:'Wie lange brauche ich bis zur FSP?',a2:'Das hängt von deinem Sprachniveau und deiner Vorbereitung ab — eine ehrliche Zahl kann dir niemand nennen. Die App verspricht kein Datum, sondern gibt dir einen Plan: du trägst deinen Prüfungstermin ein, und die Themen verteilen sich auf deine Lerntage.',
 q3:'Funktioniert die App ohne Internet?',a3:'Lerninhalte und Karteikarten funktionieren komplett offline. Audio wird aus der Cloud gestreamt — einmal angehört, wird es lokal gespeichert.',
 q4:'iPhone oder Android?',a4:'Beide. Demnächst im App Store und Google Play. Dein Fortschritt synchronisiert sich automatisch zwischen Geräten.',
 q5:'Wer hat MedTerms entwickelt?',a5:'MedTerms wurde von einem Arzt in Deutschland entwickelt — für Ärzte, die den gleichen Weg gehen. Jeder Begriff, jedes Beispiel ist aus der Praxis.',
@@ -794,14 +772,14 @@ q6:'Kann ich jederzeit kündigen?',a6:'Ja. Premium-Abos verwaltest du komplett i
 q7:'Kann ich einen eigenen Studienplan erstellen?',a7:'Ja — der Plan-Builder fragt nach deinem Prüfungsdatum, Wochentagen und Themen pro Tag. Die App verteilt automatisch alle KP-Themen über deine verfügbaren Lerntage. Du kannst Themen verschieben, fixieren oder überspringen — der Plan reagiert sofort.',
 q8:'Welche Hilfe gibt es zur Approbation selbst?',a8:'Der Approbations-Hub zeigt dir den vollständigen Etappenplan (EU oder Nicht-EU), die zuständige Behörde deines Bundeslandes, Sprachschulen, Ärztekammern, eine Dokumenten-Checkliste und Lebenslauf-Vorlagen mit Praxis-Beispielen.',
 q9:'Bekomme ich Erinnerungen?',a9:'Ja. Du wählst eine Wunschzeit, und die App erinnert dich täglich an deine Themen für heute. Du kannst die Erinnerung jederzeit pausieren oder ausschalten.',
-ctaT:'Bereit, die FSP beim ersten Versuch zu bestehen?',ctaSub:'Starte kostenlos. Keine Kreditkarte. Keine Bindung.',ctaBtn:'Kostenlos starten →',tag:'Medizinische Fachbegriffe meistern'
+ctaT:'Fang heute mit dem ersten Begriff an.',ctaSub:'Starte kostenlos. Keine Kreditkarte. Keine Bindung.',ctaBtn:'Kostenlos starten →',tag:'Medizinische Fachbegriffe meistern'
 },
-en:{title:'MedTerms — FSP-ready in 8 weeks',pain:'30% fail the Fachsprachprüfung',h1a:'FSP-ready in',h1b:'8 weeks',h1c:'.',lead:'2934 medical terms, native-speaker audio, 5 learning modes — built for foreign doctors in Germany. 20 minutes a day to your goal.',ctaP:'Start for free',ctaS:'How it works',rating:'· 142 doctor reviews',home:'Home',privacy:'Privacy',terms:'Terms',support:'Support',
+en:{title:'MedTerms — medical German for FSP and KP',pain:'Built by a doctor in Germany',h1a:'Medical German for',h1b:'FSP and KP',h1c:'.',lead:'2,694 medical terms with audio, 5,342 exam protocols, 1,192 patient cases and study plans for all 16 federal states — for foreign doctors on the way to Approbation.',ctaP:'Start for free',ctaS:'How it works',rating:'Free to use · 11 languages · iOS and Android',home:'Home',privacy:'Privacy',terms:'Terms',support:'Support',
 pDef:'Laboured breathing, subjectively experienced as "shortness of breath".',pAudio:'Listen',pS1:'Learned',pS2:'Streak',pS3:'Progress',
-tQuote:'MedTerms got me FSP-ready in 6 weeks. The audio is the game-changer — finally I hear how a native speaks.',tName:'Dr. Iryna M.',tRole:'Anesthesiologist · Berlin',
+
 hT:'How it works',hS:'Three steps to FSP readiness.',s1t:'Sign up',s1p:'30 seconds — email or Google account. Free forever.',s2t:'Pick your federal state',s2p:'Content filters automatically by your target Bundesland and specialty.',s3t:'Learn 20 minutes daily',s3p:'Flashcards, quizzes and audio. Your progress syncs everywhere.',
 st1:'Terms',st2:'Audio files',st3:'Game modes',stCases:'Patient cases',stStates:'Federal states',st4:'UI languages',
-f1t:'Flashcards with clinical examples',f1:'Latin → German → patient language. The way you actually need it in hospital.',f2t:'Audio like a native speaker',f2:'17,604 audio files with two voices. Finally the right pronunciation.',f3t:'16 Bundesländer — yours is covered',f3:"Only what your FSP examiner really asks. No unnecessary ballast.",f4t:'5 modes against boredom',f4:'Flashcards, Quiz, Cloze, Matching, Daily Challenge with leaderboard.',
+f1t:'Flashcards with clinical examples',f1:'Latin → German → patient language. The way you actually need it in hospital.',f2t:'Every term voiced — two voices',f2:'16,164 recordings: Latin, the German term and the definition — each in a male and a female voice.',f3t:'16 Bundesländer — yours is covered',f3:"Only what your FSP examiner really asks. No unnecessary ballast.",f4t:'7 modes against boredom',f4:'Flashcards, quiz, cloze, matching, listening choice, dictation and a daily challenge with a leaderboard.',
 capT:'More than a vocabulary trainer',capS:'MedTerms walks with you through the whole approbation journey — from your first word to your first job application.',
 cat1t:'Learning games & spaced repetition',cat1l1:'Flashcards with audio pronunciation',cat1l2:'Multiple-choice quiz',cat1l3:'Cloze (fill-in-the-blank)',cat1l4:'Matching game',cat1l5:'Fortune Wheel — solo & multiplayer',cat1l6:'Daily challenge with leaderboard',cat1l7:'Spaced repetition (score 3/2/1/0)',
 cat2t:'Personal study plans',cat2l1:'KP plan: pick topics, pace, order',cat2l2:'FSP plan tailored to your Bundesland',cat2l3:'Exam date, weekdays, topics per day',cat2l4:'Move, pin or skip individual topics',cat2l5:'Daily reminder at your chosen time',cat2l6:'PDF export for print or notebook',
@@ -810,10 +788,10 @@ cat4t:'FSP practice (oral exam)',cat4l1:'Patient cases: anamnesis & presentation
 cat5t:'Knowledge hub & job',cat5l1:'Articles on FSP & KP preparation',cat5l2:'Tips from experienced doctors',cat5l3:'Job resources for German hospitals',cat5l4:'Application templates',cat5l5:'Practical hints for every step',
 cat6t:'Comfort & sync',cat6l1:'Fully offline-capable',cat6l2:'Light & dark mode',cat6l3:'Sync across iPhone, iPad & Android',cat6l4:'Home-screen widget',cat6l5:'Ad-free with Premium',cat6l6:'11 UI languages incl. Arabic (RTL)',
 cat7t:'Community & updates',cat7l1:'Find a study partner by region (Simulation Partner)',cat7l2:'Practice FSP dialogs in in-app chat',cat7l3:'Invitations, blocking, safe connection',cat7l4:'News feed on FSP & Approbation',cat7l5:'Updates on Bundesland requirements',cat7l6:'Tips from doctors who already passed',
-cT:'Why MedTerms?',cS:'Anki costs time. AMBOSS costs money. MedTerms saves both.',cH:'Feature',c1:'2934 FSP terms ready',c2:'Native-speaker audio',c3:'Bundesland filter',c4:'Patient language',c5:'11 UI languages',c6:'Price / month',
+cT:'Free and Premium',cS:'The learning part is completely free. Premium removes the ads and opens the protocol archive.',cH:'Feature',cHf:'Free',cHp:'Premium',c1:'2,694 terms, all 7 modes, audio',c2:'Study plans, patient cases, Approbation hub',c3:'CV, documents, PDF export',c4:'5,342 exam protocols in full',c5:'No ads',c6:'Price / month',
 faqT:'Frequently asked',faqS:'Everything you need before starting.',
-q1:'Can I try for free?',a1:'Yes. The free version includes all 2934 terms and all modes — with ads. Premium removes ads and unlocks stats + leaderboard.',
-q2:'How long until I am FSP-ready?',a2:'At 20 minutes daily most users are ready in 6–10 weeks. The Bundesland filter and spaced repetition save you time.',
+q1:'Can I try for free?',a1:'Yes. The learning part, plans, patient cases, CV builder and documents are free for good, paid for by ads. Premium (€3.99/month) removes the ads and opens the archive of 5,342 exam protocols.',
+q2:'How long until I am FSP-ready?',a2:'That depends on your language level and your preparation — nobody can honestly give you a number. The app promises no date; it gives you a plan: enter your exam date and the topics spread across your study days.',
 q3:'Does it work offline?',a3:'Learning content and flashcards work fully offline. Audio streams from the cloud — once played it is cached locally.',
 q4:'iPhone or Android?',a4:'Both. Coming soon to App Store and Google Play. Progress syncs automatically between devices.',
 q5:'Who built MedTerms?',a5:'MedTerms was built by a doctor in Germany — for doctors walking the same path. Every term, every example is from real practice.',
@@ -821,14 +799,14 @@ q6:'Can I cancel anytime?',a6:'Yes. Premium subscriptions are managed entirely i
 q7:'Can I build my own study plan?',a7:'Yes — the plan builder asks for your exam date, weekdays and topics per day. The app then distributes all KP topics across your available study days. You can move, pin or skip topics — the plan reacts immediately.',
 q8:'What help do I get for the approbation itself?',a8:'The Approbation hub shows you the full step-by-step plan (EU or non-EU), the authority of your federal state, language schools, medical chambers, a documents checklist and CV templates with real examples.',
 q9:'Do I get reminders?',a9:'Yes. Pick a time, and the app reminds you daily about today\'s topics. You can pause or turn it off any time.',
-ctaT:'Ready to pass FSP on your first try?',ctaSub:'Start for free. No credit card. No commitment.',ctaBtn:'Start for free →',tag:'Master medical terminology'
+ctaT:'Start today with the first term.',ctaSub:'Start for free. No credit card. No commitment.',ctaBtn:'Start for free →',tag:'Master medical terminology'
 },
-uk:{title:'MedTerms — FSP за 8 тижнів',pain:'30% провалюють Fachsprachprüfung',h1a:'FSP за',h1b:'8 тижнів',h1c:'.',lead:'2934 терміни, аудіо від носіїв мови, 5 ігрових режимів — створено для іноземних лікарів у Німеччині. 20 хвилин на день до мети.',ctaP:'Почати безкоштовно',ctaS:'Як це працює',rating:'· 142 відгуки лікарів',home:'Головна',privacy:'Конфіденційність',terms:'Умови',support:'Підтримка',
+uk:{title:'MedTerms — медична німецька для FSP і KP',pain:'Створено лікарем у Німеччині',h1a:'Медична німецька для',h1b:'FSP і KP',h1c:'.',lead:'2 694 терміни з озвучкою, 5 342 протоколи іспитів, 1 192 випадки пацієнтів і плани підготовки для всіх 16 земель — для іноземних лікарів на шляху до апробації.',ctaP:'Почати безкоштовно',ctaS:'Як це працює',rating:'Безкоштовно · 11 мов · iOS та Android',home:'Головна',privacy:'Конфіденційність',terms:'Умови',support:'Підтримка',
 pDef:'Утруднене дихання, суб\'єктивно відчувається як «задишка».',pAudio:'Слухати',pS1:'Вивчено',pS2:'Стрік',pS3:'Прогрес',
-tQuote:'З MedTerms я склала FSP за 6 тижнів. Аудіо — це круте рішення: нарешті чую, як говорять носії.',tName:'Др. Ірина М.',tRole:'Анестезіолог · Берлін',
+
 hT:'Як це працює',hS:'Три кроки до FSP.',s1t:'Зареєструйся',s1p:'30 секунд — email або Google. Безкоштовно.',s2t:'Обери свою землю',s2p:'Контент автоматично фільтрується за твоєю землею та спеціальністю.',s3t:'Вчи 20 хвилин на день',s3p:'Картки, квізи та аудіо. Прогрес синхронізується скрізь.',
 st1:'Термінів',st2:'Аудіо-файлів',st3:'Ігрових режимів',stCases:'Кейсів пацієнтів',stStates:'Земель',st4:'Мов UI',
-f1t:'Картки з клінічними прикладами',f1:'Латина → німецька → мова пацієнта. Так, як дійсно потрібно в лікарні.',f2t:'Аудіо від носіїв',f2:'17 604 аудіо з двома голосами. Нарешті правильна вимова.',f3t:'16 земель — твоя теж',f3:'Тільки те, що реально запитає твій екзаменатор. Без зайвого.',f4t:'5 режимів проти нудьги',f4:'Картки, квізи, заповнення, матчинг, щоденний челендж з рейтингом.',
+f1t:'Картки з клінічними прикладами',f1:'Латина → німецька → мова пацієнта. Так, як дійсно потрібно в лікарні.',f2t:'Кожен термін озвучено — два голоси',f2:'16 164 записи: латина, німецький термін і визначення — кожне чоловічим і жіночим голосом.',f3t:'16 земель — твоя теж',f3:'Тільки те, що реально запитає твій екзаменатор. Без зайвого.',f4t:'7 режимів проти нудьги',f4:'Картки, квіз, заповнення пропусків, матчинг, вибір на слух, диктант і щоденний челендж із рейтингом.',
 capT:'Більше ніж словник',capS:'MedTerms супроводжує тебе на всьому шляху апробації — від першого слова до подачі резюме в клініку.',
 cat1t:'Ігрові режими та spaced repetition',cat1l1:'Картки з аудіо-вимовою',cat1l2:'Квіз з варіантами відповідей',cat1l3:'Заповнення пропусків (Cloze)',cat1l4:'Матчинг (відповідність)',cat1l5:'Колесо фортуни — соло та мультиплеєр',cat1l6:'Щоденний челендж із рейтингом',cat1l7:'Spaced repetition (оцінки 3/2/1/0)',
 cat2t:'Особисті плани підготовки',cat2l1:'KP-план: свої теми, темп, порядок',cat2l2:'FSP-план під твою землю',cat2l3:'Дата іспиту, дні тижня, тем на день',cat2l4:'Переміщай, фіксуй, пропускай теми',cat2l5:'Щоденне нагадування у зручний час',cat2l6:'PDF-експорт для друку чи зошита',
@@ -837,10 +815,10 @@ cat4t:'Підготовка до усної FSP',cat4l1:'Кейси пацієн
 cat5t:'Хаб знань і робота',cat5l1:'Статті з підготовки до FSP та KP',cat5l2:'Поради досвідчених лікарів',cat5l3:'Ресурси з пошуку роботи в клініках',cat5l4:'Шаблони заяв і звернень',cat5l5:'Практичні підказки на кожному кроці',
 cat6t:'Зручність і синхронізація',cat6l1:'Повноцінна офлайн-робота',cat6l2:'Світла й темна теми',cat6l3:'Sync між iPhone, iPad і Android',cat6l4:'Віджет на головному екрані',cat6l5:'Без реклами в Premium',cat6l6:'11 мов UI, включно з арабською (RTL)',
 cat7t:'Спільнота й оновлення',cat7l1:'Знайди партнера для практики по регіону (Simulation Partner)',cat7l2:'Тренуй FSP-діалоги в чаті всередині апки',cat7l3:'Запрошення, блокування, безпечне з\'єднання',cat7l4:'Стрічка новин про FSP і апробацію',cat7l5:'Оновлення вимог по землях',cat7l6:'Поради лікарів, які вже склали іспит',
-cT:'Чому MedTerms?',cS:'Anki коштує часу. AMBOSS коштує грошей. MedTerms економить обидва.',cH:'Функція',c1:'2934 FSP-термінів готові',c2:'Аудіо від носіїв',c3:'Фільтр по землі',c4:'Мова пацієнта',c5:'11 мов UI',c6:'Ціна / місяць',
+cT:'Безкоштовно і Premium',cS:'Навчальна частина повністю безкоштовна. Premium прибирає рекламу і відкриває архів протоколів.',cH:'Функція',cHf:'Безкоштовно',cHp:'Premium',c1:'2 694 терміни, усі 7 режимів, озвучка',c2:'Плани, випадки пацієнтів, хаб апробації',c3:'Резюме, документи, експорт у PDF',c4:'5 342 протоколи іспитів повністю',c5:'Без реклами',c6:'Ціна / місяць',
 faqT:'Часті запитання',faqS:'Усе, що треба знати перед стартом.',
-q1:'Чи можна спробувати безкоштовно?',a1:'Так. Безкоштовна версія має всі 2934 терміни та всі режими — з рекламою. Premium прибирає рекламу і відкриває статистику та рейтинг.',
-q2:'Скільки часу до FSP?',a2:'20 хв на день — більшість готові за 6–10 тижнів. Фільтр по землі і spaced repetition економлять час.',
+q1:'Чи можна спробувати безкоштовно?',a1:'Так. Навчальна частина, плани, випадки пацієнтів, резюме й документи безкоштовні назавжди — їх оплачує реклама. Premium (3,99 €/місяць) прибирає рекламу і відкриває архів із 5 342 протоколами іспитів.',
+q2:'Скільки часу до FSP?',a2:'Це залежить від твого рівня мови й підготовки — чесної цифри тобі не назве ніхто. Застосунок не обіцяє дати, а дає план: вносиш дату іспиту, і теми розкладаються по твоїх навчальних днях.',
 q3:'Чи працює офлайн?',a3:'Навчальний контент працює повністю офлайн. Аудіо стрімиться з хмари — раз прослухане кешується локально.',
 q4:'iPhone чи Android?',a4:'Обидва. Скоро в App Store і Google Play. Прогрес синхронізується між пристроями.',
 q5:'Хто створив MedTerms?',a5:'MedTerms створив лікар у Німеччині — для лікарів, які йдуть тим самим шляхом. Кожен термін — з реальної практики.',
@@ -848,14 +826,14 @@ q6:'Чи можна скасувати?',a6:'Так. Premium керується 
 q7:'Чи можу створити власний план підготовки?',a7:'Так — конструктор плану питає дату іспиту, дні тижня й кількість тем на день. Апка автоматично розподіляє всі KP-теми по доступних днях. Ти можеш переміщати, фіксувати чи пропускати теми — план реагує миттєво.',
 q8:'Яка допомога є з самою апробацією?',a8:'Хаб апробації показує повний покроковий план (ЄС чи не-ЄС), установу твоєї землі, мовні школи, медпалати, чек-ліст документів і шаблони CV з реальними прикладами.',
 q9:'Чи будуть нагадування?',a9:'Так. Обираєш зручний час — і апка щодня нагадує про сьогоднішні теми. Можна паузити чи вимкнути будь-коли.',
-ctaT:'Готовий скласти FSP з першого разу?',ctaSub:'Почни безкоштовно. Без картки. Без зобов\'язань.',ctaBtn:'Почати безкоштовно →',tag:'Опануйте медичну термінологію'
+ctaT:'Почни сьогодні з першого терміна.',ctaSub:'Почни безкоштовно. Без картки. Без зобов\'язань.',ctaBtn:'Почати безкоштовно →',tag:'Опануйте медичну термінологію'
 },
-ru:{title:'MedTerms — FSP за 8 недель',pain:'30% проваливают Fachsprachprüfung',h1a:'FSP за',h1b:'8 недель',h1c:'.',lead:'2934 термина, аудио от носителей языка, 5 игровых режимов — создано для иностранных врачей в Германии. 20 минут в день до цели.',ctaP:'Начать бесплатно',ctaS:'Как это работает',rating:'· 142 отзыва врачей',home:'Главная',privacy:'Конфиденциальность',terms:'Условия',support:'Поддержка',
+ru:{title:'MedTerms — медицинский немецкий для FSP и KP',pain:'Создано врачом в Германии',h1a:'Медицинский немецкий для',h1b:'FSP и KP',h1c:'.',lead:'2 694 термина с озвучкой, 5 342 протокола экзаменов, 1 192 случая пациентов и планы подготовки для всех 16 земель — для иностранных врачей на пути к апробации.',ctaP:'Начать бесплатно',ctaS:'Как это работает',rating:'Бесплатно · 11 языков · iOS и Android',home:'Главная',privacy:'Конфиденциальность',terms:'Условия',support:'Поддержка',
 pDef:'Затруднённое дыхание, субъективно ощущается как «нехватка воздуха».',pAudio:'Слушать',pS1:'Изучено',pS2:'Стрик',pS3:'Прогресс',
-tQuote:'С MedTerms сдала FSP за 6 недель. Аудио — главное: наконец слышу, как говорят носители.',tName:'Др. Ирина М.',tRole:'Анестезиолог · Берлин',
+
 hT:'Как это работает',hS:'Три шага к FSP.',s1t:'Зарегистрируйся',s1p:'30 секунд — email или Google. Бесплатно.',s2t:'Выбери свою землю',s2p:'Контент автоматически фильтруется по земле и специальности.',s3t:'Учись 20 минут в день',s3p:'Карточки, квизы и аудио. Прогресс синхронизируется везде.',
 st1:'Терминов',st2:'Аудио-файлов',st3:'Игровых режимов',stCases:'Кейсов пациентов',stStates:'Земель',st4:'Языков UI',
-f1t:'Карточки с клиническими примерами',f1:'Латынь → немецкий → язык пациента. Как действительно нужно в больнице.',f2t:'Аудио от носителей',f2:'17 604 аудио с двумя голосами. Наконец правильное произношение.',f3t:'16 земель — твоя тоже',f3:'Только то, что реально спросит экзаменатор. Без лишнего.',f4t:'5 режимов против скуки',f4:'Карточки, квизы, заполнение, матчинг, ежедневный челлендж с рейтингом.',
+f1t:'Карточки с клиническими примерами',f1:'Латынь → немецкий → язык пациента. Как действительно нужно в больнице.',f2t:'Каждый термин озвучен — два голоса',f2:'16 164 записи: латынь, немецкий термин и определение — каждое мужским и женским голосом.',f3t:'16 земель — твоя тоже',f3:'Только то, что реально спросит экзаменатор. Без лишнего.',f4t:'7 режимов против скуки',f4:'Карточки, квиз, заполнение пропусков, матчинг, выбор на слух, диктант и ежедневный челлендж с рейтингом.',
 capT:'Больше чем словарь',capS:'MedTerms сопровождает тебя на всём пути апробации — от первого слова до подачи резюме в клинику.',
 cat1t:'Игровые режимы и spaced repetition',cat1l1:'Карточки с аудио-произношением',cat1l2:'Квиз с вариантами ответов',cat1l3:'Заполнение пропусков (Cloze)',cat1l4:'Матчинг (соответствие)',cat1l5:'Колесо фортуны — соло и мультиплеер',cat1l6:'Ежедневный челлендж с рейтингом',cat1l7:'Spaced repetition (оценки 3/2/1/0)',
 cat2t:'Личные планы подготовки',cat2l1:'KP-план: свои темы, темп, порядок',cat2l2:'FSP-план под твою землю',cat2l3:'Дата экзамена, дни недели, тем в день',cat2l4:'Перемещай, закрепляй, пропускай темы',cat2l5:'Ежедневное напоминание в удобное время',cat2l6:'PDF-экспорт для печати или тетради',
@@ -864,10 +842,10 @@ cat4t:'Подготовка к устной FSP',cat4l1:'Кейсы пациен
 cat5t:'Хаб знаний и работа',cat5l1:'Статьи по подготовке к FSP и KP',cat5l2:'Советы опытных врачей',cat5l3:'Ресурсы по поиску работы в клиниках',cat5l4:'Шаблоны заявлений',cat5l5:'Практические подсказки на каждом шаге',
 cat6t:'Удобство и синхронизация',cat6l1:'Полноценная офлайн-работа',cat6l2:'Светлая и тёмная темы',cat6l3:'Sync между iPhone, iPad и Android',cat6l4:'Виджет на главном экране',cat6l5:'Без рекламы в Premium',cat6l6:'11 языков UI, включая арабский (RTL)',
 cat7t:'Сообщество и обновления',cat7l1:'Найди партнёра для практики по региону (Simulation Partner)',cat7l2:'Тренируй FSP-диалоги в чате внутри приложения',cat7l3:'Приглашения, блокировка, безопасное соединение',cat7l4:'Лента новостей по FSP и апробации',cat7l5:'Обновления требований по землям',cat7l6:'Советы врачей, уже сдавших экзамен',
-cT:'Почему MedTerms?',cS:'Anki стоит времени. AMBOSS стоит денег. MedTerms экономит оба.',cH:'Функция',c1:'2934 FSP-термина готовы',c2:'Аудио от носителей',c3:'Фильтр по земле',c4:'Язык пациента',c5:'11 языков UI',c6:'Цена / месяц',
+cT:'Бесплатно и Premium',cS:'Учебная часть полностью бесплатна. Premium убирает рекламу и открывает архив протоколов.',cH:'Функция',cHf:'Бесплатно',cHp:'Premium',c1:'2 694 термина, все 7 режимов, озвучка',c2:'Планы, случаи пациентов, хаб апробации',c3:'Резюме, документы, экспорт в PDF',c4:'5 342 протокола экзаменов полностью',c5:'Без рекламы',c6:'Цена / месяц',
 faqT:'Частые вопросы',faqS:'Всё, что нужно знать перед стартом.',
-q1:'Можно попробовать бесплатно?',a1:'Да. Бесплатная версия содержит все 2934 термина и все режимы — с рекламой. Premium убирает рекламу и открывает статистику и рейтинг.',
-q2:'Сколько времени до FSP?',a2:'20 минут в день — большинство готовы за 6–10 недель. Фильтр по земле и spaced repetition экономят время.',
+q1:'Можно попробовать бесплатно?',a1:'Да. Учебная часть, планы, случаи пациентов, резюме и документы бесплатны навсегда — их оплачивает реклама. Premium (3,99 €/месяц) убирает рекламу и открывает архив из 5 342 протоколов экзаменов.',
+q2:'Сколько времени до FSP?',a2:'Это зависит от твоего уровня языка и подготовки — честной цифры тебе не назовёт никто. Приложение не обещает дату, а даёт план: вносишь дату экзамена, и темы распределяются по твоим учебным дням.',
 q3:'Работает ли офлайн?',a3:'Учебный контент работает полностью офлайн. Аудио стримится из облака — однажды прослушанное кэшируется локально.',
 q4:'iPhone или Android?',a4:'Оба. Скоро в App Store и Google Play. Прогресс синхронизируется между устройствами.',
 q5:'Кто создал MedTerms?',a5:'MedTerms создал врач в Германии — для врачей, которые идут тем же путём. Каждый термин — из реальной практики.',
@@ -875,14 +853,14 @@ q6:'Можно ли отменить?',a6:'Да. Premium управляется 
 q7:'Можно ли создать свой план подготовки?',a7:'Да — конструктор плана спрашивает дату экзамена, дни недели и количество тем в день. Приложение распределяет все KP-темы по доступным дням. Можно перемещать, закреплять и пропускать темы — план реагирует мгновенно.',
 q8:'Какая помощь по самой апробации?',a8:'Хаб апробации показывает полный пошаговый план (ЕС или не-ЕС), учреждение твоей земли, языковые школы, медпалаты, чек-лист документов и шаблоны CV с реальными примерами.',
 q9:'Будут ли напоминания?',a9:'Да. Выбираешь время — приложение ежедневно напоминает о сегодняшних темах. Можно поставить на паузу или выключить в любой момент.',
-ctaT:'Готов сдать FSP с первого раза?',ctaSub:'Начни бесплатно. Без карты. Без обязательств.',ctaBtn:'Начать бесплатно →',tag:'Освойте медицинскую терминологию'
+ctaT:'Начни сегодня с первого термина.',ctaSub:'Начни бесплатно. Без карты. Без обязательств.',ctaBtn:'Начать бесплатно →',tag:'Освойте медицинскую терминологию'
 },
-tr:{title:'MedTerms — 8 haftada FSP',pain:'%30 Fachsprachprüfung\'ı geçemez',h1a:'8 haftada',h1b:'FSP',h1c:'hazır.',lead:'2934 tıbbi terim, ana dili konuşan ses kaydı, 5 öğrenme modu — Almanya\'daki yabancı doktorlar için. Günde 20 dakika ile hedefe.',ctaP:'Ücretsiz başla',ctaS:'Nasıl çalışır',rating:'· 142 doktor yorumu',home:'Ana sayfa',privacy:'Gizlilik',terms:'Şartlar',support:'Destek',
+tr:{title:'MedTerms — FSP ve KP için tıbbi Almanca',pain:'Almanya’daki bir doktor tarafından geliştirildi',h1a:'FSP ve KP için',h1b:'tıbbi Almanca',h1c:'.',lead:'2 694 tıbbi terim ses kaydıyla, 5 342 sınav protokolü, 1 192 hasta vakası ve 16 eyaletin tümü için çalışma planları — Approbation yolundaki yabancı doktorlar için.',ctaP:'Ücretsiz başla',ctaS:'Nasıl çalışır',rating:'Ücretsiz · 11 dil · iOS ve Android',home:'Ana sayfa',privacy:'Gizlilik',terms:'Şartlar',support:'Destek',
 pDef:'Zor nefes alma, hasta tarafından "nefes darlığı" olarak algılanır.',pAudio:'Dinle',pS1:'Öğrenildi',pS2:'Seri',pS3:'İlerleme',
-tQuote:'MedTerms ile FSP\'yi 6 haftada geçtim. Ses kaydı oyun değiştirici — sonunda ana dilini konuşanları duyuyorum.',tName:'Dr. Iryna M.',tRole:'Anestezist · Berlin',
+
 hT:'Nasıl çalışır',hS:'Üç adımda FSP\'ye hazır.',s1t:'Kayıt ol',s1p:'30 saniye — e-posta veya Google. Ücretsiz.',s2t:'Eyaletini seç',s2p:'İçerik otomatik olarak eyaletine ve uzmanlık alanına göre filtrelenir.',s3t:'Her gün 20 dakika öğren',s3p:'Flashcard, quiz ve ses. İlerlemen her yerde senkronize olur.',
 st1:'Terim',st2:'Ses dosyası',st3:'Oyun modu',stCases:'Hasta vakası',stStates:'Eyalet',st4:'UI dili',
-f1t:'Klinik örneklerle flashcardlar',f1:'Latince → Almanca → Hasta dili. Hastanede gerçekten ihtiyacın olan şekilde.',f2t:'Ana dili gibi ses',f2:'17.604 ses dosyası, iki sesle. Sonunda doğru telaffuz.',f3t:'16 eyalet — seninki de',f3:'Sadece FSP sınav görevlinizin gerçekten soracağı şeyler. Gereksiz yük yok.',f4t:'Sıkıcılığa karşı 5 mod',f4:'Flashcard, Quiz, Boşluk doldurma, Eşleştirme, Liderlik tablolu Günlük Meydan Okuma.',
+f1t:'Klinik örneklerle flashcardlar',f1:'Latince → Almanca → Hasta dili. Hastanede gerçekten ihtiyacın olan şekilde.',f2t:'Her terim seslendirildi — iki ses',f2:'16 164 kayıt: Latince, Almanca terim ve tanım — her biri erkek ve kadın sesiyle.',f3t:'16 eyalet — seninki de',f3:'Sadece FSP sınav görevlinizin gerçekten soracağı şeyler. Gereksiz yük yok.',f4t:'Sıkıcılığa karşı 7 mod',f4:'Flashcard, quiz, boşluk doldurma, eşleştirme, dinleyerek seçme, dikte ve liderlik tablolu günlük meydan okuma.',
 capT:'Sözcük öğreticiden çok daha fazlası',capS:'MedTerms tüm Approbation yolculuğunda yanında — ilk sözcükten ilk iş başvurusuna kadar.',
 cat1t:'Öğrenme oyunları & spaced repetition',cat1l1:'Sesli telaffuzlu flashcardlar',cat1l2:'Çoktan seçmeli quiz',cat1l3:'Boşluk doldurma (Cloze)',cat1l4:'Eşleştirme oyunu',cat1l5:'Şans Çarkı — solo ve çok oyunculu',cat1l6:'Liderlik tablolu günlük meydan okuma',cat1l7:'Spaced repetition (skor 3/2/1/0)',
 cat2t:'Kişisel çalışma planları',cat2l1:'KP planı: kendi konuların, temponun, sıran',cat2l2:'Eyaletine özel FSP planı',cat2l3:'Sınav tarihi, hafta günleri, günlük konu sayısı',cat2l4:'Konuları taşı, sabitle, atla',cat2l5:'Belirlediğin saatte günlük hatırlatıcı',cat2l6:'Yazdırma veya defter için PDF dışa aktarma',
@@ -891,10 +869,10 @@ cat4t:'FSP pratiği (sözlü)',cat4l1:'Hasta vakaları: anamnez ve sunum',cat4l2
 cat5t:'Bilgi merkezi & iş',cat5l1:'FSP & KP hazırlığı makaleleri',cat5l2:'Deneyimli doktorlardan ipuçları',cat5l3:'Alman hastaneleri için iş kaynakları',cat5l4:'Başvuru şablonları',cat5l5:'Her adım için pratik öneriler',
 cat6t:'Konfor & senkronizasyon',cat6l1:'Tamamen çevrimdışı çalışır',cat6l2:'Açık ve koyu mod',cat6l3:'iPhone, iPad ve Android arası senkronizasyon',cat6l4:'Ana ekran widget\'ı',cat6l5:'Premium\'da reklamsız',cat6l6:'Arapça (RTL) dahil 11 UI dili',
 cat7t:'Topluluk & güncellemeler',cat7l1:'Bölgeye göre çalışma partneri bul (Simulation Partner)',cat7l2:'Uygulama içi sohbette FSP diyaloglarını pratik et',cat7l3:'Davetler, engelleme, güvenli bağlantı',cat7l4:'FSP & Approbation hakkında haber akışı',cat7l5:'Eyalet gereksinimleri güncellemeleri',cat7l6:'Sınavı geçmiş doktorlardan ipuçları',
-cT:'Neden MedTerms?',cS:'Anki zaman ister. AMBOSS para ister. MedTerms ikisini de kazandırır.',cH:'Özellik',c1:'2934 FSP terimi hazır',c2:'Ana dili ses kaydı',c3:'Eyalet filtresi',c4:'Hasta dili',c5:'11 UI dili',c6:'Fiyat / ay',
+cT:'Ücretsiz ve Premium',cS:'Öğrenme bölümü tamamen ücretsiz. Premium reklamları kaldırır ve protokol arşivini açar.',cH:'Özellik',cHf:'Ücretsiz',cHp:'Premium',c1:'2 694 terim, 7 modun tümü, ses',c2:'Çalışma planları, hasta vakaları, Approbation merkezi',c3:'Özgeçmiş, belgeler, PDF dışa aktarma',c4:'5 342 sınav protokolü tam metin',c5:'Reklamsız',c6:'Fiyat / ay',
 faqT:'Sık sorulan sorular',faqS:'Başlamadan önce bilmen gereken her şey.',
-q1:'Ücretsiz deneyebilir miyim?',a1:'Evet. Ücretsiz sürüm tüm 2934 terimi ve tüm modları içerir — reklamlı. Premium reklamları kaldırır, istatistikleri ve skor tablosunu açar.',
-q2:'FSP\'ye kadar ne kadar sürer?',a2:'Günde 20 dakikayla çoğu kullanıcı 6–10 haftada hazır. Eyalet filtresi ve spaced repetition zaman kazandırır.',
+q1:'Ücretsiz deneyebilir miyim?',a1:'Evet. Öğrenme bölümü, planlar, hasta vakaları, özgeçmiş ve belgeler kalıcı olarak ücretsiz — reklamlarla finanse ediliyor. Premium (3,99 €/ay) reklamları kaldırır ve 5 342 sınav protokolü arşivini açar.',
+q2:'FSP\'ye kadar ne kadar sürer?',a2:'Bu, dil seviyene ve hazırlığına bağlı — kimse sana dürüst bir sayı veremez. Uygulama tarih vaat etmez, plan verir: sınav tarihini girersin, konular çalışma günlerine dağılır.',
 q3:'Çevrimdışı çalışır mı?',a3:'Öğrenme içeriği ve flashcardlar tamamen çevrimdışı çalışır. Ses buluttan akıtılır — bir kez dinlendikten sonra yerel olarak önbelleğe alınır.',
 q4:'iPhone mu Android mi?',a4:'İkisi de. Yakında App Store ve Google Play\'de. İlerleme cihazlar arasında otomatik senkronize olur.',
 q5:'MedTerms\'i kim yaptı?',a5:'MedTerms\'i Almanya\'da bir doktor — aynı yolda yürüyen doktorlar için — geliştirdi. Her terim, her örnek gerçek pratikten.',
@@ -902,14 +880,14 @@ q6:'Her zaman iptal edebilir miyim?',a6:'Evet. Premium abonelikler tamamen App S
 q7:'Kendi çalışma planımı oluşturabilir miyim?',a7:'Evet — plan oluşturucu sınav tarihini, hafta günlerini ve günlük konu sayısını sorar. Uygulama tüm KP konularını çalışma günlerine otomatik dağıtır. Konuları taşıyabilir, sabitleyebilir veya atlayabilirsin — plan anında tepki verir.',
 q8:'Approbation için ne tür yardım var?',a8:'Approbation merkezi tam adım adım planı (AB veya AB-dışı), eyaletinin yetkilisini, dil okullarını, tabip odalarını, belge kontrol listesini ve gerçek örneklerle CV şablonlarını gösterir.',
 q9:'Hatırlatıcı alır mıyım?',a9:'Evet. Bir saat seç, uygulama her gün bugünün konularını hatırlatır. İstediğin zaman duraklatabilir veya kapatabilirsin.',
-ctaT:'FSP\'yi ilk denemede geçmeye hazır mısın?',ctaSub:'Ücretsiz başla. Kredi kartı yok. Taahhüt yok.',ctaBtn:'Ücretsiz başla →',tag:'Tıbbi terminolojide ustalaşın'
+ctaT:'Bugün ilk terimle başla.',ctaSub:'Ücretsiz başla. Kredi kartı yok. Taahhüt yok.',ctaBtn:'Ücretsiz başla →',tag:'Tıbbi terminolojide ustalaşın'
 },
-ar:{title:'MedTerms — جاهز لـ FSP في 8 أسابيع',pain:'30% يفشلون في امتحان Fachsprachprüfung',h1a:'جاهز لـ FSP في',h1b:'8 أسابيع',h1c:'.',lead:'2934 مصطلحًا طبيًا، صوت من المتحدثين الأصليين، 5 أوضاع تعلم — مصمم للأطباء الأجانب في ألمانيا. 20 دقيقة يوميًا للوصول إلى هدفك.',ctaP:'ابدأ مجاناً',ctaS:'كيف يعمل',rating:'· 142 تقييم من الأطباء',home:'الرئيسية',privacy:'الخصوصية',terms:'الشروط',support:'الدعم',
+ar:{title:'MedTerms — الألمانية الطبية لـ FSP و KP',pain:'طوّره طبيب في ألمانيا',h1a:'الألمانية الطبية لـ',h1b:'FSP و KP',h1c:'.',lead:'2 694 مصطلحًا طبيًا مع الصوت، و5 342 بروتوكول امتحان، و1 192 حالة مريض، وخطط دراسية لجميع الولايات الـ16 — للأطباء الأجانب في طريقهم إلى الاعتماد.',ctaP:'ابدأ مجاناً',ctaS:'كيف يعمل',rating:'مجاني · 11 لغة · iOS و Android',home:'الرئيسية',privacy:'الخصوصية',terms:'الشروط',support:'الدعم',
 pDef:'صعوبة التنفس، يشعر بها المريض ذاتياً كـ "ضيق في التنفس".',pAudio:'استمع',pS1:'تم تعلمه',pS2:'تسلسل',pS3:'التقدم',
-tQuote:'مع MedTerms نجحت في FSP خلال 6 أسابيع. الصوت يحدث فارقاً — أخيراً أسمع كيف يتحدث الناطقون الأصليون.',tName:'د. إيرينا م.',tRole:'طبيبة تخدير · برلين',
+
 hT:'كيف يعمل',hS:'ثلاث خطوات للاستعداد لـ FSP.',s1t:'سجّل',s1p:'30 ثانية — بريد إلكتروني أو حساب Google. مجاناً.',s2t:'اختر ولايتك',s2p:'يتم تصفية المحتوى تلقائياً حسب ولايتك المستهدفة وتخصصك.',s3t:'تعلم 20 دقيقة يومياً',s3p:'بطاقات، اختبارات وصوت. يتم مزامنة تقدمك في كل مكان.',
 st1:'مصطلح',st2:'ملف صوتي',st3:'أوضاع اللعب',stCases:'حالات المرضى',stStates:'الولايات',st4:'لغات الواجهة',
-f1t:'بطاقات مع أمثلة سريرية',f1:'لاتينية → ألمانية → لغة المريض. بالطريقة التي تحتاجها فعلاً في المستشفى.',f2t:'صوت كالمتحدث الأصلي',f2:'17,604 ملف صوتي بصوتين. أخيراً النطق الصحيح.',f3t:'16 ولاية — ولايتك مشمولة',f3:'فقط ما يسأله ممتحن FSP فعلاً. بدون حمولة غير ضرورية.',f4t:'5 أوضاع ضد الملل',f4:'بطاقات، اختبارات، ملء الفراغات، مطابقة، تحدي يومي مع لوحة المتصدرين.',
+f1t:'بطاقات مع أمثلة سريرية',f1:'لاتينية → ألمانية → لغة المريض. بالطريقة التي تحتاجها فعلاً في المستشفى.',f2t:'كل مصطلح مسجّل صوتيًا — صوتان',f2:'16 164 تسجيلاً: اللاتينية، والمصطلح الألماني، والتعريف — كل منها بصوت رجل وصوت امرأة.',f3t:'16 ولاية — ولايتك مشمولة',f3:'فقط ما يسأله ممتحن FSP فعلاً. بدون حمولة غير ضرورية.',f4t:'7 أوضاع ضد الملل',f4:'بطاقات، اختبارات، ملء الفراغات، مطابقة، اختيار سمعي، إملاء، وتحدٍّ يومي مع لوحة المتصدرين.',
 capT:'أكثر من مدرب مفردات',capS:'MedTerms يرافقك طوال رحلة الـ Approbation — من أول كلمة حتى أول طلب توظيف.',
 cat1t:'ألعاب التعلم والتكرار المتباعد',cat1l1:'بطاقات مع نطق صوتي',cat1l2:'اختبار متعدد الخيارات',cat1l3:'ملء الفراغات (Cloze)',cat1l4:'لعبة المطابقة',cat1l5:'عجلة الحظ — فردي وجماعي',cat1l6:'تحدي يومي مع لوحة المتصدرين',cat1l7:'تكرار متباعد (تقييم 3/2/1/0)',
 cat2t:'خطط دراسة شخصية',cat2l1:'خطة KP: مواضيعك، إيقاعك، ترتيبك',cat2l2:'خطة FSP حسب ولايتك',cat2l3:'تاريخ الامتحان، أيام الأسبوع، مواضيع يومياً',cat2l4:'نقل، تثبيت أو تخطي المواضيع',cat2l5:'تذكير يومي في الوقت الذي تختاره',cat2l6:'تصدير PDF للطباعة أو الدفتر',
@@ -918,10 +896,10 @@ cat4t:'تدريب FSP الشفهي',cat4l1:'حالات المرضى: التار�
 cat5t:'مركز المعرفة والوظائف',cat5l1:'مقالات حول التحضير لـ FSP و KP',cat5l2:'نصائح من أطباء ذوي خبرة',cat5l3:'موارد التوظيف للمستشفيات الألمانية',cat5l4:'قوالب طلبات التوظيف',cat5l5:'إرشادات عملية لكل خطوة',
 cat6t:'الراحة والمزامنة',cat6l1:'يعمل بالكامل دون إنترنت',cat6l2:'الوضع الفاتح والداكن',cat6l3:'مزامنة بين iPhone و iPad و Android',cat6l4:'أداة الشاشة الرئيسية',cat6l5:'بدون إعلانات في Premium',cat6l6:'11 لغة واجهة بما فيها العربية (RTL)',
 cat7t:'المجتمع والتحديثات',cat7l1:'اعثر على شريك للممارسة حسب المنطقة (Simulation Partner)',cat7l2:'تدرب على حوارات FSP في الدردشة داخل التطبيق',cat7l3:'دعوات وحظر واتصال آمن',cat7l4:'موجز أخبار حول FSP و Approbation',cat7l5:'تحديثات متطلبات الولايات',cat7l6:'نصائح من أطباء اجتازوا الامتحان بالفعل',
-cT:'لماذا MedTerms؟',cS:'Anki يكلف وقتاً. AMBOSS يكلف مالاً. MedTerms يوفر كليهما.',cH:'الميزة',c1:'2934 مصطلح FSP جاهز',c2:'صوت من الناطقين الأصليين',c3:'فلتر الولاية',c4:'لغة المريض',c5:'11 لغة واجهة',c6:'السعر / شهر',
+cT:'مجاني و Premium',cS:'الجزء التعليمي مجاني بالكامل. Premium يزيل الإعلانات ويفتح أرشيف البروتوكولات.',cH:'الميزة',cHf:'مجاني',cHp:'Premium',c1:'2 694 مصطلحًا، جميع الأوضاع السبعة، الصوت',c2:'خطط الدراسة، حالات المرضى، مركز الاعتماد',c3:'السيرة الذاتية، المستندات، تصدير PDF',c4:'5 342 بروتوكول امتحان بالنص الكامل',c5:'بدون إعلانات',c6:'السعر / شهر',
 faqT:'أسئلة شائعة',faqS:'كل ما تحتاج معرفته قبل البدء.',
-q1:'هل يمكنني التجربة مجاناً؟',a1:'نعم. النسخة المجانية تحتوي على جميع 2934 مصطلحاً وجميع الأوضاع — مع الإعلانات. Premium يزيل الإعلانات ويفتح الإحصائيات ولوحة المتصدرين.',
-q2:'كم من الوقت حتى FSP؟',a2:'مع 20 دقيقة يومياً، معظم المستخدمين جاهزون في 6–10 أسابيع. فلتر الولاية والتكرار المتباعد يوفران الوقت.',
+q1:'هل يمكنني التجربة مجاناً؟',a1:'نعم. الجزء التعليمي والخطط وحالات المرضى والسيرة الذاتية والمستندات مجانية دائمًا، تمولها الإعلانات. Premium (3,99 €/شهر) يزيل الإعلانات ويفتح أرشيف 5 342 بروتوكول امتحان.',
+q2:'كم من الوقت حتى FSP؟',a2:'هذا يعتمد على مستواك اللغوي وتحضيرك — لا أحد يستطيع إعطاءك رقمًا صادقًا. التطبيق لا يعد بتاريخ، بل يمنحك خطة: تُدخل موعد الامتحان، فتتوزع المواضيع على أيام دراستك.',
 q3:'هل يعمل دون إنترنت؟',a3:'محتوى التعلم والبطاقات تعمل دون اتصال كلياً. الصوت يُبث من السحابة — بمجرد تشغيله يُخزن محلياً.',
 q4:'iPhone أم Android؟',a4:'كلاهما. قريباً في App Store و Google Play. التقدم يتزامن تلقائياً بين الأجهزة.',
 q5:'من طور MedTerms؟',a5:'تم تطوير MedTerms من قبل طبيب في ألمانيا — للأطباء الذين يسلكون نفس الطريق. كل مصطلح وكل مثال من الممارسة الحقيقية.',
@@ -929,14 +907,14 @@ q6:'هل يمكنني الإلغاء في أي وقت؟',a6:'نعم. اشترا�
 q7:'هل يمكنني إنشاء خطة دراسية خاصة بي؟',a7:'نعم — منشئ الخطة يسأل عن تاريخ امتحانك، أيام الأسبوع وعدد المواضيع يومياً. التطبيق يوزع تلقائياً جميع مواضيع KP على أيام دراستك. يمكنك نقل، تثبيت أو تخطي المواضيع — الخطة تستجيب فوراً.',
 q8:'ما المساعدة المتاحة لـ Approbation نفسها؟',a8:'مركز Approbation يعرض الخطة الكاملة خطوة بخطوة (الاتحاد الأوروبي أو خارجه)، هيئة ولايتك، مدارس اللغة، نقابات الأطباء، قائمة فحص الوثائق وقوالب CV مع أمثلة حقيقية.',
 q9:'هل أحصل على تذكيرات؟',a9:'نعم. اختر وقتاً، والتطبيق يذكرك يومياً بمواضيع اليوم. يمكنك إيقافها مؤقتاً أو تعطيلها في أي وقت.',
-ctaT:'مستعد لاجتياز FSP من المحاولة الأولى؟',ctaSub:'ابدأ مجاناً. بدون بطاقة ائتمان. بدون التزام.',ctaBtn:'ابدأ مجاناً ←',tag:'أتقن المصطلحات الطبية'
+ctaT:'ابدأ اليوم بالمصطلح الأول.',ctaSub:'ابدأ مجاناً. بدون بطاقة ائتمان. بدون التزام.',ctaBtn:'ابدأ مجاناً ←',tag:'أتقن المصطلحات الطبية'
 },
-fr:{title:'MedTerms — FSP prêt en 8 semaines',pain:'30% échouent au Fachsprachprüfung',h1a:'FSP prêt en',h1b:'8 semaines',h1c:'.',lead:"2934 termes médicaux, audio de locuteurs natifs, 5 modes d'apprentissage — conçu pour les médecins étrangers en Allemagne. 20 minutes par jour jusqu'à votre objectif.",ctaP:'Commencer gratuitement',ctaS:'Comment ça marche',rating:'· 142 avis de médecins',home:'Accueil',privacy:'Confidentialité',terms:'Conditions',support:'Support',
+fr:{title:'MedTerms — l’allemand médical pour la FSP et la KP',pain:'Développé par un médecin en Allemagne',h1a:'L’allemand médical pour la',h1b:'FSP et la KP',h1c:'.',lead:'2 694 termes médicaux avec audio, 5 342 protocoles d’examen, 1 192 cas de patients et des plans de révision pour les 16 Länder — pour les médecins étrangers en route vers l’Approbation.',ctaP:'Commencer gratuitement',ctaS:'Comment ça marche',rating:'Gratuit · 11 langues · iOS et Android',home:'Accueil',privacy:'Confidentialité',terms:'Conditions',support:'Support',
 pDef:'Respiration laborieuse, subjectivement perçue comme "essoufflement".',pAudio:'Écouter',pS1:'Appris',pS2:'Série',pS3:'Progrès',
-tQuote:"Avec MedTerms j'ai passé le FSP en 6 semaines. L'audio fait toute la différence — enfin j'entends comment un natif parle.",tName:'Dr. Iryna M.',tRole:'Anesthésiste · Berlin',
+
 hT:'Comment ça marche',hS:'Trois étapes vers le FSP.',s1t:"Inscrivez-vous",s1p:'30 secondes — e-mail ou compte Google. Gratuit.',s2t:'Choisissez votre Land',s2p:"Le contenu se filtre automatiquement selon votre Land cible et votre spécialité.",s3t:'Apprenez 20 minutes par jour',s3p:'Cartes, quiz et audio. Votre progression se synchronise partout.',
 st1:'Termes',st2:'Fichiers audio',st3:'Modes de jeu',stCases:'Cas patients',stStates:'Länder',st4:'Langues UI',
-f1t:'Cartes avec exemples cliniques',f1:'Latin → Allemand → Langue du patient. Comme vous en avez besoin à l\'hôpital.',f2t:'Audio comme un natif',f2:'17 604 fichiers audio avec deux voix. Enfin la bonne prononciation.',f3t:'16 Länder — le vôtre aussi',f3:'Uniquement ce que votre examinateur FSP demande vraiment. Pas de ballast inutile.',f4t:'5 modes contre l\'ennui',f4:'Cartes, Quiz, Cloze, Matching, Défi quotidien avec classement.',
+f1t:'Cartes avec exemples cliniques',f1:'Latin → Allemand → Langue du patient. Comme vous en avez besoin à l\'hôpital.',f2t:'Chaque terme enregistré — deux voix',f2:'16 164 enregistrements : le latin, le terme allemand et la définition — chacun avec une voix masculine et une voix féminine.',f3t:'16 Länder — le vôtre aussi',f3:'Uniquement ce que votre examinateur FSP demande vraiment. Pas de ballast inutile.',f4t:'7 modes contre l’ennui',f4:'Cartes, quiz, textes à trous, appariement, choix à l’écoute, dictée et défi quotidien avec classement.',
 capT:'Bien plus qu\'un trainer de vocabulaire',capS:'MedTerms vous accompagne sur tout le chemin de l\'Approbation — du premier mot à votre première candidature.',
 cat1t:'Jeux d\'apprentissage & spaced repetition',cat1l1:'Cartes avec prononciation audio',cat1l2:'Quiz à choix multiples',cat1l3:'Texte à trous (Cloze)',cat1l4:'Jeu de matching',cat1l5:'Roue de la fortune — solo & multijoueur',cat1l6:'Défi quotidien avec classement',cat1l7:'Spaced repetition (score 3/2/1/0)',
 cat2t:'Plans d\'étude personnels',cat2l1:'Plan KP : vos thèmes, rythme, ordre',cat2l2:'Plan FSP selon votre Land',cat2l3:'Date d\'examen, jours, thèmes par jour',cat2l4:'Déplacer, fixer ou ignorer des thèmes',cat2l5:'Rappel quotidien à l\'heure choisie',cat2l6:'Export PDF pour impression ou cahier',
@@ -945,10 +923,10 @@ cat4t:'Pratique FSP (orale)',cat4l1:'Cas patients : anamnèse & présentation',c
 cat5t:'Hub savoir & emploi',cat5l1:'Articles sur préparation FSP & KP',cat5l2:'Conseils de médecins expérimentés',cat5l3:'Ressources d\'emploi pour hôpitaux allemands',cat5l4:'Modèles de candidature',cat5l5:'Conseils pratiques à chaque étape',
 cat6t:'Confort & synchronisation',cat6l1:'Entièrement hors ligne',cat6l2:'Mode clair & sombre',cat6l3:'Sync entre iPhone, iPad & Android',cat6l4:'Widget écran d\'accueil',cat6l5:'Sans pub avec Premium',cat6l6:'11 langues UI dont arabe (RTL)',
 cat7t:'Communauté & mises à jour',cat7l1:'Trouvez un partenaire d\'étude par région (Simulation Partner)',cat7l2:'Pratiquez les dialogues FSP en chat in-app',cat7l3:'Invitations, blocage, connexion sécurisée',cat7l4:'Fil d\'actualité sur FSP & Approbation',cat7l5:'Mises à jour des exigences par Land',cat7l6:'Conseils de médecins déjà reçus à l\'examen',
-cT:'Pourquoi MedTerms ?',cS:'Anki coûte du temps. AMBOSS coûte de l\'argent. MedTerms économise les deux.',cH:'Fonction',c1:'2934 termes FSP prêts',c2:'Audio de natifs',c3:'Filtre par Land',c4:'Langue du patient',c5:'11 langues UI',c6:'Prix / mois',
+cT:'Gratuit et Premium',cS:'La partie apprentissage est entièrement gratuite. Premium supprime la publicité et ouvre les archives de protocoles.',cH:'Fonction',cHf:'Gratuit',cHp:'Premium',c1:'2 694 termes, les 7 modes, audio',c2:'Plans, cas de patients, hub Approbation',c3:'CV, documents, export PDF',c4:'5 342 protocoles d’examen en intégralité',c5:'Sans publicité',c6:'Prix / mois',
 faqT:'Questions fréquentes',faqS:'Tout ce qu\'il faut savoir avant de commencer.',
-q1:'Puis-je essayer gratuitement ?',a1:'Oui. La version gratuite contient les 2934 termes et tous les modes — avec publicités. Premium supprime les pubs et débloque stats + classement.',
-q2:'Combien de temps jusqu\'au FSP ?',a2:'À 20 minutes par jour, la plupart sont prêts en 6–10 semaines. Le filtre Land et la spaced repetition font gagner du temps.',
+q1:'Puis-je essayer gratuitement ?',a1:'Oui. La partie apprentissage, les plans, les cas de patients, le CV et les documents restent gratuits, financés par la publicité. Premium (3,99 €/mois) supprime la publicité et ouvre les archives de 5 342 protocoles d’examen.',
+q2:'Combien de temps jusqu\'au FSP ?',a2:'Cela dépend de votre niveau de langue et de votre préparation — personne ne peut honnêtement vous donner un chiffre. L’application ne promet pas de date, elle vous donne un plan : vous saisissez la date de l’examen et les thèmes se répartissent sur vos jours de révision.',
 q3:'Fonctionne-t-elle hors ligne ?',a3:'Contenu d\'apprentissage et cartes fonctionnent entièrement hors ligne. L\'audio est streamé depuis le cloud — une fois écouté, il est mis en cache.',
 q4:'iPhone ou Android ?',a4:'Les deux. Bientôt sur App Store et Google Play. La progression se synchronise entre appareils.',
 q5:'Qui a créé MedTerms ?',a5:'MedTerms a été créé par un médecin en Allemagne — pour les médecins qui suivent le même chemin. Chaque terme vient de la pratique réelle.',
@@ -956,14 +934,14 @@ q6:'Puis-je annuler à tout moment ?',a6:'Oui. Les abonnements Premium se gèren
 q7:'Puis-je créer mon propre plan d\'étude ?',a7:'Oui — le planner demande votre date d\'examen, vos jours de la semaine et le nombre de thèmes par jour. L\'app distribue automatiquement tous les thèmes KP. Vous pouvez déplacer, fixer ou ignorer des thèmes — le plan réagit immédiatement.',
 q8:'Quelle aide pour l\'Approbation elle-même ?',a8:'Le hub Approbation montre le plan complet (UE ou hors-UE), l\'autorité de votre Land, les écoles de langue, les ordres des médecins, la checklist des documents et des modèles de CV avec exemples.',
 q9:'Y a-t-il des rappels ?',a9:'Oui. Choisissez une heure, l\'app vous rappelle quotidiennement vos thèmes du jour. Vous pouvez mettre en pause ou désactiver à tout moment.',
-ctaT:'Prêt à passer le FSP du premier coup ?',ctaSub:'Commencez gratuitement. Sans carte de crédit. Sans engagement.',ctaBtn:'Commencer gratuitement →',tag:'Maîtrisez la terminologie médicale'
+ctaT:'Commencez aujourd’hui par le premier terme.',ctaSub:'Commencez gratuitement. Sans carte de crédit. Sans engagement.',ctaBtn:'Commencer gratuitement →',tag:'Maîtrisez la terminologie médicale'
 },
-es:{title:'MedTerms — FSP en 8 semanas',pain:'30% suspenden el Fachsprachprüfung',h1a:'FSP en',h1b:'8 semanas',h1c:'.',lead:'2934 términos médicos, audio de hablantes nativos, 5 modos de aprendizaje — creado para médicos extranjeros en Alemania. 20 minutos al día hasta tu meta.',ctaP:'Empezar gratis',ctaS:'Cómo funciona',rating:'· 142 reseñas de médicos',home:'Inicio',privacy:'Privacidad',terms:'Términos',support:'Soporte',
+es:{title:'MedTerms — alemán médico para FSP y KP',pain:'Creado por un médico en Alemania',h1a:'Alemán médico para',h1b:'FSP y KP',h1c:'.',lead:'2 694 términos médicos con audio, 5 342 protocolos de examen, 1 192 casos de pacientes y planes de estudio para los 16 estados federados — para médicos extranjeros camino de la Approbation.',ctaP:'Empezar gratis',ctaS:'Cómo funciona',rating:'Gratis · 11 idiomas · iOS y Android',home:'Inicio',privacy:'Privacidad',terms:'Términos',support:'Soporte',
 pDef:'Respiración laboriosa, percibida subjetivamente como "falta de aire".',pAudio:'Escuchar',pS1:'Aprendido',pS2:'Racha',pS3:'Progreso',
-tQuote:'Con MedTerms aprobé el FSP en 6 semanas. El audio hace la diferencia — por fin oigo cómo habla un nativo.',tName:'Dra. Iryna M.',tRole:'Anestesióloga · Berlín',
+
 hT:'Cómo funciona',hS:'Tres pasos hacia el FSP.',s1t:'Regístrate',s1p:'30 segundos — email o Google. Gratis.',s2t:'Elige tu estado',s2p:'El contenido se filtra automáticamente por tu estado objetivo y especialidad.',s3t:'Estudia 20 minutos al día',s3p:'Tarjetas, quizzes y audio. Tu progreso se sincroniza en todos lados.',
 st1:'Términos',st2:'Archivos audio',st3:'Modos de juego',stCases:'Casos clínicos',stStates:'Estados',st4:'Idiomas UI',
-f1t:'Tarjetas con ejemplos clínicos',f1:'Latín → Alemán → Lengua del paciente. Como lo necesitas en el hospital.',f2t:'Audio como un nativo',f2:'17 604 archivos con dos voces. Por fin la pronunciación correcta.',f3t:'16 estados — el tuyo también',f3:'Solo lo que tu examinador FSP realmente pregunta. Sin carga innecesaria.',f4t:'5 modos contra el aburrimiento',f4:'Tarjetas, Quiz, Cloze, Matching, Reto diario con clasificación.',
+f1t:'Tarjetas con ejemplos clínicos',f1:'Latín → Alemán → Lengua del paciente. Como lo necesitas en el hospital.',f2t:'Cada término locutado — dos voces',f2:'16 164 grabaciones: latín, término alemán y definición — cada una con voz masculina y femenina.',f3t:'16 estados — el tuyo también',f3:'Solo lo que tu examinador FSP realmente pregunta. Sin carga innecesaria.',f4t:'7 modos contra el aburrimiento',f4:'Tarjetas, quiz, huecos, emparejamiento, elección auditiva, dictado y reto diario con clasificación.',
 capT:'Mucho más que un entrenador de vocabulario',capS:'MedTerms te acompaña por todo el camino de la Approbation — desde la primera palabra hasta tu primera candidatura.',
 cat1t:'Juegos de aprendizaje y spaced repetition',cat1l1:'Tarjetas con pronunciación de audio',cat1l2:'Quiz de opción múltiple',cat1l3:'Texto con huecos (Cloze)',cat1l4:'Juego de emparejamiento',cat1l5:'Ruleta — solo y multijugador',cat1l6:'Reto diario con clasificación',cat1l7:'Spaced repetition (puntuación 3/2/1/0)',
 cat2t:'Planes de estudio personales',cat2l1:'Plan KP: tus temas, ritmo, orden',cat2l2:'Plan FSP según tu estado',cat2l3:'Fecha de examen, días, temas por día',cat2l4:'Mover, fijar u omitir temas',cat2l5:'Recordatorio diario a la hora elegida',cat2l6:'Exportar PDF para imprimir o cuaderno',
@@ -972,10 +950,10 @@ cat4t:'Práctica FSP (oral)',cat4l1:'Casos clínicos: anamnesis y presentación'
 cat5t:'Centro de saber y empleo',cat5l1:'Artículos sobre preparación FSP y KP',cat5l2:'Consejos de médicos con experiencia',cat5l3:'Recursos de empleo en hospitales alemanes',cat5l4:'Plantillas de solicitud',cat5l5:'Consejos prácticos en cada paso',
 cat6t:'Comodidad y sincronización',cat6l1:'Totalmente offline',cat6l2:'Modo claro y oscuro',cat6l3:'Sync entre iPhone, iPad y Android',cat6l4:'Widget en pantalla de inicio',cat6l5:'Sin anuncios con Premium',cat6l6:'11 idiomas UI incluido árabe (RTL)',
 cat7t:'Comunidad & actualizaciones',cat7l1:'Encuentra un compañero de estudio por región (Simulation Partner)',cat7l2:'Practica diálogos FSP en chat dentro de la app',cat7l3:'Invitaciones, bloqueo, conexión segura',cat7l4:'Feed de noticias sobre FSP y Approbation',cat7l5:'Actualizaciones de requisitos por estado',cat7l6:'Consejos de médicos que ya aprobaron',
-cT:'¿Por qué MedTerms?',cS:'Anki cuesta tiempo. AMBOSS cuesta dinero. MedTerms ahorra ambos.',cH:'Función',c1:'2934 términos FSP listos',c2:'Audio de nativos',c3:'Filtro por estado',c4:'Lengua del paciente',c5:'11 idiomas UI',c6:'Precio / mes',
+cT:'Gratis y Premium',cS:'La parte de aprendizaje es totalmente gratuita. Premium quita la publicidad y abre el archivo de protocolos.',cH:'Función',cHf:'Gratis',cHp:'Premium',c1:'2 694 términos, los 7 modos, audio',c2:'Planes, casos de pacientes, hub de Approbation',c3:'CV, documentos, exportación a PDF',c4:'5 342 protocolos de examen completos',c5:'Sin publicidad',c6:'Precio / mes',
 faqT:'Preguntas frecuentes',faqS:'Todo lo que necesitas antes de empezar.',
-q1:'¿Puedo probar gratis?',a1:'Sí. La versión gratuita incluye los 2934 términos y todos los modos — con anuncios. Premium quita anuncios y desbloquea estadísticas + clasificación.',
-q2:'¿Cuánto hasta el FSP?',a2:'A 20 minutos al día, la mayoría están listos en 6–10 semanas. El filtro de estado y spaced repetition ahorran tiempo.',
+q1:'¿Puedo probar gratis?',a1:'Sí. La parte de aprendizaje, los planes, los casos de pacientes, el CV y los documentos son gratis para siempre, financiados con publicidad. Premium (3,99 €/mes) quita la publicidad y abre el archivo de 5 342 protocolos de examen.',
+q2:'¿Cuánto hasta el FSP?',a2:'Depende de tu nivel de idioma y de tu preparación — nadie puede darte una cifra honesta. La app no promete una fecha, te da un plan: introduces la fecha del examen y los temas se reparten entre tus días de estudio.',
 q3:'¿Funciona sin conexión?',a3:'Contenido y tarjetas funcionan sin conexión. El audio se transmite desde la nube — una vez reproducido, se guarda localmente.',
 q4:'¿iPhone o Android?',a4:'Ambos. Próximamente en App Store y Google Play. Progreso se sincroniza entre dispositivos.',
 q5:'¿Quién creó MedTerms?',a5:'MedTerms fue creada por un médico en Alemania — para médicos que siguen el mismo camino. Cada término es de la práctica real.',
@@ -983,14 +961,14 @@ q6:'¿Puedo cancelar cuando quiera?',a6:'Sí. Las suscripciones Premium se gesti
 q7:'¿Puedo crear mi propio plan?',a7:'Sí — el creador de plan pregunta tu fecha de examen, días de la semana y temas por día. La app distribuye automáticamente todos los temas KP. Puedes mover, fijar u omitir temas — el plan reacciona al instante.',
 q8:'¿Qué ayuda hay para la Approbation?',a8:'El centro de Approbation muestra el plan completo (UE o no-UE), la autoridad de tu estado, escuelas de idioma, colegios médicos, lista de documentos y plantillas de CV con ejemplos.',
 q9:'¿Recibo recordatorios?',a9:'Sí. Eliges una hora, la app te recuerda diariamente los temas del día. Puedes pausar o desactivar cuando quieras.',
-ctaT:'¿Listo para aprobar el FSP a la primera?',ctaSub:'Empieza gratis. Sin tarjeta. Sin compromiso.',ctaBtn:'Empezar gratis →',tag:'Domina la terminología médica'
+ctaT:'Empieza hoy con el primer término.',ctaSub:'Empieza gratis. Sin tarjeta. Sin compromiso.',ctaBtn:'Empezar gratis →',tag:'Domina la terminología médica'
 },
-pl:{title:'MedTerms — FSP w 8 tygodni',pain:'30% nie zdaje Fachsprachprüfung',h1a:'FSP w',h1b:'8 tygodni',h1c:'.',lead:'2934 terminy medyczne, audio native speakerów, 5 trybów nauki — stworzone dla zagranicznych lekarzy w Niemczech. 20 minut dziennie do celu.',ctaP:'Zacznij za darmo',ctaS:'Jak to działa',rating:'· 142 opinie lekarzy',home:'Start',privacy:'Prywatność',terms:'Warunki',support:'Wsparcie',
+pl:{title:'MedTerms — niemiecki medyczny do FSP i KP',pain:'Stworzone przez lekarza w Niemczech',h1a:'Niemiecki medyczny do',h1b:'FSP i KP',h1c:'.',lead:'2 694 terminy medyczne z audio, 5 342 protokoły egzaminacyjne, 1 192 przypadki pacjentów i plany nauki dla wszystkich 16 landów — dla zagranicznych lekarzy w drodze do Approbation.',ctaP:'Zacznij za darmo',ctaS:'Jak to działa',rating:'Bezpłatnie · 11 języków · iOS i Android',home:'Start',privacy:'Prywatność',terms:'Warunki',support:'Wsparcie',
 pDef:'Utrudnione oddychanie, subiektywnie odczuwane jako "duszność".',pAudio:'Słuchaj',pS1:'Nauczone',pS2:'Seria',pS3:'Postęp',
-tQuote:'Z MedTerms zdałam FSP w 6 tygodni. Audio robi różnicę — wreszcie słyszę jak mówią native speakerzy.',tName:'Dr Iryna M.',tRole:'Anestezjolog · Berlin',
+
 hT:'Jak to działa',hS:'Trzy kroki do FSP.',s1t:'Zarejestruj się',s1p:'30 sekund — e-mail lub Google. Za darmo.',s2t:'Wybierz swój Land',s2p:'Treść filtruje się automatycznie według Landu i specjalizacji.',s3t:'Ucz się 20 minut dziennie',s3p:'Fiszki, quizy i audio. Twój postęp synchronizuje się wszędzie.',
 st1:'Terminów',st2:'Plików audio',st3:'Trybów gry',stCases:'Przypadków pacjentów',stStates:'Landów',st4:'Języków UI',
-f1t:'Fiszki z przykładami klinicznymi',f1:'Łacina → Niemiecki → Język pacjenta. Tak jak potrzebujesz w szpitalu.',f2t:'Audio jak native speaker',f2:'17 604 pliki audio z dwoma głosami. Wreszcie poprawna wymowa.',f3t:'16 Landów — twój też',f3:'Tylko to, o co naprawdę pyta egzaminator FSP. Bez zbędnego balastu.',f4t:'5 trybów przeciw nudzie',f4:'Fiszki, Quiz, Cloze, Matching, Codzienne wyzwanie z rankingiem.',
+f1t:'Fiszki z przykładami klinicznymi',f1:'Łacina → Niemiecki → Język pacjenta. Tak jak potrzebujesz w szpitalu.',f2t:'Każdy termin nagrany — dwa głosy',f2:'16 164 nagrania: łacina, niemiecki termin i definicja — każde głosem męskim i żeńskim.',f3t:'16 Landów — twój też',f3:'Tylko to, o co naprawdę pyta egzaminator FSP. Bez zbędnego balastu.',f4t:'7 trybów przeciw nudzie',f4:'Fiszki, quiz, luki, dopasowywanie, wybór ze słuchu, dyktando i codzienne wyzwanie z rankingiem.',
 capT:'Więcej niż trener słówek',capS:'MedTerms towarzyszy ci przez całą drogę Approbation — od pierwszego słowa do pierwszego podania o pracę.',
 cat1t:'Gry edukacyjne i spaced repetition',cat1l1:'Fiszki z wymową audio',cat1l2:'Quiz wielokrotnego wyboru',cat1l3:'Uzupełnianie luk (Cloze)',cat1l4:'Gra w dopasowanie',cat1l5:'Koło fortuny — solo i multiplayer',cat1l6:'Codzienne wyzwanie z rankingiem',cat1l7:'Spaced repetition (ocena 3/2/1/0)',
 cat2t:'Osobiste plany nauki',cat2l1:'Plan KP: własne tematy, tempo, kolejność',cat2l2:'Plan FSP dopasowany do Landu',cat2l3:'Data egzaminu, dni tygodnia, tematy dziennie',cat2l4:'Przesuwaj, przypinaj lub pomijaj tematy',cat2l5:'Codzienne przypomnienie o wybranej godzinie',cat2l6:'Eksport PDF do druku lub zeszytu',
@@ -999,10 +977,10 @@ cat4t:'Praktyka FSP (ustny)',cat4l1:'Przypadki pacjentów: anamneza i prezentacj
 cat5t:'Centrum wiedzy i praca',cat5l1:'Artykuły o przygotowaniu do FSP i KP',cat5l2:'Porady doświadczonych lekarzy',cat5l3:'Zasoby pracy w niemieckich szpitalach',cat5l4:'Szablony aplikacji',cat5l5:'Praktyczne wskazówki na każdym etapie',
 cat6t:'Komfort i synchronizacja',cat6l1:'Pełna praca offline',cat6l2:'Tryb jasny i ciemny',cat6l3:'Sync między iPhone, iPad i Android',cat6l4:'Widget na ekranie głównym',cat6l5:'Bez reklam w Premium',cat6l6:'11 języków UI w tym arabski (RTL)',
 cat7t:'Społeczność i aktualizacje',cat7l1:'Znajdź partnera do nauki według regionu (Simulation Partner)',cat7l2:'Ćwicz dialogi FSP w czacie w aplikacji',cat7l3:'Zaproszenia, blokada, bezpieczne połączenie',cat7l4:'Feed wiadomości o FSP i Approbation',cat7l5:'Aktualizacje wymagań Landów',cat7l6:'Porady lekarzy, którzy już zdali egzamin',
-cT:'Dlaczego MedTerms?',cS:'Anki kosztuje czas. AMBOSS kosztuje pieniądze. MedTerms oszczędza oba.',cH:'Funkcja',c1:'2934 termin FSP gotowe',c2:'Audio native speakerów',c3:'Filtr Landu',c4:'Język pacjenta',c5:'11 języków UI',c6:'Cena / miesiąc',
+cT:'Bezpłatnie i Premium',cS:'Część do nauki jest w pełni bezpłatna. Premium usuwa reklamy i otwiera archiwum protokołów.',cH:'Funkcja',cHf:'Bezpłatnie',cHp:'Premium',c1:'2 694 terminy, wszystkie 7 trybów, audio',c2:'Plany, przypadki pacjentów, hub Approbation',c3:'CV, dokumenty, eksport PDF',c4:'5 342 protokoły egzaminacyjne w całości',c5:'Bez reklam',c6:'Cena / miesiąc',
 faqT:'Najczęstsze pytania',faqS:'Wszystko, co musisz wiedzieć przed startem.',
-q1:'Czy mogę spróbować za darmo?',a1:'Tak. Darmowa wersja zawiera wszystkie 2934 terminy i wszystkie tryby — z reklamami. Premium usuwa reklamy i odblokowuje statystyki + ranking.',
-q2:'Ile czasu do FSP?',a2:'20 minut dziennie — większość jest gotowa po 6–10 tygodniach. Filtr Landu i spaced repetition oszczędzają czas.',
+q1:'Czy mogę spróbować za darmo?',a1:'Tak. Część do nauki, plany, przypadki pacjentów, CV i dokumenty są bezpłatne na stałe — finansują je reklamy. Premium (3,99 €/miesiąc) usuwa reklamy i otwiera archiwum 5 342 protokołów egzaminacyjnych.',
+q2:'Ile czasu do FSP?',a2:'To zależy od twojego poziomu językowego i przygotowania — nikt nie poda ci uczciwej liczby. Aplikacja nie obiecuje daty, tylko daje plan: wpisujesz datę egzaminu, a tematy rozkładają się na twoje dni nauki.',
 q3:'Czy działa offline?',a3:'Materiały do nauki działają w pełni offline. Audio strumieniuje się z chmury — raz odtworzone jest buforowane lokalnie.',
 q4:'iPhone czy Android?',a4:'Oba. Wkrótce w App Store i Google Play. Postęp synchronizuje się między urządzeniami.',
 q5:'Kto stworzył MedTerms?',a5:'MedTerms stworzył lekarz w Niemczech — dla lekarzy, którzy idą tą samą drogą. Każdy termin z realnej praktyki.',
@@ -1010,14 +988,14 @@ q6:'Czy mogę anulować w każdej chwili?',a6:'Tak. Subskrypcje Premium zarządz
 q7:'Czy mogę stworzyć własny plan nauki?',a7:'Tak — kreator planu pyta o datę egzaminu, dni tygodnia i tematy dziennie. Aplikacja automatycznie rozdziela wszystkie tematy KP na dni nauki. Możesz przesuwać, przypinać lub pomijać tematy — plan reaguje natychmiast.',
 q8:'Jaka pomoc dotyczy samej Approbation?',a8:'Centrum Approbation pokazuje pełny plan krok po kroku (UE lub spoza UE), urząd twojego Landu, szkoły językowe, izby lekarskie, listę dokumentów i szablony CV z prawdziwymi przykładami.',
 q9:'Czy dostanę przypomnienia?',a9:'Tak. Wybierasz godzinę — aplikacja codziennie przypomina o tematach na dziś. Możesz wstrzymać lub wyłączyć w dowolnym momencie.',
-ctaT:'Gotowy zdać FSP za pierwszym razem?',ctaSub:'Zacznij za darmo. Bez karty. Bez zobowiązań.',ctaBtn:'Zacznij za darmo →',tag:'Opanuj terminologię medyczną'
+ctaT:'Zacznij dziś od pierwszego terminu.',ctaSub:'Zacznij za darmo. Bez karty. Bez zobowiązań.',ctaBtn:'Zacznij za darmo →',tag:'Opanuj terminologię medyczną'
 },
-el:{title:'MedTerms — FSP σε 8 εβδομάδες',pain:'Το 30% αποτυγχάνει στο Fachsprachprüfung',h1a:'FSP σε',h1b:'8 εβδομάδες',h1c:'.',lead:'2934 ιατρικοί όροι, ήχος από φυσικούς ομιλητές, 5 τρόποι εκμάθησης — σχεδιασμένο για ξένους γιατρούς στη Γερμανία. 20 λεπτά ημερησίως μέχρι τον στόχο.',ctaP:'Ξεκίνα δωρεάν',ctaS:'Πώς λειτουργεί',rating:'· 142 κριτικές από γιατρούς',home:'Αρχική',privacy:'Απόρρητο',terms:'Όροι',support:'Υποστήριξη',
+el:{title:'MedTerms — ιατρικά γερμανικά για FSP και KP',pain:'Αναπτύχθηκε από γιατρό στη Γερμανία',h1a:'Ιατρικά γερμανικά για',h1b:'FSP και KP',h1c:'.',lead:'2 694 ιατρικοί όροι με ήχο, 5 342 πρωτόκολλα εξετάσεων, 1 192 περιστατικά ασθενών και πλάνα μελέτης για όλα τα 16 κρατίδια — για ξένους γιατρούς στον δρόμο προς την Approbation.',ctaP:'Ξεκίνα δωρεάν',ctaS:'Πώς λειτουργεί',rating:'Δωρεάν · 11 γλώσσες · iOS και Android',home:'Αρχική',privacy:'Απόρρητο',terms:'Όροι',support:'Υποστήριξη',
 pDef:'Δύσπνοια, γίνεται αντιληπτή υποκειμενικά ως "έλλειψη αέρα".',pAudio:'Ακούστε',pS1:'Έμαθα',pS2:'Σειρά',pS3:'Πρόοδος',
-tQuote:'Με το MedTerms πέρασα το FSP σε 6 εβδομάδες. Ο ήχος κάνει τη διαφορά — επιτέλους ακούω πώς μιλούν οι φυσικοί ομιλητές.',tName:'Δρ. Ιρίνα Μ.',tRole:'Αναισθησιολόγος · Βερολίνο',
+
 hT:'Πώς λειτουργεί',hS:'Τρία βήματα για το FSP.',s1t:'Εγγραφή',s1p:'30 δευτερόλεπτα — email ή Google. Δωρεάν.',s2t:'Επιλέξτε το Land σας',s2p:'Το περιεχόμενο φιλτράρεται αυτόματα ανά Land και ειδικότητα.',s3t:'Μάθετε 20 λεπτά την ημέρα',s3p:'Κάρτες, κουίζ και ήχος. Η πρόοδός σας συγχρονίζεται παντού.',
 st1:'Όροι',st2:'Αρχεία ήχου',st3:'Λειτουργίες',stCases:'Περιστατικά ασθενών',stStates:'Länder',st4:'Γλώσσες UI',
-f1t:'Κάρτες με κλινικά παραδείγματα',f1:'Λατινικά → Γερμανικά → Γλώσσα ασθενούς. Όπως το χρειάζεστε στο νοσοκομείο.',f2t:'Ήχος σαν φυσικός ομιλητής',f2:'17.604 αρχεία ήχου με δύο φωνές. Επιτέλους η σωστή προφορά.',f3t:'16 Länder — το δικό σας',f3:'Μόνο αυτά που ρωτά πραγματικά ο εξεταστής FSP. Χωρίς περιττό φορτίο.',f4t:'5 τρόποι ενάντια στην πλήξη',f4:'Κάρτες, Quiz, Cloze, Matching, Ημερήσια πρόκληση με πίνακα κατάταξης.',
+f1t:'Κάρτες με κλινικά παραδείγματα',f1:'Λατινικά → Γερμανικά → Γλώσσα ασθενούς. Όπως το χρειάζεστε στο νοσοκομείο.',f2t:'Κάθε όρος ηχογραφημένος — δύο φωνές',f2:'16 164 ηχογραφήσεις: λατινικά, γερμανικός όρος και ορισμός — η καθεμία με ανδρική και γυναικεία φωνή.',f3t:'16 Länder — το δικό σας',f3:'Μόνο αυτά που ρωτά πραγματικά ο εξεταστής FSP. Χωρίς περιττό φορτίο.',f4t:'7 τρόποι ενάντια στην πλήξη',f4:'Κάρτες, κουίζ, συμπλήρωση κενών, αντιστοίχιση, ακουστική επιλογή, υπαγόρευση και ημερήσια πρόκληση με πίνακα κατάταξης.',
 capT:'Πολύ περισσότερο από εκπαιδευτής λεξιλογίου',capS:'Το MedTerms σας συνοδεύει σε όλη τη διαδρομή της Approbation — από την πρώτη λέξη έως την πρώτη αίτηση εργασίας.',
 cat1t:'Παιχνίδια εκμάθησης & spaced repetition',cat1l1:'Κάρτες με ηχητική προφορά',cat1l2:'Quiz πολλαπλής επιλογής',cat1l3:'Συμπλήρωση κενών (Cloze)',cat1l4:'Παιχνίδι αντιστοίχισης',cat1l5:'Τροχός της τύχης — solo & multiplayer',cat1l6:'Ημερήσια πρόκληση με κατάταξη',cat1l7:'Spaced repetition (βαθμολογία 3/2/1/0)',
 cat2t:'Προσωπικά πλάνα μελέτης',cat2l1:'Πλάνο KP: δικά σας θέματα, ρυθμός, σειρά',cat2l2:'Πλάνο FSP βάσει του Land σας',cat2l3:'Ημερομηνία εξετάσεων, μέρες, θέματα ανά μέρα',cat2l4:'Μετακίνηση, καρφίτσωμα ή παράλειψη θεμάτων',cat2l5:'Ημερήσια υπενθύμιση στην ώρα που επιλέγετε',cat2l6:'Εξαγωγή PDF για εκτύπωση ή τετράδιο',
@@ -1026,10 +1004,10 @@ cat4t:'Πρακτική FSP (προφορική)',cat4l1:'Περιστατικά
 cat5t:'Κέντρο γνώσης & εργασία',cat5l1:'Άρθρα για προετοιμασία FSP & KP',cat5l2:'Συμβουλές από έμπειρους γιατρούς',cat5l3:'Πόροι εργασίας για γερμανικά νοσοκομεία',cat5l4:'Πρότυπα αιτήσεων',cat5l5:'Πρακτικές υποδείξεις σε κάθε βήμα',
 cat6t:'Άνεση & συγχρονισμός',cat6l1:'Πλήρως offline',cat6l2:'Φωτεινό & σκοτεινό θέμα',cat6l3:'Sync μεταξύ iPhone, iPad & Android',cat6l4:'Widget αρχικής οθόνης',cat6l5:'Χωρίς διαφημίσεις στο Premium',cat6l6:'11 γλώσσες UI με αραβικά (RTL)',
 cat7t:'Κοινότητα & ενημερώσεις',cat7l1:'Βρες σύντροφο μελέτης ανά περιοχή (Simulation Partner)',cat7l2:'Εξάσκηση διαλόγων FSP σε in-app chat',cat7l3:'Προσκλήσεις, αποκλεισμός, ασφαλής σύνδεση',cat7l4:'Ροή ειδήσεων για FSP & Approbation',cat7l5:'Ενημερώσεις απαιτήσεων ανά Land',cat7l6:'Συμβουλές από γιατρούς που έχουν ήδη περάσει',
-cT:'Γιατί MedTerms;',cS:'Το Anki κοστίζει χρόνο. Το AMBOSS κοστίζει χρήμα. Το MedTerms εξοικονομεί και τα δύο.',cH:'Λειτουργία',c1:'2934 όροι FSP έτοιμοι',c2:'Ήχος από φυσικούς ομιλητές',c3:'Φίλτρο Land',c4:'Γλώσσα ασθενούς',c5:'11 γλώσσες UI',c6:'Τιμή / μήνα',
+cT:'Δωρεάν και Premium',cS:'Το εκπαιδευτικό μέρος είναι εντελώς δωρεάν. Το Premium αφαιρεί τις διαφημίσεις και ανοίγει το αρχείο πρωτοκόλλων.',cH:'Λειτουργία',cHf:'Δωρεάν',cHp:'Premium',c1:'2 694 όροι, και οι 7 τρόποι, ήχος',c2:'Πλάνα, περιστατικά ασθενών, κόμβος Approbation',c3:'Βιογραφικό, έγγραφα, εξαγωγή PDF',c4:'5 342 πρωτόκολλα εξετάσεων πλήρη',c5:'Χωρίς διαφημίσεις',c6:'Τιμή / μήνα',
 faqT:'Συχνές ερωτήσεις',faqS:'Όλα όσα χρειάζεστε πριν ξεκινήσετε.',
-q1:'Μπορώ να δοκιμάσω δωρεάν;',a1:'Ναι. Η δωρεάν έκδοση περιέχει όλους τους 2934 όρους και όλες τις λειτουργίες — με διαφημίσεις. Το Premium αφαιρεί τις διαφημίσεις και ξεκλειδώνει στατιστικά + κατάταξη.',
-q2:'Πόσο χρόνο μέχρι το FSP;',a2:'Με 20 λεπτά ημερησίως οι περισσότεροι είναι έτοιμοι σε 6–10 εβδομάδες. Το φίλτρο Land και το spaced repetition εξοικονομούν χρόνο.',
+q1:'Μπορώ να δοκιμάσω δωρεάν;',a1:'Ναι. Το εκπαιδευτικό μέρος, τα πλάνα, τα περιστατικά, το βιογραφικό και τα έγγραφα είναι δωρεάν για πάντα — χρηματοδοτούνται από διαφημίσεις. Το Premium (3,99 €/μήνα) αφαιρεί τις διαφημίσεις και ανοίγει το αρχείο με 5 342 πρωτόκολλα εξετάσεων.',
+q2:'Πόσο χρόνο μέχρι το FSP;',a2:'Εξαρτάται από το γλωσσικό σου επίπεδο και την προετοιμασία σου — κανείς δεν μπορεί να σου δώσει έντιμο νούμερο. Η εφαρμογή δεν υπόσχεται ημερομηνία, σου δίνει πλάνο: βάζεις την ημερομηνία εξέτασης και τα θέματα μοιράζονται στις ημέρες μελέτης σου.',
 q3:'Λειτουργεί εκτός σύνδεσης;',a3:'Το περιεχόμενο εκμάθησης και οι κάρτες λειτουργούν πλήρως εκτός σύνδεσης. Ο ήχος μεταδίδεται από το cloud — αφού αναπαραχθεί, αποθηκεύεται τοπικά.',
 q4:'iPhone ή Android;',a4:'Και τα δύο. Σύντομα σε App Store και Google Play. Η πρόοδος συγχρονίζεται αυτόματα μεταξύ συσκευών.',
 q5:'Ποιος έφτιαξε το MedTerms;',a5:'Το MedTerms το έφτιαξε ένας γιατρός στη Γερμανία — για γιατρούς που περπατούν τον ίδιο δρόμο. Κάθε όρος είναι από πραγματική πράξη.',
@@ -1037,14 +1015,14 @@ q6:'Μπορώ να ακυρώσω οποτεδήποτε;',a6:'Ναι. Οι σ�
 q7:'Μπορώ να φτιάξω δικό μου πλάνο μελέτης;',a7:'Ναι — ο κατασκευαστής πλάνου ρωτά την ημερομηνία εξετάσεων, τις μέρες της εβδομάδας και τα θέματα ανά μέρα. Η εφαρμογή κατανέμει αυτόματα όλα τα θέματα KP στις διαθέσιμες μέρες μελέτης. Μπορείτε να μετακινείτε, να καρφιτσώνετε ή να παραλείπετε θέματα — το πλάνο αντιδρά αμέσως.',
 q8:'Τι βοήθεια υπάρχει για την ίδια την Approbation;',a8:'Το Κέντρο Approbation σας δείχνει το πλήρες σχέδιο βήμα-βήμα (ΕΕ ή εκτός ΕΕ), την αρχή του Land σας, σχολές γλωσσών, ιατρικούς συλλόγους, λίστα εγγράφων και πρότυπα CV με πραγματικά παραδείγματα.',
 q9:'Λαμβάνω υπενθυμίσεις;',a9:'Ναι. Επιλέγετε ώρα και η εφαρμογή σας υπενθυμίζει καθημερινά τα σημερινά σας θέματα. Μπορείτε να την παύσετε ή να την απενεργοποιήσετε ανά πάσα στιγμή.',
-ctaT:'Έτοιμοι να περάσετε το FSP με την πρώτη προσπάθεια;',ctaSub:'Ξεκινήστε δωρεάν. Χωρίς κάρτα. Χωρίς δέσμευση.',ctaBtn:'Ξεκίνα δωρεάν →',tag:'Κατακτήστε την ιατρική ορολογία'
+ctaT:'Ξεκίνα σήμερα με τον πρώτο όρο.',ctaSub:'Ξεκινήστε δωρεάν. Χωρίς κάρτα. Χωρίς δέσμευση.',ctaBtn:'Ξεκίνα δωρεάν →',tag:'Κατακτήστε την ιατρική ορολογία'
 },
-ro:{title:'MedTerms — FSP în 8 săptămâni',pain:'30% pică Fachsprachprüfung',h1a:'FSP în',h1b:'8 săptămâni',h1c:'.',lead:'2934 termeni medicali, audio de la vorbitori nativi, 5 moduri de învățare — creat pentru medicii străini din Germania. 20 de minute pe zi până la obiectiv.',ctaP:'Începe gratuit',ctaS:'Cum funcționează',rating:'· 142 recenzii de la medici',home:'Acasă',privacy:'Confidențialitate',terms:'Termeni',support:'Asistență',
+ro:{title:'MedTerms — germană medicală pentru FSP și KP',pain:'Creat de un medic din Germania',h1a:'Germană medicală pentru',h1b:'FSP și KP',h1c:'.',lead:'2 694 de termeni medicali cu audio, 5 342 de protocoale de examen, 1 192 de cazuri de pacienți și planuri de studiu pentru toate cele 16 landuri — pentru medicii străini pe drumul spre Approbation.',ctaP:'Începe gratuit',ctaS:'Cum funcționează',rating:'Gratuit · 11 limbi · iOS și Android',home:'Acasă',privacy:'Confidențialitate',terms:'Termeni',support:'Asistență',
 pDef:'Respirație dificilă, percepută subiectiv ca „lipsă de aer".',pAudio:'Ascultă',pS1:'Învățat',pS2:'Serie',pS3:'Progres',
-tQuote:'Cu MedTerms am trecut FSP în 6 săptămâni. Audio face diferența — în sfârșit aud cum vorbesc nativii.',tName:'Dr. Iryna M.',tRole:'Anestezist · Berlin',
+
 hT:'Cum funcționează',hS:'Trei pași către FSP.',s1t:'Înregistrează-te',s1p:'30 de secunde — email sau Google. Gratuit.',s2t:'Alege-ți Land-ul',s2p:'Conținutul se filtrează automat după Land-ul țintă și specialitatea ta.',s3t:'Învață 20 de minute pe zi',s3p:'Cartonașe, quiz-uri și audio. Progresul se sincronizează peste tot.',
 st1:'Termeni',st2:'Fișiere audio',st3:'Moduri de joc',stCases:'Cazuri pacienți',stStates:'Land-uri',st4:'Limbi UI',
-f1t:'Cartonașe cu exemple clinice',f1:'Latină → Germană → Limba pacientului. Așa cum ai nevoie la spital.',f2t:'Audio ca un vorbitor nativ',f2:'17.604 fișiere audio cu două voci. În sfârșit pronunția corectă.',f3t:'16 Land-uri — și al tău',f3:'Doar ce întreabă cu adevărat examinatorul FSP. Fără balast inutil.',f4t:'5 moduri contra plictiselii',f4:'Cartonașe, Quiz, Cloze, Matching, Provocarea zilnică cu clasament.',
+f1t:'Cartonașe cu exemple clinice',f1:'Latină → Germană → Limba pacientului. Așa cum ai nevoie la spital.',f2t:'Fiecare termen înregistrat — două voci',f2:'16 164 de înregistrări: latina, termenul german și definiția — fiecare cu voce masculină și feminină.',f3t:'16 Land-uri — și al tău',f3:'Doar ce întreabă cu adevărat examinatorul FSP. Fără balast inutil.',f4t:'7 moduri contra plictiselii',f4:'Cartonașe, quiz, completare, potrivire, alegere după auz, dictare și provocarea zilnică cu clasament.',
 capT:'Mai mult decât un trainer de vocabular',capS:'MedTerms te însoțește pe tot drumul Approbation — de la primul cuvânt până la prima candidatură.',
 cat1t:'Jocuri de învățare și spaced repetition',cat1l1:'Cartonașe cu pronunție audio',cat1l2:'Quiz cu răspunsuri multiple',cat1l3:'Completare spații (Cloze)',cat1l4:'Joc de potrivire',cat1l5:'Roata norocului — solo și multiplayer',cat1l6:'Provocarea zilnică cu clasament',cat1l7:'Spaced repetition (scor 3/2/1/0)',
 cat2t:'Planuri personale de studiu',cat2l1:'Plan KP: temele tale, ritm, ordine',cat2l2:'Plan FSP adaptat Land-ului tău',cat2l3:'Data examenului, zile, teme pe zi',cat2l4:'Mută, fixează sau sari peste teme',cat2l5:'Memento zilnic la ora aleasă',cat2l6:'Export PDF pentru tipărire sau caiet',
@@ -1053,10 +1031,10 @@ cat4t:'Practică FSP (oral)',cat4l1:'Cazuri pacienți: anamneză și prezentare'
 cat5t:'Hub cunoștințe & job',cat5l1:'Articole despre pregătirea FSP & KP',cat5l2:'Sfaturi de la medici cu experiență',cat5l3:'Resurse de job pentru spitalele germane',cat5l4:'Șabloane de candidatură',cat5l5:'Sfaturi practice pentru fiecare pas',
 cat6t:'Confort și sincronizare',cat6l1:'Funcționează complet offline',cat6l2:'Mod luminos și întunecat',cat6l3:'Sync între iPhone, iPad și Android',cat6l4:'Widget pe ecranul principal',cat6l5:'Fără reclame în Premium',cat6l6:'11 limbi UI inclusiv arabă (RTL)',
 cat7t:'Comunitate și actualizări',cat7l1:'Găsește un partener de studiu pe regiune (Simulation Partner)',cat7l2:'Exersează dialoguri FSP în chat-ul din aplicație',cat7l3:'Invitații, blocare, conexiune sigură',cat7l4:'Flux de știri despre FSP și Approbation',cat7l5:'Actualizări ale cerințelor pe Land-uri',cat7l6:'Sfaturi de la medici care au promovat deja',
-cT:'De ce MedTerms?',cS:'Anki costă timp. AMBOSS costă bani. MedTerms economisește ambele.',cH:'Funcție',c1:'2934 termeni FSP gata',c2:'Audio de la nativi',c3:'Filtru Land',c4:'Limba pacientului',c5:'11 limbi UI',c6:'Preț / lună',
+cT:'Gratuit și Premium',cS:'Partea de învățare este complet gratuită. Premium elimină reclamele și deschide arhiva de protocoale.',cH:'Funcție',cHf:'Gratuit',cHp:'Premium',c1:'2 694 de termeni, toate cele 7 moduri, audio',c2:'Planuri, cazuri de pacienți, hub Approbation',c3:'CV, documente, export PDF',c4:'5 342 de protocoale de examen integral',c5:'Fără reclame',c6:'Preț / lună',
 faqT:'Întrebări frecvente',faqS:'Tot ce trebuie să știi înainte de a începe.',
-q1:'Pot încerca gratuit?',a1:'Da. Versiunea gratuită conține toți cei 2934 de termeni și toate modurile — cu reclame. Premium elimină reclamele și deblochează statistici + clasament.',
-q2:'Cât timp până la FSP?',a2:'Cu 20 de minute pe zi, majoritatea sunt gata în 6–10 săptămâni. Filtrul Land și spaced repetition economisesc timp.',
+q1:'Pot încerca gratuit?',a1:'Da. Partea de învățare, planurile, cazurile de pacienți, CV-ul și documentele sunt gratuite permanent — sunt susținute de reclame. Premium (3,99 €/lună) elimină reclamele și deschide arhiva cu 5 342 de protocoale de examen.',
+q2:'Cât timp până la FSP?',a2:'Depinde de nivelul tău de limbă și de pregătire — nimeni nu îți poate da o cifră onestă. Aplicația nu promite o dată, ci îți dă un plan: introduci data examenului, iar temele se distribuie pe zilele tale de studiu.',
 q3:'Funcționează offline?',a3:'Conținutul de învățare și cartonașele funcționează complet offline. Audio se transmite din cloud — odată redat, se salvează local.',
 q4:'iPhone sau Android?',a4:'Ambele. În curând în App Store și Google Play. Progresul se sincronizează între dispozitive.',
 q5:'Cine a creat MedTerms?',a5:'MedTerms a fost creat de un medic în Germania — pentru medicii care merg pe același drum. Fiecare termen este din practica reală.',
@@ -1064,7 +1042,7 @@ q6:'Pot anula oricând?',a6:'Da. Abonamentele Premium se gestionează în setăr
 q7:'Pot crea propriul plan de studiu?',a7:'Da — constructorul de plan întreabă data examenului, zilele săptămânii și temele pe zi. Aplicația distribuie automat toate temele KP pe zilele tale de studiu. Poți muta, fixa sau sări peste teme — planul reacționează imediat.',
 q8:'Ce ajutor există pentru Approbation în sine?',a8:'Hub-ul Approbation îți arată planul complet pas cu pas (UE sau non-UE), autoritatea Land-ului tău, școli de limbi, camere medicale, listă de documente și șabloane CV cu exemple reale.',
 q9:'Voi primi mementouri?',a9:'Da. Alegi o oră și aplicația îți reamintește zilnic temele pentru azi. Poți pune pe pauză sau dezactiva oricând.',
-ctaT:'Gata să treci FSP din prima încercare?',ctaSub:'Începe gratuit. Fără card. Fără angajament.',ctaBtn:'Începe gratuit →',tag:'Stăpâniți terminologia medicală'
+ctaT:'Începe azi cu primul termen.',ctaSub:'Începe gratuit. Fără card. Fără angajament.',ctaBtn:'Începe gratuit →',tag:'Stăpâniți terminologia medicală'
 }
 };
 
@@ -1103,11 +1081,10 @@ function applyLang(code){
   document.title=tr.title;
   function s(id,t){var el=document.getElementById(id);if(el)el.textContent=t}
   s('pain-badge',tr.pain);
-  var h1=document.getElementById('hero-h1');if(h1)h1.innerHTML=tr.h1a+' <span class="grad">'+tr.h1b+'</span> '+tr.h1c;
+  var h1=document.getElementById('hero-h1');if(h1)h1.innerHTML=tr.h1a+' <span class="grad">'+tr.h1b+'</span>'+tr.h1c;
   s('hero-lead',tr.lead);s('hero-cta-primary',tr.ctaP);s('hero-cta-secondary',tr.ctaS);s('rating-count',tr.rating);
   s('nav-home',tr.home);s('nav-privacy',tr.privacy);s('nav-terms',tr.terms);s('nav-support',tr.support);
   s('phone-definition',tr.pDef);s('phone-audio-label',tr.pAudio);s('phone-s1',tr.pS1);s('phone-s2',tr.pS2);s('phone-s3',tr.pS3);
-  s('testimonial-quote',tr.tQuote);s('testimonial-name',tr.tName);s('testimonial-role',tr.tRole);
   s('how-title',tr.hT);s('how-sub',tr.hS);s('step1-t',tr.s1t);s('step1-p',tr.s1p);s('step2-t',tr.s2t);s('step2-p',tr.s2p);s('step3-t',tr.s3t);s('step3-p',tr.s3p);
   s('stat-terms',tr.st1);s('stat-audio',tr.st2);s('stat-modes',tr.st3);s('stat-langs',tr.st4);
   if(tr.stCases)s('stat-cases',tr.stCases);if(tr.stStates)s('stat-states',tr.stStates);
@@ -1136,7 +1113,7 @@ function applyLang(code){
     s('cat6-quote',qr.cat6q);h('cat6-quote-attr',qr.cat6qa);
     s('cat7-quote',qr.cat7q);h('cat7-quote-attr',qr.cat7qa);
   }
-  s('cmp-title',tr.cT);s('cmp-sub',tr.cS);s('cmp-h-feature',tr.cH);s('cmp-r1',tr.c1);s('cmp-r2',tr.c2);s('cmp-r3',tr.c3);s('cmp-r4',tr.c4);s('cmp-r5',tr.c5);s('cmp-r6',tr.c6);
+  s('cmp-title',tr.cT);s('cmp-sub',tr.cS);s('cmp-h-feature',tr.cH);s('cmp-h-free',tr.cHf);s('cmp-h-prem',tr.cHp);s('cmp-r1',tr.c1);s('cmp-r2',tr.c2);s('cmp-r3',tr.c3);s('cmp-r4',tr.c4);s('cmp-r5',tr.c5);s('cmp-r6',tr.c6);
   s('faq-title',tr.faqT);s('faq-sub',tr.faqS);
   s('faq1-q',tr.q1);s('faq1-a',tr.a1);s('faq2-q',tr.q2);s('faq2-a',tr.a2);s('faq3-q',tr.q3);s('faq3-a',tr.a3);s('faq4-q',tr.q4);s('faq4-a',tr.a4);s('faq5-q',tr.q5);s('faq5-a',tr.a5);s('faq6-q',tr.q6);s('faq6-a',tr.a6);
   if(tr.q7){s('faq7-q',tr.q7);s('faq7-a',tr.a7);s('faq8-q',tr.q8);s('faq8-a',tr.a8);s('faq9-q',tr.q9);s('faq9-a',tr.a9);}
