@@ -195,7 +195,9 @@ async function boot(){
   }
   const { data:{ session } } = await sb.auth.getSession();
   if(!session) return loginView();
-  me = session.user; role = me.user_metadata?.role || '';
+  me = session.user;
+  // Роль з БД (підписка / app_metadata) — user_metadata юзер міг виставити сам.
+  { const { data } = await sb.rpc('my_web_role'); role = typeof data === 'string' ? data : ''; }
   if(!['teacher','author'].includes(role)) return loginView('Dieses Konto hat keine Lehrer-/Autorenrolle.');
   $('#me').innerHTML = `<span>${esc(me.email)}</span><span class="chip ink">${role==='teacher'?'Lehrer':'Autor'}</span><button class="btn sm ghost" id="out">Abmelden</button>`;
   $('#out').onclick = async () => { await sb.auth.signOut(); location.reload(); };
